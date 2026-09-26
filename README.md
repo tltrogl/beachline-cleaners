@@ -21,6 +21,17 @@ Then open the local URL Astro prints in the terminal.
 npm run build
 ```
 
+## GitHub Repositories
+
+This project is deployed to GitHub under:
+- Primary repository: `https://github.com/tltrogl/beachline-cleaners.git`
+- Secondary / boost remote: `https://github.com/tltrogl/boost.git`
+
+To deploy to GitHub Pages via GitHub Actions:
+1. Ensure your GitHub Personal Access Token has the `workflow` scope enabled.
+2. Commit `.github/workflows/deploy.yml` and push to `main`.
+3. In repository settings under **Pages**, select **GitHub Actions** as the build and deployment source.
+
 ## Rename the business
 
 The brand is Beachline Cleaners. Its name and details are configured in:
