@@ -276,7 +276,7 @@ export const homeContent = {
     title: 'Professional cleaning for homes and rentals.',
     description: 'Recurring cleaning, deep cleans, move-out service, and vacation-rental turnovers across the Space Coast.',
     ctaButton: 'Get a Quote',
-    quoteHref: withBase('/quote/'),
+    quoteHref: withBase('/quote'),
     callPrefix: 'Call ',
   },
   trustStrip: {
@@ -294,22 +294,22 @@ export const homeContent = {
     services: [
       {
         title: 'Home Cleaning',
-        href: withBase('/residential-cleaning/'),
+        href: withBase('/residential-cleaning'),
         text: 'Routine care for kitchens, bathrooms, floors, and the rooms you use every day.',
       },
       {
         title: 'Deep Cleaning',
-        href: withBase('/deep-cleaning/'),
+        href: withBase('/deep-cleaning'),
         text: 'A more detailed clean for buildup, overlooked areas, and a fresh start.',
       },
       {
         title: 'Vacation Rental Cleaning',
-        href: withBase('/vacation-rental-cleaning/'),
+        href: withBase('/vacation-rental-cleaning'),
         text: 'Cleaning between stays, with your property’s access and turnover timing in mind.',
       },
       {
         title: 'Move-In / Move-Out',
-        href: withBase('/move-out-cleaning/'),
+        href: withBase('/move-out-cleaning'),
         text: 'Cleaning for an empty home before the next move, handoff, or arrival.',
       },
     ],
@@ -344,13 +344,13 @@ export const homeContent = {
     heading: 'Cleaning between checkout and check-in.',
     description: 'Tell us your turnover window and what the property needs. Discuss linen changes, restocking, and completion photos when agreeing on the scope.',
     linkText: 'Explore vacation rental cleaning',
-    linkHref: withBase('/vacation-rental-cleaning/'),
+    linkHref: withBase('/vacation-rental-cleaning'),
   },
   contactBanner: {
     heading: 'Need a cleaner?',
     text: 'Tell us about the property and the cleaning you need, and we’ll confirm the next step.',
     ctaButton: 'Get a Quote',
-    quoteHref: withBase('/quote/'),
+    quoteHref: withBase('/quote'),
     callPrefix: 'Call ',
   },
 };
@@ -458,7 +458,7 @@ export const quoteContent = {
   ],
   form: {
     nameAttr: 'quote',
-    actionAttr: withBase('/quote-success/'),
+    actionAttr: withBase('/quote-success'),
     honeypotLabel: 'Don’t fill this out if you\'re human:',
     name: {
       label: 'Your Name',
