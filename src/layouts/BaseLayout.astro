@@ -1,4 +1,5 @@
 ---
+import { SEO } from 'astro-seo';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { site, accessibilityContent, mobileActionBarContent, withBase } from '../data/content';
@@ -21,15 +22,30 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta name="description" content={description} />
+    <SEO
+      title={title}
+      description={description}
+      canonical={new URL(Astro.url.pathname, Astro.site).toString()}
+      openGraph={{
+        basic: {
+          title: title,
+          type: "website",
+          image: new URL(withBase('/og-image.jpg'), Astro.site).toString(),
+        },
+        optional: {
+          description: description,
+          siteName: site.name,
+        }
+      }}
+      twitter={{
+        card: "summary_large_image",
+        title: title,
+        description: description,
+        image: new URL(withBase('/og-image.jpg'), Astro.site).toString(),
+      }}
+    />
     <meta name="theme-color" content="#123f43" />
     <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
-    <title>{title}</title>
-    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={Astro.url} />
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "HouseCleaningService",

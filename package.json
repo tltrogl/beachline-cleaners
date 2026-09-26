@@ -16,7 +16,8 @@
     "@astrojs/sitemap": "^3.7.4",
     "@google/adk": "^2.1.0",
     "@google/adk-devtools": "^2.1.0",
-    "astro": "^5.13.5"
+    "astro": "^5.13.5",
+    "astro-seo": "^1.2.0"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
