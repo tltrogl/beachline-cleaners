@@ -17,8 +17,15 @@ export const withBase = (path: string): string => {
   if (!path || path.startsWith('http://') || path.startsWith('https://') || path.startsWith('tel:') || path.startsWith('sms:') || path.startsWith('mailto:') || path.startsWith('#')) {
     return path;
   }
-  const cleanPath = path.startsWith('/') ? path : `/${path}`;
+  
+  
+  let cleanPath = path.startsWith('/') ? path : '/' + path;
+  if (cleanPath !== '/' && !cleanPath.endsWith('/') && !cleanPath.includes('.')) {
+    cleanPath += '/';
+  }
   return `${base}${cleanPath}`;
+
+
 };
 
 export const site = {
