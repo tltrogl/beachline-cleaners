@@ -4,8 +4,8 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://beachlinecleaners.com',
   build: {
-    format: 'file'
+    format: 'directory'
   },
-  trailingSlash: 'never',
+  trailingSlash: 'always',
   integrations: [sitemap()]
 });

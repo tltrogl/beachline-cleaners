@@ -168,7 +168,7 @@ export const servicesDetail: Record<'residential' | 'deep' | 'moveOut' | 'vacati
     eyebrow: 'Deep cleaning',
     title: 'A more detailed reset.',
     intro: 'For spaces that need more than a maintenance clean—whether it’s buildup, a seasonal reset, or the first professional cleaning in a while.',
-    image: withBase('/images/deep-cleaning-kitchen.jpg'),
+    image: withBase('/images/before-after.jpg'),
     imageAlt: 'Woman wiping a stainless steel refrigerator with a cloth in a kitchen',
     imageFocalPoint: 'right',
     included: [
@@ -275,10 +275,11 @@ export const homeContent = {
   metaTitleSuffix: 'Space Coast Cleaning',
   metaDescription: 'Home cleaning, deep cleans, move-in/out service, and vacation-rental turnovers in the Space Coast area. Call Beachline Cleaners to discuss scope and availability.',
   hero: {
-    imageSrc: withBase('/images/hero-living-room.jpg'),
+    imageSrc: withBase('/images/hero-active-clean.jpg'),
     imageWidth: 1920,
     imageHeight: 1440,
     imageAlt: 'A sunlit living room with clean floors, seating, and tropical plants',
+    eyebrow: 'HOUSE CLEANING • DEEP CLEANING • VACATION RENTALS',
     location: 'Space Coast, FL • Cocoa • Cocoa Beach • Merritt Island',
     title: 'Professional cleaning for homes and rentals.',
     description: 'Recurring cleaning, deep cleans, move-out service, and vacation-rental turnovers across the Space Coast.',
@@ -343,7 +344,7 @@ export const homeContent = {
     ],
   },
   rentalSection: {
-    imageSrc: withBase('/images/rental-bedroom.jpg'),
+    imageSrc: withBase('/images/turnover-active.jpg'),
     imageWidth: 1000,
     imageHeight: 1000,
     imageAlt: 'A made bed in a bright bedroom with plants and a woven pendant light',

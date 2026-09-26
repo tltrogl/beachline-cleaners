@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import WhatWeClean from '../components/WhatWeClean.astro';
+import BeforeAfter from '../components/BeforeAfter.astro';
 import { site, homeContent } from '../data/content';
 import '../styles/home.css';
 ---
@@ -15,8 +17,13 @@ import '../styles/home.css';
     />
     <div class="container photo-hero-inner">
       <div class="photo-hero-panel">
-        <p class="hero-location">{homeContent.hero.location}</p>
-        <h1 id="hero-title">{homeContent.hero.title}</h1>
+        <p class="hero-location" style="font-size: 0.875rem; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 600; margin-bottom: 0.5rem;">HOUSE CLEANING &bull; DEEP CLEANING &bull; VACATION RENTALS</p>
+        <h1 id="hero-title" style="display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+          {homeContent.hero.title}
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="36" height="36" aria-hidden="true">
+            <path d="M12 2l3 7 7 3-7 3-3 7-3-7-7-3 7-3z" />
+          </svg>
+        </h1>
         <p class="hero-description">{homeContent.hero.description}</p>
         <div class="hero-contact">
           <a class="btn btn-primary" href={homeContent.hero.quoteHref}>{homeContent.hero.ctaButton} <span aria-hidden="true">→</span></a>
@@ -44,15 +51,21 @@ import '../styles/home.css';
       <h2 id="services-heading">{homeContent.servicesSection.heading}</h2>
       <div class="service-outline">
         {homeContent.servicesSection.services.map((service) => (
-          <article>
+          <article style="display: flex; flex-direction: column;">
+            <div style="width: 100%; height: 160px; background-color: #eee; border-radius: 8px; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+              <img src="/images/hero-active-clean.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy" />
+            </div>
             <h3><a href={service.href}>{service.title}</a></h3>
             <p>{service.text}</p>
-            <a class="outline-link" href={service.href}>{homeContent.servicesSection.linkText} <span aria-hidden="true">→</span></a>
+            <a class="outline-link" href={service.href} style="margin-top: auto;">{homeContent.servicesSection.linkText} <span aria-hidden="true">→</span></a>
           </article>
         ))}
       </div>
     </div>
   </section>
+
+  <WhatWeClean />
+  <BeforeAfter />
 
   <section class="outline-section outline-tint" aria-labelledby="process-heading">
     <div class="container">

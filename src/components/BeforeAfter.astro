@@ -1,0 +1,24 @@
+---
+// BeforeAfter.astro
+---
+<section class="before-after-section outline-section" aria-labelledby="before-after-heading">
+  <div class="container">
+    <div class="section-heading-group">
+      <h2 id="before-after-heading">See the Difference</h2>
+      <p class="hero-description">Experience the Beachline Cleaners transformation.</p>
+    </div>
+    
+    <div class="before-after-strip" style="display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem;">
+      <div class="before-after-images" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+        <div class="image-wrapper" style="position: relative;">
+          <span style="position: absolute; top: 1rem; left: 1rem; background: rgba(0,0,0,0.7); color: white; padding: 0.25rem 0.75rem; border-radius: 4px; font-weight: bold; font-size: 0.875rem;">Before</span>
+          <img src="/images/before_clean.jpg" alt="Before cleaning" style="width: 100%; height: auto; border-radius: 8px; background-color: #eee; min-height: 200px; object-fit: cover;" loading="lazy" />
+        </div>
+        <div class="image-wrapper" style="position: relative;">
+          <span style="position: absolute; top: 1rem; left: 1rem; background: rgba(0,0,0,0.7); color: white; padding: 0.25rem 0.75rem; border-radius: 4px; font-weight: bold; font-size: 0.875rem;">After</span>
+          <img src="/images/after_clean.jpg" alt="After cleaning" style="width: 100%; height: auto; border-radius: 8px; background-color: #ddd; min-height: 200px; object-fit: cover;" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
