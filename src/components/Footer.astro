@@ -1,11 +1,11 @@
 ---
-import { site, footerContent } from '../data/content';
+import { site, footerContent, withBase } from '../data/content';
 ---
 <footer class="footer">
   <div class="container">
     <div class="footer-grid">
       <div>
-        <a class="brand" href="/">
+        <a class="brand" href={withBase('/')}>
           <span class="brand-mark" aria-hidden="true"></span>
           <span>{site.name}</span>
         </a>

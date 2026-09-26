@@ -9,7 +9,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "typecheck": "astro check",
-    "screenshots": "node scripts/capture-site.mjs"
+    "screenshots": "node scripts/capture-site.mjs",
+    "deploy": "node scripts/deploy-gh-pages.mjs"
   },
   "dependencies": {
     "@google/adk": "^2.1.0",

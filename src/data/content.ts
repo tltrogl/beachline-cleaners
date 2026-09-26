@@ -12,6 +12,15 @@ export interface ServiceDetail {
   faqs: { q: string; a: string }[];
 }
 
+export const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
+export const withBase = (path: string): string => {
+  if (!path || path.startsWith('http://') || path.startsWith('https://') || path.startsWith('tel:') || path.startsWith('sms:') || path.startsWith('mailto:') || path.startsWith('#')) {
+    return path;
+  }
+  const cleanPath = path.startsWith('/') ? path : `/${path}`;
+  return `${base}${cleanPath}`;
+};
+
 export const site = {
   name: 'Beachline Cleaners',
   phoneDisplay: '(321) 323-9776',
@@ -35,36 +44,36 @@ export const navigationContent = {
   navAriaLabel: 'Primary navigation',
   servicesDropdownLabel: 'Services',
   serviceLinks: [
-    { title: 'Home Cleaning', href: '/residential-cleaning' },
-    { title: 'Deep Cleaning', href: '/deep-cleaning' },
-    { title: 'Move-In / Move-Out', href: '/move-out-cleaning' },
-    { title: 'Vacation Rentals', href: '/vacation-rental-cleaning' },
+    { title: 'Home Cleaning', href: withBase('/residential-cleaning') },
+    { title: 'Deep Cleaning', href: withBase('/deep-cleaning') },
+    { title: 'Move-In / Move-Out', href: withBase('/move-out-cleaning') },
+    { title: 'Vacation Rentals', href: withBase('/vacation-rental-cleaning') },
   ],
   links: [
-    { title: 'Service Area', href: '/service-area' },
-    { title: 'About', href: '/about' },
-    { title: 'FAQ', href: '/faq' },
+    { title: 'Service Area', href: withBase('/service-area') },
+    { title: 'About', href: withBase('/about') },
+    { title: 'FAQ', href: withBase('/faq') },
   ],
   callPrefix: 'Call ',
   quoteButton: 'Get a Quote',
-  quoteHref: '/quote',
+  quoteHref: withBase('/quote'),
 };
 
 export const footerContent = {
   summary: 'Home cleaning, vacation-rental turnovers, deep cleans, and move-in/move-out cleaning across the Space Coast.',
   servicesHeading: 'Services',
   serviceLinks: [
-    { title: 'Home Cleaning', href: '/residential-cleaning' },
-    { title: 'Vacation Rentals', href: '/vacation-rental-cleaning' },
-    { title: 'Deep Cleaning', href: '/deep-cleaning' },
-    { title: 'Move-In / Move-Out', href: '/move-out-cleaning' },
+    { title: 'Home Cleaning', href: withBase('/residential-cleaning') },
+    { title: 'Vacation Rentals', href: withBase('/vacation-rental-cleaning') },
+    { title: 'Deep Cleaning', href: withBase('/deep-cleaning') },
+    { title: 'Move-In / Move-Out', href: withBase('/move-out-cleaning') },
   ],
   companyHeading: 'Company',
   companyLinks: [
-    { title: 'About', href: '/about' },
-    { title: 'Service Area', href: '/service-area' },
-    { title: 'FAQ', href: '/faq' },
-    { title: 'Get a Quote', href: '/quote' },
+    { title: 'About', href: withBase('/about') },
+    { title: 'Service Area', href: withBase('/service-area') },
+    { title: 'FAQ', href: withBase('/faq') },
+    { title: 'Get a Quote', href: withBase('/quote') },
   ],
   copyrightSuffix: 'All rights reserved.',
 };
@@ -74,7 +83,7 @@ export const mobileActionBarContent = {
   callLabel: 'Call',
   textLabel: 'Text',
   quoteLabel: 'Get a Quote',
-  quoteHref: '/quote',
+  quoteHref: withBase('/quote'),
 };
 
 export const accessibilityContent = {
@@ -85,14 +94,14 @@ export const ctaDefaults = {
   defaultTitle: 'Ready to get started?',
   defaultText: 'Request a quote online or call us to discuss your property, timing, and cleaning needs.',
   quoteButtonText: 'Get a Quote',
-  quoteHref: '/quote',
+  quoteHref: withBase('/quote'),
   callButtonPrefix: 'Call ',
 };
 
 export const servicePageDefaults = {
   defaultImageAlt: 'Cleaning service',
   quoteButtonText: 'Get a Quote',
-  quoteHref: '/quote',
+  quoteHref: withBase('/quote'),
   callButtonPrefix: 'Call ',
   includedHeading: 'What’s included',
   includedIntro: 'Your cleaning plan may include:',
@@ -152,7 +161,7 @@ export const servicesDetail: Record<'residential' | 'deep' | 'moveOut' | 'vacati
     eyebrow: 'Deep cleaning',
     title: 'A more detailed reset.',
     intro: 'For spaces that need more than a maintenance clean—whether it’s buildup, a seasonal reset, or the first professional cleaning in a while.',
-    image: '/images/deep-cleaning-kitchen.jpg',
+    image: withBase('/images/deep-cleaning-kitchen.jpg'),
     imageAlt: 'Woman wiping a stainless steel refrigerator with a cloth in a kitchen',
     imageFocalPoint: 'right',
     included: [
@@ -188,7 +197,7 @@ export const servicesDetail: Record<'residential' | 'deep' | 'moveOut' | 'vacati
     eyebrow: 'Move-in / move-out',
     title: 'Leave the cleaning to us.',
     intro: 'Detailed cleaning for empty properties, new tenants, listings, closings, and fresh starts.',
-    image: '/images/move-out-empty-room.jpg',
+    image: withBase('/images/move-out-empty-room.jpg'),
     imageAlt: 'Unfurnished room with white walls, windows, and clean wood flooring',
     included: [
       'Kitchen and bathroom detail cleaning',
@@ -259,7 +268,7 @@ export const homeContent = {
   metaTitleSuffix: 'Space Coast Cleaning',
   metaDescription: 'Home cleaning, deep cleans, move-in/out service, and vacation-rental turnovers in the Space Coast area. Call Beachline Cleaners to discuss scope and availability.',
   hero: {
-    imageSrc: '/images/hero-living-room.jpg',
+    imageSrc: withBase('/images/hero-living-room.jpg'),
     imageWidth: 1920,
     imageHeight: 1440,
     imageAlt: 'A sunlit living room with clean floors, seating, and tropical plants',
@@ -267,7 +276,7 @@ export const homeContent = {
     title: 'Professional cleaning for homes and rentals.',
     description: 'Recurring cleaning, deep cleans, move-out service, and vacation-rental turnovers across the Space Coast.',
     ctaButton: 'Get a Quote',
-    quoteHref: '/quote/',
+    quoteHref: withBase('/quote/'),
     callPrefix: 'Call ',
   },
   trustStrip: {
@@ -285,22 +294,22 @@ export const homeContent = {
     services: [
       {
         title: 'Home Cleaning',
-        href: '/residential-cleaning/',
+        href: withBase('/residential-cleaning/'),
         text: 'Routine care for kitchens, bathrooms, floors, and the rooms you use every day.',
       },
       {
         title: 'Deep Cleaning',
-        href: '/deep-cleaning/',
+        href: withBase('/deep-cleaning/'),
         text: 'A more detailed clean for buildup, overlooked areas, and a fresh start.',
       },
       {
         title: 'Vacation Rental Cleaning',
-        href: '/vacation-rental-cleaning/',
+        href: withBase('/vacation-rental-cleaning/'),
         text: 'Cleaning between stays, with your property’s access and turnover timing in mind.',
       },
       {
         title: 'Move-In / Move-Out',
-        href: '/move-out-cleaning/',
+        href: withBase('/move-out-cleaning/'),
         text: 'Cleaning for an empty home before the next move, handoff, or arrival.',
       },
     ],
@@ -327,7 +336,7 @@ export const homeContent = {
     ],
   },
   rentalSection: {
-    imageSrc: '/images/rental-bedroom.jpg',
+    imageSrc: withBase('/images/rental-bedroom.jpg'),
     imageWidth: 1000,
     imageHeight: 1000,
     imageAlt: 'A made bed in a bright bedroom with plants and a woven pendant light',
@@ -335,13 +344,13 @@ export const homeContent = {
     heading: 'Cleaning between checkout and check-in.',
     description: 'Tell us your turnover window and what the property needs. Discuss linen changes, restocking, and completion photos when agreeing on the scope.',
     linkText: 'Explore vacation rental cleaning',
-    linkHref: '/vacation-rental-cleaning/',
+    linkHref: withBase('/vacation-rental-cleaning/'),
   },
   contactBanner: {
     heading: 'Need a cleaner?',
     text: 'Tell us about the property and the cleaning you need, and we’ll confirm the next step.',
     ctaButton: 'Get a Quote',
-    quoteHref: '/quote/',
+    quoteHref: withBase('/quote/'),
     callPrefix: 'Call ',
   },
 };
@@ -449,7 +458,7 @@ export const quoteContent = {
   ],
   form: {
     nameAttr: 'quote',
-    actionAttr: '/quote-success/',
+    actionAttr: withBase('/quote-success/'),
     honeypotLabel: 'Don’t fill this out if you\'re human:',
     name: {
       label: 'Your Name',
@@ -522,5 +531,5 @@ export const quoteSuccessContent = {
   title: 'We\'ve received your request.',
   lede: 'Thank you for reaching out. We’ll review the details you submitted and follow up using the contact information you provided.',
   returnButtonText: 'Return Home',
-  returnButtonHref: '/',
+  returnButtonHref: withBase('/'),
 };

@@ -1,9 +1,9 @@
 ---
-import { site, navigationContent } from '../data/content';
+import { site, navigationContent, withBase } from '../data/content';
 ---
 <header class="header">
   <div class="container nav">
-    <a class="brand" href="/" aria-label={navigationContent.brandHomeAriaLabel}>
+    <a class="brand" href={withBase('/')} aria-label={navigationContent.brandHomeAriaLabel}>
       <span class="brand-mark" aria-hidden="true"></span>
       <span>{site.name}</span>
     </a>

@@ -21,16 +21,31 @@ Then open the local URL Astro prints in the terminal.
 npm run build
 ```
 
-## GitHub Repositories
+## GitHub Deployment
 
 This project is deployed to GitHub under:
+- Boost repository: `https://github.com/tltrogl/boost.git`
+  - Live GitHub Pages URL: `https://tltrogl.github.io/boost/`
 - Primary repository: `https://github.com/tltrogl/beachline-cleaners.git`
-- Secondary / boost remote: `https://github.com/tltrogl/boost.git`
+  - Live GitHub Pages URL: `https://tltrogl.github.io/beachline-cleaners/`
 
-To deploy to GitHub Pages via GitHub Actions:
-1. Ensure your GitHub Personal Access Token has the `workflow` scope enabled.
-2. Commit `.github/workflows/deploy.yml` and push to `main`.
-3. In repository settings under **Pages**, select **GitHub Actions** as the build and deployment source.
+### Deploying Updates
+
+To build and deploy the latest changes directly to GitHub Pages (`gh-pages` branch on both remotes):
+```bash
+npm run deploy
+```
+
+This builds the static site with the `/boost` base path, includes `.nojekyll` so Astro's `_astro` assets are served correctly, and pushes to `gh-pages`.
+
+### Building for a Custom Domain
+
+To build for a custom domain (e.g., `https://beachlinecleaners.com` at root path):
+```bash
+$env:ASTRO_SITE="https://beachlinecleaners.com"
+$env:ASTRO_BASE=""
+npm run build
+```
 
 ## Rename the business
 
