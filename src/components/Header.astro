@@ -1,0 +1,50 @@
+---
+import { site, navigationContent } from '../data/content';
+---
+<header class="header">
+  <div class="container nav">
+    <a class="brand" href="/" aria-label={navigationContent.brandHomeAriaLabel}>
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span>{site.name}</span>
+    </a>
+
+    <button class="mobile-toggle" type="button" aria-expanded="false" aria-controls="nav-links">{navigationContent.menuButton}</button>
+
+    <nav class="nav-links" id="nav-links" aria-label={navigationContent.navAriaLabel}>
+      <details class="nav-services">
+        <summary>{navigationContent.servicesDropdownLabel}</summary>
+        <div class="nav-services-menu">
+          {navigationContent.serviceLinks.map((item) => (
+            <a href={item.href}>{item.title}</a>
+          ))}
+        </div>
+      </details>
+      {navigationContent.links.map((item) => (
+        <a href={item.href}>{item.title}</a>
+      ))}
+      <a class="nav-phone" href={site.phoneHref}>{navigationContent.callPrefix}{site.phoneDisplay}</a>
+      <a class="btn btn-primary" href={navigationContent.quoteHref}>{navigationContent.quoteButton}</a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const btn = document.querySelector('.mobile-toggle');
+  const nav = document.querySelector('#nav-links');
+  btn?.addEventListener('click', () => {
+    const open = nav?.classList.toggle('open') ?? false;
+    btn.setAttribute('aria-expanded', String(open));
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape') return;
+    const services = document.querySelector<HTMLDetailsElement>('.nav-services');
+    if (services?.open) {
+      services.open = false;
+      services.querySelector('summary')?.focus();
+    } else if (nav?.classList.contains('open')) {
+      nav.classList.remove('open');
+      btn?.setAttribute('aria-expanded', 'false');
+      if (btn instanceof HTMLElement) btn.focus();
+    }
+  });
+</script>

@@ -1,0 +1,106 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site, homeContent } from '../data/content';
+import '../styles/home.css';
+---
+<BaseLayout bodyClass="island-home" title={`${site.name} | ${homeContent.metaTitleSuffix}`} description={homeContent.metaDescription}>
+  <section class="photo-hero" aria-labelledby="hero-title">
+    <img
+      class="photo-hero-image"
+      src={homeContent.hero.imageSrc}
+      width={homeContent.hero.imageWidth}
+      height={homeContent.hero.imageHeight}
+      alt={homeContent.hero.imageAlt}
+      fetchpriority="high"
+    />
+    <div class="container photo-hero-inner">
+      <div class="photo-hero-panel">
+        <p class="hero-location">{homeContent.hero.location}</p>
+        <h1 id="hero-title">{homeContent.hero.title}</h1>
+        <p class="hero-description">{homeContent.hero.description}</p>
+        <div class="hero-contact">
+          <a class="btn btn-primary" href={homeContent.hero.quoteHref}>{homeContent.hero.ctaButton} <span aria-hidden="true">→</span></a>
+          <a class="hero-phone" href={site.phoneHref}>{homeContent.hero.callPrefix}{site.phoneDisplay}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="service-facts" aria-label={homeContent.trustStrip.ariaLabel}>
+    <div class="container trust-strip-inner">
+      {homeContent.trustStrip.items.map((item) => (
+        <div class="trust-item">
+          <svg class="trust-icon" viewBox="0 0 20 20" fill="currentColor" width="18" height="18" aria-hidden="true">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" />
+          </svg>
+          <span>{item}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <section class="outline-section" aria-labelledby="services-heading">
+    <div class="container">
+      <h2 id="services-heading">{homeContent.servicesSection.heading}</h2>
+      <div class="service-outline">
+        {homeContent.servicesSection.services.map((service) => (
+          <article>
+            <h3><a href={service.href}>{service.title}</a></h3>
+            <p>{service.text}</p>
+            <a class="outline-link" href={service.href}>{homeContent.servicesSection.linkText} <span aria-hidden="true">→</span></a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="outline-section outline-tint" aria-labelledby="process-heading">
+    <div class="container">
+      <div class="section-heading-group">
+        <p class="hero-location">{homeContent.processSection.eyebrow}</p>
+        <h2 id="process-heading">{homeContent.processSection.heading}</h2>
+      </div>
+      <ol class="process-cards" role="list">
+        {homeContent.processSection.steps.map((step) => (
+          <li class="process-card">
+            <div class="process-step-num" aria-hidden="true">{step.num}</div>
+            <h3>{step.title}</h3>
+            <p>{step.text}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="outline-section" aria-labelledby="rental-heading">
+    <div class="container rental-outline">
+      <img
+        class="rental-image"
+        src={homeContent.rentalSection.imageSrc}
+        width={homeContent.rentalSection.imageWidth}
+        height={homeContent.rentalSection.imageHeight}
+        alt={homeContent.rentalSection.imageAlt}
+        loading="lazy"
+      />
+      <div>
+        <p class="hero-location">{homeContent.rentalSection.eyebrow}</p>
+        <h2 id="rental-heading">{homeContent.rentalSection.heading}</h2>
+        <p class="rental-description">{homeContent.rentalSection.description}</p>
+        <a class="outline-link" href={homeContent.rentalSection.linkHref}>{homeContent.rentalSection.linkText} <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="outline-contact" aria-labelledby="contact-heading">
+    <div class="container">
+      <div>
+        <h2 id="contact-heading">{homeContent.contactBanner.heading}</h2>
+        <p>{homeContent.contactBanner.text}</p>
+      </div>
+      <div class="hero-contact">
+        <a class="btn btn-primary" href={homeContent.contactBanner.quoteHref}>{homeContent.contactBanner.ctaButton} <span aria-hidden="true">→</span></a>
+        <a class="hero-phone" href={site.phoneHref}>{homeContent.contactBanner.callPrefix}{site.phoneDisplay}</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

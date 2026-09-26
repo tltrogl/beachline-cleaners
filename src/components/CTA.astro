@@ -1,0 +1,27 @@
+---
+import { site, ctaDefaults } from '../data/content';
+
+interface Props {
+  title?: string;
+  text?: string;
+}
+
+const { 
+  title = ctaDefaults.defaultTitle, 
+  text = ctaDefaults.defaultText 
+} = Astro.props;
+---
+<section class="section">
+  <div class="container">
+    <div class="cta">
+      <div>
+        <h2 class="cta-title">{title}</h2>
+        <p>{text}</p>
+      </div>
+      <div class="cta-actions">
+        <a class="btn btn-cta-primary" href={ctaDefaults.quoteHref}>{ctaDefaults.quoteButtonText} <span aria-hidden="true">→</span></a>
+        <a class="btn btn-cta-phone" href={site.phoneHref}>{ctaDefaults.callButtonPrefix}{site.phoneDisplay}</a>
+      </div>
+    </div>
+  </div>
+</section>

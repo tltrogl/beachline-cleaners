@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTA from '../components/CTA.astro';
+import { site, serviceAreaContent } from '../data/content';
+---
+<BaseLayout title={`${serviceAreaContent.metaTitle} | ${site.name}`} description={serviceAreaContent.metaDescription}>
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">{serviceAreaContent.hero.eyebrow}</p>
+      <h1>{serviceAreaContent.hero.title}</h1>
+      <p class="lede">{serviceAreaContent.hero.lede}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <ul class="service-area-list">
+        {serviceAreaContent.areas.map((city) => (
+          <li>{city}</li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <CTA title={serviceAreaContent.cta.title} text={serviceAreaContent.cta.text} />
+</BaseLayout>
+
+<style>
+  .service-area-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    list-style: none;
+    padding: 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+  .service-area-list li {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--line);
+  }
+</style>

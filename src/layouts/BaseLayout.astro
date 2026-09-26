@@ -1,0 +1,56 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { site, accessibilityContent, mobileActionBarContent } from '../data/content';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  bodyClass?: string;
+  description?: string;
+}
+
+const {
+  title = site.name,
+  bodyClass = '',
+  description = site.defaultMetaDescription
+} = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#123f43" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "HouseCleaningService",
+      "name": site.name,
+      "telephone": site.phoneHref.replace('tel:', ''),
+      "areaServed": site.areaServed,
+      "priceRange": site.priceRange,
+      "description": description
+    })} />
+  </head>
+  <body class={bodyClass}>
+    <a class="skip-link" href="#main-content">{accessibilityContent.skipToContent}</a>
+    <Header />
+    <main id="main-content" tabindex="-1">
+      <slot />
+    </main>
+    <Footer />
+    <div class="mobile-action-bar" aria-label={mobileActionBarContent.ariaLabel}>
+      <a href={site.phoneHref}>{mobileActionBarContent.callLabel}</a>
+      <a href={site.smsHref}>{mobileActionBarContent.textLabel}</a>
+      <a class="mobile-quote" href={mobileActionBarContent.quoteHref}>{mobileActionBarContent.quoteLabel}</a>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site, quoteSuccessContent } from '../data/content';
+import '../styles/home.css';
+---
+<BaseLayout bodyClass="island-home no-mobile-bar page-quote-success" title={`${quoteSuccessContent.metaTitle} | ${site.name}`} description={quoteSuccessContent.metaDescription}>
+  <section class="section">
+    <div class="container content-grid">
+      <div class="prose">
+        <p class="hero-location">{quoteSuccessContent.eyebrow}</p>
+        <h1 class="success-heading">{quoteSuccessContent.title}</h1>
+        <p class="lede">{quoteSuccessContent.lede}</p>
+        
+        <div class="success-actions">
+          <a href={quoteSuccessContent.returnButtonHref} class="btn btn-primary">{quoteSuccessContent.returnButtonText}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .success-heading {
+    font-size: clamp(2.5rem, 4vw, 3.2rem);
+    margin-bottom: 24px;
+  }
+  .success-actions {
+    margin-top: 32px;
+  }
+</style>

@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTA from '../components/CTA.astro';
+import { site, faqContent } from '../data/content';
+---
+<BaseLayout title={`${faqContent.metaTitle} | ${site.name}`} description={faqContent.metaDescription}>
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">{faqContent.hero.eyebrow}</p>
+      <h1>{faqContent.hero.title}</h1>
+      <p class="lede">{faqContent.hero.lede}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container faq-container">
+      <div class="faq">
+        {faqContent.faqs.map((faq) => (
+          <details open={faq.open}>
+            <summary>{faq.q}</summary>
+            <p>{faq.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTA />
+</BaseLayout>
+
+<style>
+  .faq-container {
+    max-width: 900px;
+    margin-inline: auto;
+  }
+</style>

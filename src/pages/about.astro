@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTA from '../components/CTA.astro';
+import { site, aboutContent } from '../data/content';
+---
+<BaseLayout title={`${aboutContent.metaTitle} | ${site.name}`} description={aboutContent.metaDescription}>
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">{aboutContent.hero.eyebrow}</p>
+      <h1>{aboutContent.hero.title}</h1>
+      <p class="lede">{aboutContent.hero.lede}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split">
+      <div>
+        <img src={aboutContent.story.imageSrc} alt={aboutContent.story.imageAlt} />
+      </div>
+      <div>
+        <p class="eyebrow">{aboutContent.story.eyebrow}</p>
+        <h2>{aboutContent.story.heading}</h2>
+        <p class="lede story-lead">{aboutContent.story.lead}</p>
+        
+        {aboutContent.story.paragraphs.map((paragraph) => (
+          <p class="story-body">{paragraph}</p>
+        ))}
+
+        <div class="checks">
+          {aboutContent.story.checks.map((check) => (
+            <div class="check">{check}</div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTA />
+</BaseLayout>
+
+<style>
+  .story-lead {
+    margin-top: 20px;
+  }
+  .story-body {
+    margin-top: 16px;
+  }
+</style>
