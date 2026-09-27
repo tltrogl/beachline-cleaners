@@ -1,13 +1,13 @@
 .island-home {
-  --ink: #17334d;
-  --ink-soft: #506575;
-  --sea: #086f9c;
-  --sea-dark: #125774;
-  --mist: #edf6fa;
-  --line: #dae5eb;
-  --cream: #fff;
-  --coral: #55d5c7;
-  --coral-dark: #81e2d7;
+  --ink: #112a46;
+  --ink-soft: #4a637d;
+  --sea: #009de0;
+  --sea-dark: #007bb0;
+  --mist: #e6f7ff;
+  --line: #cceaff;
+  --cream: #ffffff;
+  --coral: #ff7e67;
+  --coral-dark: #ff9885;
   color: var(--ink);
   background: #fff;
 }
@@ -19,8 +19,8 @@
 .island-home .nav-links a, .island-home .nav-services summary { font-size: .85rem; }
 .island-home .nav-services { padding: 0; border: 0; background: transparent; }
 .island-home .btn { min-height: 50px; padding: 0 22px; border-radius: 8px; gap: 14px; font-size: .94rem; }
-.island-home .btn-primary { color: #123f43; }
-.island-home .btn-primary:hover { color: #123f43; }
+.island-home .btn-primary { color: #ffffff; }
+.island-home .btn-primary:hover { color: #ffffff; }
 .island-home .footer { background: #132f43; padding: 42px 0 24px; }
 .island-home .footer-bottom { margin-top: 26px; }
 .island-home .footer p, .island-home .footer a { color: #d5e4ed; }
@@ -196,4 +196,5 @@
   .island-home .btn { transition: none; }
   .island-home .btn:hover { transform: none; }
 }
+
 
