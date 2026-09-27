@@ -9,6 +9,7 @@ export interface ServiceDetail {
   who: string;
   options: string[];
   pricing: string;
+  pricingFactors?: string[];
   faqs: { q: string; a: string }[];
 }
 
@@ -276,8 +277,9 @@ export const servicesDetail: Record<'residential' | 'deep' | 'moveOut' | 'vacati
     eyebrow: 'Commercial cleaning',
     title: 'Dependable cleaning for your workspace.',
     intro: 'Professional cleaning services for offices, workspaces, and commercial properties. We create a clean, welcoming environment for your team and clients.',
-    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1000&q=85',
-    imageAlt: 'Clean, modern office space with desks and chairs',
+    image: withBase('/images/cleaner-office.webp'),
+    imageAlt: 'Man wiping a desk in a bright professional office',
+    imageFocalPoint: 'left',
     included: [
       'Dusting and wiping of desks, tables, and common surfaces',
       'Vacuuming and mopping of all floors and break areas',
@@ -292,6 +294,7 @@ export const servicesDetail: Record<'residential' | 'deep' | 'moveOut' | 'vacati
       'Deep cleaning for high-traffic areas',
     ],
     pricing: 'Commercial cleaning quotes are customized based on the size of your facility, the frequency of service, and any specific requirements your business has.',
+    pricingFactors: ['Square footage', 'Facility type', 'Service frequency', 'Restrooms & common areas', 'Required scope'],
     faqs: [
       {
         q: 'Do you clean after hours?',
@@ -363,8 +366,8 @@ export const homeContent = {
         text: 'Turnover cleaning between guest stays with your timeline in mind.',
       },
       {
-        image: withBase('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80'),
-        imageAlt: 'Clean modern office space',
+        image: withBase('/images/cleaner-office.webp'),
+        imageAlt: 'Man wiping a desk in a bright professional office',
         title: 'Commercial Cleaning',
         href: withBase('/commercial-cleaning'),
         text: 'Offices, workspaces, and commercial properties on a reliable schedule.',

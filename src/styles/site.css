@@ -6,10 +6,13 @@
   --color-ink-soft: #506574;
   --color-cream: #fafcfb;
   --color-paper: #ffffff;
-  --color-mist: #edf7f5;
-  --color-sea: #0f766e;
-  --color-sea-dark: #005c55;
-  --color-line: #d8e5e2;
+  --color-mist: #edf5fa;
+  --color-sea: #176b95;
+  --color-sea-dark: #125477;
+  --color-coral: #d76d59;
+  --color-coral-soft: #fff0eb;
+  --color-coral-ink: #984230;
+  --color-line: #d7e4ec;
   --color-danger: #b42318;
   --color-field: #fdfdfd;
   --spacing-section: 68px;

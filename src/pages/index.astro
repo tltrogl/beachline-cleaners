@@ -11,7 +11,8 @@ import { shell, homeEyebrow, outlineLink } from '../styles/ui';
   <section class="home-hero bg-cream pt-10 pb-12 max-mobile:pt-6 max-mobile:pb-8" aria-labelledby="hero-title" slot="hero">
     <div class:list={[shell, "home-hero-grid grid grid-cols-[1.1fr_1fr] items-center gap-11 max-tablet:gap-7 max-mobile:grid-cols-1 max-mobile:gap-card-gap"]}>
       <div class="home-hero-copy">
-        <p class={homeEyebrow}>
+        <p class:list={[homeEyebrow, 'flex items-center gap-2']}>
+          <span class="size-2 shrink-0 rounded-full bg-coral" aria-hidden="true"></span>
           Professional cleaning • Brevard County
         </p>
         <h1 id="hero-title" class="max-w-[680px] text-[clamp(2.2rem,3.8vw,3.35rem)] leading-[1.1] tracking-[-.03em] text-balance max-mobile:text-[2.125rem] max-mobile:leading-[1.15]">{homeContent.hero.title}</h1>
@@ -69,7 +70,7 @@ import { shell, homeEyebrow, outlineLink } from '../styles/ui';
       <ol class="m-0 grid list-none grid-cols-3 gap-4 p-0 max-tablet:grid-cols-1 max-tablet:gap-3" role="list">
         {homeContent.processSection.steps.map((step) => (
           <li class="flex flex-col rounded-xl border border-line bg-white px-5 py-6 shadow-card max-tablet:px-4 max-tablet:py-[18px]">
-            <div class="mb-[18px] inline-flex size-[42px] items-center justify-center rounded-lg bg-mist text-[1.05rem] font-[850] text-sea max-tablet:mb-3 max-tablet:size-[34px] max-tablet:text-label" aria-hidden="true">{step.num}</div>
+            <div class="mb-[18px] inline-flex size-[42px] items-center justify-center rounded-lg bg-coral-soft text-[1.05rem] font-[850] text-coral-ink max-tablet:mb-3 max-tablet:size-[34px] max-tablet:text-label" aria-hidden="true">{step.num}</div>
             <h3 class="mb-2.5">{step.title}</h3>
             <p class="text-small leading-[1.55]">{step.text}</p>
           </li>
