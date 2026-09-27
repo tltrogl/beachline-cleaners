@@ -1,5 +1,30 @@
 # Beachline Cleaners — Astro Website
 
+## Agent discovery
+
+The homepage advertises public discovery resources through the Cloudflare response
+header Transform Rule `Homepage agent discovery`. Match expression:
+
+```text
+(http.host eq "beachlinecleaners.com" and http.request.uri.path eq "/")
+```
+
+Add a static `Link` response header (preserving other Link values):
+
+```text
+</.well-known/api-catalog>; rel="api-catalog"; type="application/linkset+json", </openapi.json>; rel="service-desc"; type="application/json", </api-docs.txt>; rel="service-doc"; type="text/plain", </site-info.json>; rel="describedby"; type="application/json"
+```
+
+`site-info.json` is generated from the site's existing public content at build
+time. The OpenAPI description documents only this read-only resource. No booking
+or quote-submission API is exposed. `public/_headers` supplies the catalog's
+required media type on Cloudflare Pages/Workers static hosting. The homepage
+header rule lives in Cloudflare and must be preserved separately from GitHub.
+
+Validate by posting `{"url":"https://beachlinecleaners.com"}` as JSON to
+`https://isitagentready.com/api/scan` and checking
+`checks.discoverability.linkHeaders.status` equals `"pass"`.
+
 A responsive multi-page Astro site for a cleaning company offering:
 - Residential cleaning
 - Vacation-rental turnovers

@@ -1,0 +1,13 @@
+Beachline Cleaners: public information for automated clients
+
+GET https://beachlinecleaners.com/site-info.json
+Returns public business details, service areas, and cleaning service descriptions
+as Schema.org JSON-LD in an application/json response. Authentication is not required.
+This is a static resource updated when the website is published.
+
+API catalog: https://beachlinecleaners.com/.well-known/api-catalog
+OpenAPI description: https://beachlinecleaners.com/openapi.json
+
+There is no booking, quote submission, payment, account, or live availability API.
+For a quote, use the contact options at https://beachlinecleaners.com/quote/.
+Reading these resources does not request a quote or reserve a cleaning appointment.
