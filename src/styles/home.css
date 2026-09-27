@@ -70,7 +70,8 @@
   flex-shrink: 0;
   color: var(--sea);
 }
-.outline-section { padding: 48px 0; }
+.outline-section { padding: 48px 0; border-top: 1px solid var(--line); }
+.service-facts + .outline-section { border-top: 0; }
 .outline-tint { background: #f5f9fb; }
 .service-outline { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 24px; }
 .service-outline article { padding: 24px; border: 1px solid var(--line); border-radius: 12px; background: #fff; transition: transform 0.2s ease, box-shadow 0.2s ease; }
@@ -145,7 +146,10 @@
   .photo-hero-panel { width: 460px; padding: 28px; }
   .photo-hero-inner { min-height: 585px; }
   .rental-outline { gap: 36px; }
-  .process-cards { grid-template-columns: 1fr; gap: 16px; }
+  .process-cards { grid-template-columns: 1fr; gap: 12px; }
+  .process-card { padding: 18px 16px; }
+  .process-step-num { width: 34px; height: 34px; font-size: .9rem; margin-bottom: 12px; }
+  .process-card h3 { font-size: 1.1rem; }
   .outline-contact > .container { align-items: start; flex-direction: column; }
 }
 @media (max-width: 720px) {
@@ -209,7 +213,7 @@
 .service-outline article > p { font-size: .95rem; margin-bottom: 12px; }
 .service-outline article > a { margin-top: auto; }
 .service-photo { width: 100%; height: 180px; object-fit: cover; }
-.service-outline article:last-child { background: var(--mist); justify-content: center; }
+/* removed: .service-outline article:last-child was used when commercial had no image */
 .rental-outline { overflow: hidden; padding: 0; border-radius: 14px; gap: 0; background: var(--ink); color: white; }
 .rental-outline > div { padding: 32px; }
 .rental-outline p, .rental-outline .hero-location, .rental-outline .outline-link { color: #d9efeb; }
@@ -235,8 +239,8 @@
   .trust-strip-inner { grid-template-columns: 1fr 1fr; gap: 14px 12px; }
   .trust-item { font-size: .78rem; align-items: start; }
   .rental-outline { grid-template-columns: 1fr; }
-  .rental-outline > div { padding: 24px; }
-  .rental-image { aspect-ratio: 1.5; }
+  .rental-outline > div { padding: 20px; }
+  .rental-image { aspect-ratio: 2.2; }
   .island-home .mobile-action-bar .mobile-quote { color: white; }
   .island-home .footer-grid { grid-template-columns: 1fr; }
 }

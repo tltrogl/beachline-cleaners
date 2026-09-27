@@ -17,8 +17,14 @@ import '../styles/home.css';
           ))}
         </div>
         
-        <form class="quote-form" action={site.smsHref} data-phone={site.phoneHref.replace('tel:', '')} data-email={site.email}>
-          <p class="quote-delivery-note">Complete the details below, then open a text message to review and send. Your request is sent only when you send the message. You can also open an email draft below.</p>
+        <form class="quote-form" action={quoteContent.form.formspreeEndpoint} method="POST">
+          <input type="hidden" name="_next" value="https://beachlinecleaners.com/quote-success/" />
+          <input type="hidden" name="_subject" value="New Quote Request from beachlinecleaners.com" />
+          <div style="display:none" aria-hidden="true">
+            <label>{quoteContent.form.honeypotLabel}</label>
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
+          </div>
+
           <div class="form-group">
             <label for="name">{quoteContent.form.name.label}</label>
             <input type="text" id="name" name="name" required autocomplete="name" placeholder={quoteContent.form.name.placeholder} />
@@ -61,26 +67,32 @@ import '../styles/home.css';
               ))}
             </select>
           </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="beds_baths">{quoteContent.form.bedsBaths.label}</label>
-              <input type="text" id="beds_baths" name="beds_baths" placeholder={quoteContent.form.bedsBaths.placeholder} />
+
+          <details class="form-details-toggle">
+            <summary>{quoteContent.form.detailsToggle}</summary>
+            <div class="form-details-inner">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="beds_baths">{quoteContent.form.bedsBaths.label}</label>
+                  <input type="text" id="beds_baths" name="beds_baths" placeholder={quoteContent.form.bedsBaths.placeholder} />
+                </div>
+                <div class="form-group">
+                  <label for="size">{quoteContent.form.size.label}</label>
+                  <input type="text" id="size" name="size" placeholder={quoteContent.form.size.placeholder} />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="frequency">{quoteContent.form.frequency.label}</label>
+                <input type="text" id="frequency" name="frequency" placeholder={quoteContent.form.frequency.placeholder} />
+              </div>
+              <div class="form-group">
+                <label for="notes">{quoteContent.form.notes.label}</label>
+                <textarea id="notes" name="notes" rows="3" placeholder={quoteContent.form.notes.placeholder}></textarea>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="size">{quoteContent.form.size.label}</label>
-              <input type="text" id="size" name="size" placeholder={quoteContent.form.size.placeholder} />
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="frequency">{quoteContent.form.frequency.label}</label>
-            <input type="text" id="frequency" name="frequency" placeholder={quoteContent.form.frequency.placeholder} />
-          </div>
-          <div class="form-group">
-            <label for="notes">{quoteContent.form.notes.label}</label>
-            <textarea id="notes" name="notes" rows="4" placeholder={quoteContent.form.notes.placeholder}></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary submit-btn" name="channel" value="sms">Continue by text</button>
-          <button type="submit" class="btn btn-secondary" name="channel" value="email">Continue by email</button>
+          </details>
+
+          <button type="submit" class="btn btn-primary submit-btn">{quoteContent.form.submitButton} <span aria-hidden="true">→</span></button>
         </form>
       </div>
 
@@ -114,23 +126,13 @@ import '../styles/home.css';
         if (value) field.value = value;
       }
     }
-    form.addEventListener('submit', (event) => {
-      event.preventDefault();
-      const data = new FormData(form);
-      const labels: Record<string, string> = {name: 'Name', phone: 'Phone', email: 'Email', location: 'Property', service: 'Service', beds_baths: 'Beds/baths', size: 'Square feet', frequency: 'Schedule', notes: 'Notes'};
-      const details = Object.entries(labels).flatMap(([key, label]) => {
-        const value = String(data.get(key) ?? '').trim();
-        if (!value) return [];
-        const service = form.elements.namedItem('service');
-        return [`${label}: ${key === 'service' && service instanceof HTMLSelectElement ? service.selectedOptions[0].text : value}`];
-      });
-      const message = `I'd like a cleaning quote.\n${details.join('\n')}`;
-      if (event.submitter instanceof HTMLButtonElement && event.submitter.value === 'email') {
-        window.location.href = `mailto:${form.dataset.email}?subject=${encodeURIComponent('Cleaning quote request')}&body=${encodeURIComponent(message)}`;
-        return;
+
+    form.addEventListener('submit', () => {
+      const btn = form.querySelector<HTMLButtonElement>('.submit-btn');
+      if (btn) {
+        btn.disabled = true;
+        btn.textContent = 'Sending…';
       }
-      const separator = /iPhone|iPad|iPod/.test(navigator.userAgent) ? '&' : '?';
-      window.location.href = `sms:${form.dataset.phone}${separator}body=${encodeURIComponent(message)}`;
     });
   }
 </script>
@@ -229,6 +231,42 @@ import '../styles/home.css';
   .text-contact-btn:hover {
     border-color: var(--sea);
     background: var(--mist);
+  }
+  .form-details-toggle {
+    margin-top: 4px;
+  }
+  .form-details-toggle summary {
+    cursor: pointer;
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--sea-dark);
+    list-style: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .form-details-toggle summary::-webkit-details-marker { display: none; }
+  .form-details-toggle summary::before {
+    content: '+';
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--mist);
+    color: var(--sea);
+    font-weight: 900;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .form-details-toggle[open] summary::before {
+    content: '−';
+  }
+  .form-details-inner {
+    display: grid;
+    gap: 20px;
+    margin-top: 20px;
   }
   @media (max-width: 600px) {
     .form-row {

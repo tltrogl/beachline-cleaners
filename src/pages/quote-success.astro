@@ -5,14 +5,20 @@ import '../styles/home.css';
 ---
 <BaseLayout bodyClass="island-home no-mobile-bar page-quote-success" title={`${quoteSuccessContent.metaTitle} | ${site.name}`} description={quoteSuccessContent.metaDescription}>
   <section class="section">
-    <div class="container content-grid">
-      <div class="prose">
+    <div class="container" style="max-width: 640px;">
+      <div class="success-card">
+        <div class="success-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="40" height="40">
+            <path d="M20 6L9 17l-5-5" />
+          </svg>
+        </div>
         <p class="hero-location">{quoteSuccessContent.eyebrow}</p>
         <h1 class="success-heading">{quoteSuccessContent.title}</h1>
         <p class="lede">{quoteSuccessContent.lede}</p>
         
         <div class="success-actions">
           <a href={quoteSuccessContent.returnButtonHref} class="btn btn-primary">{quoteSuccessContent.returnButtonText}</a>
+          <a class="hero-phone" href={site.phoneHref}>Call {site.phoneDisplay}</a>
         </div>
       </div>
     </div>
@@ -20,11 +26,36 @@ import '../styles/home.css';
 </BaseLayout>
 
 <style>
-  .success-heading {
-    font-size: clamp(2.5rem, 4vw, 3.2rem);
+  .success-card {
+    text-align: center;
+    padding: 48px 24px;
+  }
+  .success-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: var(--mist);
+    color: var(--sea);
     margin-bottom: 24px;
+  }
+  .success-heading {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 16px;
   }
   .success-actions {
     margin-top: 32px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    align-items: center;
+  }
+  .hero-phone {
+    font-weight: 750;
+    font-size: .95rem;
+    color: var(--sea-dark);
   }
 </style>

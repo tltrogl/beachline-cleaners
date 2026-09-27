@@ -134,8 +134,8 @@ export const servicesDetail: Record<'residential' | 'deep' | 'moveOut' | 'vacati
     eyebrow: 'Residential cleaning',
     title: 'Home cleaning that stays simple.',
     intro: 'Recurring and one-time cleaning for homes that need consistent attention without the hassle.',
-    image: withBase('/images/hero-active-clean.jpg'),
-    imageAlt: 'Cleaner wiping a kitchen counter',
+    image: withBase('/images/hero-living-room.jpg'),
+    imageAlt: 'Clean, bright living room after professional cleaning',
     included: [
       'Kitchen surfaces, sink, appliance exteriors, and floors',
       'Bathroom fixtures, mirrors, counters, and floors',
@@ -339,27 +339,27 @@ export const homeContent = {
       {
         title: 'Recurring Cleaning',
         href: withBase('/residential-cleaning'),
-        text: 'Routine care for kitchens, bathrooms, floors, and the rooms you use every day.',
+        text: 'Kitchens, bathrooms, floors, and common areas on a regular schedule.',
       },
       {
         title: 'Deep Cleaning',
         href: withBase('/deep-cleaning'),
-        text: 'A more detailed clean for buildup, overlooked areas, and a fresh start.',
+        text: 'Detailed reset for buildup, overlooked areas, and seasonal resets.',
       },
       {
         title: 'Move-In / Move-Out',
         href: withBase('/move-out-cleaning'),
-        text: 'Cleaning for an empty home before the next move, handoff, or arrival.',
+        text: 'Empty-property cleaning for handoffs, closings, and fresh starts.',
       },
       {
         title: 'Vacation Rentals',
         href: withBase('/vacation-rental-cleaning'),
-        text: 'Cleaning between stays, with your property\'s access and turnover timing in mind.',
+        text: 'Turnover cleaning between guest stays with your timeline in mind.',
       },
       {
         title: 'Commercial Cleaning',
         href: withBase('/commercial-cleaning'),
-        text: 'Dependable cleaning for offices, workspaces, and commercial properties.',
+        text: 'Offices, workspaces, and commercial properties on a reliable schedule.',
       },
     ],
   },
@@ -369,18 +369,18 @@ export const homeContent = {
     steps: [
       {
         num: '01',
-        title: 'Request a Quote or Call',
-        text: 'Tell us your property size, condition, and preferred schedule. We may ask for photos or more details before confirming a quote.',
+        title: 'Request a Quote',
+        text: 'Share your property details and preferred schedule. We\'ll confirm scope and pricing.',
       },
       {
         num: '02',
         title: 'We Clean to a Checklist',
-        text: 'We work through the agreed room-by-room checklist, with attention to the areas and priorities discussed when booking.',
+        text: 'Room-by-room cleaning based on the plan agreed when booking.',
       },
       {
         num: '03',
-        title: 'Enjoy Your Fresh Space',
-        text: 'Walk in to a clean, refreshed space. If you notice something that needs attention, contact us so we can review it with you.',
+        title: 'Enjoy Your Space',
+        text: 'Walk into a clean home. Reach out if anything needs attention.',
       },
     ],
   },
@@ -413,10 +413,13 @@ export const aboutContent = {
     lede: 'A local cleaning company designed to make residential and property cleaning straightforward, consistent, and easy to schedule.',
   },
   story: {
-    imageSrc: withBase('/images/hero-active-clean.jpg'),
-    imageAlt: 'Cleaner wiping a kitchen counter with a microfiber cloth',
+    imageSrc: withBase('/images/after_clean.jpg'),
+    imageAlt: 'A freshly cleaned home, bright and organized',
     eyebrow: 'Our Story',
     heading: 'Locally owned and operated on the Space Coast.',
+    ownerName: 'Tiffany',
+    ownerTitle: 'Owner & Operator',
+    ownerIntro: 'Beachline Cleaners is owned and operated by Tiffany, a Brevard County local who started the business to bring dependable, detail-oriented cleaning to homes and vacation rentals across the Space Coast.',
     lead: 'Beachline Cleaners was founded to make dependable cleaning easier to arrange for homes and vacation rentals across the Space Coast.',
     paragraphs: [
       'As an independent, owner-operated service based in Brevard County, we keep communication direct. When you call or message, you’re speaking with the person responsible for scheduling the work and making sure the agreed cleaning plan is followed.',
@@ -499,13 +502,15 @@ export const quoteContent = {
   metaDescription: 'Request a cleaning quote online or call to discuss your property and availability.',
   eyebrow: 'Request a quote',
   title: 'Tell us what you need cleaned.',
-  lede: 'Share a few details about the property and the service you need. We may ask for photos or additional information before confirming the scope and price.',
+  lede: 'Share a few details and we\'ll follow up with a quote, usually within one business day.',
   trustPillsAriaLabel: 'Quote assurances',
   trustPills: [
     'Checklist-based service',
     'Direct communication',
+    'No commitment required',
   ],
   form: {
+    formspreeEndpoint: 'https://formspree.io/f/xzzenlyg',
     nameAttr: 'quote',
     actionAttr: withBase('/quote-success'),
     honeypotLabel: 'Don’t fill this out if you\'re human:',
@@ -555,11 +560,12 @@ export const quoteContent = {
       label: 'Additional Notes (Optional)',
       placeholder: 'Any specific areas of focus or condition details...',
     },
-    submitButton: 'Request Quote',
+    submitButton: 'Send Quote Request',
+    detailsToggle: 'Add property details (optional)',
   },
   aside: {
     heading: 'Prefer to talk or text?',
-    description: 'Prefer to talk first? Call or text us about the property, service, and dates you have in mind.',
+    description: 'Call or text us about the property, service, and dates you have in mind.',
     callPrefix: 'Call ',
     textPrefix: 'Text ',
     textButton: `Text ${site.phoneDisplay}`,
@@ -575,11 +581,11 @@ export const quoteContent = {
 };
 
 export const quoteSuccessContent = {
-  metaTitle: 'Contact Beachline Cleaners',
-  metaDescription: 'Contact Beachline Cleaners to arrange a quote.',
-  eyebrow: 'Get in touch',
-  title: 'Send your details to get a quote.',
-  lede: 'Call or text Beachline Cleaners to discuss your property. Opening this page does not submit a quote request.',
+  metaTitle: 'Quote Request Received',
+  metaDescription: 'Your cleaning quote request has been received. We will follow up shortly.',
+  eyebrow: 'Request received',
+  title: 'We\u2019ve got your details.',
+  lede: 'We\u2019ll review your request and follow up within one business day by phone or email. If you need to reach us sooner, call or text anytime.',
   returnButtonText: 'Return Home',
   returnButtonHref: withBase('/'),
 };

@@ -51,7 +51,7 @@ import '../styles/home.css';
       <div class="service-outline">
         {homeContent.servicesSection.services.map((service, index) => (
           <article>
-            {index < 4 && <img class="service-photo" src={withBase(['/images/hero-active-clean.jpg', '/images/deep-cleaning-kitchen.jpg', '/images/move-out-empty-room.jpg', '/images/turnover-active.jpg'][index])} alt={['Cleaner wiping a kitchen counter', 'Detailed cleaning inside a refrigerator', 'Empty room ready for a move', 'Cleaner preparing a guest bed'][index]} width="600" height="400" loading="lazy" />}
+            <img class="service-photo" src={[withBase('/images/hero-living-room.jpg'), withBase('/images/deep-cleaning-kitchen.jpg'), withBase('/images/move-out-empty-room.jpg'), withBase('/images/turnover-active.jpg'), 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80'][index]} alt={['Clean living room after service', 'Detailed cleaning inside a refrigerator', 'Empty room ready for a move', 'Cleaner preparing a guest bed', 'Clean modern office space'][index]} width="600" height="400" loading="lazy" />
             
             <h3><a href={service.href}>{service.title}</a></h3>
             <p>{service.text}</p>

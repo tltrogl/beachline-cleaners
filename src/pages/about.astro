@@ -20,8 +20,13 @@ import { site, aboutContent } from '../data/content';
       <div>
         <p class="eyebrow">{aboutContent.story.eyebrow}</p>
         <h2>{aboutContent.story.heading}</h2>
-        <p class="lede story-lead">{aboutContent.story.lead}</p>
-        
+
+        <div class="owner-intro">
+          <p class="owner-name">{aboutContent.story.ownerName}</p>
+          <p class="owner-title">{aboutContent.story.ownerTitle}</p>
+        </div>
+        <p class="lede story-lead">{aboutContent.story.ownerIntro}</p>
+
         {aboutContent.story.paragraphs.map((paragraph) => (
           <p class="story-body">{paragraph}</p>
         ))}
@@ -44,5 +49,26 @@ import { site, aboutContent } from '../data/content';
   }
   .story-body {
     margin-top: 16px;
+  }
+  .owner-intro {
+    margin-top: 20px;
+    padding: 16px 20px;
+    background: var(--mist);
+    border-radius: 10px;
+    border-left: 3px solid var(--sea);
+  }
+  .owner-name {
+    font-size: 1.2rem;
+    font-weight: 850;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+  }
+  .owner-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--sea-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-top: 2px;
   }
 </style>
