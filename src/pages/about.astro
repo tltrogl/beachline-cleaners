@@ -1,39 +1,40 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CTA from '../components/CTA.astro';
+import { shell, section, pageHero, pageTitle, eyebrow, lede, split, splitImage } from '../styles/ui';
 import { site, aboutContent } from '../data/content';
 ---
 <BaseLayout title={`${aboutContent.metaTitle} | ${site.name}`} description={aboutContent.metaDescription}>
-  <section class="page-hero">
-    <div class="container">
-      <p class="eyebrow">{aboutContent.hero.eyebrow}</p>
-      <h1>{aboutContent.hero.title}</h1>
-      <p class="lede">{aboutContent.hero.lede}</p>
+  <section class={pageHero}>
+    <div class={shell}>
+      <p class={eyebrow}>{aboutContent.hero.eyebrow}</p>
+      <h1 class={pageTitle}>{aboutContent.hero.title}</h1>
+      <p class:list={[lede, "mt-[18px]"]}>{aboutContent.hero.lede}</p>
     </div>
   </section>
 
-  <section class="section">
-    <div class="container split">
+  <section class={section}>
+    <div class:list={[shell, split]}>
       <div>
-        <img src={aboutContent.story.imageSrc} alt={aboutContent.story.imageAlt} />
+        <img class={splitImage} src={aboutContent.story.imageSrc} alt={aboutContent.story.imageAlt} />
       </div>
       <div>
-        <p class="eyebrow">{aboutContent.story.eyebrow}</p>
+        <p class={eyebrow}>{aboutContent.story.eyebrow}</p>
         <h2>{aboutContent.story.heading}</h2>
 
-        <div class="owner-intro">
-          <p class="owner-name">{aboutContent.story.ownerName}</p>
-          <p class="owner-title">{aboutContent.story.ownerTitle}</p>
+        <div class="mt-5 rounded-[10px] border-l-[3px] border-sea bg-mist px-5 py-4">
+          <p class="text-[1.2rem] font-[850] tracking-[-.02em] text-ink">{aboutContent.story.ownerName}</p>
+          <p class="mt-0.5 text-[.85rem] font-bold uppercase tracking-[.06em] text-sea-dark">{aboutContent.story.ownerTitle}</p>
         </div>
-        <p class="lede story-lead">{aboutContent.story.ownerIntro}</p>
+        <p class:list={[lede, "mt-5"]}>{aboutContent.story.ownerIntro}</p>
 
         {aboutContent.story.paragraphs.map((paragraph) => (
-          <p class="story-body">{paragraph}</p>
+          <p class="mt-4">{paragraph}</p>
         ))}
 
-        <div class="checks">
+        <div class="mt-7 mb-[34px] grid gap-[13px]">
           {aboutContent.story.checks.map((check) => (
-            <div class="check">{check}</div>
+            <div class="check flex items-start gap-3 font-bold">{check}</div>
           ))}
         </div>
       </div>
@@ -42,33 +43,3 @@ import { site, aboutContent } from '../data/content';
 
   <CTA />
 </BaseLayout>
-
-<style>
-  .story-lead {
-    margin-top: 20px;
-  }
-  .story-body {
-    margin-top: 16px;
-  }
-  .owner-intro {
-    margin-top: 20px;
-    padding: 16px 20px;
-    background: var(--mist);
-    border-radius: 10px;
-    border-left: 3px solid var(--sea);
-  }
-  .owner-name {
-    font-size: 1.2rem;
-    font-weight: 850;
-    color: var(--ink);
-    letter-spacing: -0.02em;
-  }
-  .owner-title {
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: var(--sea-dark);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    margin-top: 2px;
-  }
-</style>

@@ -1,47 +1,39 @@
 ---
+import { shell } from '../styles/ui';
 import { site, footerContent, withBase } from '../data/content';
 ---
-<footer class="footer">
-  <div class="container">
-    <div class="footer-grid">
+<footer class="footer bg-ink pt-[42px] pb-6 text-white group-[.island-home]/site:bg-footer max-mobile:pb-[calc(76px+env(safe-area-inset-bottom))] group-[.no-mobile-bar]/site:max-mobile:pb-[max(24px,env(safe-area-inset-bottom))]">
+  <div class={shell}>
+    <div class="grid grid-cols-[1.3fr_.7fr_.7fr] gap-[45px] max-tablet:grid-cols-2 max-mobile:grid-cols-1 group-[.island-home]/site:max-mobile:gap-[30px]">
       <div>
-        <a class="brand" href={withBase('/')}>
-          <span class="brand-mark" aria-hidden="true"></span>
+        <a class="inline-flex items-center gap-3 whitespace-nowrap font-black tracking-[-.03em] text-mist no-underline group-[.island-home]/site:text-footer-text" href={withBase('/')}>
+          <span class="brand-mark relative size-[38px] shrink-0 overflow-hidden rounded-[50%_50%_46%_54%] bg-sea group-[.island-home]/site:max-mobile:size-8" aria-hidden="true"></span>
           <span>{site.name}</span>
         </a>
-        <p class="footer-summary">{footerContent.summary}</p>
-        <div class="footer-contact">
-          <a href={site.phoneHref}>{site.phoneDisplay}</a>
+        <p class="mt-[18px] max-w-[430px] text-mist group-[.island-home]/site:text-footer-text">{footerContent.summary}</p>
+        <div class="mt-[18px] flex gap-4 font-extrabold text-mist group-[.island-home]/site:text-footer-text">
+          <a class="no-underline" href={site.phoneHref}>{site.phoneDisplay}</a>
         </div>
       </div>
       <div>
         <strong>{footerContent.servicesHeading}</strong>
-        <div class="footer-links">
+        <div class="mt-4 grid gap-[9px] text-mist group-[.island-home]/site:text-footer-text">
           {footerContent.serviceLinks.map((link) => (
-            <a href={link.href}>{link.title}</a>
+            <a class="no-underline" href={link.href}>{link.title}</a>
           ))}
         </div>
       </div>
       <div>
         <strong>{footerContent.companyHeading}</strong>
-        <div class="footer-links">
+        <div class="mt-4 grid gap-[9px] text-mist group-[.island-home]/site:text-footer-text">
           {footerContent.companyLinks.map((link) => (
-            <a href={link.href}>{link.title}</a>
+            <a class="no-underline" href={link.href}>{link.title}</a>
           ))}
         </div>
       </div>
     </div>
-    <div class="footer-bottom">
+    <div class="mt-[26px] border-t border-white/11 pt-6 text-[.84rem] text-white/54">
       © {new Date().getFullYear()} {site.name} {footerContent.copyrightSuffix}
     </div>
   </div>
 </footer>
-
-<style>
-  .footer {
-    background-color: var(--ink);
-  }
-  .footer p, .footer a {
-    color: var(--mist);
-  }
-</style>

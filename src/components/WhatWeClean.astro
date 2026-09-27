@@ -1,53 +1,53 @@
 ---
-// WhatWeClean.astro
+import { shell } from '../styles/ui';
 ---
-<section class="what-we-clean-section outline-section outline-tint" aria-labelledby="what-we-clean-heading">
-  <div class="container">
-    <div class="section-heading-group">
+<section class="border-t border-line bg-mist py-12" aria-labelledby="what-we-clean-heading">
+  <div class={shell}>
+    <div class="mb-8">
       <h2 id="what-we-clean-heading">What We Clean</h2>
-      <p class="hero-description">A comprehensive clean for every room in your home.</p>
+      <p class="mt-[22px] text-[1.09rem] leading-[1.65] max-mobile:mt-[17px] max-mobile:text-base">A comprehensive clean for every room in your home.</p>
     </div>
     
-    <div class="what-we-clean-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-top: 2rem;">
-      <div class="clean-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32" height="32" aria-hidden="true" style="margin-bottom: 1rem;">
+    <div class="mt-8 grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-5 max-mobile:grid-cols-2">
+      <div >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32" height="32" aria-hidden="true" class="mb-4 text-sea">
           <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
           <polyline points="22 4 12 14.01 9 11.01"></polyline>
         </svg>
         <h3>Kitchen</h3>
-        <p>Counters, appliances, sinks, and cabinet fronts.</p>
+        <p class="mt-2.5 text-[.95rem]">Counters, appliances, sinks, and cabinet fronts.</p>
       </div>
-      <div class="clean-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32" height="32" aria-hidden="true" style="margin-bottom: 1rem;">
+      <div >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32" height="32" aria-hidden="true" class="mb-4 text-sea">
           <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
           <polyline points="22 4 12 14.01 9 11.01"></polyline>
         </svg>
         <h3>Bathrooms</h3>
-        <p>Toilets, showers, tubs, mirrors, and fixtures.</p>
+        <p class="mt-2.5 text-[.95rem]">Toilets, showers, tubs, mirrors, and fixtures.</p>
       </div>
-      <div class="clean-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32" height="32" aria-hidden="true" style="margin-bottom: 1rem;">
+      <div >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32" height="32" aria-hidden="true" class="mb-4 text-sea">
           <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
           <polyline points="22 4 12 14.01 9 11.01"></polyline>
         </svg>
         <h3>Bedrooms</h3>
-        <p>Dusting, making beds, and general tidying.</p>
+        <p class="mt-2.5 text-[.95rem]">Dusting, making beds, and general tidying.</p>
       </div>
-      <div class="clean-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32" height="32" aria-hidden="true" style="margin-bottom: 1rem;">
+      <div >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32" height="32" aria-hidden="true" class="mb-4 text-sea">
           <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
           <polyline points="22 4 12 14.01 9 11.01"></polyline>
         </svg>
         <h3>Floors</h3>
-        <p>Vacuuming carpets and mopping hard floors.</p>
+        <p class="mt-2.5 text-[.95rem]">Vacuuming carpets and mopping hard floors.</p>
       </div>
-      <div class="clean-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32" height="32" aria-hidden="true" style="margin-bottom: 1rem;">
+      <div >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32" height="32" aria-hidden="true" class="mb-4 text-sea">
           <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
           <polyline points="22 4 12 14.01 9 11.01"></polyline>
         </svg>
         <h3>Dusting</h3>
-        <p>Surfaces, baseboards, and window sills.</p>
+        <p class="mt-2.5 text-[.95rem]">Surfaces, baseboards, and window sills.</p>
       </div>
     </div>
   </div>

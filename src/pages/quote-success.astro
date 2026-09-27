@@ -1,61 +1,27 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { site, quoteSuccessContent } from '../data/content';
-import '../styles/home.css';
+import Button from '../components/Button.astro';
+import { shell, section, homeEyebrow, lede, phone } from '../styles/ui';
 ---
 <BaseLayout bodyClass="island-home no-mobile-bar page-quote-success" title={`${quoteSuccessContent.metaTitle} | ${site.name}`} description={quoteSuccessContent.metaDescription}>
-  <section class="section">
-    <div class="container" style="max-width: 640px;">
-      <div class="success-card">
-        <div class="success-icon" aria-hidden="true">
+  <section class={section}>
+    <div class:list={[shell, "max-w-[640px]"]}>
+      <div class="px-6 py-12 text-center">
+        <div class="mb-6 inline-flex size-[72px] items-center justify-center rounded-full bg-mist text-sea" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="40" height="40">
             <path d="M20 6L9 17l-5-5" />
           </svg>
         </div>
-        <p class="hero-location">{quoteSuccessContent.eyebrow}</p>
-        <h1 class="success-heading">{quoteSuccessContent.title}</h1>
-        <p class="lede">{quoteSuccessContent.lede}</p>
+        <p class={homeEyebrow}>{quoteSuccessContent.eyebrow}</p>
+        <h1 class="mb-4 text-[clamp(2rem,4vw,3rem)]">{quoteSuccessContent.title}</h1>
+        <p class={lede}>{quoteSuccessContent.lede}</p>
         
-        <div class="success-actions">
-          <a href={quoteSuccessContent.returnButtonHref} class="btn btn-primary">{quoteSuccessContent.returnButtonText}</a>
-          <a class="hero-phone" href={site.phoneHref}>Call {site.phoneDisplay}</a>
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+          <Button href={quoteSuccessContent.returnButtonHref}>{quoteSuccessContent.returnButtonText}</Button>
+          <a class={phone} href={site.phoneHref}>Call {site.phoneDisplay}</a>
         </div>
       </div>
     </div>
   </section>
 </BaseLayout>
-
-<style>
-  .success-card {
-    text-align: center;
-    padding: 48px 24px;
-  }
-  .success-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 72px;
-    height: 72px;
-    border-radius: 50%;
-    background: var(--mist);
-    color: var(--sea);
-    margin-bottom: 24px;
-  }
-  .success-heading {
-    font-size: clamp(2rem, 4vw, 3rem);
-    margin-bottom: 16px;
-  }
-  .success-actions {
-    margin-top: 32px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 16px;
-    align-items: center;
-  }
-  .hero-phone {
-    font-weight: 750;
-    font-size: .95rem;
-    color: var(--sea-dark);
-  }
-</style>

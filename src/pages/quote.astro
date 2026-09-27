@@ -1,38 +1,40 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { site, quoteContent } from '../data/content';
-import '../styles/home.css';
+import Button from '../components/Button.astro';
+import { shell, section, homeEyebrow, lede, details, field, formGroup, formRow } from '../styles/ui';
 ---
 <BaseLayout bodyClass="island-home no-mobile-bar page-quote" title={`${quoteContent.metaTitle} | ${site.name}`} description={quoteContent.metaDescription}>
-  <section class="section">
-    <div class="container content-grid">
-      <div class="prose">
-        <p class="hero-location">{quoteContent.eyebrow}</p>
-        <h1 class="quote-title">{quoteContent.title}</h1>
-        <p class="lede">{quoteContent.lede}</p>
+  <section class={section}>
+    <div class:list={[shell, "grid grid-cols-[1fr_340px] items-start gap-[70px] max-tablet:grid-cols-1"]}>
+      <div>
+        <p class={homeEyebrow}>{quoteContent.eyebrow}</p>
+        <h1 class="mb-4 text-[clamp(2.4rem,4vw,3.2rem)]">{quoteContent.title}</h1>
+        <p class:list={[lede, "mt-4"]}>{quoteContent.lede}</p>
 
-        <div class="form-trust-pills" aria-label={quoteContent.trustPillsAriaLabel}>
+        <div class="mt-5 flex flex-wrap gap-x-4 gap-y-2 text-[.86rem] font-[750] text-sea-dark" aria-label={quoteContent.trustPillsAriaLabel}>
           {quoteContent.trustPills.map((pill) => (
             <span><span aria-hidden="true">✓ </span>{pill}</span>
           ))}
         </div>
         
-        <form class="quote-form" action={quoteContent.form.formspreeEndpoint} method="POST">
+        <form class="quote-form mt-7 grid max-w-[600px] gap-5" action={quoteContent.form.formspreeEndpoint} method="POST">
           <input type="hidden" name="_next" value="https://beachlinecleaners.com/quote-success/" />
           <input type="hidden" name="_subject" value="New Quote Request from beachlinecleaners.com" />
-          <div style="display:none" aria-hidden="true">
+          <div class="hidden" aria-hidden="true">
             <label>{quoteContent.form.honeypotLabel}</label>
             <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
           </div>
 
-          <div class="form-group">
-            <label for="name">{quoteContent.form.name.label}</label>
-            <input type="text" id="name" name="name" required autocomplete="name" placeholder={quoteContent.form.name.placeholder} />
+          <div class={formGroup}>
+            <label class="text-[.9rem] font-bold" for="name">{quoteContent.form.name.label}</label>
+            <input class={field} type="text" id="name" name="name" required autocomplete="name" placeholder={quoteContent.form.name.placeholder} />
           </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="phone">{quoteContent.form.phone.label}</label>
+          <div class={formRow}>
+            <div class={formGroup}>
+              <label class="text-[.9rem] font-bold" for="phone">{quoteContent.form.phone.label}</label>
               <input
+                class={field}
                 type="tel"
                 id="phone"
                 name="phone"
@@ -43,9 +45,10 @@ import '../styles/home.css';
                 title={quoteContent.form.phone.title}
               />
             </div>
-            <div class="form-group">
-              <label for="email">{quoteContent.form.email.label}</label>
+            <div class={formGroup}>
+              <label class="text-[.9rem] font-bold" for="email">{quoteContent.form.email.label}</label>
               <input
+                class={field}
                 type="email"
                 id="email"
                 name="email"
@@ -54,13 +57,13 @@ import '../styles/home.css';
               />
             </div>
           </div>
-          <div class="form-group">
-            <label for="location">{quoteContent.form.location.label}</label>
-            <input type="text" id="location" name="location" required placeholder={quoteContent.form.location.placeholder} />
+          <div class={formGroup}>
+            <label class="text-[.9rem] font-bold" for="location">{quoteContent.form.location.label}</label>
+            <input class={field} type="text" id="location" name="location" required placeholder={quoteContent.form.location.placeholder} />
           </div>
-          <div class="form-group">
-            <label for="service">{quoteContent.form.service.label}</label>
-            <select id="service" name="service" required>
+          <div class={formGroup}>
+            <label class="text-[.9rem] font-bold" for="service">{quoteContent.form.service.label}</label>
+            <select class={field} id="service" name="service" required>
               <option value="">{quoteContent.form.service.placeholder}</option>
               {quoteContent.form.service.options.map((opt) => (
                 <option value={opt.value}>{opt.label}</option>
@@ -68,44 +71,44 @@ import '../styles/home.css';
             </select>
           </div>
 
-          <details class="form-details-toggle">
-            <summary>{quoteContent.form.detailsToggle}</summary>
-            <div class="form-details-inner">
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="beds_baths">{quoteContent.form.bedsBaths.label}</label>
-                  <input type="text" id="beds_baths" name="beds_baths" placeholder={quoteContent.form.bedsBaths.placeholder} />
+          <details class:list={[details, "form-details-toggle mt-1"]}>
+            <summary class="inline-flex list-none items-center gap-1.5 text-[.92rem] font-bold text-sea-dark">{quoteContent.form.detailsToggle}</summary>
+            <div class="mt-5 grid gap-5">
+              <div class={formRow}>
+                <div class={formGroup}>
+                  <label class="text-[.9rem] font-bold" for="beds_baths">{quoteContent.form.bedsBaths.label}</label>
+                  <input class={field} type="text" id="beds_baths" name="beds_baths" placeholder={quoteContent.form.bedsBaths.placeholder} />
                 </div>
-                <div class="form-group">
-                  <label for="size">{quoteContent.form.size.label}</label>
-                  <input type="text" id="size" name="size" placeholder={quoteContent.form.size.placeholder} />
+                <div class={formGroup}>
+                  <label class="text-[.9rem] font-bold" for="size">{quoteContent.form.size.label}</label>
+                  <input class={field} type="text" id="size" name="size" placeholder={quoteContent.form.size.placeholder} />
                 </div>
               </div>
-              <div class="form-group">
-                <label for="frequency">{quoteContent.form.frequency.label}</label>
-                <input type="text" id="frequency" name="frequency" placeholder={quoteContent.form.frequency.placeholder} />
+              <div class={formGroup}>
+                <label class="text-[.9rem] font-bold" for="frequency">{quoteContent.form.frequency.label}</label>
+                <input class={field} type="text" id="frequency" name="frequency" placeholder={quoteContent.form.frequency.placeholder} />
               </div>
-              <div class="form-group">
-                <label for="notes">{quoteContent.form.notes.label}</label>
-                <textarea id="notes" name="notes" rows="3" placeholder={quoteContent.form.notes.placeholder}></textarea>
+              <div class={formGroup}>
+                <label class="text-[.9rem] font-bold" for="notes">{quoteContent.form.notes.label}</label>
+                <textarea class={field} id="notes" name="notes" rows="3" placeholder={quoteContent.form.notes.placeholder}></textarea>
               </div>
             </div>
           </details>
 
-          <button type="submit" class="btn btn-primary submit-btn">{quoteContent.form.submitButton} <span aria-hidden="true">→</span></button>
+          <Button type="submit" class="submit-btn mt-2.5 w-full">{quoteContent.form.submitButton} <span aria-hidden="true">→</span></Button>
         </form>
       </div>
 
-      <aside class="aside-card">
-        <h3>{quoteContent.aside.heading}</h3>
-        <p class="aside-description">{quoteContent.aside.description}</p>
-        <div class="aside-actions">
-          <a class="btn btn-secondary aside-call-btn" href={site.phoneHref}>{quoteContent.aside.callPrefix}{site.phoneDisplay}</a>
-          <a class="text-contact-btn" href={quoteContent.aside.textHref}>{quoteContent.aside.textButton}</a>
+      <aside class="sticky top-[110px] rounded-xl bg-mist p-7 max-tablet:static">
+        <h3 class="mb-3">{quoteContent.aside.heading}</h3>
+        <p class="mb-5 mt-4">{quoteContent.aside.description}</p>
+        <div class="grid gap-2.5">
+          <Button variant="secondary" class="mt-5 w-full" href={site.phoneHref}>{quoteContent.aside.callPrefix}{site.phoneDisplay}</Button>
+          <Button variant="secondary" size="compact" href={quoteContent.aside.textHref}>{quoteContent.aside.textButton}</Button>
         </div>
         
-        <h3 class="aside-details-title">{quoteContent.aside.detailsHeading}</h3>
-        <ul class="aside-details-list">
+        <h3 class="mt-8 mb-3 text-[1.1rem]">{quoteContent.aside.detailsHeading}</h3>
+        <ul class="mt-3 list-disc pl-5 text-[.95rem] text-ink-soft">
           {quoteContent.aside.detailsList.map((item) => (
             <li>{item}</li>
           ))}
@@ -136,141 +139,3 @@ import '../styles/home.css';
     });
   }
 </script>
-
-<style>
-  .quote-title {
-    font-size: clamp(2.4rem, 4vw, 3.2rem);
-    margin-bottom: 16px;
-  }
-  .form-trust-pills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px 16px;
-    margin-top: 20px;
-    font-size: 0.86rem;
-    font-weight: 750;
-    color: var(--sea-dark);
-  }
-  .quote-form {
-    margin-top: 28px;
-    display: grid;
-    gap: 20px;
-    max-width: 600px;
-  }
-  .form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-  }
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-  .form-group label {
-    font-size: 0.9rem;
-    font-weight: 700;
-  }
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    font-family: inherit;
-    font-size: 1rem;
-    padding: 12px 16px;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    background: #fdfdfd;
-    transition: border-color 0.2s, outline 0.2s;
-  }
-  .form-group input:focus,
-  .form-group select:focus,
-  .form-group textarea:focus {
-    outline: 3px solid var(--sea);
-    outline-offset: 1px;
-    border-color: var(--sea);
-  }
-  .submit-btn {
-    width: 100%;
-    margin-top: 10px;
-  }
-  .aside-description {
-    margin-bottom: 20px;
-  }
-  .aside-actions {
-    display: grid;
-    gap: 10px;
-  }
-  .aside-call-btn {
-    width: 100%;
-    justify-content: center;
-  }
-  .aside-details-title {
-    margin-top: 32px;
-    font-size: 1.1rem;
-  }
-  .aside-details-list {
-    padding-left: 20px;
-    font-size: 0.95rem;
-    margin-top: 12px;
-    color: var(--ink-soft);
-  }
-  .text-contact-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 46px;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    background: white;
-    color: var(--ink);
-    font-size: 0.92rem;
-    font-weight: 750;
-    text-decoration: none;
-    transition: border-color 0.2s, background 0.2s;
-  }
-  .text-contact-btn:hover {
-    border-color: var(--sea);
-    background: var(--mist);
-  }
-  .form-details-toggle {
-    margin-top: 4px;
-  }
-  .form-details-toggle summary {
-    cursor: pointer;
-    font-size: 0.92rem;
-    font-weight: 700;
-    color: var(--sea-dark);
-    list-style: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .form-details-toggle summary::-webkit-details-marker { display: none; }
-  .form-details-toggle summary::before {
-    content: '+';
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    background: var(--mist);
-    color: var(--sea);
-    font-weight: 900;
-    font-size: 1rem;
-    flex-shrink: 0;
-  }
-  .form-details-toggle[open] summary::before {
-    content: '−';
-  }
-  .form-details-inner {
-    display: grid;
-    gap: 20px;
-    margin-top: 20px;
-  }
-  @media (max-width: 600px) {
-    .form-row {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>

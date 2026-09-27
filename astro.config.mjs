@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   site: 'https://beachlinecleaners.com',
@@ -7,5 +8,6 @@ export default defineConfig({
     format: 'directory'
   },
   trailingSlash: 'always',
-  integrations: [sitemap()]
+  integrations: [sitemap()],
+  vite: { plugins: [tailwindcss()] }
 });

@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CTA from './CTA.astro';
+import Button from './Button.astro';
+import { shell, section, pageHero, pageTitle, eyebrow as eyebrowClass, lede, split, splitImage, details, summary, phone } from '../styles/ui';
 import { site, servicePageDefaults } from '../data/content';
 
 interface FAQ {
@@ -37,15 +39,15 @@ const {
 } = Astro.props;
 ---
 <BaseLayout title={`${title} | ${site.name}`} description={intro}>
-  <section class="page-hero">
-    <div class="container split">
+  <section class={pageHero}>
+    <div class:list={[shell, split]}>
       <div>
-        <p class="eyebrow">{eyebrow}</p>
-        <h1>{title}</h1>
-        <p class="lede">{intro}</p>
-        <div class="hero-actions service-hero-actions">
-          <a class="btn btn-primary" href={servicePageDefaults.quoteHref}>{servicePageDefaults.quoteButtonText} <span aria-hidden="true">→</span></a>
-          <a class="hero-phone" href={site.phoneHref}>{servicePageDefaults.callButtonPrefix}{site.phoneDisplay}</a>
+        <p class={eyebrowClass}>{eyebrow}</p>
+        <h1 class={pageTitle}>{title}</h1>
+        <p class:list={[lede, "mt-[18px]"]}>{intro}</p>
+        <div class="mt-6 flex flex-wrap items-center gap-[14px]">
+          <Button href={servicePageDefaults.quoteHref}>{servicePageDefaults.quoteButtonText} <span aria-hidden="true">→</span></Button>
+          <a class={phone} href={site.phoneHref}>{servicePageDefaults.callButtonPrefix}{site.phoneDisplay}</a>
         </div>
       </div>
       {image && (
@@ -54,8 +56,8 @@ const {
             src={image}
             alt={imageAlt}
             class:list={[
-              'service-hero-img',
-              imageFocalPoint === 'right' && 'service-hero-img-focus-right'
+              splitImage,
+              imageFocalPoint === 'right' && 'object-[70%_center]'
             ]}
           />
         </div>
@@ -63,16 +65,16 @@ const {
     </div>
   </section>
 
-  <section class="section">
-    <div class="container container-narrow">
+  <section class={section}>
+    <div class:list={[shell, "max-w-[860px]"]}>
       {included.length > 0 && (
-        <div class="service-block">
-          <h2>{servicePageDefaults.includedHeading}</h2>
-          <p class="service-block-intro">{servicePageDefaults.includedIntro}</p>
-          <ul class="checklist-grid" role="list">
+        <div class="mt-12 first:mt-0">
+          <h2 class="mb-2.5 text-[clamp(1.7rem,2.8vw,2.2rem)]">{servicePageDefaults.includedHeading}</h2>
+          <p class="mb-[18px] text-base">{servicePageDefaults.includedIntro}</p>
+          <ul class="m-0 grid list-none grid-cols-2 gap-x-6 gap-y-[14px] p-0 max-[641px]:grid-cols-1 max-[641px]:gap-3" role="list">
             {included.map((item: string) => (
-              <li class="checklist-item">
-                <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor" width="20" height="20" aria-hidden="true">
+              <li class="flex items-start gap-3 text-base leading-[1.5]">
+                <svg class="mt-[3px] shrink-0 text-sea" viewBox="0 0 20 20" fill="currentColor" width="20" height="20" aria-hidden="true">
                   <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" />
                 </svg>
                 <span>{item}</span>
@@ -83,20 +85,20 @@ const {
       )}
 
       {who && (
-        <div class="service-block service-card-box">
-          <h2>{servicePageDefaults.whoHeading}</h2>
-          <p>{who}</p>
+        <div class="mt-12 rounded-[14px] border border-line bg-[#f8fafc] px-[30px] py-7 first:mt-0 max-[641px]:px-5 max-[641px]:py-[22px]">
+          <h2 class="mb-2.5 text-[clamp(1.7rem,2.8vw,2.2rem)]">{servicePageDefaults.whoHeading}</h2>
+          <p class="text-[1.02rem]">{who}</p>
         </div>
       )}
 
       {options.length > 0 && (
-        <div class="service-block">
-          <h2>{servicePageDefaults.optionsHeading}</h2>
-          <p class="service-block-intro">{servicePageDefaults.optionsIntro}</p>
-          <ul class="options-grid" role="list">
+        <div class="mt-12 first:mt-0">
+          <h2 class="mb-2.5 text-[clamp(1.7rem,2.8vw,2.2rem)]">{servicePageDefaults.optionsHeading}</h2>
+          <p class="mb-[18px] text-base">{servicePageDefaults.optionsIntro}</p>
+          <ul class="m-0 grid list-none grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-3 p-0" role="list">
             {options.map((opt: string) => (
-              <li class="option-pill">
-                <span class="plus-icon" aria-hidden="true">+</span>
+              <li class="flex items-center gap-2.5 rounded-lg border border-line bg-white px-4 py-3 text-[.95rem] font-bold">
+                <span class="text-[1.1rem] font-black text-sea" aria-hidden="true">+</span>
                 <span>{opt}</span>
               </li>
             ))}
@@ -105,12 +107,12 @@ const {
       )}
 
       {pricing && (
-        <div class="service-block service-card-box">
-          <h2>{servicePageDefaults.pricingHeading}</h2>
-          <p>{pricing}</p>
-          <div class="pricing-factors">
+        <div class="mt-12 rounded-[14px] border border-line bg-[#f8fafc] px-[30px] py-7 first:mt-0 max-[641px]:px-5 max-[641px]:py-[22px]">
+          <h2 class="mb-2.5 text-[clamp(1.7rem,2.8vw,2.2rem)]">{servicePageDefaults.pricingHeading}</h2>
+          <p class="text-[1.02rem]">{pricing}</p>
+          <div class="mt-[18px] flex flex-wrap gap-2">
             {servicePageDefaults.pricingFactors.map((factor: string) => (
-              <span class="factor-tag">{factor}</span>
+              <span class="rounded-md border border-line bg-white px-3 py-1.5 text-[.84rem] font-[750] text-sea-dark">{factor}</span>
             ))}
           </div>
         </div>
@@ -119,14 +121,14 @@ const {
   </section>
 
   {faqs.length > 0 && (
-    <section class="section section-mist">
-      <div class="container container-narrow">
-        <h2 class="service-faq-heading">{servicePageDefaults.faqsHeading}</h2>
-        <div class="faq">
+    <section class:list={[section, "bg-mist"]}>
+      <div class:list={[shell, "max-w-[860px]"]}>
+        <h2 class="mb-6">{servicePageDefaults.faqsHeading}</h2>
+        <div class="grid gap-3">
           {faqs.map((faq: { q: string, a: string }) => (
-            <details>
-              <summary>{faq.q}</summary>
-              <p>{faq.a}</p>
+            <details class={details}>
+              <summary class={summary}>{faq.q}</summary>
+              <p class="mt-3">{faq.a}</p>
             </details>
           ))}
         </div>
@@ -136,125 +138,3 @@ const {
 
   <CTA />
 </BaseLayout>
-
-<style>
-  .service-hero-actions {
-    margin-top: 24px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 14px;
-    align-items: center;
-  }
-  .hero-phone {
-    font-weight: 750;
-    font-size: .95rem;
-  }
-  .service-hero-img {
-    object-position: center;
-  }
-  .service-hero-img-focus-right {
-    object-position: 70% center;
-  }
-  .service-faq-heading {
-    margin-bottom: 24px;
-    font-size: clamp(1.8rem, 3vw, 2.5rem);
-    letter-spacing: -.035em;
-  }
-  .service-block {
-    margin-top: 48px;
-  }
-  .service-block:first-child {
-    margin-top: 0;
-  }
-  .service-block h2 {
-    font-size: clamp(1.7rem, 2.8vw, 2.2rem);
-    letter-spacing: -.035em;
-    margin-bottom: 10px;
-  }
-  .service-block-intro {
-    font-size: 1rem;
-    color: var(--ink-soft);
-    margin-bottom: 18px;
-  }
-  .checklist-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px 24px;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  .checklist-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    font-size: 1rem;
-    line-height: 1.5;
-    color: var(--ink);
-  }
-  .check-icon {
-    flex-shrink: 0;
-    color: var(--sea);
-    margin-top: 3px;
-  }
-  .service-card-box {
-    background: #f8fafc;
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 28px 30px;
-  }
-  .service-card-box p {
-    font-size: 1.02rem;
-    line-height: 1.6;
-    color: var(--ink-soft);
-  }
-  .options-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 12px;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  .option-pill {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 16px;
-    background: white;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    font-weight: 700;
-    font-size: .95rem;
-    color: var(--ink);
-  }
-  .plus-icon {
-    color: var(--sea);
-    font-weight: 900;
-    font-size: 1.1rem;
-  }
-  .pricing-factors {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 18px;
-  }
-  .factor-tag {
-    background: white;
-    border: 1px solid var(--line);
-    padding: 6px 12px;
-    border-radius: 6px;
-    font-size: .84rem;
-    font-weight: 750;
-    color: var(--sea-dark);
-  }
-  @media (max-width: 640px) {
-    .checklist-grid {
-      grid-template-columns: 1fr;
-      gap: 12px;
-    }
-    .service-card-box {
-      padding: 22px 20px;
-    }
-  }
-</style>

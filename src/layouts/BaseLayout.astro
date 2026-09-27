@@ -3,8 +3,7 @@ import { SEO } from 'astro-seo';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { site, accessibilityContent, mobileActionBarContent, withBase } from '../data/content';
-import '../styles/global.css';
-import '../styles/home.css';
+import '../styles/site.css';
 
 interface Props {
   title?: string;
@@ -17,6 +16,7 @@ const {
   bodyClass = '',
   description = site.defaultMetaDescription
 } = Astro.props;
+const hideMobileBar = bodyClass.includes('no-mobile-bar');
 ---
 <!doctype html>
 <html lang="en">
@@ -57,18 +57,18 @@ const {
       "description": description
     })} />
   </head>
-  <body class={bodyClass}>
-    <a class="skip-link" href="#main-content">{accessibilityContent.skipToContent}</a>
+  <body class:list={["group/site", bodyClass, bodyClass.includes("island-home") && "bg-cream", !hideMobileBar && "max-mobile:pb-[calc(56px+env(safe-area-inset-bottom))]"]}>
+    <a class="fixed -top-[100px] left-4 z-[100] bg-white px-[18px] py-3 text-ink focus:top-3" href="#main-content">{accessibilityContent.skipToContent}</a>
     <Header />
     <slot name="hero" />
-    <main id="main-content" tabindex="-1">
+    <main id="main-content" class="scroll-mt-20" tabindex="-1">
       <slot />
     </main>
     <Footer />
-    <div class="mobile-action-bar" aria-label={mobileActionBarContent.ariaLabel}>
-      <a href={site.phoneHref}>{mobileActionBarContent.callLabel}</a>
-      <a href={site.smsHref}>{mobileActionBarContent.textLabel}</a>
-      <a class="mobile-quote" href={mobileActionBarContent.quoteHref}>{mobileActionBarContent.quoteLabel}</a>
-    </div>
+    {!hideMobileBar && <div class="mobile-action-bar fixed inset-x-0 bottom-0 z-[70] hidden min-h-14 w-full grid-cols-[1fr_1fr_1.3fr] border-t border-line bg-white pb-[env(safe-area-inset-bottom)] shadow-bar max-mobile:grid" aria-label={mobileActionBarContent.ariaLabel}>
+      <a class="flex min-h-12 items-center justify-center text-[.92rem] font-[850] no-underline" href={site.phoneHref}>{mobileActionBarContent.callLabel}</a>
+      <a class="flex min-h-12 items-center justify-center border-l border-line text-[.92rem] font-[850] no-underline" href={site.smsHref}>{mobileActionBarContent.textLabel}</a>
+      <a class="mobile-quote flex min-h-12 items-center justify-center border-l border-line bg-sea-dark text-[.92rem] font-[850] text-white no-underline" href={mobileActionBarContent.quoteHref}>{mobileActionBarContent.quoteLabel}</a>
+    </div>}
   </body>
 </html>

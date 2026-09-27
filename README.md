@@ -40,6 +40,17 @@ npm run dev
 
 Then open the local URL Astro prints in the terminal.
 
+## Styling
+
+Tailwind CSS 4 is compiled through `@tailwindcss/vite`; no runtime CDN is used.
+`src/styles/site.css` imports Tailwind and defines the shared fonts, colors,
+breakpoints, and shadows with `@theme`.
+
+Use utility classes for layout, spacing, typography, responsive behavior, and
+common states. Shared utility strings live in `src/styles/ui.ts`, and
+`src/components/Button.astro` provides the common button variants. Keep custom
+CSS in `site.css` for decorative pseudo-elements and disclosure markers.
+
 ## Build
 
 ```bash

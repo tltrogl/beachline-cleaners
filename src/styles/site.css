@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --color-ink: #17334d;
+  --color-ink-soft: #506574;
+  --color-cream: #fafcfb;
+  --color-paper: #ffffff;
+  --color-mist: #edf7f5;
+  --color-sea: #0f766e;
+  --color-sea-dark: #005c55;
+  --color-line: #d8e5e2;
+  --color-footer: #132f43;
+  --color-footer-text: #d5e4ed;
+  --color-rental-text: #d9efeb;
+  --breakpoint-mobile: 721px;
+  --breakpoint-tablet: 901px;
+  --breakpoint-wide: 1151px;
+  --container-site: 1180px;
+  --shadow-site: 0 12px 36px rgba(23,51,77,.08);
+  --shadow-card: 0 2px 8px rgba(18,52,59,.05);
+  --shadow-lift: 0 4px 16px rgba(8,111,156,.08);
+  --shadow-bar: 0 -4px 16px rgba(18,52,59,.08);
+}
+
+@layer base {
+  html { @apply motion-safe:scroll-smooth; }
+  body { @apply m-0 bg-paper font-sans leading-[1.6] text-ink; }
+  h1, h2, h3 { @apply m-0 font-bold; }
+  h1 { @apply max-w-[900px] text-[clamp(2.7rem,3.7vw,3.2rem)] leading-[1.05] tracking-[-.045em] max-tablet:text-[clamp(2.9rem,8vw,3.8rem)]; }
+  h2 { @apply text-[clamp(1.8rem,3vw,2.5rem)] leading-[1.15] tracking-[-.035em]; }
+  h3 { @apply text-[1.3rem] leading-[1.3] tracking-[-.025em]; }
+  p { @apply m-0 text-ink-soft; }
+  a, button, summary { @apply focus-visible:outline-3 focus-visible:outline-sea focus-visible:outline-offset-4; }
+  button, summary { @apply cursor-pointer; }
+  .island-home h2 { @apply text-[clamp(1.4rem,2vw,1.8rem)] tracking-[-.02em] text-balance; }
+  .island-home h3 { @apply text-[1.15rem] font-bold tracking-[-.01em] text-balance; }
+}
+
+/* Decorative wave and disclosure markers stay in CSS. */
+.brand-mark::before {
+  content: "";
+  position: absolute;
+  width: 44px;
+  height: 17px;
+  border-radius: 50%;
+  background: var(--color-sea-dark);
+  left: -4px;
+  bottom: 5px;
+  transform: rotate(-9deg);
+}
+.nav-services summary::-webkit-details-marker,
+.form-details-toggle summary::-webkit-details-marker { display: none; }
+.nav-services summary::after { content: "▾"; margin-left: 6px; font-size: .72em; }
+.check::before {
+  content: "✓";
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--color-mist);
+  color: var(--color-sea);
+}
+.form-details-toggle summary::before {
+  content: "+";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--color-mist);
+  color: var(--color-sea);
+  font-weight: 900;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+.form-details-toggle[open] summary::before { content: "−"; }
