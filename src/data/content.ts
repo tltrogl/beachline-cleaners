@@ -4,7 +4,7 @@ export interface ServiceDetail {
   intro: string;
   image: string;
   imageAlt: string;
-  imageFocalPoint?: 'center' | 'right';
+  imageFocalPoint?: 'center' | 'left' | 'right';
   included: string[];
   who: string;
   options: string[];
@@ -134,8 +134,9 @@ export const servicesDetail: Record<'residential' | 'deep' | 'moveOut' | 'vacati
     eyebrow: 'Residential cleaning',
     title: 'Home cleaning that stays simple.',
     intro: 'Recurring and one-time cleaning for homes that need consistent attention without the hassle.',
-    image: withBase('/images/hero-living-room.jpg'),
-    imageAlt: 'Clean, bright living room after professional cleaning',
+    image: withBase('/images/cleaner-living-room.webp'),
+    imageAlt: 'Man vacuuming a furnished coastal living room',
+    imageFocalPoint: 'left',
     included: [
       'Kitchen surfaces, sink, appliance exteriors, and floors',
       'Bathroom fixtures, mirrors, counters, and floors',
@@ -170,8 +171,8 @@ export const servicesDetail: Record<'residential' | 'deep' | 'moveOut' | 'vacati
     eyebrow: 'Deep cleaning',
     title: 'A more detailed reset.',
     intro: 'For spaces that need more than a maintenance clean—whether it’s buildup, a seasonal reset, or the first professional cleaning in a while.',
-    image: withBase('/images/deep-cleaning-kitchen.jpg'),
-    imageAlt: 'Woman wiping a stainless steel refrigerator with a cloth in a kitchen',
+    image: withBase('/images/cleaner-refrigerator.webp'),
+    imageAlt: 'Man wiping the inside of a refrigerator',
     imageFocalPoint: 'right',
     included: [
       'Everything included in standard home cleaning',
@@ -206,8 +207,9 @@ export const servicesDetail: Record<'residential' | 'deep' | 'moveOut' | 'vacati
     eyebrow: 'Move-in / move-out',
     title: 'Leave the cleaning to us.',
     intro: 'Detailed cleaning for empty properties, new tenants, listings, closings, and fresh starts.',
-    image: withBase('/images/move-out-empty-room.jpg'),
-    imageAlt: 'Unfurnished room with white walls, windows, and clean wood flooring',
+    image: withBase('/images/cleaner-move-out.webp'),
+    imageAlt: 'Man vacuuming an empty waterfront condo',
+    imageFocalPoint: 'left',
     included: [
       'Kitchen and bathroom detail cleaning',
       'Baseboards, doors, reachable trim, and floors',
@@ -240,8 +242,8 @@ export const servicesDetail: Record<'residential' | 'deep' | 'moveOut' | 'vacati
     eyebrow: 'Vacation rental cleaning',
     title: 'Guest-ready turnovers without the guesswork.',
     intro: 'Turnover cleaning for vacation rentals, hosts, and property managers who need dependable resets between stays.',
-    image: withBase('/images/turnover-active.jpg'),
-    imageAlt: 'Cleaner preparing a bed between guest stays',
+    image: withBase('/images/cleaner-bedmaking.webp'),
+    imageAlt: 'Man making a bed in a coastal bedroom',
     included: [
       'Full turnover clean of kitchens, bathrooms, bedrooms, and living areas',
       'Beds reset with provided clean linens',
@@ -307,10 +309,10 @@ export const homeContent = {
   metaTitleSuffix: 'Space Coast Cleaning',
   metaDescription: 'Home cleaning, deep cleans, move-in/out service, and vacation-rental turnovers in the Space Coast area. Call Beachline Cleaners to discuss scope and availability.',
   hero: {
-    imageSrc: withBase('/images/hero-active-clean.jpg'),
-    imageWidth: 1376,
-    imageHeight: 768,
-    imageAlt: 'Professional cleaner wiping a kitchen counter in a bright home',
+    imageSrc: withBase('/images/cleaner-counter.webp'),
+    imageWidth: 1280,
+    imageHeight: 720,
+    imageAlt: 'Man wiping a kitchen counter in a bright coastal home',
     eyebrow: 'HOUSE CLEANING • DEEP CLEANING • VACATION RENTALS',
     location: 'Space Coast, FL • Cocoa • Cocoa Beach • Merritt Island',
     title: 'A cleaner home. More time for everything else.',
@@ -333,29 +335,29 @@ export const homeContent = {
     linkText: 'What’s included',
     services: [
       {
-        image: withBase('/images/hero-living-room.jpg'),
-        imageAlt: 'Clean living room after service',
+        image: withBase('/images/cleaner-living-room.webp'),
+        imageAlt: 'Man vacuuming a furnished coastal living room',
         title: 'Recurring Cleaning',
         href: withBase('/residential-cleaning'),
         text: 'Kitchens, bathrooms, floors, and common areas on a regular schedule.',
       },
       {
-        image: withBase('/images/deep-cleaning-kitchen.jpg'),
-        imageAlt: 'Detailed cleaning inside a refrigerator',
+        image: withBase('/images/cleaner-refrigerator.webp'),
+        imageAlt: 'Man wiping the inside of a refrigerator',
         title: 'Deep Cleaning',
         href: withBase('/deep-cleaning'),
         text: 'Detailed reset for buildup, overlooked areas, and seasonal resets.',
       },
       {
-        image: withBase('/images/move-out-empty-room.jpg'),
-        imageAlt: 'Empty room ready for a move',
+        image: withBase('/images/cleaner-move-out.webp'),
+        imageAlt: 'Man vacuuming an empty waterfront condo',
         title: 'Move-In / Move-Out',
         href: withBase('/move-out-cleaning'),
         text: 'Empty-property cleaning for handoffs, closings, and fresh starts.',
       },
       {
-        image: withBase('/images/turnover-active.jpg'),
-        imageAlt: 'Cleaner preparing a guest bed',
+        image: withBase('/images/cleaner-bedmaking.webp'),
+        imageAlt: 'Man making a bed in a coastal bedroom',
         title: 'Vacation Rentals',
         href: withBase('/vacation-rental-cleaning'),
         text: 'Turnover cleaning between guest stays with your timeline in mind.',
@@ -391,10 +393,10 @@ export const homeContent = {
     ],
   },
   rentalSection: {
-    imageSrc: withBase('/images/turnover-active.jpg'),
-    imageWidth: 1000,
-    imageHeight: 1000,
-    imageAlt: 'Cleaner preparing a bed for the next stay',
+    imageSrc: withBase('/images/cleaner-bedmaking.webp'),
+    imageWidth: 1280,
+    imageHeight: 853,
+    imageAlt: 'Man making a bed in a coastal bedroom',
     eyebrow: 'For hosts & property managers',
     heading: 'Cleaning between checkout and check-in.',
     description: 'Tell us your turnover window and what the property needs. Discuss linen changes, restocking, and completion photos when agreeing on the scope.',

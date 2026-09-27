@@ -16,7 +16,7 @@ interface Props {
   intro: string;
   image?: string;
   imageAlt?: string;
-  imageFocalPoint?: 'center' | 'right';
+  imageFocalPoint?: 'center' | 'left' | 'right';
   included?: string[];
   who?: string;
   options?: string[];
@@ -57,7 +57,8 @@ const {
             alt={imageAlt}
             class:list={[
               splitImage,
-              imageFocalPoint === 'right' && 'object-[70%_center]'
+              imageFocalPoint === 'right' && 'object-[70%_center]',
+              imageFocalPoint === 'left' && 'object-[30%_center]'
             ]}
           />
         </div>
