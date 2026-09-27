@@ -37,11 +37,11 @@ import { shell, homeEyebrow, outlineLink } from '../styles/ui';
     </div>
   </section>
 
-  <div class="border-b border-line bg-mist" aria-label={homeContent.trustStrip.ariaLabel}>
+  <div class="border-b border-line bg-green-soft" aria-label={homeContent.trustStrip.ariaLabel}>
     <div class:list={[shell, "flex flex-wrap items-center justify-between gap-x-6 gap-y-[14px] py-[18px] max-mobile:grid max-mobile:grid-cols-2 max-mobile:gap-x-3"]}>
       {homeContent.trustStrip.items.map((item) => (
         <div class="inline-flex items-center gap-2 text-label font-[750] max-mobile:items-start max-mobile:text-nav-compact">
-          <Icon name="check-circle" class="size-[18px] text-sea" />
+          <Icon name="check-circle" class="size-[18px] text-green" />
           <span>{item}</span>
         </div>
       ))}
@@ -80,7 +80,7 @@ import { shell, homeEyebrow, outlineLink } from '../styles/ui';
   </section>
 
   <section class="border-t border-line py-12" aria-labelledby="rental-heading">
-    <div class:list={[shell, "grid grid-cols-2 items-center overflow-hidden rounded-panel bg-ink text-white max-mobile:grid-cols-1"]}>
+    <div class:list={[shell, "grid grid-cols-2 items-center overflow-hidden rounded-panel bg-green-dark text-white max-mobile:grid-cols-1"]}>
       <img
         class="aspect-[1.1] h-full w-full object-cover object-[center_60%] max-mobile:aspect-[2.2]"
         src={homeContent.rentalSection.imageSrc}

@@ -9,7 +9,11 @@
   --color-mist: #edf5fa;
   --color-sea: #176b95;
   --color-sea-dark: #125477;
+  --color-green: #0f766e;
+  --color-green-dark: #005c55;
+  --color-green-soft: #edf7f5;
   --color-coral: #d76d59;
+  --color-coral-strong: #b84f3e;
   --color-coral-soft: #fff0eb;
   --color-coral-ink: #984230;
   --color-line: #d7e4ec;
@@ -81,8 +85,8 @@
   display: grid;
   place-items: center;
   border-radius: 50%;
-  background: var(--color-mist);
-  color: var(--color-sea);
+  background: var(--color-green-soft);
+  color: var(--color-green);
 }
 .form-details-toggle summary::before {
   content: "+";
