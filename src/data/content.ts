@@ -296,10 +296,6 @@ export const servicesDetail: Record<'residential' | 'deep' | 'moveOut' | 'vacati
         a: 'Yes, we offer flexible scheduling including after-hours and weekend cleaning to minimize disruption to your business operations.',
       },
       {
-        q: 'Are you insured for commercial properties?',
-        a: 'Absolutely. We are fully insured and can provide a certificate of insurance upon request.',
-      },
-      {
         q: 'Can we customize the cleaning checklist?',
         a: 'Yes, we work with you to develop a custom cleaning plan that addresses the specific needs of your workspace and team.',
       },
@@ -318,7 +314,7 @@ export const homeContent = {
     eyebrow: 'HOUSE CLEANING • DEEP CLEANING • VACATION RENTALS',
     location: 'Space Coast, FL • Cocoa • Cocoa Beach • Merritt Island',
     title: 'A cleaner home. More time for everything else.',
-    description: 'Professional home cleaning in Cocoa Beach and surrounding Brevard County.',
+    description: 'Locally owned, owner-operated home cleaning in Cocoa Beach and surrounding Brevard County.',
     ctaButton: 'Get a Quote',
     quoteHref: withBase('/quote'),
     callPrefix: 'Call ',
@@ -326,10 +322,10 @@ export const homeContent = {
   trustStrip: {
     ariaLabel: 'Key service assurances',
     items: [
-      'Room-by-room checklists',
-      'Local service',
+      'Locally owned',
+      'Owner-operated',
+      'Checklist-based cleaning',
       'Direct communication',
-      'Quotes for your property',
     ],
   },
   servicesSection: {
@@ -427,9 +423,8 @@ export const aboutContent = {
     imageAlt: 'A freshly cleaned home, bright and organized',
     eyebrow: 'Our Story',
     heading: 'Locally owned and operated on the Space Coast.',
-    ownerName: 'Tiffany',
-    ownerTitle: 'Owner & Operator',
-    ownerIntro: 'Beachline Cleaners is owned and operated by Tiffany, a Brevard County local who started the business to bring dependable, detail-oriented cleaning to homes and vacation rentals across the Space Coast.',
+    ownerTitle: 'Local & Owner-Operated',
+    ownerIntro: 'Beachline Cleaners is a locally owned, owner-operated cleaning service for homes and vacation rentals across the Space Coast.',
     lead: 'Beachline Cleaners was founded to make dependable cleaning easier to arrange for homes and vacation rentals across the Space Coast.',
     paragraphs: [
       'As an independent, owner-operated service based in Brevard County, we keep communication direct. When you call or message, you’re speaking with the person responsible for scheduling the work and making sure the agreed cleaning plan is followed.',
