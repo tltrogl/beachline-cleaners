@@ -337,26 +337,36 @@ export const homeContent = {
     linkText: 'What’s included',
     services: [
       {
+        image: withBase('/images/hero-living-room.jpg'),
+        imageAlt: 'Clean living room after service',
         title: 'Recurring Cleaning',
         href: withBase('/residential-cleaning'),
         text: 'Kitchens, bathrooms, floors, and common areas on a regular schedule.',
       },
       {
+        image: withBase('/images/deep-cleaning-kitchen.jpg'),
+        imageAlt: 'Detailed cleaning inside a refrigerator',
         title: 'Deep Cleaning',
         href: withBase('/deep-cleaning'),
         text: 'Detailed reset for buildup, overlooked areas, and seasonal resets.',
       },
       {
+        image: withBase('/images/move-out-empty-room.jpg'),
+        imageAlt: 'Empty room ready for a move',
         title: 'Move-In / Move-Out',
         href: withBase('/move-out-cleaning'),
         text: 'Empty-property cleaning for handoffs, closings, and fresh starts.',
       },
       {
+        image: withBase('/images/turnover-active.jpg'),
+        imageAlt: 'Cleaner preparing a guest bed',
         title: 'Vacation Rentals',
         href: withBase('/vacation-rental-cleaning'),
         text: 'Turnover cleaning between guest stays with your timeline in mind.',
       },
       {
+        image: withBase('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80'),
+        imageAlt: 'Clean modern office space',
         title: 'Commercial Cleaning',
         href: withBase('/commercial-cleaning'),
         text: 'Offices, workspaces, and commercial properties on a reliable schedule.',

@@ -1,0 +1,23 @@
+---
+import Icon from './Icon.astro';
+import { outlineLink } from '../styles/ui';
+interface Props {
+  title: string;
+  href: string;
+  text: string;
+  image: string;
+  imageAlt: string;
+  linkText: string;
+}
+const { title, href, text, image, imageAlt, linkText } = Astro.props;
+---
+<article class="service-card @container/card group/card flex flex-col overflow-hidden rounded-xl border border-line bg-white transition-[transform,box-shadow,border-color] duration-200 hover:border-sea/40 hover:shadow-lift focus-within:border-sea focus-within:shadow-lift motion-safe:hover:-translate-y-[3px]">
+  <img class="h-[180px] w-full object-cover" src={image} alt={imageAlt} width="600" height="400" loading="lazy" />
+  <div class="flex grow flex-col p-5 @min-[26rem]/card:p-6">
+    <h3><a class="text-sea-dark no-underline hover:underline underline-offset-4" href={href}>{title}</a></h3>
+    <p class="mt-3 mb-3 max-w-[470px] text-small">{text}</p>
+    <a class:list={[outlineLink, 'mt-auto']} href={href} aria-label={`${linkText}: ${title}`}>
+      {linkText}<Icon name="arrow-right" class="size-[18px] transition-transform duration-200 motion-safe:group-hover/card:translate-x-1 motion-safe:group-focus-within/card:translate-x-1" />
+    </a>
+  </div>
+</article>

@@ -45,7 +45,7 @@ const {
         <p class={eyebrowClass}>{eyebrow}</p>
         <h1 class={pageTitle}>{title}</h1>
         <p class:list={[lede, "mt-[18px]"]}>{intro}</p>
-        <div class="mt-6 flex flex-wrap items-center gap-[14px]">
+        <div class="mt-6 flex flex-wrap items-center gap-control-gap">
           <Button href={servicePageDefaults.quoteHref}>{servicePageDefaults.quoteButtonText} <span aria-hidden="true">→</span></Button>
           <a class={phone} href={site.phoneHref}>{servicePageDefaults.callButtonPrefix}{site.phoneDisplay}</a>
         </div>
@@ -85,7 +85,7 @@ const {
       )}
 
       {who && (
-        <div class="mt-12 rounded-[14px] border border-line bg-[#f8fafc] px-[30px] py-7 first:mt-0 max-[641px]:px-5 max-[641px]:py-[22px]">
+        <div class="mt-12 rounded-panel border border-line bg-[#f8fafc] px-[30px] py-7 first:mt-0 max-[641px]:px-5 max-[641px]:py-[22px]">
           <h2 class="mb-2.5 text-[clamp(1.7rem,2.8vw,2.2rem)]">{servicePageDefaults.whoHeading}</h2>
           <p class="text-[1.02rem]">{who}</p>
         </div>
@@ -97,7 +97,7 @@ const {
           <p class="mb-[18px] text-base">{servicePageDefaults.optionsIntro}</p>
           <ul class="m-0 grid list-none grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-3 p-0" role="list">
             {options.map((opt: string) => (
-              <li class="flex items-center gap-2.5 rounded-lg border border-line bg-white px-4 py-3 text-[.95rem] font-bold">
+              <li class="flex items-center gap-2.5 rounded-lg border border-line bg-white px-4 py-3 text-small font-bold">
                 <span class="text-[1.1rem] font-black text-sea" aria-hidden="true">+</span>
                 <span>{opt}</span>
               </li>
@@ -107,7 +107,7 @@ const {
       )}
 
       {pricing && (
-        <div class="mt-12 rounded-[14px] border border-line bg-[#f8fafc] px-[30px] py-7 first:mt-0 max-[641px]:px-5 max-[641px]:py-[22px]">
+        <div class="mt-12 rounded-panel border border-line bg-[#f8fafc] px-[30px] py-7 first:mt-0 max-[641px]:px-5 max-[641px]:py-[22px]">
           <h2 class="mb-2.5 text-[clamp(1.7rem,2.8vw,2.2rem)]">{servicePageDefaults.pricingHeading}</h2>
           <p class="text-[1.02rem]">{pricing}</p>
           <div class="mt-[18px] flex flex-wrap gap-2">
