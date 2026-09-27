@@ -17,11 +17,8 @@ import '../styles/home.css';
           ))}
         </div>
         
-        <form class="quote-form" name={quoteContent.form.nameAttr} method="POST" data-netlify="true" netlify-honeypot="bot-field" action={quoteContent.form.actionAttr}>
-          <input type="hidden" name="form-name" value={quoteContent.form.nameAttr} />
-          <p class="hidden">
-            <label>{quoteContent.form.honeypotLabel} <input name="bot-field" /></label>
-          </p>
+        <form class="quote-form" action={site.smsHref} data-phone={site.phoneHref.replace('tel:', '')} data-email={site.email}>
+          <p class="quote-delivery-note">Complete the details below, then open a text message to review and send. Your request is sent only when you send the message. You can also open an email draft below.</p>
           <div class="form-group">
             <label for="name">{quoteContent.form.name.label}</label>
             <input type="text" id="name" name="name" required autocomplete="name" placeholder={quoteContent.form.name.placeholder} />
@@ -82,7 +79,8 @@ import '../styles/home.css';
             <label for="notes">{quoteContent.form.notes.label}</label>
             <textarea id="notes" name="notes" rows="4" placeholder={quoteContent.form.notes.placeholder}></textarea>
           </div>
-          <button type="submit" class="btn btn-primary submit-btn">{quoteContent.form.submitButton}</button>
+          <button type="submit" class="btn btn-primary submit-btn" name="channel" value="sms">Continue by text</button>
+          <button type="submit" class="btn btn-secondary" name="channel" value="email">Continue by email</button>
         </form>
       </div>
 
@@ -104,6 +102,38 @@ import '../styles/home.css';
     </div>
   </section>
 </BaseLayout>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('.quote-form');
+  if (form) {
+    const params = new URLSearchParams(window.location.search);
+    for (const name of ['location', 'service']) {
+      const field = form.elements.namedItem(name);
+      if (field instanceof HTMLInputElement || field instanceof HTMLSelectElement) {
+        const value = params.get(name);
+        if (value) field.value = value;
+      }
+    }
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const data = new FormData(form);
+      const labels: Record<string, string> = {name: 'Name', phone: 'Phone', email: 'Email', location: 'Property', service: 'Service', beds_baths: 'Beds/baths', size: 'Square feet', frequency: 'Schedule', notes: 'Notes'};
+      const details = Object.entries(labels).flatMap(([key, label]) => {
+        const value = String(data.get(key) ?? '').trim();
+        if (!value) return [];
+        const service = form.elements.namedItem('service');
+        return [`${label}: ${key === 'service' && service instanceof HTMLSelectElement ? service.selectedOptions[0].text : value}`];
+      });
+      const message = `I'd like a cleaning quote.\n${details.join('\n')}`;
+      if (event.submitter instanceof HTMLButtonElement && event.submitter.value === 'email') {
+        window.location.href = `mailto:${form.dataset.email}?subject=${encodeURIComponent('Cleaning quote request')}&body=${encodeURIComponent(message)}`;
+        return;
+      }
+      const separator = /iPhone|iPad|iPod/.test(navigator.userAgent) ? '&' : '?';
+      window.location.href = `sms:${form.dataset.phone}${separator}body=${encodeURIComponent(message)}`;
+    });
+  }
+</script>
 
 <style>
   .quote-title {

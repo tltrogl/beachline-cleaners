@@ -1,23 +1,24 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import WhatWeClean from '../components/WhatWeClean.astro';
-import BeforeAfter from '../components/BeforeAfter.astro';
-import { site, homeContent } from '../data/content';
+import { site, homeContent, quoteContent, withBase } from '../data/content';
 import '../styles/home.css';
 ---
 <BaseLayout bodyClass="island-home" title={`${site.name} | ${homeContent.metaTitleSuffix}`} description={homeContent.metaDescription}>
   <section class="home-hero" aria-labelledby="hero-title" slot="hero">
     <div class="container home-hero-grid">
       <div class="home-hero-copy">
-        <p class="hero-location" style="font-size: 0.875rem; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 800; margin-bottom: 1rem; color: var(--sea-dark);">
-          HOUSE CLEANING &bull; DEEP CLEANING &bull; VACATION RENTALS
+        <p class="hero-location">
+          Professional cleaning • Brevard County
         </p>
         <h1 id="hero-title">{homeContent.hero.title}</h1>
         <p class="home-hero-lede">{homeContent.hero.description}</p>
-        <div class="home-hero-actions">
-          <a class="btn btn-primary" style="min-width: 200px; font-size: 1.05rem;" href={homeContent.hero.quoteHref}>{homeContent.hero.ctaButton}</a>
-          <a class="btn btn-secondary" style="min-width: 160px; font-size: 1.05rem;" href={site.phoneHref}>{homeContent.hero.callPrefix}{site.phoneDisplay}</a>
-        </div>
+        <form class="hero-estimator" action={homeContent.hero.quoteHref} method="get">
+          <div><label for="hero-location">ZIP code or town</label><input id="hero-location" name="location" autocomplete="postal-code" placeholder="e.g. 32931" required /></div>
+          <div><label for="hero-service">Cleaning service</label><select id="hero-service" name="service">{quoteContent.form.service.options.map((option) => <option value={option.value}>{option.label}</option>)}</select></div>
+          <button class="btn btn-primary" type="submit">Get a Quote <span aria-hidden="true">→</span></button>
+        </form>
+        <a class="hero-phone" href={site.phoneHref}>Prefer to talk? {site.phoneDisplay}</a>
       </div>
       <div class="home-hero-media">
         <img
@@ -48,12 +49,13 @@ import '../styles/home.css';
     <div class="container">
       <h2 id="services-heading">{homeContent.servicesSection.heading}</h2>
       <div class="service-outline">
-        {homeContent.servicesSection.services.map((service) => (
-          <article style="display: flex; flex-direction: column;">
+        {homeContent.servicesSection.services.map((service, index) => (
+          <article>
+            {index < 4 && <img class="service-photo" src={withBase(['/images/hero-active-clean.jpg', '/images/deep-cleaning-kitchen.jpg', '/images/move-out-empty-room.jpg', '/images/turnover-active.jpg'][index])} alt={['Cleaner wiping a kitchen counter', 'Detailed cleaning inside a refrigerator', 'Empty room ready for a move', 'Cleaner preparing a guest bed'][index]} width="600" height="400" loading="lazy" />}
             
             <h3><a href={service.href}>{service.title}</a></h3>
             <p>{service.text}</p>
-            <a class="outline-link" href={service.href} style="margin-top: auto;">{homeContent.servicesSection.linkText} <span aria-hidden="true">→</span></a>
+            <a class="outline-link" href={service.href}>{homeContent.servicesSection.linkText} <span aria-hidden="true">→</span></a>
           </article>
         ))}
       </div>
@@ -61,7 +63,6 @@ import '../styles/home.css';
   </section>
 
   <WhatWeClean />
-  <BeforeAfter />
 
   <section class="outline-section outline-tint" aria-labelledby="process-heading">
     <div class="container">

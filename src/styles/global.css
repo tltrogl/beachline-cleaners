@@ -1,19 +1,19 @@
 :root {
-  --ink: #004d40;
-  --ink-soft: #00796b;
-  --cream: #ffffff;
+  --ink: #17334d;
+  --ink-soft: #506574;
+  --cream: #fafcfb;
   --paper: #ffffff;
-  --mist: #e0f2f1;
-  --sea: #00bcd4;
-  --sea-dark: #0097a7;
-  --coral: #ffffff;
-  --coral-dark: #e0f7fa;
-  --sand: #b2dfdb;
-  --line: #b2ebf2;
-  --shadow: 0 18px 60px rgba(0, 188, 212, 0.15);
-  --radius-lg: 30px;
-  --radius-md: 20px;
-  --radius-sm: 12px;
+  --mist: #edf7f5;
+  --sea: #0f766e;
+  --sea-dark: #005c55;
+  --coral: #005c55;
+  --coral-dark: #0f766e;
+  --sand: #d6e8e3;
+  --line: #d8e5e2;
+  --shadow: 0 12px 36px rgba(23,51,77,.08);
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
   --max: 1180px;
 }
 
@@ -757,3 +757,11 @@ details p { margin-top: 12px; }
   .home-process-grid li { border-right: 0; border-bottom: 1px solid var(--line); min-height: 100px; }
   .home-process-grid li:last-child { border-bottom: 0; }
 }
+
+/* Shared service-company palette and accessible actions on every route. */
+.btn-primary, .btn-primary:hover { color: #fff; }
+.header { background: #ffffff; }
+.header .btn-primary { color: #fff; }
+.page-hero { background: var(--mist); }
+.page-hero h1 { font-size: clamp(2.1rem, 4vw, 3.2rem); line-height: 1.12; }
+.mobile-action-bar .mobile-quote { background: var(--sea-dark); color: #fff; }
