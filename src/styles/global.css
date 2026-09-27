@@ -564,7 +564,7 @@ details p { margin-top: 12px; }
   border: 1px solid var(--line);
   background: var(--cream);
 }
-.home-hero-media img { width: 100%; aspect-ratio: 1.22 / 1; object-fit: cover; }
+.home-hero-media img { width: 100%; height: auto; aspect-ratio: 1.22 / 1; object-fit: cover; }
 .home-hero-caption {
   display: flex;
   justify-content: space-between;

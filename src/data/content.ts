@@ -51,7 +51,8 @@ export const navigationContent = {
   navAriaLabel: 'Primary navigation',
   servicesDropdownLabel: 'Services',
   serviceLinks: [
-    { title: 'Home Cleaning', href: withBase('/residential-cleaning') },
+    { title: 'Recurring Cleaning', href: withBase('/residential-cleaning') },
+    { title: 'Commercial Cleaning', href: withBase('/commercial-cleaning') },
     { title: 'Deep Cleaning', href: withBase('/deep-cleaning') },
     { title: 'Move-In / Move-Out', href: withBase('/move-out-cleaning') },
     { title: 'Vacation Rentals', href: withBase('/vacation-rental-cleaning') },
@@ -70,7 +71,8 @@ export const footerContent = {
   summary: 'Home cleaning, vacation-rental turnovers, deep cleans, and move-in/move-out cleaning across the Space Coast.',
   servicesHeading: 'Services',
   serviceLinks: [
-    { title: 'Home Cleaning', href: withBase('/residential-cleaning') },
+    { title: 'Recurring Cleaning', href: withBase('/residential-cleaning') },
+    { title: 'Commercial Cleaning', href: withBase('/commercial-cleaning') },
     { title: 'Vacation Rentals', href: withBase('/vacation-rental-cleaning') },
     { title: 'Deep Cleaning', href: withBase('/deep-cleaning') },
     { title: 'Move-In / Move-Out', href: withBase('/move-out-cleaning') },
@@ -127,7 +129,7 @@ export const servicePageDefaults = {
 
 
 
-export const servicesDetail: Record<'residential' | 'deep' | 'moveOut' | 'vacationRental', ServiceDetail> = {
+export const servicesDetail: Record<'residential' | 'deep' | 'moveOut' | 'vacationRental' | 'commercial', ServiceDetail> = {
   residential: {
     eyebrow: 'Residential cleaning',
     title: 'Home cleaning that stays simple.',
@@ -266,6 +268,40 @@ export const servicesDetail: Record<'residential' | 'deep' | 'moveOut' | 'vacati
       {
         q: 'Do you offer same-day turnovers?',
         a: 'Same-day turnovers between checkout and check-in are available by arrangement depending on schedule availability. We recommend booking turnover windows in advance.',
+      },    ],
+  },
+  commercial: {
+    eyebrow: 'Commercial cleaning',
+    title: 'Dependable cleaning for your workspace.',
+    intro: 'Professional cleaning services for offices, workspaces, and commercial properties. We create a clean, welcoming environment for your team and clients.',
+    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1000&q=85',
+    imageAlt: 'Clean, modern office space with desks and chairs',
+    included: [
+      'Dusting and wiping of desks, tables, and common surfaces',
+      'Vacuuming and mopping of all floors and break areas',
+      'Trash removal and recycling management',
+      'Restroom cleaning and restocking',
+      'Kitchen/breakroom wipe-down and sanitization',
+    ],
+    who: 'A great fit for professional offices, retail spaces, and commercial properties that need reliable, high-quality cleaning on a consistent schedule.',
+    options: [
+      'Daily, weekly, or custom recurring schedules',
+      'After-hours and weekend cleaning',
+      'Deep cleaning for high-traffic areas',
+    ],
+    pricing: 'Commercial cleaning quotes are customized based on the size of your facility, the frequency of service, and any specific requirements your business has.',
+    faqs: [
+      {
+        q: 'Do you clean after hours?',
+        a: 'Yes, we offer flexible scheduling including after-hours and weekend cleaning to minimize disruption to your business operations.',
+      },
+      {
+        q: 'Are you insured for commercial properties?',
+        a: 'Absolutely. We are fully insured and can provide a certificate of insurance upon request.',
+      },
+      {
+        q: 'Can we customize the cleaning checklist?',
+        a: 'Yes, we work with you to develop a custom cleaning plan that addresses the specific needs of your workspace and team.',
       },
     ],
   },
@@ -275,25 +311,25 @@ export const homeContent = {
   metaTitleSuffix: 'Space Coast Cleaning',
   metaDescription: 'Home cleaning, deep cleans, move-in/out service, and vacation-rental turnovers in the Space Coast area. Call Beachline Cleaners to discuss scope and availability.',
   hero: {
-    imageSrc: withBase('/images/hero-active-clean.jpg'),
-    imageWidth: 1920,
-    imageHeight: 1440,
-    imageAlt: 'A sunlit living room with clean floors, seating, and tropical plants',
+    imageSrc: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=2070',
+    imageWidth: 2070,
+    imageHeight: 1380,
+    imageAlt: 'Professional cleaner wiping a kitchen counter in a bright home',
     eyebrow: 'HOUSE CLEANING • DEEP CLEANING • VACATION RENTALS',
     location: 'Space Coast, FL • Cocoa • Cocoa Beach • Merritt Island',
-    title: 'Professional cleaning for homes and rentals.',
-    description: 'Recurring cleaning, deep cleans, move-out service, and vacation-rental turnovers across the Space Coast.',
-    ctaButton: 'Get a Quote',
+    title: 'A cleaner home. More time for everything else.',
+    description: 'Professional home cleaning in Cocoa Beach and surrounding Brevard County.',
+    ctaButton: 'Get a Free Quote',
     quoteHref: withBase('/quote'),
     callPrefix: 'Call ',
   },
   trustStrip: {
     ariaLabel: 'Key service assurances',
     items: [
-      'Locally Owned & Operated',
-      'Clear Quotes',
-      'Checklist-Based Service',
-      'Direct Phone/Text Communication',
+      'Insured',
+      'Reliable Local Cleaners',
+      'Easy Scheduling',
+      'Satisfaction Guaranteed',
     ],
   },
   servicesSection: {
@@ -301,7 +337,7 @@ export const homeContent = {
     linkText: 'What’s included',
     services: [
       {
-        title: 'Home Cleaning',
+        title: 'Recurring Cleaning',
         href: withBase('/residential-cleaning'),
         text: 'Routine care for kitchens, bathrooms, floors, and the rooms you use every day.',
       },
@@ -311,14 +347,19 @@ export const homeContent = {
         text: 'A more detailed clean for buildup, overlooked areas, and a fresh start.',
       },
       {
-        title: 'Vacation Rental Cleaning',
-        href: withBase('/vacation-rental-cleaning'),
-        text: 'Cleaning between stays, with your property’s access and turnover timing in mind.',
-      },
-      {
         title: 'Move-In / Move-Out',
         href: withBase('/move-out-cleaning'),
         text: 'Cleaning for an empty home before the next move, handoff, or arrival.',
+      },
+      {
+        title: 'Vacation Rentals',
+        href: withBase('/vacation-rental-cleaning'),
+        text: 'Cleaning between stays, with your property\'s access and turnover timing in mind.',
+      },
+      {
+        title: 'Commercial Cleaning',
+        href: withBase('/commercial-cleaning'),
+        text: 'Dependable cleaning for offices, workspaces, and commercial properties.',
       },
     ],
   },
@@ -491,6 +532,7 @@ export const quoteContent = {
       placeholder: 'Select a service...',
       options: [
       { value: 'residential', label: 'Residential Cleaning' },
+      { value: 'commercial', label: 'Commercial Cleaning' },
       { value: 'deep', label: 'Deep Cleaning' },
       { value: 'move', label: 'Move-in / Move-out' },
       { value: 'vacation', label: 'Vacation Rental' },
@@ -541,3 +583,6 @@ export const quoteSuccessContent = {
   returnButtonText: 'Return Home',
   returnButtonHref: withBase('/'),
 };
+
+
+

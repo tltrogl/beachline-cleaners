@@ -59,6 +59,7 @@ const {
   <body class={bodyClass}>
     <a class="skip-link" href="#main-content">{accessibilityContent.skipToContent}</a>
     <Header />
+    <slot name="hero" />
     <main id="main-content" tabindex="-1">
       <slot />
     </main>
