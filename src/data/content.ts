@@ -5,11 +5,14 @@ export interface ServiceDetail {
   image: string;
   imageAlt: string;
   imageFocalPoint?: 'center' | 'left' | 'right';
+  imageCaption?: string;
+  quoteHref: string;
   included: string[];
   who: string;
   options: string[];
+  optionsIntro: string;
   pricing: string;
-  pricingFactors?: string[];
+  pricingFactors: string[];
   faqs: { q: string; a: string }[];
 }
 
@@ -117,14 +120,7 @@ export const servicePageDefaults = {
   includedIntro: 'Your cleaning plan may include:',
   whoHeading: 'Who this is for',
   optionsHeading: 'Options & Add-ons',
-  optionsIntro: 'Customize your clean with specialized interior or property add-ons:',
   pricingHeading: 'How pricing is determined',
-  pricingFactors: [
-    'Square footage',
-    'Bed / Bath count',
-    'Condition & buildup',
-    'Cleaning frequency',
-  ],
   faqsHeading: 'Service FAQs',
 };
 
@@ -132,6 +128,7 @@ export const servicePageDefaults = {
 
 export const servicesDetail: Record<'residential' | 'deep' | 'moveOut' | 'vacationRental' | 'commercial', ServiceDetail> = {
   residential: {
+    quoteHref: `${withBase('/quote')}?service=residential`,
     eyebrow: 'Residential cleaning',
     title: 'Home cleaning that stays simple.',
     intro: 'Recurring and one-time cleaning for homes that need consistent attention without the hassle.',
@@ -147,12 +144,14 @@ export const servicesDetail: Record<'residential' | 'deep' | 'moveOut' | 'vacati
       'Customized priorities when agreed in advance',
     ],
     who: 'A good fit for homes that need recurring maintenance or a one-time reset. Weekly, biweekly, and one-time service can be quoted based on the home and requested scope.',
+    optionsIntro: 'Add occasional tasks to your regular visit. Appliance interiors, cabinet interiors, and interior windows are quoted separately.',
     options: [
       'Inside refrigerator and oven',
       'Inside cabinets (if emptied)',
       'Interior windows',
     ],
     pricing: 'Pricing is determined by the size of the home, the number of bedrooms and bathrooms, and the frequency of service. Homes that have not been professionally cleaned recently may need an initial deep clean before moving to recurring maintenance service.',
+    pricingFactors: ['Square footage', 'Bed / Bath count', 'Condition & buildup', 'Cleaning frequency'],
     faqs: [
       {
         q: 'Do I need to be home?',
@@ -169,12 +168,14 @@ export const servicesDetail: Record<'residential' | 'deep' | 'moveOut' | 'vacati
     ],
   },
   deep: {
+    quoteHref: `${withBase('/quote')}?service=deep`,
     eyebrow: 'Deep cleaning',
     title: 'A more detailed reset.',
     intro: 'For spaces that need more than a maintenance clean—whether it’s buildup, a seasonal reset, or the first professional cleaning in a while.',
     image: withBase('/images/cleaner-refrigerator.webp'),
     imageAlt: 'Man wiping the inside of a refrigerator',
     imageFocalPoint: 'right',
+    imageCaption: 'Refrigerator interiors are an optional add-on, quoted separately.',
     included: [
       'Everything included in standard home cleaning',
       'More detailed attention to buildup and neglected surfaces',
@@ -182,13 +183,15 @@ export const servicesDetail: Record<'residential' | 'deep' | 'moveOut' | 'vacati
       'Detailed kitchen and bathroom cleaning',
       'Reachable doors, frames, and fixtures',
     ],
-    who: 'Perfect for spring cleaning, preparing for holidays, or resetting a home that hasn\'t had professional attention in several months.',
+    who: 'For seasonal cleaning, preparation before visitors arrive, or a home with buildup that routine cleaning will not address. Tell us which rooms and surfaces need the most attention.',
+    optionsIntro: 'A deep clean includes detailed work on accessible surfaces. Add these interior tasks to the quote if you need them:',
     options: [
       'Oven and refrigerator interior detailing',
       'Cabinet interiors',
       'Interior windows and sills',
     ],
     pricing: 'Deep cleaning can vary dramatically from one property to another, so the quote is based on size, current condition, and requested scope rather than a one-size-fits-all price.',
+    pricingFactors: ['Square footage', 'Bed / Bath count', 'Condition & buildup', 'Requested detail work'],
     faqs: [
       {
         q: 'What’s the difference between standard and deep cleaning?',
@@ -205,6 +208,7 @@ export const servicesDetail: Record<'residential' | 'deep' | 'moveOut' | 'vacati
     ],
   },
   moveOut: {
+    quoteHref: `${withBase('/quote')}?service=move`,
     eyebrow: 'Move-in / move-out',
     title: 'Leave the cleaning to us.',
     intro: 'Detailed cleaning for empty properties, new tenants, listings, closings, and fresh starts.',
@@ -218,12 +222,14 @@ export const servicesDetail: Record<'residential' | 'deep' | 'moveOut' | 'vacati
       'Removal of light dust and debris left from moving out',
     ],
     who: 'A good fit for renters preparing for a move-out inspection, homeowners getting a property ready for sale, or new occupants who want the space cleaned before moving in.',
+    optionsIntro: 'Share any cleaning requirements for your handoff or inspection. These tasks can be added to the empty-property clean:',
     options: [
       'Inside refrigerator and oven',
       'Inside all kitchen and bathroom cabinets',
       'Interior windows',
     ],
     pricing: 'Quotes are determined by property size, layout, and current condition, with optional appliance or cabinet detailing confirmed upfront before work begins.',
+    pricingFactors: ['Square footage', 'Property layout', 'Current condition', 'Appliance & cabinet extras'],
     faqs: [
       {
         q: 'Do properties need to be completely empty?',
@@ -240,9 +246,10 @@ export const servicesDetail: Record<'residential' | 'deep' | 'moveOut' | 'vacati
     ],
   },
   vacationRental: {
+    quoteHref: `${withBase('/quote')}?service=vacation`,
     eyebrow: 'Vacation rental cleaning',
     title: 'Guest-ready turnovers without the guesswork.',
-    intro: 'Turnover cleaning for vacation rentals, hosts, and property managers who need dependable resets between stays.',
+    intro: 'Turnovers planned around checkout and check-in. Agree on property access, clean linens, restocking, and how problems will be reported before the first visit.',
     image: withBase('/images/cleaner-bedmaking.webp'),
     imageAlt: 'Man making a bed in a coastal bedroom',
     included: [
@@ -252,13 +259,15 @@ export const servicesDetail: Record<'residential' | 'deep' | 'moveOut' | 'vacati
       'Completion photos on request',
       'Property-condition and maintenance notes',
     ],
-    who: 'A good fit for hosts and property managers who need dependable cleaning between guest stays and a clear property-specific turnover routine.',
+    who: 'For hosts and property managers coordinating the gap between guest stays. Share your checkout and check-in times, access arrangements, linen storage, and the contact to notify about damage or missing supplies.',
+    optionsIntro: 'Confirm who supplies clean linens and restocking items, where they are stored, and which tasks belong in each turnover:',
     options: [
       'Linen and laundry coordination (by arrangement)',
       'Supply restocking (by arrangement)',
       'Deep cleaning during off-season',
     ],
     pricing: 'Turnover quotes depend on property size, condition, the agreed cleaning checklist, and any linen or restocking arrangements. Confirm the scope and rate before booking.',
+    pricingFactors: ['Property size', 'Bed / Bath count', 'Turnover checklist', 'Linen & restocking arrangements'],
     faqs: [
       {
         q: 'Can you handle linens and restocking for rentals?',
@@ -274,6 +283,7 @@ export const servicesDetail: Record<'residential' | 'deep' | 'moveOut' | 'vacati
       },    ],
   },
   commercial: {
+    quoteHref: `${withBase('/quote')}?service=commercial`,
     eyebrow: 'Commercial cleaning',
     title: 'Dependable cleaning for your workspace.',
     intro: 'Professional cleaning services for offices, workspaces, and commercial properties. We create a clean, welcoming environment for your team and clients.',
@@ -288,6 +298,7 @@ export const servicesDetail: Record<'residential' | 'deep' | 'moveOut' | 'vacati
       'Kitchen/breakroom wipe-down and sanitization',
     ],
     who: 'A great fit for professional offices, retail spaces, and commercial properties that need reliable, high-quality cleaning on a consistent schedule.',
+    optionsIntro: 'Plan visits around your opening hours, busy areas, and building access. Discuss the schedule and any additional detail work when requesting a quote:',
     options: [
       'Daily, weekly, or custom recurring schedules',
       'After-hours and weekend cleaning',
@@ -521,6 +532,7 @@ export const quoteContent = {
   ],
   form: {
     formspreeEndpoint: 'https://formspree.io/f/xzzenlyg',
+    privacyDisclosure: 'This form sends your contact and property details to Beachline Cleaners through Formspree to handle your quote request. Do not include door codes, payment details, or other sensitive information.',
     nameAttr: 'quote',
     actionAttr: withBase('/quote-success'),
     honeypotLabel: 'Don’t fill this out if you\'re human:',

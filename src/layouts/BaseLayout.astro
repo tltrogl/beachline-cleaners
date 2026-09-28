@@ -9,12 +9,16 @@ interface Props {
   title?: string;
   bodyClass?: string;
   description?: string;
+  noindex?: boolean;
+  quoteHref?: string;
 }
 
 const {
   title = site.name,
   bodyClass = '',
-  description = site.defaultMetaDescription
+  description = site.defaultMetaDescription,
+  noindex = false,
+  quoteHref = mobileActionBarContent.quoteHref
 } = Astro.props;
 const hideMobileBar = bodyClass.includes('no-mobile-bar');
 ---
@@ -26,6 +30,7 @@ const hideMobileBar = bodyClass.includes('no-mobile-bar');
     <SEO
       title={title}
       description={description}
+      noindex={noindex}
       canonical={new URL(Astro.url.pathname, Astro.site).toString()}
       openGraph={{
         basic: {
@@ -59,16 +64,16 @@ const hideMobileBar = bodyClass.includes('no-mobile-bar');
   </head>
   <body class:list={["group/site", bodyClass, bodyClass.includes("island-home") && "bg-paper", !hideMobileBar && "max-mobile:pb-[calc(56px+env(safe-area-inset-bottom))]"]}>
     <a class="fixed -top-[100px] left-4 z-[100] bg-white px-[18px] py-3 text-ink focus:top-3" href="#main-content">{accessibilityContent.skipToContent}</a>
-    <Header />
+    <Header quoteHref={quoteHref} />
     <slot name="hero" />
     <main id="main-content" class="scroll-mt-20" tabindex="-1">
       <slot />
     </main>
-    <Footer />
+    <Footer quoteHref={quoteHref} />
     {!hideMobileBar && <div class="mobile-action-bar fixed inset-x-0 bottom-0 z-[70] hidden min-h-14 w-full grid-cols-[1fr_1fr_1.3fr] border-t border-line bg-white pb-[env(safe-area-inset-bottom)] shadow-bar max-mobile:grid" aria-label={mobileActionBarContent.ariaLabel}>
       <a class="flex min-h-12 items-center justify-center text-compact-action font-[850] no-underline" href={site.phoneHref}>{mobileActionBarContent.callLabel}</a>
       <a class="flex min-h-12 items-center justify-center border-l border-line text-compact-action font-[850] no-underline" href={site.smsHref}>{mobileActionBarContent.textLabel}</a>
-      <a class="mobile-quote flex min-h-12 items-center justify-center border-l border-line bg-sea text-compact-action font-[850] text-white no-underline hover:bg-sea-dark active:bg-sea-dark" href={mobileActionBarContent.quoteHref}>{mobileActionBarContent.quoteLabel}</a>
+      <a class="mobile-quote flex min-h-12 items-center justify-center border-l border-line bg-sea text-compact-action font-[850] text-white no-underline hover:bg-sea-dark active:bg-sea-dark" href={quoteHref}>{mobileActionBarContent.quoteLabel}</a>
     </div>}
   </body>
 </html>

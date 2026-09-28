@@ -4,7 +4,7 @@ import { site, quoteSuccessContent } from '../data/content';
 import Button from '../components/Button.astro';
 import { shell, section, homeEyebrow, lede, phone } from '../styles/ui';
 ---
-<BaseLayout bodyClass="island-home no-mobile-bar page-quote-success" title={`${quoteSuccessContent.metaTitle} | ${site.name}`} description={quoteSuccessContent.metaDescription}>
+<BaseLayout bodyClass="island-home no-mobile-bar page-quote-success" title={`${quoteSuccessContent.metaTitle} | ${site.name}`} description={quoteSuccessContent.metaDescription} noindex>
   <section class={section}>
     <div class:list={[shell, "max-w-[640px]"]}>
       <div class="px-6 py-12 text-center">

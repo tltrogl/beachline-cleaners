@@ -1,6 +1,8 @@
 ---
 import { shell } from '../styles/ui';
 import { site, footerContent, withBase } from '../data/content';
+interface Props { quoteHref?: string; }
+const { quoteHref = withBase('/quote') } = Astro.props;
 ---
 <footer class="footer bg-ink pt-[42px] pb-6 text-white group-[.island-home]/site:bg-footer max-mobile:pb-[calc(76px+env(safe-area-inset-bottom))] group-[.no-mobile-bar]/site:max-mobile:pb-[max(24px,env(safe-area-inset-bottom))]">
   <div class={shell}>
@@ -27,7 +29,7 @@ import { site, footerContent, withBase } from '../data/content';
         <strong>{footerContent.companyHeading}</strong>
         <div class="mt-4 grid gap-[9px] text-mist group-[.island-home]/site:text-footer-text">
           {footerContent.companyLinks.map((link) => (
-            <a class="no-underline" href={link.href}>{link.title}</a>
+            <a class="no-underline" href={link.href === withBase('/quote') ? quoteHref : link.href}>{link.title}</a>
           ))}
         </div>
       </div>

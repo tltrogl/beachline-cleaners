@@ -2,6 +2,8 @@
 import { site, navigationContent, withBase } from '../data/content';
 import { shell, details } from '../styles/ui';
 import Button from './Button.astro';
+interface Props { quoteHref?: string; }
+const { quoteHref = navigationContent.quoteHref } = Astro.props;
 const navLink = 'text-nav font-bold no-underline hover:text-sea group-[.island-home]/site:mobile:max-wide:text-nav-compact group-[.island-home]/site:max-mobile:text-small';
 const brand = 'inline-flex items-center gap-3 whitespace-nowrap font-black tracking-[-.03em] no-underline group-[.island-home]/site:mobile:max-wide:text-[.88rem] group-[.island-home]/site:max-mobile:text-label';
 ---
@@ -21,7 +23,7 @@ const brand = 'inline-flex items-center gap-3 whitespace-nowrap font-black track
       </details>
       {navigationContent.links.map((item) => <a class={navLink} href={item.href}>{item.title}</a>)}
       <a class:list={[navLink, 'nav-phone whitespace-nowrap max-[1021px]:hidden max-mobile:block group-[.island-home]/site:mobile:max-wide:hidden']} href={site.phoneHref}>{navigationContent.callPrefix}{site.phoneDisplay}</a>
-      <Button size="navigation" class="max-mobile:w-full group-[.island-home]/site:mobile:max-wide:px-3" href={navigationContent.quoteHref}>{navigationContent.quoteButton}</Button>
+      <Button size="navigation" class="max-mobile:w-full group-[.island-home]/site:mobile:max-wide:px-3" href={quoteHref}>{navigationContent.quoteButton}</Button>
     </nav>
   </div>
 </header>

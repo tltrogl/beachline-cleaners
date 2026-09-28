@@ -96,7 +96,8 @@ import { shell, section, homeEyebrow, lede, details, field, formGroup, formRow }
             </div>
           </details>
 
-          <Button type="submit" class="submit-btn mt-2.5 w-full">{quoteContent.form.submitButton} <Icon name="arrow-right" class="size-[18px]" /></Button>
+          <p id="quote-privacy" class="text-sm text-ink-soft">{quoteContent.form.privacyDisclosure}</p>
+          <Button type="submit" class="submit-btn mt-2.5 w-full" aria-describedby="quote-privacy">{quoteContent.form.submitButton} <Icon name="arrow-right" class="size-[18px]" /></Button>
           <p class="submission-status text-sm text-ink-soft" role="status" aria-live="polite" hidden></p>
         </form>
       </div>

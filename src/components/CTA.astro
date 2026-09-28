@@ -6,11 +6,13 @@ import { site, ctaDefaults } from '../data/content';
 interface Props {
   title?: string;
   text?: string;
+  quoteHref?: string;
 }
 
 const { 
   title = ctaDefaults.defaultTitle, 
-  text = ctaDefaults.defaultText 
+  text = ctaDefaults.defaultText,
+  quoteHref = ctaDefaults.quoteHref
 } = Astro.props;
 ---
 <section class={section}>
@@ -21,7 +23,7 @@ const {
         <p class="mt-3 text-white/76">{text}</p>
       </div>
       <div class="flex flex-wrap items-center gap-3">
-        <Button variant="light" href={ctaDefaults.quoteHref}>{ctaDefaults.quoteButtonText} <span aria-hidden="true">→</span></Button>
+        <Button variant="light" href={quoteHref}>{ctaDefaults.quoteButtonText} <span aria-hidden="true">→</span></Button>
         <Button variant="outline" href={site.phoneHref}>{ctaDefaults.callButtonPrefix}{site.phoneDisplay}</Button>
       </div>
     </div>
