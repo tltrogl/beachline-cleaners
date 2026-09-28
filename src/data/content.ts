@@ -72,7 +72,7 @@ export const navigationContent = {
 };
 
 export const footerContent = {
-  summary: 'Home cleaning, vacation-rental turnovers, deep cleans, and move-in/move-out cleaning across the Space Coast.',
+  summary: 'Home, deep, move-in/move-out, vacation-rental, and commercial cleaning across the Space Coast.',
   servicesHeading: 'Services',
   serviceLinks: [
     { title: 'Recurring Cleaning', href: withBase('/residential-cleaning') },
@@ -268,7 +268,7 @@ export const servicesDetail: Record<'residential' | 'deep' | 'moveOut' | 'vacati
       'Deep cleaning during off-season',
     ],
     pricing: 'Turnover quotes depend on property size, condition, the agreed cleaning checklist, and any linen or restocking arrangements. Confirm the scope and rate before booking.',
-    pricingFactors: ['Property size', 'Bed / Bath count', 'Turnover checklist', 'Linen & restocking arrangements'],
+    pricingFactors: ['Property size', 'Turnover frequency', 'Linen service', 'Restocking requirements'],
     faqs: [
       {
         q: 'Can you handle linens and restocking for rentals?',
@@ -371,8 +371,8 @@ export const homeContent = {
         text: 'Empty-property cleaning for handoffs, closings, and fresh starts.',
       },
       {
-        image: withBase('/images/cleaner-rental-turnover.webp'),
-        imageAlt: 'Man wiping a kitchen counter while holding a clipboard in a coastal rental',
+        image: withBase('/images/cleaner-bedmaking.webp'),
+        imageAlt: 'Man making a bed in a coastal bedroom',
         title: 'Vacation Rentals',
         href: withBase('/vacation-rental-cleaning'),
         text: 'Turnover cleaning between guest stays with your timeline in mind.',
