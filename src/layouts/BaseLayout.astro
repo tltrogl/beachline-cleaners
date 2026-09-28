@@ -70,7 +70,7 @@ const hideMobileBar = bodyClass.includes('no-mobile-bar');
       <slot />
     </main>
     <Footer quoteHref={quoteHref} />
-    {!hideMobileBar && <div class="mobile-action-bar fixed inset-x-0 bottom-0 z-[70] hidden min-h-14 w-full grid-cols-[1fr_1fr_1.3fr] border-t border-line bg-white pb-[env(safe-area-inset-bottom)] shadow-bar max-mobile:grid" aria-label={mobileActionBarContent.ariaLabel}>
+    {!hideMobileBar && <div class="mobile-action-bar fixed inset-x-0 bottom-0 z-[70] hidden min-h-14 w-full grid-cols-[1fr_1fr_1.3fr] border-t border-line bg-white pb-[env(safe-area-inset-bottom)] max-mobile:grid" aria-label={mobileActionBarContent.ariaLabel}>
       <a class="flex min-h-12 items-center justify-center text-compact-action font-[850] no-underline" href={site.phoneHref}>{mobileActionBarContent.callLabel}</a>
       <a class="flex min-h-12 items-center justify-center border-l border-line text-compact-action font-[850] no-underline" href={site.smsHref}>{mobileActionBarContent.textLabel}</a>
       <a class="mobile-quote flex min-h-12 items-center justify-center border-l border-line bg-sea text-compact-action font-[850] text-white no-underline hover:bg-sea-dark active:bg-sea-dark" href={quoteHref}>{mobileActionBarContent.quoteLabel}</a>

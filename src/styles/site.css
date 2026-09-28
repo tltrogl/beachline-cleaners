@@ -35,8 +35,6 @@
   --breakpoint-tablet: 901px;
   --breakpoint-wide: 1151px;
   --container-site: 1180px;
-  --shadow-site: 0 12px 36px oklch(0.342100 0.081591 246.8760 / .08);
-  --shadow-bar: 0 -4px 16px oklch(0.342100 0.081591 246.8760 / .08);
 }
 
 @layer base {
