@@ -7,7 +7,7 @@ const { quoteHref = navigationContent.quoteHref } = Astro.props;
 const navLink = 'text-nav font-bold no-underline hover:text-sea group-[.island-home]/site:mobile:max-wide:text-nav-compact group-[.island-home]/site:max-mobile:text-small';
 const brand = 'inline-flex items-center gap-3 whitespace-nowrap font-black tracking-[-.03em] no-underline group-[.island-home]/site:mobile:max-wide:text-[.88rem] group-[.island-home]/site:max-mobile:text-label';
 ---
-<header class="header sticky top-0 z-50 border-b border-line bg-white">
+<header class="header sticky top-0 z-50 border-b-4 border-cyan bg-white">
   <div class:list={[shell, 'nav relative flex min-h-[78px] items-center gap-card-gap max-mobile:min-h-[70px] max-mobile:gap-3 group-[.island-home]/site:mobile:max-wide:gap-[15px]']}>
     <a class={brand} href={withBase('/')} aria-label={navigationContent.brandHomeAriaLabel}>
       <span class="brand-mark relative size-[38px] shrink-0 overflow-hidden rounded-[50%_50%_46%_54%] bg-sea group-[.island-home]/site:max-mobile:size-8" aria-hidden="true"></span>
