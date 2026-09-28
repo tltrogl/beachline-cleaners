@@ -9,9 +9,6 @@
   --color-sea: oklch(0.558309 0.107711 229.0319);
   --color-sea-dark: oklch(0.477772 0.087250 223.6293);
   --color-cyan: oklch(0.770652 0.114540 205.8681);
-  --color-teal: oklch(0.584535 0.097673 197.5105);
-  --color-flamingo: oklch(0.696217 0.167442 4.0913);
-  --color-flamingo-soft: oklch(0.953860 0.022027 356.3279);
   --color-line: oklch(0.911445 0.017734 234.5157);
   --color-danger: oklch(0.500336 0.182051 29.5127);
   --color-field: oklch(0.994048 0.000000 0.0000);
@@ -39,8 +36,6 @@
   --breakpoint-wide: 1151px;
   --container-site: 1180px;
   --shadow-site: 0 12px 36px oklch(0.342100 0.081591 246.8760 / .08);
-  --shadow-card: 0 2px 8px oklch(0.342100 0.081591 246.8760 / .05);
-  --shadow-lift: 0 4px 16px oklch(0.558309 0.107711 229.0319 / .08);
   --shadow-bar: 0 -4px 16px oklch(0.342100 0.081591 246.8760 / .08);
 }
 
@@ -81,8 +76,8 @@
   display: grid;
   place-items: center;
   border-radius: 50%;
-  background: var(--color-mist);
-  color: var(--color-teal);
+  background: var(--color-paper);
+  color: var(--color-sea);
 }
 .form-details-toggle summary::before {
   content: "+";
@@ -92,7 +87,7 @@
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  background: var(--color-mist);
+  background: var(--color-paper);
   color: var(--color-sea);
   font-weight: 900;
   font-size: 1rem;

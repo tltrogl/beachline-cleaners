@@ -1,7 +1,7 @@
 // Shared utility strings keep repeated template styling short and consistent.
 export const shell = 'mx-auto w-[min(calc(100%-40px),1180px)] max-mobile:w-[min(calc(100%-28px),1180px)] group-[.island-home]/site:max-mobile:w-[calc(100%-36px)]';
 export const section = 'py-section max-mobile:py-12';
-export const pageHero = 'bg-mist pt-[42px] pb-8';
+export const pageHero = 'bg-paper pt-[42px] pb-8';
 export const pageTitle = 'text-page-title leading-[1.12]';
 export const eyebrow = 'mb-3 text-eyebrow font-extrabold uppercase tracking-[.13em] text-sea-dark';
 export const homeEyebrow = 'mb-[17px] text-eyebrow font-extrabold uppercase tracking-[.11em] text-sea-dark max-mobile:mb-3 max-mobile:text-eyebrow-mobile max-mobile:tracking-[.06em]';

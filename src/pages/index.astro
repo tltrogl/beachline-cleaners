@@ -12,7 +12,7 @@ import { shell, homeEyebrow, outlineLink } from '../styles/ui';
     <div class:list={[shell, "home-hero-grid grid grid-cols-[1.1fr_1fr] items-center gap-11 max-tablet:gap-7 max-mobile:grid-cols-1 max-mobile:gap-card-gap"]}>
       <div class="home-hero-copy">
         <p class:list={[homeEyebrow, 'flex items-center gap-2']}>
-          <span class="size-2 shrink-0 rounded-full bg-flamingo" aria-hidden="true"></span>
+          <span class="size-2 shrink-0 rounded-full bg-cyan" aria-hidden="true"></span>
           Professional cleaning • Brevard County
         </p>
         <h1 id="hero-title" class="max-w-[680px] text-[clamp(2.2rem,3.8vw,3.35rem)] leading-[1.1] tracking-[-.03em] text-balance max-mobile:text-[2.125rem] max-mobile:leading-[1.15]">{homeContent.hero.title}</h1>
@@ -37,11 +37,11 @@ import { shell, homeEyebrow, outlineLink } from '../styles/ui';
     </div>
   </section>
 
-  <div class="border-b border-line bg-cyan/25" aria-label={homeContent.trustStrip.ariaLabel}>
+  <div class="border-t-4 border-b border-t-cyan border-b-line bg-paper" aria-label={homeContent.trustStrip.ariaLabel}>
     <div class:list={[shell, "flex flex-wrap items-center justify-between gap-x-6 gap-y-[14px] py-[18px] max-mobile:grid max-mobile:grid-cols-2 max-mobile:gap-x-3"]}>
       {homeContent.trustStrip.items.map((item) => (
         <div class="inline-flex items-center gap-2 text-label font-[750] max-mobile:items-start max-mobile:text-nav-compact">
-          <Icon name="check-circle" class="size-[18px] text-teal" />
+          <Icon name="check-circle" class="size-[18px] text-sea" />
           <span>{item}</span>
         </div>
       ))}
@@ -61,7 +61,7 @@ import { shell, homeEyebrow, outlineLink } from '../styles/ui';
 
   <WhatWeClean />
 
-  <section class="border-t border-line bg-mist py-12" aria-labelledby="process-heading">
+  <section class="border-t border-line bg-paper py-12" aria-labelledby="process-heading">
     <div class={shell}>
       <div class="mb-8">
         <p class={homeEyebrow}>{homeContent.processSection.eyebrow}</p>
@@ -69,8 +69,8 @@ import { shell, homeEyebrow, outlineLink } from '../styles/ui';
       </div>
       <ol class="m-0 grid list-none grid-cols-3 gap-4 p-0 max-tablet:grid-cols-1 max-tablet:gap-3" role="list">
         {homeContent.processSection.steps.map((step) => (
-          <li class="flex flex-col rounded-xl border border-line border-t-4 border-t-flamingo bg-white px-5 py-6 shadow-card max-tablet:px-4 max-tablet:py-[18px]">
-            <div class="mb-[18px] inline-flex size-[42px] items-center justify-center rounded-lg bg-flamingo-soft text-[1.05rem] font-[850] text-ink max-tablet:mb-3 max-tablet:size-[34px] max-tablet:text-label" aria-hidden="true">{step.num}</div>
+          <li class="flex flex-col rounded-xl border border-line bg-white px-5 py-6 max-tablet:px-4 max-tablet:py-[18px]">
+            <div class="mb-[18px] inline-flex size-[42px] items-center justify-center rounded-lg border border-line bg-white text-[1.05rem] font-[850] text-sea max-tablet:mb-3 max-tablet:size-[34px] max-tablet:text-label" aria-hidden="true">{step.num}</div>
             <h3 class="mb-2.5">{step.title}</h3>
             <p class="text-small leading-[1.55]">{step.text}</p>
           </li>
@@ -98,7 +98,7 @@ import { shell, homeEyebrow, outlineLink } from '../styles/ui';
     </div>
   </section>
 
-  <section class="border-t border-line bg-mist py-10 max-mobile:py-8" aria-labelledby="contact-heading">
+  <section class="border-t border-line bg-paper py-10 max-mobile:py-8" aria-labelledby="contact-heading">
     <div class:list={[shell, "flex items-center justify-between gap-7 max-tablet:flex-col max-tablet:items-start"]}>
       <div>
         <h2 id="contact-heading">{homeContent.contactBanner.heading}</h2>

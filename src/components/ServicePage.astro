@@ -64,7 +64,7 @@ const {
           <ul class="m-0 grid list-none grid-cols-2 gap-x-6 gap-y-[14px] p-0 max-[641px]:grid-cols-1 max-[641px]:gap-3" role="list">
             {included.map((item: string) => (
               <li class="flex items-start gap-3 text-base leading-[1.5]">
-                <svg class="mt-[3px] shrink-0 text-teal" viewBox="0 0 20 20" fill="currentColor" width="20" height="20" aria-hidden="true">
+                <svg class="mt-[3px] shrink-0 text-sea" viewBox="0 0 20 20" fill="currentColor" width="20" height="20" aria-hidden="true">
                   <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" />
                 </svg>
                 <span>{item}</span>
@@ -75,7 +75,7 @@ const {
       )}
 
       {who && (
-        <div class="mt-12 rounded-panel border border-line border-l-4 border-l-teal bg-cyan/20 px-[30px] py-7 first:mt-0 max-[641px]:px-5 max-[641px]:py-[22px]">
+        <div class="mt-12 rounded-panel border border-line bg-white px-[30px] py-7 first:mt-0 max-[641px]:px-5 max-[641px]:py-[22px]">
           <h2 class="mb-2.5 text-[clamp(1.7rem,2.8vw,2.2rem)]">{servicePageDefaults.whoHeading}</h2>
           <p class="text-[1.02rem]">{who}</p>
         </div>
@@ -97,7 +97,7 @@ const {
       )}
 
       {pricing && (
-        <div class="mt-12 rounded-panel border border-line border-l-4 border-l-teal bg-cyan/20 px-[30px] py-7 first:mt-0 max-[641px]:px-5 max-[641px]:py-[22px]">
+        <div class="mt-12 rounded-panel border border-line bg-white px-[30px] py-7 first:mt-0 max-[641px]:px-5 max-[641px]:py-[22px]">
           <h2 class="mb-2.5 text-[clamp(1.7rem,2.8vw,2.2rem)]">{servicePageDefaults.pricingHeading}</h2>
           <p class="text-[1.02rem]">{pricing}</p>
           <div class="mt-[18px] flex flex-wrap gap-2">
@@ -111,7 +111,7 @@ const {
   </section>
 
   {faqs.length > 0 && (
-    <section class:list={[section, "bg-mist"]}>
+    <section class:list={[section, "bg-paper"]}>
       <div class:list={[shell, "max-w-[860px]"]}>
         <h2 class="mb-6">{servicePageDefaults.faqsHeading}</h2>
         <div class="grid gap-3">

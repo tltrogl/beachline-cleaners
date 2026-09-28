@@ -13,12 +13,12 @@ const brand = 'inline-flex items-center gap-3 whitespace-nowrap font-black track
       <span class="brand-mark relative size-[38px] shrink-0 overflow-hidden rounded-[50%_50%_46%_54%] bg-sea group-[.island-home]/site:max-mobile:size-8" aria-hidden="true"></span>
       <span>{site.name}</span>
     </a>
-    <button class="mobile-toggle ml-auto hidden rounded-full border-0 bg-mist px-[14px] py-2.5 font-extrabold max-mobile:inline-flex" type="button" aria-expanded="false" aria-controls="nav-links">{navigationContent.menuButton}</button>
+    <button class="mobile-toggle ml-auto hidden rounded-full border border-line bg-white px-[14px] py-2.5 font-extrabold max-mobile:inline-flex" type="button" aria-expanded="false" aria-controls="nav-links">{navigationContent.menuButton}</button>
     <nav class="nav-links ml-auto flex items-center gap-5 max-mobile:absolute max-mobile:inset-x-0 max-mobile:top-[70px] max-mobile:hidden max-mobile:max-h-[calc(100dvh-155px)] max-mobile:flex-col max-mobile:items-stretch max-mobile:overflow-y-auto max-mobile:rounded-2xl max-mobile:border max-mobile:border-line max-mobile:bg-white max-mobile:p-[18px] max-mobile:shadow-site max-mobile:[&.open]:flex group-[.island-home]/site:mobile:max-wide:gap-control-gap" id="nav-links" aria-label={navigationContent.navAriaLabel}>
       <details class:list={[details, 'nav-services group/services relative max-mobile:w-full group-[.island-home]/site:border-0 group-[.island-home]/site:bg-transparent group-[.island-home]/site:p-0']}>
         <summary class:list={[navLink, 'list-none cursor-pointer max-mobile:py-2']}>{navigationContent.servicesDropdownLabel}</summary>
         <div class="nav-services-menu absolute top-[calc(100%+14px)] -left-[18px] hidden min-w-[220px] rounded-panel border border-line bg-white p-2.5 shadow-site group-open/services:grid max-mobile:static max-mobile:border-0 max-mobile:pt-1.5 max-mobile:pl-3 max-mobile:shadow-none">
-          {navigationContent.serviceLinks.map((item) => <a class:list={[navLink, 'rounded-[9px] px-3 py-2.5 hover:bg-mist']} href={item.href}>{item.title}</a>)}
+          {navigationContent.serviceLinks.map((item) => <a class:list={[navLink, 'rounded-[9px] px-3 py-2.5 hover:bg-line/30']} href={item.href}>{item.title}</a>)}
         </div>
       </details>
       {navigationContent.links.map((item) => <a class={navLink} href={item.href}>{item.title}</a>)}
