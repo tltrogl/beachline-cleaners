@@ -8,23 +8,23 @@ import Icon from '../components/Icon.astro';
 import { shell, homeEyebrow, outlineLink } from '../styles/ui';
 ---
 <BaseLayout bodyClass="island-home" title={`${site.name} | ${homeContent.metaTitleSuffix}`} description={homeContent.metaDescription}>
-  <section class="home-hero bg-cream pt-10 pb-12 max-mobile:pt-6 max-mobile:pb-8" aria-labelledby="hero-title" slot="hero">
+  <section class="home-hero bg-paper pt-10 pb-12 max-mobile:pt-6 max-mobile:pb-8" aria-labelledby="hero-title" slot="hero">
     <div class:list={[shell, "home-hero-grid grid grid-cols-[1.1fr_1fr] items-center gap-11 max-tablet:gap-7 max-mobile:grid-cols-1 max-mobile:gap-card-gap"]}>
       <div class="home-hero-copy">
         <p class:list={[homeEyebrow, 'flex items-center gap-2']}>
-          <span class="size-2 shrink-0 rounded-full bg-coral" aria-hidden="true"></span>
+          <span class="size-2 shrink-0 rounded-full bg-flamingo" aria-hidden="true"></span>
           Professional cleaning • Brevard County
         </p>
         <h1 id="hero-title" class="max-w-[680px] text-[clamp(2.2rem,3.8vw,3.35rem)] leading-[1.1] tracking-[-.03em] text-balance max-mobile:text-[2.125rem] max-mobile:leading-[1.15]">{homeContent.hero.title}</h1>
         <p class="mt-5 max-w-lg text-[1.125rem] max-mobile:mt-[14px] max-mobile:text-base">{homeContent.hero.description}</p>
         <form class="hero-estimator mt-6 mb-[14px] grid grid-cols-[1fr_1.3fr] gap-3 rounded-xl border border-line bg-white p-4 max-mobile:mt-[18px] max-mobile:gap-2.5 max-mobile:p-3" action={homeContent.hero.quoteHref} method="get">
-          <div><label class="mb-[5px] block text-xs font-[750] text-ink-soft" for="hero-location">ZIP code or town</label><input class="min-h-11 min-w-0 w-full rounded-md border border-line bg-cream p-[9px] text-label focus-visible:outline-3 focus-visible:outline-sea focus-visible:outline-offset-2" id="hero-location" name="location" autocomplete="postal-code" placeholder="e.g. 32931" required /></div>
-          <div><label class="mb-[5px] block text-xs font-[750] text-ink-soft" for="hero-service">Cleaning service</label><select class="min-h-11 min-w-0 w-full rounded-md border border-line bg-cream p-[9px] text-label focus-visible:outline-3 focus-visible:outline-sea focus-visible:outline-offset-2" id="hero-service" name="service">{quoteContent.form.service.options.map((option) => <option value={option.value}>{option.label}</option>)}</select></div>
+          <div><label class="mb-[5px] block text-xs font-[750] text-ink-soft" for="hero-location">ZIP code or town</label><input class="min-h-11 min-w-0 w-full rounded-md border border-line bg-paper p-[9px] text-label focus-visible:outline-3 focus-visible:outline-sea focus-visible:outline-offset-2" id="hero-location" name="location" autocomplete="postal-code" placeholder="e.g. 32931" required /></div>
+          <div><label class="mb-[5px] block text-xs font-[750] text-ink-soft" for="hero-service">Cleaning service</label><select class="min-h-11 min-w-0 w-full rounded-md border border-line bg-paper p-[9px] text-label focus-visible:outline-3 focus-visible:outline-sea focus-visible:outline-offset-2" id="hero-service" name="service">{quoteContent.form.service.options.map((option) => <option value={option.value}>{option.label}</option>)}</select></div>
           <Button class="col-span-full w-full" type="submit">Get a Quote <Icon name="arrow-right" class="size-[18px]" /></Button>
         </form>
         <a class="inline-flex items-center gap-2 text-label font-[650] text-sea-dark underline" href={site.phoneHref}><Icon name="phone" class="size-4" />Prefer to talk? {site.phoneDisplay}</a>
       </div>
-      <div class="home-hero-media overflow-hidden rounded-panel border border-line bg-cream shadow-site">
+      <div class="home-hero-media overflow-hidden rounded-panel border border-line bg-paper shadow-site">
         <img
           src={homeContent.hero.imageSrc}
           width={homeContent.hero.imageWidth}
@@ -37,11 +37,11 @@ import { shell, homeEyebrow, outlineLink } from '../styles/ui';
     </div>
   </section>
 
-  <div class="border-b border-line bg-green-soft" aria-label={homeContent.trustStrip.ariaLabel}>
+  <div class="border-t-4 border-b border-t-cyan border-b-line bg-mist" aria-label={homeContent.trustStrip.ariaLabel}>
     <div class:list={[shell, "flex flex-wrap items-center justify-between gap-x-6 gap-y-[14px] py-[18px] max-mobile:grid max-mobile:grid-cols-2 max-mobile:gap-x-3"]}>
       {homeContent.trustStrip.items.map((item) => (
         <div class="inline-flex items-center gap-2 text-label font-[750] max-mobile:items-start max-mobile:text-nav-compact">
-          <Icon name="check-circle" class="size-[18px] text-green" />
+          <Icon name="check-circle" class="size-[18px] text-teal" />
           <span>{item}</span>
         </div>
       ))}
@@ -70,7 +70,7 @@ import { shell, homeEyebrow, outlineLink } from '../styles/ui';
       <ol class="m-0 grid list-none grid-cols-3 gap-4 p-0 max-tablet:grid-cols-1 max-tablet:gap-3" role="list">
         {homeContent.processSection.steps.map((step) => (
           <li class="flex flex-col rounded-xl border border-line bg-white px-5 py-6 shadow-card max-tablet:px-4 max-tablet:py-[18px]">
-            <div class="mb-[18px] inline-flex size-[42px] items-center justify-center rounded-lg bg-coral-soft text-[1.05rem] font-[850] text-coral-ink max-tablet:mb-3 max-tablet:size-[34px] max-tablet:text-label" aria-hidden="true">{step.num}</div>
+            <div class="mb-[18px] inline-flex size-[42px] items-center justify-center rounded-lg bg-flamingo-soft text-[1.05rem] font-[850] text-ink max-tablet:mb-3 max-tablet:size-[34px] max-tablet:text-label" aria-hidden="true">{step.num}</div>
             <h3 class="mb-2.5">{step.title}</h3>
             <p class="text-small leading-[1.55]">{step.text}</p>
           </li>
@@ -80,7 +80,7 @@ import { shell, homeEyebrow, outlineLink } from '../styles/ui';
   </section>
 
   <section class="border-t border-line py-12" aria-labelledby="rental-heading">
-    <div class:list={[shell, "grid grid-cols-2 items-center overflow-hidden rounded-panel bg-green-dark text-white max-mobile:grid-cols-1"]}>
+    <div class:list={[shell, "grid grid-cols-2 items-center overflow-hidden rounded-panel bg-ink text-white max-mobile:grid-cols-1"]}>
       <img
         class="aspect-[1.1] h-full w-full object-cover object-[center_60%] max-mobile:aspect-[2.2]"
         src={homeContent.rentalSection.imageSrc}
