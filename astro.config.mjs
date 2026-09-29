@@ -11,3 +11,4 @@ export default defineConfig({
   integrations: [sitemap({ filter: (page) => new URL(page).pathname !== '/quote-success/' })],
   vite: { plugins: [tailwindcss()] }
 });
+
