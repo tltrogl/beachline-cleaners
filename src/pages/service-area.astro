@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CTA from '../components/CTA.astro';
-import { shell, section, pageHero, pageTitle, eyebrow, lede } from '../styles/ui';
+import { shell, section, pageHero, pageTitle, eyebrow, lede, outlineLink } from '../styles/ui';
 import { site, serviceAreaContent } from '../data/content';
 ---
 <BaseLayout title={`${serviceAreaContent.metaTitle} | ${site.name}`} description={serviceAreaContent.metaDescription}>
@@ -20,6 +20,19 @@ import { site, serviceAreaContent } from '../data/content';
           <li class="border-b border-line py-4">{city}</li>
         ))}
       </ul>
+      <div class="mt-12 border-t border-line pt-10">
+        <h2>{serviceAreaContent.coverageHeading}</h2>
+        <p class="mt-4 max-w-[760px]">{serviceAreaContent.coverageIntro}</p>
+        <div class="mt-8 grid grid-cols-3 gap-8 max-tablet:grid-cols-1">
+          {serviceAreaContent.services.map((service) => (
+            <div>
+              <h3>{service.title}</h3>
+              <p class="mt-3">{service.text}</p>
+              <a class:list={[outlineLink, 'mt-3']} href={service.href}>{service.linkText}<span aria-hidden="true">→</span></a>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   </section>
 

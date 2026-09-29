@@ -1,40 +1,34 @@
 ---
 import Icon from './Icon.astro';
-import { shell } from '../styles/ui';
+import { withBase } from '../data/content';
+import { shell, homeEyebrow, outlineLink } from '../styles/ui';
+
+const areas = [
+  { title: 'Kitchen', text: 'Counters, appliance exteriors, sinks, cabinet fronts, and floors.' },
+  { title: 'Bathrooms', text: 'Toilets, showers, tubs, mirrors, counters, fixtures, and floors.' },
+  { title: 'Bedrooms', text: 'Reachable surfaces, mirrors, floors, and a basic room reset.' },
+  { title: 'Living areas', text: 'Reachable surfaces, furniture-area dusting, vacuuming, and mopping.' },
+  { title: 'Floors & finishing', text: 'Vacuuming carpets, mopping hard floors, and final room-by-room checks.' },
+];
 ---
-<section class="border-t border-line bg-paper py-12" aria-labelledby="what-we-clean-heading">
-  <div class={shell}>
-    <div class="mb-8">
-      <h2 id="what-we-clean-heading">What We Clean</h2>
-      <p class="mt-[22px] text-[1.09rem] leading-[1.65] max-mobile:mt-[17px] max-mobile:text-base">A comprehensive clean for every room in your home.</p>
+<section class="border-y border-line bg-sand py-[76px] max-mobile:py-14" aria-labelledby="what-we-clean-heading">
+  <div class:list={[shell, "grid grid-cols-[.7fr_1.3fr] gap-16 max-tablet:grid-cols-1 max-tablet:gap-8"]}>
+    <div>
+      <p class:list={[homeEyebrow, 'flex items-center gap-3']}><span class="h-px w-10 bg-sea" aria-hidden="true"></span>Room by room</p>
+      <h2 id="what-we-clean-heading">What we clean.</h2>
+      <p class="mt-5 max-w-[430px] text-[1.04rem] leading-[1.68]">Routine home cleaning covers the core areas below. We confirm the checklist and any extras before booking.</p>
+      <p class="mt-6 max-w-[440px] text-small leading-[1.6] text-ink-soft">Deep-clean detail work and add-ons are scoped separately, so the quote matches the work you actually want done.</p>
+      <a class:list={[outlineLink, 'mt-6']} href={withBase('/residential-cleaning')}>View the full cleaning checklist <Icon name="arrow-right" class="size-[18px]" /></a>
     </div>
-    
-    <div class="mt-8 grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-5 max-mobile:grid-cols-2">
-      <div >
-        <Icon name="check-circle" class="mb-4 size-8 text-sea" />
-        <h3>Kitchen</h3>
-        <p class="mt-2.5 text-small">Counters, appliances, sinks, and cabinet fronts.</p>
-      </div>
-      <div >
-        <Icon name="check-circle" class="mb-4 size-8 text-sea" />
-        <h3>Bathrooms</h3>
-        <p class="mt-2.5 text-small">Toilets, showers, tubs, mirrors, and fixtures.</p>
-      </div>
-      <div >
-        <Icon name="check-circle" class="mb-4 size-8 text-sea" />
-        <h3>Bedrooms</h3>
-        <p class="mt-2.5 text-small">Dusting, making beds, and general tidying.</p>
-      </div>
-      <div >
-        <Icon name="check-circle" class="mb-4 size-8 text-sea" />
-        <h3>Floors</h3>
-        <p class="mt-2.5 text-small">Vacuuming carpets and mopping hard floors.</p>
-      </div>
-      <div >
-        <Icon name="check-circle" class="mb-4 size-8 text-sea" />
-        <h3>Dusting</h3>
-        <p class="mt-2.5 text-small">Surfaces, baseboards, and window sills.</p>
-      </div>
+
+    <div class="border-b border-line">
+      {areas.map((area) => (
+        <div class="grid grid-cols-[14px_150px_1fr] items-start gap-5 border-t border-line py-5 max-mobile:grid-cols-[14px_1fr] max-mobile:gap-x-3 max-mobile:gap-y-1">
+          <span class="mt-2 size-2 rounded-full bg-teal" aria-hidden="true"></span>
+          <h3 class="text-[1.05rem] max-mobile:col-start-2">{area.title}</h3>
+          <p class="text-small leading-[1.55] max-mobile:col-start-2">{area.text}</p>
+        </div>
+      ))}
     </div>
   </div>
 </section>

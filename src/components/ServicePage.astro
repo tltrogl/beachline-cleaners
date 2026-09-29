@@ -8,29 +8,29 @@ import type { ServiceDetail } from '../data/content';
 
 type Props = ServiceDetail;
 
-const { 
-  title, 
-  eyebrow, 
-  intro, 
-  image, 
+const {
+  title,
+  eyebrow,
+  intro,
+  image,
   imageAlt = servicePageDefaults.defaultImageAlt,
   imageFocalPoint = 'center',
   imageCaption,
   quoteHref,
-  included = [], 
+  included = [],
   who = '',
   options = [],
   optionsIntro,
   pricing = '',
   pricingFactors,
-  faqs = [] 
+  faqs = []
 } = Astro.props;
 ---
 <BaseLayout title={`${title} | ${site.name}`} description={intro} quoteHref={quoteHref}>
   <section class={pageHero}>
     <div class:list={[shell, split]}>
       <div>
-        <p class={eyebrowClass}>{eyebrow}</p>
+        <p class:list={[eyebrowClass, 'flex items-center gap-3']}><span class="h-px w-10 bg-sea" aria-hidden="true"></span>{eyebrow}</p>
         <h1 class={pageTitle}>{title}</h1>
         <p class:list={[lede, "mt-[18px]"]}>{intro}</p>
         <div class="mt-6 flex flex-wrap items-center gap-control-gap">
@@ -56,64 +56,73 @@ const {
   </section>
 
   <section class={section}>
-    <div class:list={[shell, "max-w-[860px]"]}>
-      {included.length > 0 && (
-        <div class="mt-12 first:mt-0">
-          <h2 class="mb-2.5 text-[clamp(1.7rem,2.8vw,2.2rem)]">{servicePageDefaults.includedHeading}</h2>
-          <p class="mb-[18px] text-base">{servicePageDefaults.includedIntro}</p>
-          <ul class="m-0 grid list-none grid-cols-2 gap-x-6 gap-y-[14px] p-0 max-[641px]:grid-cols-1 max-[641px]:gap-3" role="list">
-            {included.map((item: string) => (
-              <li class="flex items-start gap-3 text-base leading-[1.5]">
-                <svg class="mt-[3px] shrink-0 text-sea" viewBox="0 0 20 20" fill="currentColor" width="20" height="20" aria-hidden="true">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" />
-                </svg>
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+    <div class:list={[shell, "grid grid-cols-[minmax(0,1.3fr)_minmax(280px,.7fr)] gap-16 max-tablet:grid-cols-1 max-tablet:gap-12"]}>
+      <div>
+        {included.length > 0 && (
+          <section aria-labelledby="included-heading">
+            <p class="mb-3 text-eyebrow font-extrabold uppercase tracking-[.12em] text-sea-dark">Service scope</p>
+            <h2 id="included-heading" class="mb-3 text-[clamp(1.8rem,3vw,2.45rem)]">{servicePageDefaults.includedHeading}</h2>
+            <p class="mb-6 max-w-[680px] text-base">{servicePageDefaults.includedIntro}</p>
+            <ul class="m-0 list-none border-b border-line p-0" role="list">
+              {included.map((item: string) => (
+                <li class="grid grid-cols-[14px_1fr] items-start gap-3 border-t border-line py-4 text-base leading-[1.55]">
+                  <span class="mt-2 size-2 rounded-full bg-teal" aria-hidden="true"></span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
 
-      {who && (
-        <div class="mt-12 rounded-panel border border-line bg-white px-[30px] py-7 first:mt-0 max-[641px]:px-5 max-[641px]:py-[22px]">
-          <h2 class="mb-2.5 text-[clamp(1.7rem,2.8vw,2.2rem)]">{servicePageDefaults.whoHeading}</h2>
-          <p class="text-[1.02rem]">{who}</p>
-        </div>
-      )}
+        {options.length > 0 && (
+          <section class="mt-14" aria-labelledby="options-heading">
+            <p class="mb-3 text-eyebrow font-extrabold uppercase tracking-[.12em] text-sea-dark">Available extras</p>
+            <h2 id="options-heading" class="mb-3 text-[clamp(1.8rem,3vw,2.45rem)]">{servicePageDefaults.optionsHeading}</h2>
+            <p class="mb-6 max-w-[680px] text-base">{optionsIntro}</p>
+            <ul class="m-0 list-none border-b border-line p-0" role="list">
+              {options.map((opt: string) => (
+                <li class="grid grid-cols-[42px_1fr] items-start gap-3 border-t border-line py-4 text-small font-[700]">
+                  <span class="text-[1.05rem] font-black text-sea" aria-hidden="true">+</span>
+                  <span>{opt}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+      </div>
 
-      {options.length > 0 && (
-        <div class="mt-12 first:mt-0">
-          <h2 class="mb-2.5 text-[clamp(1.7rem,2.8vw,2.2rem)]">{servicePageDefaults.optionsHeading}</h2>
-          <p class="mb-[18px] text-base">{optionsIntro}</p>
-          <ul class="m-0 grid list-none grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-3 p-0" role="list">
-            {options.map((opt: string) => (
-              <li class="flex items-center gap-2.5 rounded-lg border border-line bg-white px-4 py-3 text-small font-bold">
-                <span class="text-[1.1rem] font-black text-sea" aria-hidden="true">+</span>
-                <span>{opt}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-
-      {pricing && (
-        <div class="mt-12 rounded-panel border border-line bg-white px-[30px] py-7 first:mt-0 max-[641px]:px-5 max-[641px]:py-[22px]">
-          <h2 class="mb-2.5 text-[clamp(1.7rem,2.8vw,2.2rem)]">{servicePageDefaults.pricingHeading}</h2>
-          <p class="text-[1.02rem]">{pricing}</p>
-          <div class="mt-[18px] flex flex-wrap gap-2">
-            {pricingFactors.map((factor: string) => (
-              <span class="rounded-md border border-line bg-white px-3 py-1.5 text-[.84rem] font-[750] text-sea-dark">{factor}</span>
-            ))}
+      <aside class="self-start border-y border-line bg-sand px-6 py-7 max-tablet:max-w-[720px] max-mobile:px-5" aria-label="Service details">
+        {who && (
+          <div>
+            <p class="mb-2 text-eyebrow font-extrabold uppercase tracking-[.11em] text-sea-dark">Best fit</p>
+            <h2 class="mb-3 text-[1.35rem]">{servicePageDefaults.whoHeading}</h2>
+            <p class="text-[.98rem] leading-[1.62]">{who}</p>
           </div>
-        </div>
-      )}
+        )}
+
+        {pricing && (
+          <div class:list={[who && 'mt-8 border-t border-line pt-8']}>
+            <p class="mb-2 text-eyebrow font-extrabold uppercase tracking-[.11em] text-sea-dark">Quote factors</p>
+            <h2 class="mb-3 text-[1.35rem]">{servicePageDefaults.pricingHeading}</h2>
+            <p class="text-[.98rem] leading-[1.62]">{pricing}</p>
+            <div class="mt-5 border-b border-line">
+              {pricingFactors.map((factor: string) => (
+                <div class="border-t border-line py-2.5 text-label font-[750] text-ink">{factor}</div>
+              ))}
+            </div>
+          </div>
+        )}
+      </aside>
     </div>
   </section>
 
   {faqs.length > 0 && (
-    <section class:list={[section, "bg-paper"]}>
-      <div class:list={[shell, "max-w-[860px]"]}>
-        <h2 class="mb-6">{servicePageDefaults.faqsHeading}</h2>
+    <section class:list={[section, "border-t border-line bg-sand"]}>
+      <div class:list={[shell, "grid grid-cols-[.65fr_1.35fr] gap-14 max-tablet:grid-cols-1 max-tablet:gap-6"]}>
+        <div>
+          <p class="mb-3 text-eyebrow font-extrabold uppercase tracking-[.12em] text-sea-dark">Questions</p>
+          <h2>{servicePageDefaults.faqsHeading}</h2>
+        </div>
         <div class="grid gap-3">
           {faqs.map((faq: { q: string, a: string }) => (
             <details class={details}>

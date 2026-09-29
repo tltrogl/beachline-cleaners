@@ -1,35 +1,37 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --color-ink: oklch(0.342100 0.081591 246.8760);
-  --color-ink-soft: oklch(0.495326 0.034903 239.4790);
-  --color-paper: oklch(1.000000 0.000000 0.0000);
-  --color-mist: oklch(0.959050 0.021189 204.0427);
-  --color-sea: oklch(0.558309 0.107711 229.0319);
-  --color-sea-dark: oklch(0.477772 0.087250 223.6293);
-  --color-cyan: oklch(0.770652 0.114540 205.8681);
-  --color-line: oklch(0.911445 0.017734 234.5157);
+  --font-sans: "Atkinson Hyperlegible Next Variable", system-ui, sans-serif;
+  --color-ink: #1E293B;
+  --color-ink-soft: #3E4850;
+  --color-paper: #FFFFFF;
+  --color-sand: #F7F9FB;
+  --color-mist: #F0F9FF;
+  --color-sea: #0EA5E9;
+  --color-sea-dark: #006591;
+  --color-cyan: #00AAC6;
+  --color-teal: #00687A;
+  --color-line: #BEC8D2;
   --color-danger: oklch(0.500336 0.182051 29.5127);
-  --color-field: oklch(0.994048 0.000000 0.0000);
+  --color-field: #FFFFFF;
   --spacing-section: 68px;
   --spacing-control-gap: 14px;
   --spacing-control-x: 22px;
   --spacing-card-gap: 22px;
   --radius-panel: 14px;
-  --text-eyebrow: .76rem;
-  --text-eyebrow-mobile: .68rem;
-  --text-label: .9rem;
-  --text-action: .94rem;
-  --text-nav: .85rem;
-  --text-nav-compact: .78rem;
-  --text-compact-action: .92rem;
-  --text-link: .96rem;
-  --text-small: .95rem;
-  --text-lede: clamp(1.1rem,1.65vw,1.3rem);
+  --text-eyebrow: .82rem;
+  --text-eyebrow-mobile: .78rem;
+  --text-label: 1rem;
+  --text-action: 1rem;
+  --text-nav: .93rem;
+  --text-nav-compact: .86rem;
+  --text-compact-action: .98rem;
+  --text-link: 1rem;
+  --text-small: 1.02rem;
+  --text-lede: clamp(1.18rem,1.8vw,1.34rem);
   --text-page-title: clamp(2.1rem,4vw,3.2rem);
   --color-footer: var(--color-ink);
-  --color-footer-text: oklch(0.910296 0.020251 233.8695);
+  --color-footer-text: #F0F9FF;
   --color-rental-text: var(--color-paper);
   --breakpoint-mobile: 721px;
   --breakpoint-tablet: 901px;
@@ -39,15 +41,15 @@
 
 @layer base {
   html { @apply motion-safe:scroll-smooth; }
-  body { @apply m-0 bg-paper font-sans leading-[1.6] text-ink; }
+  body { @apply m-0 bg-paper font-sans leading-[1.65] text-ink; }
   h1, h2, h3 { @apply m-0 font-bold; }
-  h1 { @apply max-w-[900px] text-[clamp(2.7rem,3.7vw,3.2rem)] leading-[1.05] tracking-[-.045em] max-tablet:text-[clamp(2.9rem,8vw,3.8rem)]; }
-  h2 { @apply text-[clamp(1.8rem,3vw,2.5rem)] leading-[1.15] tracking-[-.035em]; }
-  h3 { @apply text-[1.3rem] leading-[1.3] tracking-[-.025em]; }
+  h1 { @apply max-w-[900px] text-[clamp(2.7rem,3.7vw,3.2rem)] leading-[1.1] tracking-[-.025em] max-tablet:text-[clamp(2.9rem,8vw,3.8rem)]; }
+  h2 { @apply text-[clamp(1.8rem,3vw,2.5rem)] leading-[1.2] tracking-[-.02em]; }
+  h3 { @apply text-[1.3rem] leading-[1.32] tracking-[-.01em]; }
   p { @apply m-0 text-ink-soft; }
   a, button, summary { @apply focus-visible:outline-3 focus-visible:outline-sea focus-visible:outline-offset-4; }
   button, summary { @apply cursor-pointer; }
-  .island-home h2 { @apply text-[clamp(1.4rem,2vw,1.8rem)] tracking-[-.02em] text-balance; }
+  .island-home h2 { @apply text-[clamp(1.9rem,3vw,2.65rem)] leading-[1.15] tracking-[-.02em] text-balance; }
   .island-home h3 { @apply text-[1.15rem] font-bold tracking-[-.01em] text-balance; }
 }
 
@@ -58,7 +60,7 @@
   width: 44px;
   height: 17px;
   border-radius: 50%;
-  background: var(--color-sea-dark);
+  background: var(--color-teal);
   left: -4px;
   bottom: 5px;
   transform: rotate(-9deg);
@@ -92,3 +94,11 @@
   flex-shrink: 0;
 }
 .form-details-toggle[open] summary::before { content: "−"; }
+
+/* Brand accent: keep primary actions blue, use teal-green for decorative accents. */
+.text-eyebrow.text-sea-dark {
+  color: var(--color-teal);
+}
+.text-eyebrow > .bg-sea {
+  background-color: var(--color-teal);
+}

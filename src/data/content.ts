@@ -34,6 +34,7 @@ export const withBase = (path: string): string => {
 
 export const site = {
   name: 'Beachline Cleaners',
+  descriptor: 'Home & Property Cleaning',
   phoneDisplay: '(321) 323-9776',
   phoneHref: 'tel:+13213239776',
   smsHref: 'sms:+13213239776',
@@ -321,8 +322,8 @@ export const servicesDetail: Record<'residential' | 'deep' | 'moveOut' | 'vacati
 };
 
 export const homeContent = {
-  metaTitleSuffix: 'Space Coast Cleaning',
-  metaDescription: 'Home cleaning, deep cleans, move-in/out service, and vacation-rental turnovers in the Space Coast area. Call Beachline Cleaners to discuss scope and availability.',
+  metaTitleSuffix: 'House Cleaning in Brevard County',
+  metaDescription: 'Residential house cleaning, deep cleaning, move-in/out service, vacation-rental turnovers, and commercial cleaning in Cocoa Beach and surrounding Brevard County.',
   hero: {
     imageSrc: withBase('/images/cleaner-counter.webp'),
     imageWidth: 1280,
@@ -339,8 +340,8 @@ export const homeContent = {
   trustStrip: {
     ariaLabel: 'Key service assurances',
     items: [
-      'Locally owned',
-      'Owner-operated',
+      'Local & owner-operated',
+      'Supplies provided',
       'Checklist-based cleaning',
       'Direct communication',
     ],
@@ -357,22 +358,22 @@ export const homeContent = {
         text: 'Kitchens, bathrooms, floors, and common areas on a regular schedule.',
       },
       {
-        image: withBase('/images/cleaner-refrigerator.webp'),
-        imageAlt: 'Man wiping the inside of a refrigerator',
+        image: withBase('/images/deep-cleaning-kitchen.jpg'),
+        imageAlt: 'Cleaner detailing a refrigerator during a deep clean',
         title: 'Deep Cleaning',
         href: withBase('/deep-cleaning'),
         text: 'Detailed reset for buildup, overlooked areas, and seasonal resets.',
       },
       {
-        image: withBase('/images/cleaner-move-out.webp'),
-        imageAlt: 'Man vacuuming an empty waterfront condo',
+        image: withBase('/images/move-out-empty-room.jpg'),
+        imageAlt: 'Freshly cleaned empty room ready for move-in or move-out',
         title: 'Move-In / Move-Out',
         href: withBase('/move-out-cleaning'),
         text: 'Empty-property cleaning for handoffs, closings, and fresh starts.',
       },
       {
-        image: withBase('/images/cleaner-bedmaking.webp'),
-        imageAlt: 'Man making a bed in a coastal bedroom',
+        image: withBase('/images/turnover-active.jpg'),
+        imageAlt: 'Cleaner resetting a bed during a vacation rental turnover',
         title: 'Vacation Rentals',
         href: withBase('/vacation-rental-cleaning'),
         text: 'Turnover cleaning between guest stays with your timeline in mind.',
@@ -388,38 +389,50 @@ export const homeContent = {
   },
   processSection: {
     eyebrow: 'How it works',
-    heading: 'Simple, reliable cleaning in 3 steps.',
+    heading: 'Simple, reliable cleaning from quote to finish.',
     steps: [
       {
-        num: '01',
         title: 'Request a Quote',
         text: 'Share your property details and preferred schedule. We\'ll confirm scope and pricing.',
       },
       {
-        num: '02',
         title: 'We Clean to a Checklist',
         text: 'Room-by-room cleaning based on the plan agreed when booking.',
       },
       {
-        num: '03',
         title: 'Enjoy Your Space',
         text: 'Walk into a clean home. Reach out if anything needs attention.',
       },
     ],
   },
   rentalSection: {
-    imageSrc: withBase('/images/cleaner-rental-turnover.webp'),
-    imageWidth: 1280,
-    imageHeight: 720,
-    imageAlt: 'Man wiping a kitchen counter while holding a clipboard in a coastal rental',
+    imageSrc: withBase('/images/rental-bedroom.jpg'),
+    imageWidth: 1000,
+    imageHeight: 1000,
+    imageAlt: 'Guest-ready bedroom prepared for the next vacation-rental stay',
     eyebrow: 'For hosts & property managers',
     heading: 'Cleaning between checkout and check-in.',
     description: 'Tell us your turnover window and what the property needs. Discuss linen changes, restocking, and completion photos when agreeing on the scope.',
     linkText: 'Explore vacation rental cleaning',
     linkHref: withBase('/vacation-rental-cleaning'),
   },
+  expectSection: {
+    eyebrow: 'Why Beachline',
+    heading: 'Clear service. No guesswork.',
+    intro: 'The basics are agreed before the visit so you know who is coming, what is being cleaned, and how to reach us.',
+    items: [
+      { title: 'Owner-operated', text: 'You deal directly with the local person responsible for scheduling and service.' },
+      { title: 'Scope confirmed first', text: 'We agree on the cleaning plan, requested extras, and pricing before the visit.' },
+      { title: 'Supplies provided', text: 'Standard cleaning supplies and equipment are brought for the job.' },
+      { title: 'Checklist-based cleaning', text: 'Each visit follows the room-by-room scope agreed when you book.' },
+    ],
+    aboutText: 'How we work',
+    aboutHref: withBase('/about'),
+    faqText: 'Read common questions',
+    faqHref: withBase('/faq'),
+  },
   contactBanner: {
-    heading: 'Need a cleaner?',
+    heading: 'Need a cleaner in Brevard County?',
     text: 'Tell us about the property and the cleaning you need, and we’ll confirm the next step.',
     ctaButton: 'Get a Quote',
     quoteHref: withBase('/quote'),
@@ -513,6 +526,28 @@ export const serviceAreaContent = {
     'Rockledge',
     'Nearby areas by request',
   ],
+  coverageHeading: 'Cleaning for your property',
+  coverageIntro: 'Across Cocoa, Cocoa Beach, Cape Canaveral, Merritt Island, and Rockledge, the quote starts with your property and the visit you need. Availability is confirmed for your address and requested dates.',
+  services: [
+    {
+      title: 'Homes & moves',
+      text: 'Tell us whether you need recurring home cleaning, a deep clean, or an empty-property clean before moving. Include your town or ZIP code and preferred date.',
+      href: withBase('/residential-cleaning'),
+      linkText: 'Explore home cleaning',
+    },
+    {
+      title: 'Vacation rentals',
+      text: 'Share the property location and the gap between checkout and check-in. Linen arrangements, building access, and restocking are agreed for each property.',
+      href: withBase('/vacation-rental-cleaning'),
+      linkText: 'Explore rental turnovers',
+    },
+    {
+      title: 'Offices & workspaces',
+      text: 'Include your facility type, approximate size, and preferred cleaning hours. We will discuss the scope and schedule before confirming a visit.',
+      href: withBase('/commercial-cleaning'),
+      linkText: 'Explore commercial cleaning',
+    },
+  ],
   cta: {
     title: 'Not sure if you\'re in range?',
     text: 'Call us with your property address or ZIP code and we’ll confirm availability.',
@@ -527,9 +562,9 @@ export const quoteContent = {
   lede: 'Share a few details and we\'ll follow up with a quote, usually within one business day.',
   trustPillsAriaLabel: 'Quote assurances',
   trustPills: [
+    'Local & owner-operated',
     'Checklist-based service',
     'Direct communication',
-    'No commitment required',
   ],
   form: {
     formspreeEndpoint: 'https://formspree.io/f/xzzenlyg',
@@ -612,6 +647,5 @@ export const quoteSuccessContent = {
   returnButtonText: 'Return Home',
   returnButtonHref: withBase('/'),
 };
-
 
 

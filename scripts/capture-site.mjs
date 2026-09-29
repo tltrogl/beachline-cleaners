@@ -120,8 +120,29 @@ try {
         const page = await context.newPage();
         const response = await page.goto(`${origin}${route}`, { waitUntil: 'networkidle', timeout: 30000 });
         if (!response?.ok()) throw new Error(`HTTP ${response?.status() ?? 'no response'}`);
-        await page.evaluate(() => {
-          document.fonts.ready;
+        await page.evaluate(async () => {
+          const images = [...document.images];
+          for (const image of images) image.loading = 'eager';
+          let timeout;
+          try {
+            await Promise.race([
+              Promise.all([
+                document.fonts.ready,
+                ...images.map(async (image) => {
+                  try {
+                    await image.decode();
+                  } catch {
+                    throw new Error(`Image failed to load: ${image.currentSrc || image.src}`);
+                  }
+                }),
+              ]),
+              new Promise((_, reject) => {
+                timeout = setTimeout(() => reject(new Error('Timed out waiting for fonts and images')), 15000);
+              }),
+            ]);
+          } finally {
+            clearTimeout(timeout);
+          }
           const bar = document.querySelector('.mobile-action-bar');
           if (bar) bar.style.position = 'static';
           const header = document.querySelector('.header');

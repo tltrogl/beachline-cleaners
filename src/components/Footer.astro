@@ -9,8 +9,11 @@ const { quoteHref = withBase('/quote') } = Astro.props;
     <div class="grid grid-cols-[1.3fr_.7fr_.7fr] gap-[45px] max-tablet:grid-cols-2 max-mobile:grid-cols-1 group-[.island-home]/site:max-mobile:gap-[30px]">
       <div>
         <a class="inline-flex items-center gap-3 whitespace-nowrap font-black tracking-[-.03em] text-mist no-underline group-[.island-home]/site:text-footer-text" href={withBase('/')}>
-          <span class="brand-mark relative size-[38px] shrink-0 overflow-hidden rounded-[50%_50%_46%_54%] bg-sea group-[.island-home]/site:max-mobile:size-8" aria-hidden="true"></span>
-          <span>{site.name}</span>
+          <span class="brand-mark relative size-[38px] shrink-0 overflow-hidden rounded-[50%_50%_46%_54%] bg-sea-dark group-[.island-home]/site:max-mobile:size-8" aria-hidden="true"></span>
+          <span class="grid leading-none">
+            <span>{site.name}</span>
+            <span class="mt-1.5 text-[.64rem] font-extrabold uppercase tracking-[.13em] text-cyan">{site.descriptor}</span>
+          </span>
         </a>
         <p class="mt-[18px] max-w-[430px] text-mist group-[.island-home]/site:text-footer-text">{footerContent.summary}</p>
         <div class="mt-[18px] flex gap-4 font-extrabold text-mist group-[.island-home]/site:text-footer-text">

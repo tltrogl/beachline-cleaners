@@ -5,13 +5,16 @@ import Button from './Button.astro';
 interface Props { quoteHref?: string; }
 const { quoteHref = navigationContent.quoteHref } = Astro.props;
 const navLink = 'text-nav font-bold no-underline hover:text-sea group-[.island-home]/site:mobile:max-wide:text-nav-compact group-[.island-home]/site:max-mobile:text-small';
-const brand = 'inline-flex items-center gap-3 whitespace-nowrap font-black tracking-[-.03em] no-underline group-[.island-home]/site:mobile:max-wide:text-[.88rem] group-[.island-home]/site:max-mobile:text-label';
+const brand = 'inline-flex items-center gap-3 whitespace-nowrap no-underline';
 ---
-<header class="header sticky top-0 z-50 border-b-4 border-cyan bg-white">
+<header class="header sticky top-0 z-50 border-b border-line/70 bg-white/95 backdrop-blur">
   <div class:list={[shell, 'nav relative flex min-h-[78px] items-center gap-card-gap max-mobile:min-h-[70px] max-mobile:gap-3 group-[.island-home]/site:mobile:max-wide:gap-[15px]']}>
     <a class={brand} href={withBase('/')} aria-label={navigationContent.brandHomeAriaLabel}>
-      <span class="brand-mark relative size-[38px] shrink-0 overflow-hidden rounded-[50%_50%_46%_54%] bg-sea group-[.island-home]/site:max-mobile:size-8" aria-hidden="true"></span>
-      <span>{site.name}</span>
+      <span class="brand-mark relative size-[38px] shrink-0 overflow-hidden rounded-[50%_50%_46%_54%] bg-sea-dark group-[.island-home]/site:max-mobile:size-8" aria-hidden="true"></span>
+      <span class="grid leading-none">
+        <span class="text-[1rem] font-black tracking-[-.035em] text-ink group-[.island-home]/site:mobile:max-wide:text-[.9rem] group-[.island-home]/site:max-mobile:text-label">{site.name}</span>
+        <span class="mt-1 text-[.62rem] font-extrabold uppercase tracking-[.13em] text-sea-dark max-wide:hidden">{site.descriptor}</span>
+      </span>
     </a>
     <button class="mobile-toggle ml-auto hidden rounded-full border border-line bg-white px-[14px] py-2.5 font-extrabold max-mobile:inline-flex" type="button" aria-expanded="false" aria-controls="nav-links">{navigationContent.menuButton}</button>
     <nav class="nav-links ml-auto flex items-center gap-5 max-mobile:absolute max-mobile:inset-x-0 max-mobile:top-[70px] max-mobile:hidden max-mobile:max-h-[calc(100dvh-155px)] max-mobile:flex-col max-mobile:items-stretch max-mobile:overflow-y-auto max-mobile:rounded-2xl max-mobile:border max-mobile:border-line max-mobile:bg-white max-mobile:p-[18px] max-mobile:[&.open]:flex group-[.island-home]/site:mobile:max-wide:gap-control-gap" id="nav-links" aria-label={navigationContent.navAriaLabel}>
