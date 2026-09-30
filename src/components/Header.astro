@@ -1,10 +1,11 @@
 ---
 import { site, navigationContent, withBase } from '../data/content';
-import { shell, details } from '../styles/ui';
+import { shell } from '../styles/ui';
 import Button from './Button.astro';
 interface Props { quoteHref?: string; }
 const { quoteHref = navigationContent.quoteHref } = Astro.props;
-const navLink = 'text-nav font-bold no-underline hover:text-sea group-[.island-home]/site:mobile:max-wide:text-nav-compact group-[.island-home]/site:max-mobile:text-small';
+const navLink = 'text-nav font-bold no-underline hover:text-sea-dark aria-[current=page]:text-sea-dark aria-[current=page]:underline underline-offset-4 group-[.island-home]/site:mobile:max-wide:text-nav-compact group-[.island-home]/site:max-mobile:text-small';
+const isCurrentPage = (href: string) => Astro.url.pathname.replace(/\/$/, '') === href.replace(/\/$/, '');
 const brand = 'inline-flex items-center gap-3 whitespace-nowrap no-underline';
 ---
 <header class="header sticky top-0 z-50 border-b border-line/70 bg-white/95 backdrop-blur">
@@ -17,14 +18,14 @@ const brand = 'inline-flex items-center gap-3 whitespace-nowrap no-underline';
       </span>
     </a>
     <button class="mobile-toggle ml-auto hidden rounded-full border border-line bg-white px-[14px] py-2.5 font-extrabold max-mobile:inline-flex" type="button" aria-expanded="false" aria-controls="nav-links">{navigationContent.menuButton}</button>
-    <nav class="nav-links ml-auto flex items-center gap-5 max-mobile:absolute max-mobile:inset-x-0 max-mobile:top-[70px] max-mobile:hidden max-mobile:max-h-[calc(100dvh-155px)] max-mobile:flex-col max-mobile:items-stretch max-mobile:overflow-y-auto max-mobile:rounded-2xl max-mobile:border max-mobile:border-line max-mobile:bg-white max-mobile:p-[18px] max-mobile:[&.open]:flex group-[.island-home]/site:mobile:max-wide:gap-control-gap" id="nav-links" aria-label={navigationContent.navAriaLabel}>
-      <details class:list={[details, 'nav-services group/services relative max-mobile:w-full group-[.island-home]/site:border-0 group-[.island-home]/site:bg-transparent group-[.island-home]/site:p-0']}>
+    <nav class="nav-links ml-auto flex items-center gap-5 max-mobile:absolute max-mobile:inset-x-0 max-mobile:top-[70px] max-mobile:hidden max-mobile:max-h-[calc(100dvh-155px)] max-mobile:flex-col max-mobile:items-stretch max-mobile:overflow-y-auto max-mobile:rounded-2xl max-mobile:border max-mobile:border-line max-mobile:bg-white max-mobile:p-[18px] max-mobile:shadow-[0_18px_45px_rgba(28,65,91,.14)] max-mobile:[&.open]:flex group-[.island-home]/site:mobile:max-wide:gap-control-gap" id="nav-links" aria-label={navigationContent.navAriaLabel}>
+      <details class="nav-services group/services relative max-mobile:w-full">
         <summary class:list={[navLink, 'list-none cursor-pointer max-mobile:py-2']}>{navigationContent.servicesDropdownLabel}</summary>
-        <div class="nav-services-menu absolute top-[calc(100%+14px)] -left-[18px] hidden min-w-[220px] rounded-panel border border-line bg-white p-2.5 group-open/services:grid max-mobile:static max-mobile:border-0 max-mobile:pt-1.5 max-mobile:pl-3">
-          {navigationContent.serviceLinks.map((item) => <a class:list={[navLink, 'rounded-[9px] px-3 py-2.5 hover:bg-line/30']} href={item.href}>{item.title}</a>)}
+        <div class="nav-services-menu absolute top-[calc(100%+14px)] -left-[18px] hidden min-w-[220px] rounded-panel border border-line bg-white p-2.5 shadow-[0_16px_38px_rgba(28,65,91,.12)] group-open/services:grid max-mobile:static max-mobile:border-0 max-mobile:pt-1.5 max-mobile:pl-3">
+          {navigationContent.serviceLinks.map((item) => <a class:list={[navLink, 'rounded-[9px] px-3 py-2.5 hover:bg-mist']} href={item.href} aria-current={isCurrentPage(item.href) ? 'page' : undefined}>{item.title}</a>)}
         </div>
       </details>
-      {navigationContent.links.map((item) => <a class={navLink} href={item.href}>{item.title}</a>)}
+      {navigationContent.links.map((item) => <a class:list={[navLink, 'inline-flex min-h-11 items-center']} href={item.href} aria-current={isCurrentPage(item.href) ? 'page' : undefined}>{item.title}</a>)}
       <a class:list={[navLink, 'nav-phone whitespace-nowrap max-[1021px]:hidden max-mobile:block group-[.island-home]/site:mobile:max-wide:hidden']} href={site.phoneHref}>{navigationContent.callPrefix}{site.phoneDisplay}</a>
       <Button size="navigation" class="max-mobile:w-full group-[.island-home]/site:mobile:max-wide:px-3" href={quoteHref}>{navigationContent.quoteButton}</Button>
     </nav>
@@ -37,6 +38,16 @@ const brand = 'inline-flex items-center gap-3 whitespace-nowrap no-underline';
   btn?.addEventListener('click', () => {
     const open = nav?.classList.toggle('open') ?? false;
     btn.setAttribute('aria-expanded', String(open));
+  });
+  document.addEventListener('click', (event) => {
+    const target = event.target;
+    if (!(target instanceof Node)) return;
+    const services = document.querySelector<HTMLDetailsElement>('.nav-services');
+    if (services?.open && !services.contains(target)) services.open = false;
+    if (nav?.classList.contains('open') && !nav.contains(target) && !btn?.contains(target)) {
+      nav.classList.remove('open');
+      btn?.setAttribute('aria-expanded', 'false');
+    }
   });
   document.addEventListener('keydown', (event) => {
     if (event.key !== 'Escape') return;

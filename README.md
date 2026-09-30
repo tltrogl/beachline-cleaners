@@ -57,31 +57,17 @@ CSS in `site.css` for decorative pseudo-elements and disclosure markers.
 npm run build
 ```
 
-## GitHub Deployment
+## Deployment
 
-This project is deployed to GitHub under:
-- Boost repository: `https://github.com/tltrogl/boost.git`
-  - Live GitHub Pages URL: `https://tltrogl.github.io/boost/`
-- Primary repository: `https://github.com/tltrogl/beachline-cleaners.git`
-  - Live GitHub Pages URL: `https://tltrogl.github.io/beachline-cleaners/`
+Production hosting is handled by Cloudflare Pages.
 
-### Deploying Updates
+- Source repository: `https://github.com/tltrogl/beachline-cleaners.git`
+- Production Pages project: `beachline-cleaners.pages.dev`
+- Custom domain: `https://beachlinecleaners.com`
+- Build command: `npm run build`
+- Build output directory: `dist`
 
-To build and deploy the latest changes directly to GitHub Pages (`gh-pages` branch on both remotes):
-```bash
-npm run deploy
-```
-
-This builds the static site with the `/boost` base path, includes `.nojekyll` so Astro's `_astro` assets are served correctly, and pushes to `gh-pages`.
-
-### Building for a Custom Domain
-
-To build for a custom domain (e.g., `https://beachlinecleaners.com` at root path):
-```bash
-$env:ASTRO_SITE="https://beachlinecleaners.com"
-$env:ASTRO_BASE=""
-npm run build
-```
+Pushes to the production branch connected in Cloudflare Pages trigger a new build and deployment. GitHub Pages is not used.
 
 ## Rename the business
 
@@ -100,15 +86,15 @@ Most pages pull the brand name automatically.
 
 ## Quote form
 
-The quote form is prepared for Netlify form processing (`data-netlify="true"`), with separate required Phone and Email inputs. Phone syntax accepts 10–15 digits with common formatting; email uses native browser validation. These checks cannot verify ownership or reachability of a contact method.
+Quote requests are submitted through Formspree from `src/pages/quote.astro`. The endpoint is configured in `src/data/content.ts`. The form includes a honeypot field, native browser validation, an explicit privacy disclosure, and redirects successful submissions to `/quote-success/`.
 
-There is no deployment yet. Local Astro preview does not process inquiries, and successful delivery has not been verified. After deploying with Netlify form detection enabled, submit a clearly marked test, verify its receipt in Netlify and the configured notification destination, and check the success redirect before accepting online leads.
+After deployment changes, send a clearly marked test submission and verify both Formspree receipt and the success redirect before relying on the form for leads.
 
-The mobile quick action bar provides Call, Text, and Get a Quote buttons. On mobile screens, it is fixed to the bottom of the viewport with guaranteed bottom padding clearance on the footer so page content and footer links are never covered. It remains completely hidden on `/quote/` and `/quote-success/`.
+The mobile quick action bar provides Call, Text, and Get a Quote buttons and is hidden on `/quote/` and `/quote-success/`.
 
 ## Images & Alt Text
 
-The homepage hero uses `public/images/hero-living-room.jpg`. The rental section uses `public/images/rental-bedroom.jpg`. Service photography is illustrative stock, not evidence of company staff or completed jobs. The replacement photos are stored locally:
+The homepage hero uses `public/images/cleaner-counter.webp`. The rental section uses `public/images/rental-bedroom.jpg`. Service photography is illustrative stock, not evidence of company staff or completed jobs. The replacement photos are stored locally:
 
 - `deep-cleaning-kitchen.jpg`: [RDNE Stock project / Pexels](https://www.pexels.com/photo/close-up-shot-of-a-woman-wiping-the-refrigerator-5591926/), wiping a refrigerator.
 - `move-out-empty-room.jpg`: [Max Vakhtbovych / Pexels](https://www.pexels.com/photo/empty-room-of-modern-apartment-7031599/), unfurnished room with wood flooring.

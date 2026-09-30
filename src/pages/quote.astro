@@ -10,7 +10,7 @@ import { shell, section, homeEyebrow, lede, details, field, formGroup, formRow }
     <div class:list={[shell, "grid grid-cols-[1fr_340px] items-start gap-[70px] max-tablet:grid-cols-1"]}>
       <div>
         <p class:list={[homeEyebrow, 'flex items-center gap-3']}><span class="h-px w-10 bg-sea" aria-hidden="true"></span>{quoteContent.eyebrow}</p>
-        <h1 class="mb-4 max-w-[720px] text-[clamp(2.8rem,5vw,4.25rem)] font-black leading-[1.02] tracking-[-.05em]">{quoteContent.title}</h1>
+        <h1 class="mb-4 max-w-[720px] text-[clamp(2.8rem,5vw,4.25rem)] font-black leading-[1.02] tracking-[-.035em]">{quoteContent.title}</h1>
         <p class:list={[lede, "mt-4"]}>{quoteContent.lede}</p>
 
         <div class="mt-5 flex flex-wrap gap-x-4 gap-y-2 text-[.86rem] font-[750] text-sea-dark" aria-label={quoteContent.trustPillsAriaLabel}>
@@ -106,7 +106,7 @@ import { shell, section, homeEyebrow, lede, details, field, formGroup, formRow }
         <h3 class="mb-3">{quoteContent.aside.heading}</h3>
         <p class="mb-5 mt-4">{quoteContent.aside.description}</p>
         <div class="grid gap-2.5">
-          <Button variant="secondary" class="mt-5 w-full" href={site.phoneHref}>{quoteContent.aside.callPrefix}{site.phoneDisplay}</Button>
+          <Button variant="secondary" class="w-full" href={site.phoneHref}>{quoteContent.aside.callPrefix}{site.phoneDisplay}</Button>
           <Button variant="secondary" size="compact" href={quoteContent.aside.textHref}>{quoteContent.aside.textButton}</Button>
         </div>
         

@@ -9,12 +9,11 @@
     "build": "astro build",
     "preview": "astro preview",
     "typecheck": "astro check",
-    "screenshots": "npm run build && node scripts/capture-site.mjs",
-    "deploy": "node scripts/deploy-gh-pages.mjs"
+    "screenshots": "npm run build && node scripts/capture-site.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",
-    "@fontsource-variable/atkinson-hyperlegible-next": "^5.3.0",
+    "@fontsource-variable/plus-jakarta-sans": "^5.3.0",
     "@google/adk": "^2.1.0",
     "@google/adk-devtools": "^2.1.0",
     "astro": "^5.13.5",

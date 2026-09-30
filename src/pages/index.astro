@@ -9,18 +9,18 @@ import { shell, homeEyebrow, outlineLink } from '../styles/ui';
 const [primaryService, ...secondaryServices] = homeContent.servicesSection.services;
 ---
 <BaseLayout bodyClass="island-home" title={`${site.name} | ${homeContent.metaTitleSuffix}`} description={homeContent.metaDescription}>
-  <section class="home-hero bg-sand pt-12 pb-14 max-mobile:pt-7 max-mobile:pb-9" aria-labelledby="hero-title" slot="hero">
+  <section class="home-hero bg-mist pt-12 pb-14 max-mobile:pt-7 max-mobile:pb-9" aria-labelledby="hero-title" slot="hero">
     <div class:list={[shell, "home-hero-grid grid grid-cols-[.96fr_1.04fr] items-center gap-14 max-tablet:gap-8 max-mobile:grid-cols-1 max-mobile:gap-7"]}>
       <div class="home-hero-copy">
         <p class:list={[homeEyebrow, 'flex items-center gap-3']}>
           <span class="h-px w-10 shrink-0 bg-sea" aria-hidden="true"></span>
           Professional cleaning • Brevard County
         </p>
-        <h1 id="hero-title" class="max-w-[760px] text-[clamp(3rem,5.5vw,4.75rem)] leading-[1.06] tracking-[-.025em] text-balance max-mobile:text-[2.7rem] max-mobile:leading-[1.08]">{homeContent.hero.title}</h1>
+        <h1 id="hero-title" class="max-w-[760px] text-[clamp(2.7rem,4.5vw,4rem)] leading-[1.1] tracking-[-.025em] text-balance max-mobile:text-[2.7rem] max-mobile:leading-[1.08]">{homeContent.hero.title}</h1>
         <p class="mt-6 max-w-[560px] text-[1.16rem] leading-[1.6] max-mobile:mt-4 max-mobile:text-base">{homeContent.hero.description}</p>
-        <form class="hero-estimator mt-7 mb-4 grid grid-cols-[1fr_1.3fr] gap-3 border-y max-mobile:grid-cols-1 border-line bg-white/70 p-4 max-mobile:mt-5 max-mobile:gap-2.5 max-mobile:p-3" action={homeContent.hero.quoteHref} method="get">
-          <div><label class="mb-[5px] block text-sm font-[750] text-ink-soft" for="hero-location">ZIP code or town</label><input class="min-h-11 min-w-0 w-full rounded-md border border-line bg-white p-[9px] text-label focus-visible:outline-3 focus-visible:outline-sea focus-visible:outline-offset-2" id="hero-location" name="location" autocomplete="postal-code" placeholder="e.g. 32931" required /></div>
-          <div><label class="mb-[5px] block text-sm font-[750] text-ink-soft" for="hero-service">Cleaning service</label><select class="min-h-11 min-w-0 w-full rounded-md border border-line bg-white p-[9px] text-label focus-visible:outline-3 focus-visible:outline-sea focus-visible:outline-offset-2" id="hero-service" name="service">{quoteContent.form.service.options.map((option) => <option value={option.value}>{option.label}</option>)}</select></div>
+        <form class="hero-estimator mt-7 mb-4 grid grid-cols-[1fr_1.3fr] gap-3 rounded-panel border border-line bg-white p-4 shadow-[0_14px_40px_rgba(28,65,91,.08)] max-mobile:mt-5 max-mobile:grid-cols-1 max-mobile:gap-2.5 max-mobile:p-3" action={homeContent.hero.quoteHref} method="get">
+          <div><label class="mb-[5px] block text-sm font-[750] text-ink-soft" for="hero-location">ZIP code or town</label><input class="min-h-11 min-w-0 w-full rounded-md border border-field-line bg-white p-[9px] text-label text-ink placeholder:text-ink-soft hover:border-ink-soft focus-visible:outline-3 focus-visible:outline-sea-dark focus-visible:outline-offset-2" id="hero-location" name="location" autocomplete="postal-code" placeholder="e.g. 32931" required /></div>
+          <div><label class="mb-[5px] block text-sm font-[750] text-ink-soft" for="hero-service">Cleaning service</label><select class="min-h-11 min-w-0 w-full rounded-md border border-field-line bg-white p-[9px] text-label text-ink placeholder:text-ink-soft hover:border-ink-soft focus-visible:outline-3 focus-visible:outline-sea-dark focus-visible:outline-offset-2" id="hero-service" name="service">{quoteContent.form.service.options.map((option) => <option value={option.value}>{option.label}</option>)}</select></div>
           <Button class="col-span-full w-full" type="submit">Get a Quote <Icon name="arrow-right" class="size-[18px]" /></Button>
         </form>
         <a class="inline-flex items-center gap-2 text-label font-[650] text-sea-dark underline underline-offset-4" href={site.phoneHref}><Icon name="phone" class="size-4" />Prefer to talk? {site.phoneDisplay}</a>
@@ -124,14 +124,14 @@ const [primaryService, ...secondaryServices] = homeContent.servicesSection.servi
     </div>
   </section>
 
-  <section class="bg-ink py-[78px] text-white max-mobile:py-14" aria-labelledby="process-heading">
+  <section class="bg-ocean py-[78px] text-white max-mobile:py-14" aria-labelledby="process-heading">
     <div class={shell}>
       <div class="mb-10 grid grid-cols-[.65fr_1fr] items-end gap-10 max-mobile:grid-cols-1 max-mobile:gap-3">
         <div>
           <p class="mb-4 flex items-center gap-3 text-eyebrow font-extrabold uppercase tracking-[.12em] text-cyan"><span class="h-px w-10 bg-cyan" aria-hidden="true"></span>{homeContent.processSection.eyebrow}</p>
           <h2 id="process-heading" class="max-w-[650px] text-white">{homeContent.processSection.heading}</h2>
         </div>
-        <p class="max-w-[540px] justify-self-end text-[1.02rem] leading-[1.65] text-white/70 max-mobile:justify-self-start">Clear scope, checklist-based service, and direct communication from quote through completion.</p>
+        <p class="max-w-[540px] justify-self-end text-[1.02rem] leading-[1.65] text-white/70 max-mobile:justify-self-start">Clear scope, direct communication, and a room-by-room plan from quote through completion.</p>
       </div>
       <ol class="m-0 grid list-none grid-cols-3 gap-8 p-0 max-tablet:grid-cols-1 max-tablet:gap-8" role="list">
         {homeContent.processSection.steps.map((step) => (
@@ -166,7 +166,7 @@ const [primaryService, ...secondaryServices] = homeContent.servicesSection.servi
     </div>
   </section>
 
-  <section class="border-y border-line bg-sand py-11 max-mobile:py-9" aria-labelledby="contact-heading">
+  <section class="border-y border-line bg-seafoam py-11 max-mobile:py-9" aria-labelledby="contact-heading">
     <div class:list={[shell, "flex items-center justify-between gap-7 max-tablet:flex-col max-tablet:items-start"]}>
       <div>
         <p class="mb-3 text-eyebrow font-extrabold uppercase tracking-[.12em] text-sea-dark">Ready when you are</p>

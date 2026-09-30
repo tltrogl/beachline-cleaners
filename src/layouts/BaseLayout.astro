@@ -3,7 +3,7 @@ import { SEO } from 'astro-seo';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { site, accessibilityContent, mobileActionBarContent, withBase } from '../data/content';
-import '@fontsource-variable/atkinson-hyperlegible-next/wght.css';
+import '@fontsource-variable/plus-jakarta-sans/wght.css';
 import '../styles/site.css';
 
 interface Props {
@@ -51,7 +51,7 @@ const hideMobileBar = bodyClass.includes('no-mobile-bar');
         image: new URL(withBase('/og-image.jpg'), Astro.site).toString(),
       }}
     />
-    <meta name="theme-color" content="#0b7fa6" />
+    <meta name="theme-color" content="#006591" />
     <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
@@ -74,7 +74,7 @@ const hideMobileBar = bodyClass.includes('no-mobile-bar');
     {!hideMobileBar && <div class="mobile-action-bar fixed inset-x-0 bottom-0 z-[70] hidden min-h-14 w-full grid-cols-[1fr_1fr_1.3fr] border-t border-line bg-white pb-[env(safe-area-inset-bottom)] max-mobile:grid" aria-label={mobileActionBarContent.ariaLabel}>
       <a class="flex min-h-12 items-center justify-center text-compact-action font-[850] no-underline" href={site.phoneHref}>{mobileActionBarContent.callLabel}</a>
       <a class="flex min-h-12 items-center justify-center border-l border-line text-compact-action font-[850] no-underline" href={site.smsHref}>{mobileActionBarContent.textLabel}</a>
-      <a class="mobile-quote flex min-h-12 items-center justify-center border-l border-line bg-sea text-compact-action font-[850] text-white no-underline hover:bg-sea-dark active:bg-sea-dark" href={quoteHref}>{mobileActionBarContent.quoteLabel}</a>
+      <a class="mobile-quote flex min-h-12 items-center justify-center border-l border-line bg-sea-dark text-compact-action font-[850] text-white no-underline hover:bg-teal active:bg-teal" href={quoteHref}>{mobileActionBarContent.quoteLabel}</a>
     </div>}
   </body>
 </html>

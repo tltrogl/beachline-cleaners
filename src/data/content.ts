@@ -311,7 +311,7 @@ export const servicesDetail: Record<'residential' | 'deep' | 'moveOut' | 'vacati
     faqs: [
       {
         q: 'Do you clean after hours?',
-        a: 'Yes, we offer flexible scheduling including after-hours and weekend cleaning to minimize disruption to your business operations.',
+        a: 'After-hours or weekend cleaning can be discussed based on your building access, requested schedule, and availability.',
       },
       {
         q: 'Can we customize the cleaning checklist?',
@@ -341,8 +341,8 @@ export const homeContent = {
     ariaLabel: 'Key service assurances',
     items: [
       'Local & owner-operated',
-      'Supplies provided',
-      'Checklist-based cleaning',
+      'Quotes matched to your scope',
+      'Room-by-room cleaning',
       'Direct communication',
     ],
   },
@@ -389,15 +389,15 @@ export const homeContent = {
   },
   processSection: {
     eyebrow: 'How it works',
-    heading: 'Simple, reliable cleaning from quote to finish.',
+    heading: 'From quote to clean, kept simple.',
     steps: [
       {
         title: 'Request a Quote',
         text: 'Share your property details and preferred schedule. We\'ll confirm scope and pricing.',
       },
       {
-        title: 'We Clean to a Checklist',
-        text: 'Room-by-room cleaning based on the plan agreed when booking.',
+        title: 'Confirm the Cleaning Plan',
+        text: 'We agree on the rooms, priorities, extras, and timing before the visit.',
       },
       {
         title: 'Enjoy Your Space',
@@ -423,8 +423,8 @@ export const homeContent = {
     items: [
       { title: 'Owner-operated', text: 'You deal directly with the local person responsible for scheduling and service.' },
       { title: 'Scope confirmed first', text: 'We agree on the cleaning plan, requested extras, and pricing before the visit.' },
-      { title: 'Supplies provided', text: 'Standard cleaning supplies and equipment are brought for the job.' },
-      { title: 'Checklist-based cleaning', text: 'Each visit follows the room-by-room scope agreed when you book.' },
+      { title: 'Room-by-room plan', text: 'Cleaning follows the priorities and scope agreed for your property.' },
+      { title: 'Direct communication', text: 'Call or text the local person responsible for scheduling and service.' },
     ],
     aboutText: 'How we work',
     aboutHref: withBase('/about'),
@@ -485,11 +485,11 @@ export const faqContent = {
     },
     {
       q: 'Do I need to be home?',
-      a: 'No, you do not need to be home. Most of our clients provide us with a spare key or a door code so we can clean while they are out or at work. If you prefer to be home, that is completely fine too.',
+      a: 'No. If you will be out, we will agree on secure property access before the appointment. If you prefer to be home, that is completely fine too.',
     },
     {
       q: 'Do you bring supplies?',
-      a: 'Yes, we bring all of our own professional-grade cleaning supplies and equipment. If you have specific products you prefer us to use for delicate surfaces, just let us know and leave them out for us.',
+      a: 'We bring standard cleaning supplies and equipment. If you have delicate surfaces or specific product preferences, let us know before the visit.',
     },
     {
       q: 'What if I have pets?',
@@ -559,11 +559,11 @@ export const quoteContent = {
   metaDescription: 'Request a cleaning quote online or call to discuss your property and availability.',
   eyebrow: 'Request a quote',
   title: 'Tell us what you need cleaned.',
-  lede: 'Share a few details and we\'ll follow up with a quote, usually within one business day.',
+  lede: 'Share a few details and we\'ll follow up to confirm scope, availability, and pricing.',
   trustPillsAriaLabel: 'Quote assurances',
   trustPills: [
     'Local & owner-operated',
-    'Checklist-based service',
+    'Scope confirmed before service',
     'Direct communication',
   ],
   form: {
@@ -643,7 +643,7 @@ export const quoteSuccessContent = {
   metaDescription: 'Your cleaning quote request has been received. We will follow up shortly.',
   eyebrow: 'Request received',
   title: 'We\u2019ve got your details.',
-  lede: 'We\u2019ll review your request and follow up within one business day by phone or email. If you need to reach us sooner, call or text anytime.',
+  lede: "We'll review your request and follow up by phone or email. If you need to reach us sooner, call or text us.",
   returnButtonText: 'Return Home',
   returnButtonHref: withBase('/'),
 };
