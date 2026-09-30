@@ -2,8 +2,9 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CTA from './CTA.astro';
 import Button from './Button.astro';
+import RentalPricing from './RentalPricing.astro';
 import { shell, section, pageHero, pageTitle, eyebrow as eyebrowClass, lede, split, splitImage, details, summary, phone } from '../styles/ui';
-import { site, servicePageDefaults } from '../data/content';
+import { site, servicePageDefaults, pricingContent } from '../data/content';
 import type { ServiceDetail } from '../data/content';
 
 type Props = ServiceDetail;
@@ -18,10 +19,14 @@ const {
   imageCaption,
   quoteHref,
   included = [],
+  includedHeading = servicePageDefaults.includedHeading,
+  includedIntro = servicePageDefaults.includedIntro,
   who = '',
   options = [],
   optionsIntro,
   pricing = '',
+  priceLabel,
+  pricingRows,
   pricingFactors,
   faqs = []
 } = Astro.props;
@@ -33,6 +38,8 @@ const {
         <p class:list={[eyebrowClass, 'flex items-center gap-3']}><span class="h-px w-10 bg-sea" aria-hidden="true"></span>{eyebrow}</p>
         <h1 class={pageTitle}>{title}</h1>
         <p class:list={[lede, "mt-[18px]"]}>{intro}</p>
+        <p class="mt-5 text-[1.2rem] font-bold text-sea-dark">{priceLabel}</p>
+        <p class="mt-2 max-w-[640px] text-small">{priceLabel === 'Custom quote' ? pricing : pricingContent.note}</p>
         <div class="mt-6 flex flex-wrap items-center gap-control-gap">
           <Button href={quoteHref}>{servicePageDefaults.quoteButtonText} <span aria-hidden="true">→</span></Button>
           <a class={phone} href={site.phoneHref}>{servicePageDefaults.callButtonPrefix}{site.phoneDisplay}</a>
@@ -61,8 +68,8 @@ const {
         {included.length > 0 && (
           <section aria-labelledby="included-heading">
             <p class="mb-3 text-eyebrow font-extrabold uppercase tracking-[.12em] text-sea-dark">Service scope</p>
-            <h2 id="included-heading" class="mb-3 text-[clamp(1.8rem,3vw,2.45rem)]">{servicePageDefaults.includedHeading}</h2>
-            <p class="mb-6 max-w-[680px] text-base">{servicePageDefaults.includedIntro}</p>
+            <h2 id="included-heading" class="mb-3 text-[clamp(1.8rem,3vw,2.45rem)]">{includedHeading}</h2>
+            <p class="mb-6 max-w-[680px] text-base">{includedIntro}</p>
             <ul class="m-0 list-none border-b border-line p-0" role="list">
               {included.map((item: string) => (
                 <li class="grid grid-cols-[14px_1fr] items-start gap-3 border-t border-line py-4 text-base leading-[1.55]">
@@ -105,6 +112,7 @@ const {
             <p class="mb-2 text-eyebrow font-extrabold uppercase tracking-[.11em] text-sea-dark">Quote factors</p>
             <h2 class="mb-3 text-[1.35rem]">{servicePageDefaults.pricingHeading}</h2>
             <p class="text-[.98rem] leading-[1.62]">{pricing}</p>
+            {pricingRows && <RentalPricing />}
             <div class="mt-5 border-b border-line">
               {pricingFactors.map((factor: string) => (
                 <div class="border-t border-line py-2.5 text-label font-[750] text-ink">{factor}</div>

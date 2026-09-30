@@ -1,6 +1,25 @@
 # Beachline Cleaners — Astro Website
 
+## Local content and approved pricing
+
+The remaining implementation plan and review are in
+[`docs/site-content-pricing-plan.md`](docs/site-content-pricing-plan.md).
+The owner approved the starting prices in `src/data/content.ts` on September 30,
+2026. Service summaries, the
+rental price table, FAQ, and Markdown read the same values. Laundry/restocking
+and appliance/cabinet/window interiors remain separately quoted. The quote form
+collects property size and preferred dates without requiring those optional fields.
+Owner biography remains deferred. This content pass has not been deployed.
+
 ## Agent discovery
+
+`/llms.txt` provides a plain-text site guide. `/markdown/index.md` and
+`/markdown/<page-name>.md` provide Markdown versions of the homepage, five service
+pages, About, Service Area, FAQ, and Quote. They are generated at build time from
+`src/data/content.ts`, the same content used by the HTML pages. Each public HTML
+page links to its Markdown alternative. These files provide read-only information;
+quote requests still use the website form. `public/_headers` sets their media types
+on Cloudflare Pages. HTML content negotiation is not enabled by these static files.
 
 The homepage advertises public discovery resources through the Cloudflare response
 header Transform Rule `Homepage agent discovery`. Match expression:

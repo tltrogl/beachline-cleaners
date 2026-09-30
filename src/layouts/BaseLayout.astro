@@ -53,6 +53,8 @@ const hideMobileBar = bodyClass.includes('no-mobile-bar');
     />
     <meta name="theme-color" content="#006591" />
     <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
+    <link rel="help" type="text/plain" href={withBase('/llms.txt')} title="Site guide for AI readers" />
+    {!noindex && <link rel="alternate" type="text/markdown" href={withBase(`/markdown/${Astro.url.pathname.split('/').filter(Boolean).at(-1) ?? 'index'}.md`)} title="Markdown version" />}
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "HouseCleaningService",

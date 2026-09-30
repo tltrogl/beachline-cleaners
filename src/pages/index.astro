@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import WhatWeClean from '../components/WhatWeClean.astro';
-import { site, homeContent, quoteContent } from '../data/content';
+import { site, homeContent, quoteContent, pricingContent, servicesDetail } from '../data/content';
 import Button from '../components/Button.astro';
 import Icon from '../components/Icon.astro';
 import { shell, homeEyebrow, outlineLink } from '../styles/ui';
@@ -18,10 +18,11 @@ const [primaryService, ...secondaryServices] = homeContent.servicesSection.servi
         </p>
         <h1 id="hero-title" class="max-w-[760px] text-[clamp(2.7rem,4.5vw,4rem)] leading-[1.1] tracking-[-.025em] text-balance max-mobile:text-[2.7rem] max-mobile:leading-[1.08]">{homeContent.hero.title}</h1>
         <p class="mt-6 max-w-[560px] text-[1.16rem] leading-[1.6] max-mobile:mt-4 max-mobile:text-base">{homeContent.hero.description}</p>
+        <p class="mt-3 max-w-[560px] text-small">{homeContent.hero.serviceArea}</p>
         <form class="hero-estimator mt-7 mb-4 grid grid-cols-[1fr_1.3fr] gap-3 rounded-panel border border-line bg-white p-4 shadow-[0_14px_40px_rgba(28,65,91,.08)] max-mobile:mt-5 max-mobile:grid-cols-1 max-mobile:gap-2.5 max-mobile:p-3" action={homeContent.hero.quoteHref} method="get">
           <div><label class="mb-[5px] block text-sm font-[750] text-ink-soft" for="hero-location">ZIP code or town</label><input class="min-h-11 min-w-0 w-full rounded-md border border-field-line bg-white p-[9px] text-label text-ink placeholder:text-ink-soft hover:border-ink-soft focus-visible:outline-3 focus-visible:outline-sea-dark focus-visible:outline-offset-2" id="hero-location" name="location" autocomplete="postal-code" placeholder="e.g. 32931" required /></div>
           <div><label class="mb-[5px] block text-sm font-[750] text-ink-soft" for="hero-service">Cleaning service</label><select class="min-h-11 min-w-0 w-full rounded-md border border-field-line bg-white p-[9px] text-label text-ink placeholder:text-ink-soft hover:border-ink-soft focus-visible:outline-3 focus-visible:outline-sea-dark focus-visible:outline-offset-2" id="hero-service" name="service">{quoteContent.form.service.options.map((option) => <option value={option.value}>{option.label}</option>)}</select></div>
-          <Button class="col-span-full w-full" type="submit">Get a Quote <Icon name="arrow-right" class="size-[18px]" /></Button>
+          <Button class="col-span-full w-full" type="submit">{homeContent.hero.ctaButton} <Icon name="arrow-right" class="size-[18px]" /></Button>
         </form>
         <a class="inline-flex items-center gap-2 text-label font-[650] text-sea-dark underline underline-offset-4" href={site.phoneHref}><Icon name="phone" class="size-4" />Prefer to talk? {site.phoneDisplay}</a>
       </div>
@@ -56,7 +57,7 @@ const [primaryService, ...secondaryServices] = homeContent.servicesSection.servi
           <p class:list={[homeEyebrow, 'flex items-center gap-3']}><span class="h-px w-10 bg-sea" aria-hidden="true"></span>What we do</p>
           <h2 id="services-heading" class="max-w-[560px]">{homeContent.servicesSection.heading}</h2>
         </div>
-        <p class="max-w-[570px] justify-self-end text-[1.04rem] leading-[1.65] max-mobile:justify-self-start">Start with recurring home cleaning or choose the service that fits a move, reset, rental turnover, or workspace.</p>
+        <p class="max-w-[570px] justify-self-end text-[1.04rem] leading-[1.65] max-mobile:justify-self-start">{homeContent.servicesSection.intro}</p>
       </div>
 
       <div class="grid grid-cols-[1.2fr_.8fr] gap-11 max-tablet:grid-cols-1 max-tablet:gap-9">
@@ -68,6 +69,7 @@ const [primaryService, ...secondaryServices] = homeContent.servicesSection.servi
             <div>
               <p class="mb-2 text-eyebrow font-extrabold uppercase tracking-[.12em] text-sea-dark">Core service</p>
               <h3 class="text-[clamp(1.55rem,2.4vw,2.15rem)]"><a class="text-ink no-underline hover:text-sea-dark" href={primaryService.href}>{primaryService.title}</a></h3>
+              <p class="mt-2 font-bold text-sea-dark">{primaryService.priceLabel}</p>
               <p class="mt-3 max-w-[620px] text-[1.02rem]">{primaryService.text}</p>
             </div>
             <a class:list={[outlineLink, 'whitespace-nowrap']} href={primaryService.href}>{homeContent.servicesSection.linkText}<Icon name="arrow-right" class="size-[18px]" /></a>
@@ -82,6 +84,7 @@ const [primaryService, ...secondaryServices] = homeContent.servicesSection.servi
               </a>
               <div class="min-w-0 self-center">
                 <h3 class="text-[1.18rem]"><a class="text-ink no-underline hover:text-sea-dark" href={service.href}>{service.title}</a></h3>
+                <p class="mt-1.5 text-small font-bold text-sea-dark">{service.priceLabel}</p>
                 <p class="mt-1.5 text-small leading-[1.55]">{service.text}</p>
                 <a class="mt-2 inline-flex items-center gap-2 text-link font-[750] text-sea-dark underline underline-offset-4" href={service.href}>{homeContent.servicesSection.linkText}<Icon name="arrow-right" class="size-4 transition-transform duration-200 motion-safe:group-hover/service:translate-x-1" /></a>
               </div>
@@ -89,6 +92,7 @@ const [primaryService, ...secondaryServices] = homeContent.servicesSection.servi
           ))}
         </div>
       </div>
+      <p class="mt-7 max-w-[800px] text-small">{pricingContent.note}</p>
     </div>
   </section>
 
@@ -131,7 +135,7 @@ const [primaryService, ...secondaryServices] = homeContent.servicesSection.servi
           <p class="mb-4 flex items-center gap-3 text-eyebrow font-extrabold uppercase tracking-[.12em] text-cyan"><span class="h-px w-10 bg-cyan" aria-hidden="true"></span>{homeContent.processSection.eyebrow}</p>
           <h2 id="process-heading" class="max-w-[650px] text-white">{homeContent.processSection.heading}</h2>
         </div>
-        <p class="max-w-[540px] justify-self-end text-[1.02rem] leading-[1.65] text-white/70 max-mobile:justify-self-start">Clear scope, direct communication, and a room-by-room plan from quote through completion.</p>
+        <p class="max-w-[540px] justify-self-end text-[1.02rem] leading-[1.65] text-white/70 max-mobile:justify-self-start">{homeContent.processSection.intro}</p>
       </div>
       <ol class="m-0 grid list-none grid-cols-3 gap-8 p-0 max-tablet:grid-cols-1 max-tablet:gap-8" role="list">
         {homeContent.processSection.steps.map((step) => (
@@ -161,6 +165,8 @@ const [primaryService, ...secondaryServices] = homeContent.servicesSection.servi
         <p class:list={[homeEyebrow, 'flex items-center gap-3']}><span class="h-px w-10 bg-sea" aria-hidden="true"></span>{homeContent.rentalSection.eyebrow}</p>
         <h2 id="rental-heading" class="max-w-[520px]">{homeContent.rentalSection.heading}</h2>
         <p class="mt-5 max-w-[520px] text-[1.06rem] leading-[1.68]">{homeContent.rentalSection.description}</p>
+        <p class="mt-5 font-bold text-sea-dark">{servicesDetail.vacationRental.priceLabel}</p>
+        <p class="mt-3 max-w-[520px] text-small">{pricingContent.rentalIncluded}</p>
         <a class:list={[outlineLink, 'mt-5']} href={homeContent.rentalSection.linkHref}>{homeContent.rentalSection.linkText} <Icon name="arrow-right" class="size-[18px]" /></a>
       </div>
     </div>

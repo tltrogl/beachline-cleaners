@@ -72,9 +72,6 @@ import { shell, section, homeEyebrow, lede, details, field, formGroup, formRow }
             </select>
           </div>
 
-          <details class:list={[details, "form-details-toggle mt-1"]}>
-            <summary class="inline-flex list-none items-center gap-1.5 text-compact-action font-bold text-sea-dark">{quoteContent.form.detailsToggle}</summary>
-            <div class="mt-5 grid gap-5">
               <div class={formRow}>
                 <div class={formGroup}>
                   <label class="text-label font-bold" for="beds_baths">{quoteContent.form.bedsBaths.label}</label>
@@ -89,6 +86,23 @@ import { shell, section, homeEyebrow, lede, details, field, formGroup, formRow }
                 <label class="text-label font-bold" for="frequency">{quoteContent.form.frequency.label}</label>
                 <input class={field} type="text" id="frequency" name="frequency" placeholder={quoteContent.form.frequency.placeholder} />
               </div>
+          {quoteContent.form.extras.map((group) => (
+            <fieldset class="m-0 min-w-0 border-0 p-0" data-service-extras={group.services.join(',')} aria-describedby={`${group.id}-hint`}>
+              <legend class="text-label font-bold">{group.label}</legend>
+              <p id={`${group.id}-hint`} class="mt-2 text-sm text-ink-soft">{group.hint}</p>
+              <div class="mt-3 grid grid-cols-2 gap-x-4 max-mobile:grid-cols-1">
+                {group.options.map((option) => (
+                  <label class="flex min-h-11 cursor-pointer items-center gap-3 py-2 text-label" for={option.name}>
+                    <input class="size-5 shrink-0 accent-sea-dark focus-visible:outline-3 focus-visible:outline-sea-dark focus-visible:outline-offset-2" type="checkbox" id={option.name} name={option.name} value={option.label} />
+                    <span>{option.label}</span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+          ))}
+          <details class:list={[details, "form-details-toggle mt-1"]}>
+            <summary class="inline-flex list-none items-center gap-1.5 text-compact-action font-bold text-sea-dark">{quoteContent.form.detailsToggle}</summary>
+            <div class="mt-5 grid gap-5">
               <div class={formGroup}>
                 <label class="text-label font-bold" for="notes">{quoteContent.form.notes.label}</label>
                 <textarea class={field} id="notes" name="notes" rows="3" placeholder={quoteContent.form.notes.placeholder}></textarea>
@@ -133,9 +147,27 @@ import { shell, section, homeEyebrow, lede, details, field, formGroup, formRow }
       }
     }
 
+    const service = form.querySelector<HTMLSelectElement>('#service');
+    const extraGroups = form.querySelectorAll<HTMLFieldSetElement>('[data-service-extras]');
+    const updateExtras = () => {
+      for (const group of extraGroups) {
+        const available = group.dataset.serviceExtras?.split(',').includes(service?.value ?? '') ?? false;
+        group.hidden = !available;
+        group.disabled = !available;
+        if (!available) {
+          for (const checkbox of group.querySelectorAll<HTMLInputElement>('input[type="checkbox"]')) {
+            checkbox.checked = false;
+          }
+        }
+      }
+    };
+    updateExtras();
+    service?.addEventListener('change', updateExtras);
+    window.addEventListener('pageshow', updateExtras);
+
     // Native validation still works without JavaScript. Show inline feedback only
     // after a field is left or the browser rejects an attempted submission.
-    const controls = form.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>('input:not([type="hidden"]):not([name="_gotcha"]), select, textarea');
+    const controls = form.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>('input:not([type="hidden"]):not([type="checkbox"]):not([name="_gotcha"]), select, textarea');
     for (const control of controls) {
       const error = document.createElement('p');
       error.id = `${control.id}-error`;

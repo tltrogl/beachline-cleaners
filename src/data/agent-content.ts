@@ -1,0 +1,110 @@
+import { site, homeContent, servicesDetail, servicePageDefaults, pricingContent, aboutContent, faqContent, serviceAreaContent, quoteContent } from './content';
+
+const section = (title: string, text: string) => `## ${title}\n\n${text}`;
+const bullets = (items: string[]) => items.map(item => `- ${item}`).join('\n');
+const questions = (items: { q: string; a: string }[]) => items.map(item => `### ${item.q}\n\n${item.a}`).join('\n\n');
+const rentalPricing = () => section(pricingContent.rentalHeading, [
+  `| ${pricingContent.propertyColumn} | ${pricingContent.priceColumn} |`,
+  '| --- | --- |',
+  ...servicesDetail.vacationRental.pricingRows!.map(row => `| ${row.property} | ${row.price} |`),
+].join('\n') + `\n\n${pricingContent.rentalIncluded}\n\n${pricingContent.note}`);
+
+// These paths match the public HTML pages. Quote confirmation is intentionally excluded.
+export const agentPages = [
+  { slug: 'index', path: '/', title: site.name },
+  ...homeContent.servicesSection.services.map(service => ({
+    slug: service.href.split('/').filter(Boolean).at(-1)!, path: service.href, title: service.title,
+  })),
+  { slug: 'about', path: '/about/', title: aboutContent.metaTitle },
+  { slug: 'service-area', path: '/service-area/', title: serviceAreaContent.metaTitle },
+  { slug: 'faq', path: '/faq/', title: faqContent.metaTitle },
+  { slug: 'quote', path: '/quote/', title: quoteContent.metaTitle },
+];
+
+const serviceBySlug = {
+  'residential-cleaning': servicesDetail.residential,
+  'deep-cleaning': servicesDetail.deep,
+  'move-out-cleaning': servicesDetail.moveOut,
+  'vacation-rental-cleaning': servicesDetail.vacationRental,
+  'commercial-cleaning': servicesDetail.commercial,
+};
+
+export function pageMarkdown(slug: string, origin: URL): string {
+  const page = agentPages.find(page => page.slug === slug);
+  if (!page) throw new Error(`Unknown Markdown page: ${slug}`);
+  const absolute = (path: string) => new URL(path, origin).href;
+  const contact = section('Contact and quotes', [
+    `Phone: [${site.phoneDisplay}](${site.phoneHref})`,
+    `Text: [${site.phoneDisplay}](${site.smsHref})`,
+    `Email: [${site.email}](mailto:${site.email})`,
+    `[Request a quote](${absolute('/quote/')})`,
+  ].join('\n\n'));
+  let body: string[];
+  if (Object.hasOwn(serviceBySlug, slug)) {
+    const service = serviceBySlug[slug as keyof typeof serviceBySlug];
+    body = [service.intro,
+      section(service.includedHeading ?? servicePageDefaults.includedHeading, `${service.includedIntro ?? servicePageDefaults.includedIntro}\n\n${bullets(service.included)}`),
+      section(servicePageDefaults.whoHeading, service.who),
+      section(servicePageDefaults.optionsHeading, `${service.optionsIntro}\n\n${bullets(service.options)}`),
+      section(servicePageDefaults.pricingHeading, `${service.priceLabel}\n\n${service.pricing}${service.priceLabel === 'Custom quote' ? '' : `\n\n${pricingContent.note}`}\n\n${bullets(service.pricingFactors)}`),
+      ...(service.pricingRows ? [rentalPricing()] : []),
+      section(servicePageDefaults.faqsHeading, questions(service.faqs)),
+    ];
+  } else if (slug === 'index') {
+    body = [homeContent.hero.title, homeContent.hero.description, homeContent.hero.serviceArea,
+      section(homeContent.standardCleanSection.heading, `${homeContent.standardCleanSection.intro}\n\n${homeContent.standardCleanSection.areas.map(area => `### ${area.title}\n\n${area.text}`).join('\n\n')}\n\n${homeContent.standardCleanSection.extrasHint}`),
+      section(homeContent.servicesSection.heading, `${homeContent.servicesSection.intro}\n\n` + homeContent.servicesSection.services.map(service =>
+        `- [${service.title}](${absolute(service.href)}): ${service.priceLabel}. ${service.text}`).join('\n') + `\n\n${pricingContent.note}`),
+      section(homeContent.processSection.heading, `${homeContent.processSection.intro}\n\n` + homeContent.processSection.steps.map(step => `### ${step.title}\n\n${step.text}`).join('\n\n')),
+      section(homeContent.rentalSection.heading, `${homeContent.rentalSection.description}\n\n${servicesDetail.vacationRental.priceLabel}\n\n${pricingContent.rentalIncluded}\n\n[${homeContent.rentalSection.linkText}](${absolute(homeContent.rentalSection.linkHref)})`),
+      section(homeContent.expectSection.heading, `${homeContent.expectSection.intro}\n\n${homeContent.expectSection.items.map(item => `### ${item.title}\n\n${item.text}`).join('\n\n')}`),
+      section('Service area', bullets(serviceAreaContent.areas)),
+    ];
+  } else if (slug === 'about') {
+    body = [aboutContent.hero.lede,
+      section(aboutContent.story.heading, [aboutContent.story.ownerIntro, ...aboutContent.story.paragraphs, bullets(aboutContent.story.checks)].join('\n\n')),
+    ];
+  } else if (slug === 'service-area') {
+    body = [serviceAreaContent.hero.lede, bullets(serviceAreaContent.areas),
+      section(serviceAreaContent.coverageHeading, serviceAreaContent.coverageIntro),
+      ...serviceAreaContent.services.map(service => section(service.title, `${service.text}\n\n[${service.linkText}](${absolute(service.href)})`)),
+      section(serviceAreaContent.cta.title, serviceAreaContent.cta.text),
+    ];
+  } else if (slug === 'faq') {
+    body = [faqContent.hero.lede, questions(faqContent.faqs)];
+  } else {
+    body = [quoteContent.lede,
+      section(quoteContent.aside.detailsHeading, bullets(quoteContent.aside.detailsList)),
+      section('Quote form details', bullets([
+        quoteContent.form.name.label, quoteContent.form.phone.label,
+        quoteContent.form.email.label, quoteContent.form.location.label,
+        quoteContent.form.service.label, quoteContent.form.bedsBaths.label,
+        quoteContent.form.size.label, quoteContent.form.frequency.label,
+        quoteContent.form.notes.label,
+      ]) + `\n\n${quoteContent.form.notes.placeholder}`),
+      section('Available services', bullets(quoteContent.form.service.options.map(option => option.label))),
+      ...quoteContent.form.extras.map(group => section(group.label, `${group.hint}\n\n${bullets(group.options.map(option => option.label))}`)),
+      section('Submitting a request', `Use the [quote form](${absolute(page.path)}) to send a request. Scope, availability, and pricing are confirmed afterward.`),
+      quoteContent.form.privacyDisclosure,
+    ];
+  }
+  return [`---\ntitle: ${JSON.stringify(`${page.title} | ${site.name}`)}\nurl: ${JSON.stringify(absolute(page.path))}\n---`,
+    `# ${page.title}`, `Source: [${page.title}](${absolute(page.path)})`, ...body, contact,
+  ].join('\n\n') + '\n';
+}
+
+export function siteGuide(origin: URL): string {
+  const absolute = (path: string) => new URL(path, origin).href;
+  return [
+    `# ${site.name}`, `> ${homeContent.metaDescription}`,
+    section('Contact', `Phone: ${site.phoneDisplay}\n\nEmail: ${site.email}`),
+    section('Service area', serviceAreaContent.coverageIntro),
+    section('Website pages', agentPages.map(page => `- [${page.title}](${absolute(page.path)})`).join('\n')),
+    section('Markdown versions', agentPages.map(page => `- [${page.title}](${absolute(`/markdown/${page.slug}.md`)})`).join('\n')),
+    section('Structured resources', [
+      `- [Business and service information](${absolute('/site-info.json')})`,
+      `- [Sitemap](${absolute('/sitemap-index.xml')})`,
+      `- [API documentation](${absolute('/api-docs.txt')})`,
+    ].join('\n')),
+  ].join('\n\n') + '\n';
+}
