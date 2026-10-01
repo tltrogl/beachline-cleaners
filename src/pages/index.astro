@@ -54,7 +54,7 @@ const [primaryService] = homeContent.servicesSection.services;
     <div class={shell}>
       <div class="mb-10 grid grid-cols-[.65fr_1fr] items-end gap-10 max-mobile:grid-cols-1 max-mobile:gap-3">
         <div>
-          <p class:list={[homeEyebrow, 'flex items-center gap-3']}><span class="h-px w-10 bg-sea" aria-hidden="true"></span>What we do</p>
+          <p class:list={[homeEyebrow, 'flex items-center gap-3']}><span class="h-px w-10 bg-sea" aria-hidden="true"></span>{homeContent.servicesSection.eyebrow}</p>
           <h2 id="services-heading" class="max-w-[560px]">{homeContent.servicesSection.heading}</h2>
         </div>
         <p class="max-w-[570px] justify-self-end text-[1.04rem] leading-[1.65] max-mobile:justify-self-start">{homeContent.servicesSection.intro}</p>
@@ -66,29 +66,25 @@ const [primaryService] = homeContent.servicesSection.services;
             <img class="aspect-[1.12] w-full object-cover object-center transition-transform duration-500 motion-safe:group-hover/service-image:scale-[1.015] max-mobile:aspect-[1.55]" src={primaryService.image} alt={primaryService.imageAlt} width="900" height="800" loading="lazy" />
           </a>
           <div class="mt-5 border-l-4 border-teal pl-5">
-            <p class="text-eyebrow font-extrabold uppercase tracking-[.12em] text-teal">Most common starting point</p>
-            <p class="mt-2 max-w-[470px] text-[1rem] leading-[1.6]">Routine upkeep starts with Home Cleaning. If the property needs heavier detail work, a move clean, a guest turnover, or workplace service, choose the matching service.</p>
+            <p class="text-eyebrow font-extrabold uppercase tracking-[.12em] text-teal">{homeContent.servicesSection.featuredLabel}</p>
+            <p class="mt-2 max-w-[470px] text-[1rem] leading-[1.6]">{homeContent.servicesSection.featuredIntro}</p>
           </div>
         </div>
 
         <div class="border-y border-line" role="list">
-          {homeContent.servicesSection.services.map((service, index) => {
-            const serviceLabels = ['Regular upkeep', 'Catch-up clean', 'Moving', 'Guest turnovers', 'Workspaces'];
-            return (
-              <article class="group/service grid grid-cols-[38px_minmax(0,1fr)_auto] items-start gap-x-5 border-b border-line py-5 last:border-b-0 max-mobile:grid-cols-[32px_1fr] max-mobile:gap-x-3" role="listitem">
-                <span class="pt-1 text-[.75rem] font-extrabold tracking-[.12em] text-teal">{String(index + 1).padStart(2, '0')}</span>
+          {homeContent.servicesSection.services.map((service) => (
+              <article class="group/service grid grid-cols-[minmax(0,1fr)_auto] items-start gap-x-5 border-b border-line py-5 last:border-b-0 max-mobile:grid-cols-1" role="listitem">
                 <div class="min-w-0">
-                  <p class="mb-1 text-eyebrow font-extrabold uppercase tracking-[.1em] text-ink-soft">{serviceLabels[index]}</p>
+                  <p class="mb-1 text-eyebrow font-extrabold uppercase tracking-[.1em] text-ink-soft">{service.label}</p>
                   <h3 class="text-[1.23rem]"><a class="text-ink no-underline hover:text-sea-dark" href={service.href}>{service.title}</a></h3>
                   <p class="mt-1.5 text-small leading-[1.55]">{service.text}</p>
                 </div>
-                <div class="min-w-[132px] text-right max-mobile:col-start-2 max-mobile:mt-3 max-mobile:min-w-0 max-mobile:text-left">
+                <div class="min-w-[132px] text-right max-mobile:mt-3 max-mobile:min-w-0 max-mobile:text-left">
                   <p class="text-small font-bold text-sea-dark">{service.priceLabel}</p>
                   <a class="mt-2 inline-flex items-center gap-2 text-link font-[750] text-sea-dark underline underline-offset-4" href={service.href}>{homeContent.servicesSection.linkText}<Icon name="arrow-right" class="size-4 transition-transform duration-200 motion-safe:group-hover/service:translate-x-1" /></a>
                 </div>
               </article>
-            );
-          })}
+          ))}
         </div>
       </div>
       <p class="mt-7 max-w-[800px] text-small">{pricingContent.note}</p>

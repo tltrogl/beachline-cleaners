@@ -11,7 +11,7 @@ const deepServiceCard = homeContent.servicesSection.services.find((service) => s
 const differenceFaq = content.faqs[0];
 const remainingFaqs = content.faqs.slice(1);
 ---
-<BaseLayout title={`${content.title} | ${site.name}`} description={content.intro} quoteHref={content.quoteHref}>
+<BaseLayout title={`${content.metaTitle} | ${site.name}`} description={content.metaDescription} quoteHref={content.quoteHref}>
   <section class="bg-mist pt-12 pb-14 max-mobile:pt-7 max-mobile:pb-9" aria-labelledby="deep-hero-title" slot="hero">
     <div class:list={[shell, "grid grid-cols-[.92fr_1.08fr] items-center gap-14 max-tablet:gap-8 max-mobile:grid-cols-1 max-mobile:gap-7"]}>
       <div>
@@ -87,8 +87,7 @@ const remainingFaqs = content.faqs.slice(1);
 
       <div class="border-y border-line/90">
         {content.included.map((item, index) => (
-          <div class="grid grid-cols-[48px_1fr] items-start border-b border-line/90 py-5 last:border-b-0">
-            <span class="pt-0.5 text-[.86rem] font-extrabold tabular-nums text-teal">0{index + 1}</span>
+          <div class="border-b border-line/90 py-5 last:border-b-0">
             <p class:list={["text-[1.04rem] leading-[1.58]", index === 0 && "font-bold text-ink"]}>{item}</p>
           </div>
         ))}

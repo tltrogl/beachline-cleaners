@@ -8,7 +8,7 @@ import { site, servicesDetail, servicePageDefaults, pricingContent, withBase } f
 
 const content = servicesDetail.residential;
 ---
-<BaseLayout title={`${content.title} | ${site.name}`} description={content.intro} quoteHref={content.quoteHref}>
+<BaseLayout title={`${content.metaTitle} | ${site.name}`} description={content.metaDescription} quoteHref={content.quoteHref}>
   <section class="bg-mist pt-12 pb-14 max-mobile:pt-7 max-mobile:pb-9" aria-labelledby="hero-title" slot="hero">
     <div class:list={[shell, "grid grid-cols-[.96fr_1.04fr] items-center gap-14 max-tablet:gap-8 max-mobile:grid-cols-1 max-mobile:gap-7"]}>
       <div>

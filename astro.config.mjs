@@ -8,7 +8,7 @@ export default defineConfig({
     format: 'directory'
   },
   trailingSlash: 'always',
-  integrations: [sitemap({ filter: (page) => new URL(page).pathname !== '/quote-success/' })],
+  integrations: [sitemap({ filter: (page) => !['/quote-success/', '/404/', '/404.html'].includes(new URL(page).pathname) })],
   vite: { plugins: [tailwindcss()] }
 });
 

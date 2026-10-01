@@ -57,12 +57,14 @@ const hideMobileBar = bodyClass.includes('no-mobile-bar');
     {!noindex && <link rel="alternate" type="text/markdown" href={withBase(`/markdown/${Astro.url.pathname.split('/').filter(Boolean).at(-1) ?? 'index'}.md`)} title="Markdown version" />}
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
-      "@type": "HouseCleaningService",
+      "@type": "LocalBusiness",
+      "@id": new URL('/#business', Astro.site).toString(),
+      "url": new URL('/', Astro.site).toString(),
       "name": site.name,
       "telephone": site.phoneHref.replace('tel:', ''),
       "areaServed": site.areaServed,
       "priceRange": site.priceRange,
-      "description": description
+      "description": site.defaultMetaDescription
     })} />
   </head>
   <body class:list={["group/site", bodyClass, bodyClass.includes("island-home") && "bg-paper", !hideMobileBar && "max-mobile:pb-[calc(56px+env(safe-area-inset-bottom))]"]}>

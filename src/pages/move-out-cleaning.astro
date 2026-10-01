@@ -10,7 +10,7 @@ const emptyPropertyFaq = content.faqs[0];
 const depositFaq = content.faqs[1];
 const timingFaq = content.faqs[2];
 ---
-<BaseLayout title={`${content.title} | ${site.name}`} description={content.intro} quoteHref={content.quoteHref}>
+<BaseLayout title={`${content.metaTitle} | ${site.name}`} description={content.metaDescription} quoteHref={content.quoteHref}>
   <section class="bg-mist pt-12 pb-14 max-mobile:pt-7 max-mobile:pb-9" aria-labelledby="move-hero-title" slot="hero">
     <div class:list={[shell, "grid grid-cols-[.94fr_1.06fr] items-center gap-14 max-tablet:gap-8 max-mobile:grid-cols-1 max-mobile:gap-7"]}>
       <div>
@@ -56,17 +56,17 @@ const timingFaq = content.faqs[2];
 
       <div class="mt-10 grid grid-cols-3 border-y border-line max-tablet:grid-cols-1 max-tablet:divide-y max-tablet:divide-line">
         <article class="py-7 pr-9 max-tablet:pr-0">
-          <p class="mb-2 text-eyebrow font-extrabold uppercase tracking-[.11em] text-teal">01 · Empty property</p>
+          <p class="mb-2 text-eyebrow font-extrabold uppercase tracking-[.11em] text-teal">Empty property</p>
           <h3>{emptyPropertyFaq.q}</h3>
           <p class="mt-3 text-[1rem] leading-[1.65]">{emptyPropertyFaq.a}</p>
         </article>
         <article class="border-l border-line px-9 py-7 max-tablet:border-l-0 max-tablet:px-0">
-          <p class="mb-2 text-eyebrow font-extrabold uppercase tracking-[.11em] text-teal">02 · Requirements</p>
+          <p class="mb-2 text-eyebrow font-extrabold uppercase tracking-[.11em] text-teal">Requirements</p>
           <h3>Have a checklist?</h3>
           <p class="mt-3 text-[1rem] leading-[1.65]">Send any landlord, buyer, or property-manager checklist with your quote request so we can confirm which tasks are covered.</p>
         </article>
         <article class="border-l border-line py-7 pl-9 max-tablet:border-l-0 max-tablet:pl-0">
-          <p class="mb-2 text-eyebrow font-extrabold uppercase tracking-[.11em] text-teal">03 · Timing</p>
+          <p class="mb-2 text-eyebrow font-extrabold uppercase tracking-[.11em] text-teal">Timing</p>
           <h3>{timingFaq.q}</h3>
           <p class="mt-3 text-[1rem] leading-[1.65]">{timingFaq.a}</p>
         </article>
@@ -85,9 +85,8 @@ const timingFaq = content.faqs[2];
           <h2 id="scope-heading" class="max-w-[520px]">What we clean once the rooms are clear.</h2>
         </div>
         <div class="border-y border-line/90">
-          {content.included.map((item, index) => (
-            <div class="grid grid-cols-[46px_1fr] items-start border-b border-line/90 py-5 last:border-b-0">
-              <span class="pt-0.5 text-[.86rem] font-extrabold tabular-nums text-teal">0{index + 1}</span>
+          {content.included.map((item) => (
+            <div class="border-b border-line/90 py-5 last:border-b-0">
               <p class="text-[1.04rem] leading-[1.58]">{item}</p>
             </div>
           ))}

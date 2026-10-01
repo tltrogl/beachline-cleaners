@@ -11,7 +11,7 @@ const sameDayFaq = content.faqs[2];
 const checklistFaq = content.faqs[3];
 const accessFaq = content.faqs[4];
 ---
-<BaseLayout title={`${content.title} | ${site.name}`} description={content.intro} quoteHref={content.quoteHref}>
+<BaseLayout title={`${content.metaTitle} | ${site.name}`} description={content.metaDescription} quoteHref={content.quoteHref}>
   <section class="border-b border-line bg-white pt-12 pb-14 max-mobile:pt-7 max-mobile:pb-9" aria-labelledby="rental-hero-title" slot="hero">
     <div class:list={[shell, "grid grid-cols-[.9fr_1.1fr] items-center gap-14 max-tablet:gap-8 max-mobile:grid-cols-1 max-mobile:gap-7"]}>
       <div>
@@ -81,8 +81,7 @@ const accessFaq = content.faqs[4];
         <h2 id="turnover-scope-heading" class="max-w-[560px]">Clean, reset, and report before the next guest arrives.</h2>
         <div class="mt-8 border-y border-line">
           {content.included.map((item, index) => (
-            <div class="grid grid-cols-[48px_1fr] items-start border-b border-line py-5 last:border-b-0">
-              <span class="pt-0.5 text-[.82rem] font-extrabold tabular-nums text-teal">0{index + 1}</span>
+            <div class="border-b border-line py-5 last:border-b-0">
               <p class:list={["text-[1.04rem] leading-[1.58]", index === 0 && "font-bold text-ink"]}>{item}</p>
             </div>
           ))}

@@ -25,7 +25,7 @@ import { shell, section, homeEyebrow, lede, details, field, formGroup, formRow }
         </div>
         
         <form class="quote-form mt-7 grid max-w-[600px] gap-5" action={quoteContent.form.formspreeEndpoint} method="POST" data-submitting-button={quoteContent.form.submittingButton} data-submitting-status={quoteContent.form.submittingStatus}>
-          <input type="hidden" name="_next" value="https://beachlinecleaners.com/quote-success/" />
+          <input type="hidden" name="_next" value={new URL(quoteContent.form.actionAttr, Astro.site).href} />
           <input type="hidden" name="_subject" value={quoteContent.form.emailSubject} />
           <div class="hidden" aria-hidden="true">
             <label>{quoteContent.form.honeypotLabel}</label>

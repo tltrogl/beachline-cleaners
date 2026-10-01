@@ -8,7 +8,7 @@ import { servicePageDefaults, servicesDetail, site } from '../data/content';
 
 const content = servicesDetail.commercial;
 ---
-<BaseLayout title={`${content.title} | ${site.name}`} description={content.intro} quoteHref={content.quoteHref}>
+<BaseLayout title={`${content.metaTitle} | ${site.name}`} description={content.metaDescription} quoteHref={content.quoteHref}>
   <section class="border-b border-line bg-white pt-12 pb-14 max-mobile:pt-7 max-mobile:pb-9" aria-labelledby="commercial-hero-title" slot="hero">
     <div class:list={[shell, "grid grid-cols-[.9fr_1.1fr] items-center gap-14 max-tablet:gap-8 max-mobile:grid-cols-1 max-mobile:gap-7"]}>
       <div>
@@ -67,14 +67,13 @@ const content = servicesDetail.commercial;
         <h2 id="commercial-scope-heading">{content.includedHeading ?? 'What routine commercial cleaning can include'}</h2>
         <p class="mt-5 max-w-[470px] text-[1.04rem] leading-[1.68]">{content.includedIntro ?? 'We’ll agree on the checklist for the facility before service starts.'}</p>
       </div>
-      <ol class="m-0 list-none border-y border-line bg-white px-7 max-mobile:px-5" role="list">
+      <ul class="m-0 list-none border-y border-line bg-white px-7 max-mobile:px-5" role="list">
         {content.included.map((item, index) => (
-          <li class="grid grid-cols-[48px_1fr] border-b border-line py-[17px] last:border-b-0">
-            <span class="text-eyebrow font-extrabold text-teal">{String(index + 1).padStart(2, '0')}</span>
+          <li class="border-b border-line py-[17px] last:border-b-0">
             <p class:list={["text-[1rem] leading-[1.6]", index === 0 && "font-[750] text-ink"]}>{item}</p>
           </li>
         ))}
-      </ol>
+      </ul>
     </div>
   </section>
 

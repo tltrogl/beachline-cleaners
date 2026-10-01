@@ -1,4 +1,6 @@
 export interface ServiceDetail {
+  metaTitle: string;
+  metaDescription: string;
   eyebrow: string;
   title: string;
   intro: string;
@@ -156,6 +158,8 @@ export const cleaningVisitGuidance: Record<'preparation' | 'boundaries', { q: st
 
 export const servicesDetail: Record<'residential' | 'deep' | 'moveOut' | 'vacationRental' | 'commercial', ServiceDetail> = {
   residential: {
+    metaTitle: 'House Cleaning in Brevard County',
+    metaDescription: 'One-time, weekly, and biweekly house cleaning in Brevard County. Kitchens, bathrooms, floors, dusting, and living areas, with scope and price confirmed before booking.',
     priceLabel: 'From $125 per visit',
     quoteHref: `${withBase('/quote')}?service=residential`,
     eyebrow: 'Home cleaning',
@@ -200,6 +204,8 @@ export const servicesDetail: Record<'residential' | 'deep' | 'moveOut' | 'vacati
     ],
   },
   deep: {
+    metaTitle: 'Deep Cleaning in Brevard County',
+    metaDescription: 'Deep cleaning for homes in Brevard County, including baseboards, trim, fixtures, and reachable detail work. Tell us what needs attention for a clear quote.',
     priceLabel: 'From $275 per visit',
     quoteHref: `${withBase('/quote')}?service=deep`,
     eyebrow: 'Deep cleaning',
@@ -242,6 +248,8 @@ export const servicesDetail: Record<'residential' | 'deep' | 'moveOut' | 'vacati
     ],
   },
   moveOut: {
+    metaTitle: 'Move-In / Move-Out Cleaning in Brevard County',
+    metaDescription: 'Cleaning for empty homes in Brevard County before a move, inspection, closing, or handoff. Empty cabinet and drawer interiors included; timing confirmed before booking.',
     priceLabel: 'From $350 per visit',
     quoteHref: `${withBase('/quote')}?service=move`,
     eyebrow: 'Move-in / move-out',
@@ -282,6 +290,8 @@ export const servicesDetail: Record<'residential' | 'deep' | 'moveOut' | 'vacati
     ],
   },
   vacationRental: {
+    metaTitle: 'Vacation Rental Cleaning in Brevard County',
+    metaDescription: 'Vacation rental turnovers in Brevard County around checkout and check-in windows. Cleaning, reset, and beds with provided clean linens; laundry by arrangement.',
     priceLabel: 'From $125 per turnover',
     pricingRows: [
       { property: 'Studio / 1 bedroom / 1 bathroom', price: '$125' },
@@ -337,6 +347,8 @@ export const servicesDetail: Record<'residential' | 'deep' | 'moveOut' | 'vacati
     ],
   },
   commercial: {
+    metaTitle: 'Commercial Cleaning in Brevard County',
+    metaDescription: 'Cleaning for small offices, retail spaces, and shared work areas in Brevard County. Agree on the checklist, access, schedule, and price before service begins.',
     priceLabel: 'Custom quote',
     quoteHref: `${withBase('/quote')}?service=commercial`,
     eyebrow: 'Commercial cleaning',
@@ -393,7 +405,7 @@ export const servicesDetail: Record<'residential' | 'deep' | 'moveOut' | 'vacati
 
 export const homeContent = {
   metaTitleSuffix: 'House Cleaning in Brevard County',
-  metaDescription: 'House cleaning, deep cleaning, move-in/out service, vacation-rental turnovers, and commercial cleaning in Cocoa Beach and surrounding Brevard County.',
+  metaDescription: 'House cleaning, deep cleaning, move-in/move-out service, vacation-rental turnovers, and commercial cleaning across Brevard County and the Space Coast.',
   hero: {
     imageSrc: withBase('/images/cleaner-counter.webp'),
     imageWidth: 1280,
@@ -424,8 +436,9 @@ export const homeContent = {
     ],
   },
   servicesSection: {
-    eyebrow: 'Cleaning services',
-    featuredLabel: 'For your home',
+    eyebrow: 'What we do',
+    featuredLabel: 'Most common starting point',
+    featuredIntro: 'Routine upkeep starts with Home Cleaning. If the property needs heavier detail work, a move clean, a guest turnover, or workplace service, choose the matching service.',
     heading: 'Choose the cleaning you need.',
     intro: 'Regular home cleaning, deeper resets, move cleans, rental turnovers, and small commercial spaces—start with the service that best matches the job.',
     linkText: 'See service details',
@@ -434,6 +447,7 @@ export const homeContent = {
         image: servicesDetail.residential.image,
         imageAlt: servicesDetail.residential.imageAlt,
         title: 'Home Cleaning',
+        label: 'Regular upkeep',
         priceLabel: servicesDetail.residential.priceLabel,
         href: withBase('/residential-cleaning'),
         text: 'Routine cleaning for kitchens, bathrooms, floors, dusting, and living areas—one time or on a regular schedule.',
@@ -442,6 +456,7 @@ export const homeContent = {
         image: withBase('/images/deep-cleaning-kitchen.jpg'),
         imageAlt: 'Gloved hand wiping a kitchen stovetop during a deep clean',
         title: 'Deep Cleaning',
+        label: 'Catch-up clean',
         priceLabel: servicesDetail.deep.priceLabel,
         href: withBase('/deep-cleaning'),
         text: 'A more detailed clean for buildup, baseboards, trim, fans, window tracks, fixtures, and other reachable detail work.',
@@ -450,6 +465,7 @@ export const homeContent = {
         image: withBase('/images/move-out-empty-room.jpg'),
         imageAlt: 'Freshly cleaned empty room ready for move-in or move-out',
         title: 'Move-In / Move-Out',
+        label: 'Moving',
         priceLabel: servicesDetail.moveOut.priceLabel,
         href: withBase('/move-out-cleaning'),
         text: 'Detailed empty-home cleaning for a move, inspection, handoff, listing, or closing—including empty cabinet and drawer interiors.',
@@ -458,6 +474,7 @@ export const homeContent = {
         image: withBase('/images/turnover-active.jpg'),
         imageAlt: 'Cleaner resetting a bed during a vacation rental turnover',
         title: 'Vacation Rentals',
+        label: 'Guest turnovers',
         priceLabel: servicesDetail.vacationRental.priceLabel,
         href: withBase('/vacation-rental-cleaning'),
         text: 'Cleaning, reset, completion photos, and condition notes between guest stays, built around checkout and check-in times.',
@@ -466,6 +483,7 @@ export const homeContent = {
         image: servicesDetail.commercial.image,
         imageAlt: servicesDetail.commercial.imageAlt,
         title: 'Commercial Cleaning',
+        label: 'Workspaces',
         priceLabel: servicesDetail.commercial.priceLabel,
         href: withBase('/commercial-cleaning'),
         text: 'Routine cleaning for small offices, professional suites, retail spaces, restrooms, and breakrooms on an agreed checklist and schedule.',
@@ -538,7 +556,7 @@ export const homeContent = {
 };
 
 export const aboutContent = {
-  metaTitle: 'About',
+  metaTitle: 'About Our Cleaning Service',
   metaDescription: 'Learn about Beachline Cleaners, an owner-operated cleaning service for homes, vacation rentals, and workspaces in Brevard County.',
   hero: {
     eyebrow: 'About',
@@ -565,8 +583,8 @@ export const aboutContent = {
 };
 
 export const faqContent = {
-  metaTitle: 'FAQ',
-  metaDescription: 'Answers to common questions about our quotes, supplies, recurring cleaning, and vacation rental turnovers.',
+  metaTitle: 'Cleaning FAQs',
+  metaDescription: 'Answers about cleaning in Brevard County: quotes, pricing, supplies, preparation, recurring visits, and vacation-rental turnovers.',
   hero: {
     eyebrow: 'FAQ',
     title: 'Questions before you book?',
@@ -632,7 +650,7 @@ export const faqContent = {
 };
 
 export const serviceAreaContent = {
-  metaTitle: 'Service Area',
+  metaTitle: 'Cleaning Service Areas in Brevard County',
   metaDescription: 'View our cleaning service area covering Cocoa, Cocoa Beach, Cape Canaveral, Merritt Island, Rockledge, Melbourne, Palm Bay, Viera, and Titusville.',
   hero: {
     eyebrow: 'Service area',
@@ -680,7 +698,7 @@ export const serviceAreaContent = {
 };
 
 export const quoteContent = {
-  metaTitle: 'Get a Quote',
+  metaTitle: 'Request a Cleaning Quote',
   metaDescription: 'Request a cleaning quote for homes, move-in/move-out service, vacation rentals, or commercial spaces in Brevard County.',
   eyebrow: 'Request a quote',
   title: 'Get a cleaning quote.',

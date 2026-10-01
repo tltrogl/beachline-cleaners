@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+import { site, withBase } from '../data/content';
+import { shell, section, lede, phone } from '../styles/ui';
+---
+<BaseLayout title={`Page Not Found | ${site.name}`} description="This page could not be found. Find Beachline cleaning services or get a quote." noindex>
+  <section class={section}>
+    <div class:list={[shell, 'max-w-[640px]']}>
+      <p class="mb-3 text-eyebrow font-extrabold text-sea-dark">Page not found</p>
+      <h1 class="mb-4 text-[clamp(2rem,4vw,3rem)]">We couldn’t find that page.</h1>
+      <p class={lede}>The link may have changed. Head to the homepage to find our cleaning services, or get a quote for what you need.</p>
+      <div class="mt-8 flex flex-wrap items-center gap-4">
+        <Button href={withBase('/')}>Go to Homepage</Button>
+        <Button href={withBase('/quote')} variant="secondary">Get a Quote</Button>
+        <a class={phone} href={site.phoneHref}>Call {site.phoneDisplay}</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
