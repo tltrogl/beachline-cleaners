@@ -19,7 +19,7 @@ import { shell, section, homeEyebrow, lede, phone } from '../styles/ui';
         
         <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
           <Button href={quoteSuccessContent.returnButtonHref}>{quoteSuccessContent.returnButtonText}</Button>
-          <a class={phone} href={site.phoneHref}>Call {site.phoneDisplay}</a>
+          <a class={phone} href={site.phoneHref}>{quoteSuccessContent.callPrefix}{site.phoneDisplay}</a>
         </div>
       </div>
     </div>

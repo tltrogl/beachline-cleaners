@@ -19,7 +19,19 @@ import { site, faqContent } from '../data/content';
         {faqContent.faqs.map((faq) => (
           <details class={details} open={faq.open}>
             <summary class={summary}>{faq.q}</summary>
-            <p class="mt-3">{faq.a}</p>
+            {'prices' in faq && faq.prices ? (
+              <div class="mt-4">
+                <dl class="divide-y divide-line">
+                  {faq.prices.map((row) => (
+                    <div class="grid grid-cols-[1fr_auto] items-baseline gap-4 py-3 max-[400px]:grid-cols-1 max-[400px]:gap-1">
+                      <dt class="font-bold">{row.service}</dt>
+                      <dd class="m-0 text-sea-dark tabular-nums">{row.price}</dd>
+                    </div>
+                  ))}
+                </dl>
+                <p class="mt-4">{faq.priceNote}</p>
+              </div>
+            ) : <p class="mt-3">{faq.a}</p>}
           </details>
         ))}
       </div>

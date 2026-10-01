@@ -6,22 +6,27 @@ import Icon from '../components/Icon.astro';
 import { shell, section, homeEyebrow, lede, details, field, formGroup, formRow } from '../styles/ui';
 ---
 <BaseLayout bodyClass="island-home no-mobile-bar page-quote" title={`${quoteContent.metaTitle} | ${site.name}`} description={quoteContent.metaDescription}>
-  <section class:list={[section, "bg-sand/45"]}>
+  <section class:list={[section, "bg-mist/50"]}>
     <div class:list={[shell, "grid grid-cols-[1fr_340px] items-start gap-[70px] max-tablet:grid-cols-1"]}>
       <div>
         <p class:list={[homeEyebrow, 'flex items-center gap-3']}><span class="h-px w-10 bg-sea" aria-hidden="true"></span>{quoteContent.eyebrow}</p>
-        <h1 class="mb-4 max-w-[720px] text-[clamp(2.8rem,5vw,4.25rem)] font-black leading-[1.02] tracking-[-.035em]">{quoteContent.title}</h1>
+        <h1 class="mb-4 max-w-[720px] text-[clamp(2rem,3.5vw,3rem)] font-black leading-[1.12] tracking-[-.035em]">{quoteContent.title}</h1>
         <p class:list={[lede, "mt-4"]}>{quoteContent.lede}</p>
 
+        <div class="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 text-small">
+          <span>Prefer to talk it through?</span>
+          <a class="inline-flex min-h-11 items-center font-bold text-sea-dark underline" href={site.phoneHref}>Call {site.phoneDisplay}</a>
+          <a class="inline-flex min-h-11 items-center font-bold text-sea-dark underline" href={site.smsHref}>Text us</a>
+        </div>
         <div class="mt-5 flex flex-wrap gap-x-4 gap-y-2 text-[.86rem] font-[750] text-sea-dark" aria-label={quoteContent.trustPillsAriaLabel}>
           {quoteContent.trustPills.map((pill) => (
             <span><span aria-hidden="true">✓ </span>{pill}</span>
           ))}
         </div>
         
-        <form class="quote-form mt-7 grid max-w-[600px] gap-5" action={quoteContent.form.formspreeEndpoint} method="POST">
+        <form class="quote-form mt-7 grid max-w-[600px] gap-5" action={quoteContent.form.formspreeEndpoint} method="POST" data-submitting-button={quoteContent.form.submittingButton} data-submitting-status={quoteContent.form.submittingStatus}>
           <input type="hidden" name="_next" value="https://beachlinecleaners.com/quote-success/" />
-          <input type="hidden" name="_subject" value="New Quote Request from beachlinecleaners.com" />
+          <input type="hidden" name="_subject" value={quoteContent.form.emailSubject} />
           <div class="hidden" aria-hidden="true">
             <label>{quoteContent.form.honeypotLabel}</label>
             <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
@@ -72,27 +77,35 @@ import { shell, section, homeEyebrow, lede, details, field, formGroup, formRow }
             </select>
           </div>
 
-              <div class={formRow}>
-                <div class={formGroup}>
-                  <label class="text-label font-bold" for="beds_baths">{quoteContent.form.bedsBaths.label}</label>
-                  <input class={field} type="text" id="beds_baths" name="beds_baths" placeholder={quoteContent.form.bedsBaths.placeholder} />
-                </div>
-                <div class={formGroup}>
-                  <label class="text-label font-bold" for="size">{quoteContent.form.size.label}</label>
-                  <input class={field} type="text" id="size" name="size" placeholder={quoteContent.form.size.placeholder} />
-                </div>
+          <div class={formGroup}>
+            <label class="text-label font-bold" for="size">{quoteContent.form.size.label}</label>
+            <input class={field} type="text" id="size" name="size" placeholder={quoteContent.form.size.placeholder} />
+          </div>
+          <noscript><p>Use the fields for your service below and leave the others blank. Empty cabinet interiors are included with move cleaning.</p></noscript>
+          {quoteContent.form.serviceFields.map((group) => (
+            <fieldset class="m-0 min-w-0 border-0 p-0" data-service-fields={group.services.join(',')}>
+              <legend class="mb-3 text-label font-bold">{group.legend}</legend>
+              <div class="grid gap-4">
+                {group.fields.map((item) => (
+                  <div class={formGroup}>
+                    <label class="text-label" for={item.name}>{item.label}</label>
+                    <input class={field} type="text" id={item.name} name={item.name} placeholder={item.placeholder} />
+                  </div>
+                ))}
               </div>
+            </fieldset>
+          ))}
               <div class={formGroup}>
                 <label class="text-label font-bold" for="frequency">{quoteContent.form.frequency.label}</label>
                 <input class={field} type="text" id="frequency" name="frequency" placeholder={quoteContent.form.frequency.placeholder} />
               </div>
           {quoteContent.form.extras.map((group) => (
-            <fieldset class="m-0 min-w-0 border-0 p-0" data-service-extras={group.services.join(',')} aria-describedby={`${group.id}-hint`}>
+            <fieldset class="m-0 min-w-0 border-0 p-0" data-service-fields={group.services.join(',')} aria-describedby={`${group.id}-hint`}>
               <legend class="text-label font-bold">{group.label}</legend>
               <p id={`${group.id}-hint`} class="mt-2 text-sm text-ink-soft">{group.hint}</p>
               <div class="mt-3 grid grid-cols-2 gap-x-4 max-mobile:grid-cols-1">
                 {group.options.map((option) => (
-                  <label class="flex min-h-11 cursor-pointer items-center gap-3 py-2 text-label" for={option.name}>
+                  <label class="flex min-h-11 cursor-pointer items-center gap-3 py-2 text-label" for={option.name} data-service-option={'services' in option ? option.services?.join(',') : group.services.join(',')}>
                     <input class="size-5 shrink-0 accent-sea-dark focus-visible:outline-3 focus-visible:outline-sea-dark focus-visible:outline-offset-2" type="checkbox" id={option.name} name={option.name} value={option.label} />
                     <span>{option.label}</span>
                   </label>
@@ -116,7 +129,7 @@ import { shell, section, homeEyebrow, lede, details, field, formGroup, formRow }
         </form>
       </div>
 
-      <aside class="sticky top-[110px] border-y border-line bg-white/70 px-6 py-7 max-tablet:static">
+      <aside class="sticky top-[110px] border-y border-line bg-white/70 px-6 py-7 max-tablet:hidden">
         <h3 class="mb-3">{quoteContent.aside.heading}</h3>
         <p class="mb-5 mt-4">{quoteContent.aside.description}</p>
         <div class="grid gap-2.5">
@@ -148,22 +161,21 @@ import { shell, section, homeEyebrow, lede, details, field, formGroup, formRow }
     }
 
     const service = form.querySelector<HTMLSelectElement>('#service');
-    const extraGroups = form.querySelectorAll<HTMLFieldSetElement>('[data-service-extras]');
-    const updateExtras = () => {
-      for (const group of extraGroups) {
-        const available = group.dataset.serviceExtras?.split(',').includes(service?.value ?? '') ?? false;
+    const serviceGroups = form.querySelectorAll<HTMLElement>('[data-service-fields], [data-service-option]');
+    const updateServiceFields = () => {
+      for (const group of serviceGroups) {
+        const services = group.dataset.serviceFields ?? group.dataset.serviceOption ?? '';
+        const available = services.split(',').includes(service?.value ?? '');
         group.hidden = !available;
-        group.disabled = !available;
-        if (!available) {
-          for (const checkbox of group.querySelectorAll<HTMLInputElement>('input[type="checkbox"]')) {
-            checkbox.checked = false;
-          }
+        for (const control of group.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>('input, select, textarea')) {
+          control.disabled = !available;
+          if (!available && control instanceof HTMLInputElement && control.type === 'checkbox') control.checked = false;
         }
       }
     };
-    updateExtras();
-    service?.addEventListener('change', updateExtras);
-    window.addEventListener('pageshow', updateExtras);
+    updateServiceFields();
+    service?.addEventListener('change', updateServiceFields);
+    window.addEventListener('pageshow', updateServiceFields);
 
     // Native validation still works without JavaScript. Show inline feedback only
     // after a field is left or the browser rejects an attempted submission.
@@ -206,11 +218,11 @@ import { shell, section, homeEyebrow, lede, details, field, formGroup, formRow }
       form.setAttribute('aria-busy', 'true');
       if (btn) {
         btn.disabled = true;
-        btn.textContent = 'Sending...';
+        btn.textContent = form.dataset.submittingButton ?? 'Sending...';
       }
       if (status) {
         status.hidden = false;
-        status.textContent = 'Sending your quote request...';
+        status.textContent = form.dataset.submittingStatus ?? 'Sending your quote request...';
       }
     });
     // Restore controls when Back returns to a page kept in the browser cache.

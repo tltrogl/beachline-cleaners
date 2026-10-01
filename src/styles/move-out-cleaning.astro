@@ -63,7 +63,7 @@ const timingFaq = content.faqs[2];
         <article class="border-l border-line px-9 py-7 max-tablet:border-l-0 max-tablet:px-0">
           <p class="mb-2 text-eyebrow font-extrabold uppercase tracking-[.11em] text-teal">02 · Requirements</p>
           <h3>Have a checklist?</h3>
-          <p class="mt-3 text-[1rem] leading-[1.65]">Send any landlord, buyer, or property-manager checklist with your quote request so we can confirm which tasks are covered.</p>
+          <p class="mt-3 text-[1rem] leading-[1.65]">{content.optionsIntro}</p>
         </article>
         <article class="border-l border-line py-7 pl-9 max-tablet:border-l-0 max-tablet:pl-0">
           <p class="mb-2 text-eyebrow font-extrabold uppercase tracking-[.11em] text-teal">03 · Timing</p>
@@ -107,7 +107,7 @@ const timingFaq = content.faqs[2];
     </div>
   </section>
 
-  <section class="py-[74px] max-mobile:py-10" aria-labelledby="quote-heading">
+  <section class="py-[74px] max-mobile:py-14" aria-labelledby="quote-heading">
     <div class:list={[shell, "grid grid-cols-[1fr_1fr] gap-16 max-tablet:grid-cols-1 max-tablet:gap-12"]}>
       <div>
         <p class="mb-3 text-eyebrow font-extrabold uppercase tracking-[.12em] text-sea-dark">Optional interiors</p>
@@ -127,11 +127,17 @@ const timingFaq = content.faqs[2];
         <p class="mb-3 text-eyebrow font-extrabold uppercase tracking-[.12em] text-sea-dark">Quote factors</p>
         <h2 id="quote-heading" class="max-w-[500px]">What affects the price.</h2>
         <p class="mt-5 max-w-[560px] text-[1.04rem] leading-[1.68]">{content.pricing}</p>
-        <ul class="m-0 mt-5 grid list-none grid-cols-2 gap-x-5 border-t border-line p-0 self-start" role="list">
-          {content.pricingFactors.map((factor) => (
-            <li class="border-b border-line py-4 text-[.96rem] font-bold text-ink">{factor}</li>
+        <div class="mt-7 grid grid-cols-2 border-t border-line max-mobile:grid-cols-1">
+          {content.pricingFactors.map((factor, index) => (
+            <div class:list={[
+              "border-b border-line py-5",
+              index % 2 === 0 ? "pr-7 max-mobile:pr-0" : "border-l pl-7 max-mobile:border-l-0 max-mobile:pl-0"
+            ]}>
+              <span class="mb-2 block text-[.8rem] font-extrabold tabular-nums text-teal">0{index + 1}</span>
+              <p class="font-[750] text-ink">{factor}</p>
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
     </div>
   </section>

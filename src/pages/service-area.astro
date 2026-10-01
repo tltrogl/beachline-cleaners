@@ -15,7 +15,7 @@ import { site, serviceAreaContent } from '../data/content';
 
   <section class={section}>
     <div class={shell}>
-      <ul class="my-4 grid list-none grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4 p-0 text-[1.1rem] font-bold">
+      <ul class="my-4 grid list-none grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4 p-0 text-[1.1rem] max-mobile:grid-cols-2 max-mobile:gap-x-5 max-mobile:gap-y-0 font-bold">
         {serviceAreaContent.areas.map((city) => (
           <li class="border-b border-line py-4">{city}</li>
         ))}

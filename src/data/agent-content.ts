@@ -78,10 +78,11 @@ export function pageMarkdown(slug: string, origin: URL): string {
       section('Quote form details', bullets([
         quoteContent.form.name.label, quoteContent.form.phone.label,
         quoteContent.form.email.label, quoteContent.form.location.label,
-        quoteContent.form.service.label, quoteContent.form.bedsBaths.label,
+        quoteContent.form.service.label,
         quoteContent.form.size.label, quoteContent.form.frequency.label,
         quoteContent.form.notes.label,
       ]) + `\n\n${quoteContent.form.notes.placeholder}`),
+      ...quoteContent.form.serviceFields.map(group => section(group.legend, bullets(group.fields.map(field => field.label)))),
       section('Available services', bullets(quoteContent.form.service.options.map(option => option.label))),
       ...quoteContent.form.extras.map(group => section(group.label, `${group.hint}\n\n${bullets(group.options.map(option => option.label))}`)),
       section('Submitting a request', `Use the [quote form](${absolute(page.path)}) to send a request. Scope, availability, and pricing are confirmed afterward.`),
