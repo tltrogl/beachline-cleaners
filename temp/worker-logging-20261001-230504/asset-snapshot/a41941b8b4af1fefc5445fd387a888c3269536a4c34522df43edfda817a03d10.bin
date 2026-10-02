@@ -1,0 +1,42 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Beachline Cleaners Public Information",
+    "version": "1.0.0",
+    "description": "Read-only public business information. No booking, quote submission, payment, account, or availability API is offered."
+  },
+  "servers": [{ "url": "https://beachlinecleaners.com" }],
+  "paths": {
+    "/site-info.json": {
+      "get": {
+        "operationId": "getSiteInformation",
+        "summary": "Read public contact details, service areas, and cleaning service descriptions",
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Public business information expressed as Schema.org JSON-LD",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["@context", "@type", "name", "url", "description", "telephone", "email", "areaServed", "hasOfferCatalog"],
+                  "properties": {
+                    "@context": { "type": "string", "const": "https://schema.org" },
+                    "@type": { "type": "string", "const": "LocalBusiness" },
+                    "name": { "type": "string" },
+                    "url": { "type": "string", "format": "uri" },
+                    "description": { "type": "string" },
+                    "telephone": { "type": "string" },
+                    "email": { "type": "string", "format": "email" },
+                    "areaServed": { "type": "array", "items": { "type": "string" } },
+                    "hasOfferCatalog": { "type": "object" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

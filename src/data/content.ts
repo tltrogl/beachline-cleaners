@@ -437,10 +437,6 @@ export const homeContent = {
   },
   servicesSection: {
     eyebrow: 'What we do',
-    featuredLabel: 'Most common starting point',
-    featuredIntro: 'Routine upkeep starts with Home Cleaning. If the property needs heavier detail work, a move clean, a guest turnover, or workplace service, choose the matching service.',
-    heading: 'Choose the cleaning you need.',
-    intro: 'Regular home cleaning, deeper resets, move cleans, rental turnovers, and small commercial spaces—start with the service that best matches the job.',
     linkText: 'See service details',
     services: [
       {

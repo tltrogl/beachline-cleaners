@@ -1,0 +1,39 @@
+{
+  "placement": {},
+  "compatibility_date": "2026-10-01",
+  "compatibility_flags": [
+    "global_fetch_strictly_public"
+  ],
+  "usage_model": "standard",
+  "tags": [],
+  "tail_consumers": [],
+  "logpush": false,
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1,
+    "redact_query_string": false,
+    "logs": {
+      "enabled": true,
+      "head_sampling_rate": 1,
+      "persist": true,
+      "invocation_logs": true
+    },
+    "traces": {
+      "enabled": true,
+      "persist": true,
+      "head_sampling_rate": 1
+    },
+    "issues": {
+      "enabled": true
+    }
+  },
+  "annotations": {
+    "workers/triggered_by": "version_upload"
+  },
+  "bindings": [
+    {
+      "name": "ASSETS",
+      "type": "assets"
+    }
+  ]
+}

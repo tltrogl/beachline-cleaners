@@ -1,0 +1,84 @@
+{
+  "id": "5f1f7e31-ece1-4c6a-b261-9db04018faff",
+  "number": 3,
+  "metadata": {
+    "created_on": "2026-10-02T01:31:15.986595Z",
+    "source": "wrangler",
+    "author_id": "d4587f80fc2e96091c0bf59c92873d7b",
+    "author_email": "tltrogl@gmail.com",
+    "has_preview": true
+  },
+  "annotations": {
+    "workers/triggered_by": "version_upload"
+  },
+  "resources": {
+    "script": {
+      "etag": "53a977b489dce954727534dba789a50183b6d144edefe3c5336dbd36836a4b7d",
+      "handlers": [
+        "fetch"
+      ],
+      "named_handlers": [
+        {
+          "name": "pageMap",
+          "handlers": [
+            "get",
+            "set",
+            "has",
+            "delete",
+            "clear",
+            "entries",
+            "forEach",
+            "keys",
+            "size",
+            "values",
+            "getOrInsert",
+            "getOrInsertComputed"
+          ]
+        }
+      ],
+      "last_deployed_from": "wrangler"
+    },
+    "script_runtime": {
+      "assets": {
+        "headers": {
+          "version": 2,
+          "rules": {
+            "/.well-known/api-catalog": {
+              "set": {
+                "content-type": "application/linkset+json; profile=\"https://www.rfc-editor.org/info/rfc9727\""
+              },
+              "unset": []
+            },
+            "/llms.txt": {
+              "set": {
+                "content-type": "text/plain; charset=utf-8"
+              },
+              "unset": []
+            },
+            "/markdown/*": {
+              "set": {
+                "content-type": "text/markdown; charset=utf-8"
+              },
+              "unset": []
+            }
+          }
+        },
+        "raw_headers": "/.well-known/api-catalog\n  Content-Type: application/linkset+json; profile=\"https://www.rfc-editor.org/info/rfc9727\"\n\n/llms.txt\n  Content-Type: text/plain; charset=utf-8\n\n/markdown/*\n  Content-Type: text/markdown; charset=utf-8\n",
+        "serve_directly": true,
+        "raw_run_worker_first": false,
+        "base_path": "/"
+      },
+      "compatibility_date": "2026-10-01",
+      "compatibility_flags": [
+        "global_fetch_strictly_public"
+      ],
+      "usage_model": "standard"
+    },
+    "bindings": [
+      {
+        "name": "ASSETS",
+        "type": "assets"
+      }
+    ]
+  }
+}

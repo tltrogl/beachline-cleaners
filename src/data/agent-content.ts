@@ -52,12 +52,10 @@ export function pageMarkdown(slug: string, origin: URL): string {
     ];
   } else if (slug === 'index') {
     body = [homeContent.hero.title, homeContent.hero.description, homeContent.hero.serviceArea,
-      section(homeContent.standardCleanSection.heading, `${homeContent.standardCleanSection.intro}\n\n${homeContent.standardCleanSection.areas.map(area => `### ${area.title}\n\n${area.text}`).join('\n\n')}\n\n${homeContent.standardCleanSection.extrasHint}`),
-      section(homeContent.servicesSection.heading, `${homeContent.servicesSection.intro}\n\n` + homeContent.servicesSection.services.map(service =>
-        `- [${service.title}](${absolute(service.href)}): ${service.priceLabel}. ${service.text}`).join('\n') + `\n\n${pricingContent.note}`),
-      section(homeContent.processSection.heading, `${homeContent.processSection.intro}\n\n` + homeContent.processSection.steps.map(step => `### ${step.title}\n\n${step.text}`).join('\n\n')),
-      section(homeContent.rentalSection.heading, `${homeContent.rentalSection.description}\n\n${servicesDetail.vacationRental.priceLabel}\n\n${pricingContent.rentalIncluded}\n\n[${homeContent.rentalSection.linkText}](${absolute(homeContent.rentalSection.linkHref)})`),
+      section(homeContent.servicesSection.eyebrow, homeContent.servicesSection.services.map(service =>
+        `- [${service.title}](${absolute(service.href)}): ${service.priceLabel}. ${service.text}`).join('\n')),
       section(homeContent.expectSection.heading, `${homeContent.expectSection.intro}\n\n${homeContent.expectSection.items.map(item => `### ${item.title}\n\n${item.text}`).join('\n\n')}`),
+      section(homeContent.processSection.heading, `${homeContent.processSection.intro}\n\n` + homeContent.processSection.steps.map(step => `### ${step.title}\n\n${step.text}`).join('\n\n')),
       section('Service area', bullets(serviceAreaContent.areas)),
     ];
   } else if (slug === 'about') {
