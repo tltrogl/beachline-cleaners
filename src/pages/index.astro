@@ -50,28 +50,35 @@ import { shell, homeEyebrow, outlineLink } from '../styles/ui';
 
   <section class="border-b border-line bg-white py-[82px] max-mobile:py-14" aria-labelledby="services-heading">
     <div class={shell}>
-      <h2 id="services-heading" class:list={[homeEyebrow, 'flex items-center gap-3']}><span class="h-px w-10 bg-sea" aria-hidden="true"></span>{homeContent.servicesSection.eyebrow}</h2>
+      <div class="flex items-center justify-between gap-8">
+        <h2 id="services-heading" class:list={[homeEyebrow, 'flex items-center gap-3']}><span class="h-px w-10 bg-sea" aria-hidden="true"></span>{homeContent.servicesSection.eyebrow}</h2>
+        <div class="flex items-center gap-2 max-mobile:gap-1.5" aria-hidden="true">
+          <span class="block h-2 w-16 rounded-full bg-teal max-mobile:w-10"></span>
+          <span class="block h-2 w-10 rounded-full bg-cyan max-mobile:w-7"></span>
+          <span class="block h-2 w-6 rounded-full border border-line bg-seafoam max-mobile:w-4"></span>
+        </div>
+      </div>
 
-      <div class="mt-8 border-y border-line" role="list">
-        {homeContent.servicesSection.services.map((service, index) => (
-          <article class="group/service grid grid-cols-[44px_minmax(190px,.55fr)_minmax(0,1fr)_150px] items-center gap-x-7 border-b border-line py-6 last:border-b-0 max-tablet:grid-cols-[40px_minmax(170px,.7fr)_1fr] max-tablet:gap-x-5 max-mobile:grid-cols-[34px_1fr] max-mobile:items-start max-mobile:gap-x-3 max-mobile:gap-y-3" role="listitem">
-            <span class="text-[.76rem] font-extrabold tracking-[.12em] text-teal" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
-
-            <div class="min-w-0 max-mobile:col-start-2">
-              <p class="mb-1 text-eyebrow font-extrabold uppercase tracking-[.1em] text-ink-soft">{service.label}</p>
-              <h3 class="text-[1.25rem]"><a class="text-ink no-underline hover:text-sea-dark" href={service.href}>{service.title}</a></h3>
+      <div class="mt-8 border-t border-line" role="list">
+        {homeContent.servicesSection.services.map((service) => (
+          <article class="group/service -mx-5 grid grid-cols-[minmax(220px,.72fr)_minmax(0,1.28fr)] gap-x-14 border-b border-line px-5 py-7 transition-colors duration-200 hover:bg-mist/30 max-tablet:grid-cols-[minmax(190px,.7fr)_minmax(0,1.3fr)] max-tablet:gap-x-8 max-mobile:grid-cols-1 max-mobile:gap-y-4 max-mobile:py-6" role="listitem">
+            <div>
+              <h3 class="text-[1.5rem] leading-[1.2] tracking-[-.02em]">
+                <a class="text-ink no-underline hover:text-sea-dark" href={service.href}>{service.title}</a>
+              </h3>
+              <p class="mt-2 text-small font-bold text-sea-dark">{service.priceLabel}</p>
             </div>
 
-            <p class="max-w-[660px] text-[.97rem] leading-[1.6] max-mobile:col-start-2">{service.text}</p>
-
-            <div class="text-right max-tablet:col-start-3 max-tablet:mt-3 max-mobile:col-start-2 max-mobile:mt-0 max-mobile:text-left">
-              <p class="text-small font-bold text-sea-dark">{service.priceLabel}</p>
-              <a class="mt-2 inline-flex items-center gap-2 text-link font-[750] text-sea-dark underline underline-offset-4" href={service.href}>{homeContent.servicesSection.linkText}<Icon name="arrow-right" class="size-4 transition-transform duration-200 motion-safe:group-hover/service:translate-x-1" /></a>
+            <div class="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-8 max-mobile:grid-cols-1 max-mobile:gap-4">
+              <p class="max-w-[650px] text-[.98rem] leading-[1.62]">{service.text}</p>
+              <a class="inline-flex shrink-0 items-center gap-2 text-link font-[750] text-sea-dark underline underline-offset-4" href={service.href}>
+                {homeContent.servicesSection.linkText}
+                <Icon name="arrow-right" class="size-4 transition-transform duration-200 motion-safe:group-hover/service:translate-x-1" />
+              </a>
             </div>
           </article>
         ))}
       </div>
-
     </div>
   </section>
 
