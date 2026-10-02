@@ -655,7 +655,7 @@ export const serviceAreaContent = {
   hero: {
     eyebrow: 'Service area',
     title: 'Local cleaning across the Space Coast.',
-    lede: 'We serve Cocoa, Cocoa Beach, Cape Canaveral, Merritt Island, Rockledge, Melbourne, Palm Bay, Viera, and Titusville. If you’re nearby, send your ZIP code and we’ll tell you if you’re in range.',
+    lede: 'Cleaning for homes, vacation rentals, moves, and workspaces in the Brevard County communities listed below.',
   },
   areas: [
     'Cocoa',
@@ -669,31 +669,31 @@ export const serviceAreaContent = {
     'Titusville',
     'Nearby areas by request',
   ],
-  coverageHeading: 'Cleaning for homes, rentals, moves, and workspaces',
-  coverageIntro: 'We clean homes, vacation rentals, move-in/move-out properties, and workspaces across the area below. Send your town or ZIP code with your preferred dates and we’ll check availability.',
+  coverageHeading: 'Choose the cleaning you need.',
+  coverageIntro: 'Explore what’s included in each service before requesting a quote.',
   services: [
     {
       title: 'Homes & moves',
-      text: 'Choose recurring home cleaning, a deep clean, or an empty-property move clean. Include your town or ZIP code and preferred date when you request a quote.',
+      text: 'Recurring home cleaning, deep cleaning, and empty-property move cleans.',
       href: withBase('/residential-cleaning'),
       linkText: 'Explore home cleaning',
     },
     {
       title: 'Vacation rentals',
-      text: 'Share the property location, checkout and check-in times, access details, and any linen or restocking needs.',
+      text: 'Turnover cleaning between guest stays, with linen and restocking needs agreed in advance.',
       href: withBase('/vacation-rental-cleaning'),
       linkText: 'Explore rental turnovers',
     },
     {
       title: 'Offices & workspaces',
-      text: 'Tell us your facility type, approximate size, and preferred cleaning hours. We’ll confirm the checklist and schedule before the first visit.',
+      text: 'Cleaning for offices and workspaces, with a checklist and schedule agreed before the first visit.',
       href: withBase('/commercial-cleaning'),
       linkText: 'Explore commercial cleaning',
     },
   ],
   cta: {
     title: 'Not sure if you\'re in range?',
-    text: 'Call us with your property address or ZIP code and we’ll confirm availability.',
+    text: 'Send your town or ZIP code and preferred dates, or call us. We’ll confirm coverage and availability before booking.',
   },
 };
 
