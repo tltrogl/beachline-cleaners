@@ -1,4 +1,5 @@
 ---
+import SiteImage from './SiteImage.astro';
 import { shell } from '../styles/ui';
 ---
 <section class="border-t border-line py-12" aria-labelledby="before-after-heading">
@@ -12,11 +13,11 @@ import { shell } from '../styles/ui';
       <div class="grid grid-cols-2 gap-4">
         <div class="relative">
           <span class="absolute top-4 left-4 rounded bg-black/70 px-3 py-1 text-sm font-bold text-white">Before</span>
-          <img src="/images/before_clean.jpg" alt="Before cleaning" class="h-auto min-h-[200px] w-full rounded-lg bg-gray-200 object-cover" loading="lazy" />
+          <SiteImage src="/images/before_clean.jpg" alt="Before cleaning" class="h-auto min-h-[200px] w-full rounded-lg bg-gray-200 object-cover" loading="lazy" />
         </div>
         <div class="relative">
           <span class="absolute top-4 left-4 rounded bg-black/70 px-3 py-1 text-sm font-bold text-white">After</span>
-          <img src="/images/after_clean.jpg" alt="After cleaning" class="h-auto min-h-[200px] w-full rounded-lg bg-gray-200 object-cover" loading="lazy" />
+          <SiteImage src="/images/after_clean.jpg" alt="After cleaning" class="h-auto min-h-[200px] w-full rounded-lg bg-gray-200 object-cover" loading="lazy" />
         </div>
       </div>
     </div>

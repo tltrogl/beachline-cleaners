@@ -3,42 +3,70 @@ import { shell } from '../styles/ui';
 import { site, footerContent, withBase } from '../data/content';
 interface Props { quoteHref?: string; }
 const { quoteHref = withBase('/quote') } = Astro.props;
+const areaNames = site.areaServed.map((area) => area.replace(', FL', ''));
 ---
-<footer class="footer bg-footer pt-7 pb-5 text-white group-[.island-home]/site:bg-footer max-mobile:pt-6 max-mobile:pb-[calc(64px+env(safe-area-inset-bottom))] group-[.no-mobile-bar]/site:max-mobile:pb-[max(20px,env(safe-area-inset-bottom))]">
-  <div class={shell}>
-    <div class="grid grid-cols-[1.3fr_.7fr_.7fr] gap-x-8 gap-y-5 max-mobile:grid-cols-2 max-mobile:gap-x-5">
-      <div class="max-mobile:col-span-2">
-        <a class="inline-flex items-center gap-3 whitespace-nowrap font-black tracking-[-.03em] text-mist no-underline group-[.island-home]/site:text-footer-text" href={withBase('/')}>
-          <span class="brand-mark relative size-[38px] shrink-0 overflow-hidden rounded-[50%_50%_46%_54%] bg-sea-dark group-[.island-home]/site:max-mobile:size-8" aria-hidden="true"></span>
+<footer class="footer bg-footer text-footer-text group-[.island-home]/site:bg-footer max-mobile:pb-[calc(64px+env(safe-area-inset-bottom))] group-[.no-mobile-bar]/site:max-mobile:pb-[max(20px,env(safe-area-inset-bottom))]">
+  <div class="grid h-1 grid-cols-[1.15fr_.7fr_.35fr]" aria-hidden="true">
+    <span class="bg-teal"></span>
+    <span class="bg-cyan"></span>
+    <span class="bg-sea-dark"></span>
+  </div>
+
+  <div class:list={[shell, 'py-14 max-mobile:py-10']}>
+    <div class="grid grid-cols-[1.25fr_.72fr_.72fr_.9fr] gap-x-12 gap-y-10 max-tablet:grid-cols-2 max-mobile:grid-cols-1 max-mobile:gap-y-8">
+      <div class="max-w-[470px] max-tablet:col-span-2 max-mobile:col-span-1">
+        <a class="inline-flex items-center gap-3 no-underline" href={withBase('/')} aria-label={`${site.name} home`}>
+          <span class="brand-mark relative size-11 shrink-0 overflow-hidden rounded-[50%_50%_46%_54%] bg-sea-dark" aria-hidden="true"></span>
           <span class="grid leading-none">
-            <span>{site.name}</span>
-            <span class="mt-1.5 text-[.64rem] font-extrabold uppercase tracking-[.13em] text-cyan">{site.descriptor}</span>
+            <span class="text-[1.28rem] font-black tracking-[-.035em] text-white">beachline <span class="text-cyan">CLEANERS</span></span>
+            <span class="mt-2 text-[.68rem] font-extrabold uppercase tracking-[.15em] text-white/65">{site.descriptor}</span>
           </span>
         </a>
-        <p class="mt-3 max-w-[430px] text-mist group-[.island-home]/site:text-footer-text max-mobile:hidden">{footerContent.summary}</p>
-        <div class="mt-3 flex gap-4 font-extrabold text-mist group-[.island-home]/site:text-footer-text">
-          <a class="flex min-h-11 items-center no-underline" href={site.phoneHref}>{site.phoneDisplay}</a>
+
+        <p class="mt-6 max-w-[430px] text-[1rem] leading-[1.7] text-white/72">{footerContent.summary}</p>
+
+        <div class="mt-7 flex flex-wrap gap-x-6 gap-y-2 text-[.98rem] font-[750]">
+          <a class="text-white underline decoration-white/35 underline-offset-4 hover:decoration-cyan" href={site.phoneHref}>{site.phoneDisplay}</a>
+          <a class="text-white underline decoration-white/35 underline-offset-4 hover:decoration-cyan" href={site.smsHref}>Text us</a>
+          <a class="text-white underline decoration-white/35 underline-offset-4 hover:decoration-cyan" href={`mailto:${site.email}`}>{site.email}</a>
         </div>
       </div>
-      <div>
-        <strong>{footerContent.servicesHeading}</strong>
-        <div class="mt-3 grid gap-0.5 text-mist group-[.island-home]/site:text-footer-text">
+
+      <nav aria-label="Footer services">
+        <p class="text-[.74rem] font-extrabold uppercase tracking-[.14em] text-cyan">{footerContent.servicesHeading}</p>
+        <div class="mt-4 grid gap-1 text-white/78">
           {footerContent.serviceLinks.map((link) => (
-            <a class="w-fit min-h-11 flex items-center py-1 no-underline hover:underline hover:underline-offset-4" href={link.href}>{link.title}</a>
+            <a class="flex min-h-10 w-fit items-center no-underline transition-colors hover:text-white" href={link.href}>{link.title}</a>
           ))}
         </div>
-      </div>
-      <div>
-        <strong>{footerContent.companyHeading}</strong>
-        <div class="mt-3 grid gap-0.5 text-mist group-[.island-home]/site:text-footer-text">
+      </nav>
+
+      <nav aria-label="Footer company links">
+        <p class="text-[.74rem] font-extrabold uppercase tracking-[.14em] text-cyan">{footerContent.companyHeading}</p>
+        <div class="mt-4 grid gap-1 text-white/78">
           {footerContent.companyLinks.map((link) => (
-            <a class="w-fit min-h-11 flex items-center py-1 no-underline hover:underline hover:underline-offset-4" href={link.href === withBase('/quote') ? quoteHref : link.href}>{link.title}</a>
+            <a class="flex min-h-10 w-fit items-center no-underline transition-colors hover:text-white" href={link.href === withBase('/quote') ? quoteHref : link.href}>{link.title}</a>
           ))}
         </div>
+      </nav>
+
+      <div>
+        <p class="text-[.74rem] font-extrabold uppercase tracking-[.14em] text-cyan">Get in touch</p>
+        <p class="mt-4 max-w-[280px] text-[.98rem] leading-[1.65] text-white/72">Tell us what needs cleaning and the dates you have in mind.</p>
+        <a class="mt-5 inline-flex min-h-11 items-center justify-center rounded-lg border border-cyan/55 px-5 py-2.5 text-[.95rem] font-extrabold text-white no-underline transition-colors hover:border-cyan hover:bg-white/5" href={quoteHref}>Get a Quote <span class="ml-2" aria-hidden="true">→</span></a>
       </div>
     </div>
-    <div class="mt-4 border-t border-white/20 pt-3 text-[.84rem] text-white/75">
-      © {new Date().getFullYear()} {site.name} {footerContent.copyrightSuffix}
+
+    <div class="mt-11 border-y border-white/14 py-5">
+      <div class="grid grid-cols-[auto_1fr] items-start gap-x-8 gap-y-3 max-mobile:grid-cols-1">
+        <p class="text-[.72rem] font-extrabold uppercase tracking-[.14em] text-cyan">Serving Brevard County</p>
+        <p class="text-[.92rem] leading-[1.65] text-white/64">{areaNames.join(' · ')}</p>
+      </div>
+    </div>
+
+    <div class="flex items-center justify-between gap-6 pt-5 text-[.82rem] text-white/48 max-mobile:flex-col max-mobile:items-start max-mobile:gap-2">
+      <p>© {new Date().getFullYear()} {site.name}. {footerContent.copyrightSuffix}</p>
+      <p>Home & property cleaning across the Space Coast.</p>
     </div>
   </div>
 </footer>

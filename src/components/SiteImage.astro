@@ -1,0 +1,49 @@
+﻿---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  src: string | ImageMetadata;
+  alt: string;
+  [key: string]: unknown;
+}
+
+const props = Astro.props as Props;
+const { src, ...rest } = props;
+
+const localImages = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/assets/images/**/*.{avif,gif,jpeg,jpg,png,svg,webp}',
+  { eager: true }
+);
+
+let resolvedSrc: string | ImageMetadata = src;
+
+if (typeof src === 'string') {
+  const marker = '/images/';
+  const markerIndex = src.indexOf(marker);
+
+  if (markerIndex !== -1) {
+    const relativePath = decodeURI(
+      src.slice(markerIndex + marker.length)
+    ).replace(/^\/+/, '');
+
+    const key = `/src/assets/images/${relativePath}`;
+    const module = localImages[key];
+
+    if (!module) {
+      throw new Error(
+        `SiteImage could not resolve "${src}". Expected local asset: ${key}`
+      );
+    }
+
+    resolvedSrc = module.default;
+  }
+}
+
+const imageProps = {
+  ...rest,
+  src: resolvedSrc,
+} as any;
+---
+
+<Image {...imageProps} />

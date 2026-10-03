@@ -1,212 +1,96 @@
 ---
+import SiteImage from '../components/SiteImage.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Button from '../components/Button.astro';
 import CTA from '../components/CTA.astro';
-import { shell, details, summary, phone } from '../styles/ui';
-import { pricingContent, servicePageDefaults, servicesDetail, site, withBase } from '../data/content';
+import Icon from '../components/Icon.astro';
+import { shell, homeEyebrow, phone } from '../styles/ui';
+import { site, servicesDetail, servicePageDefaults, pricingContent } from '../data/content';
 
 const content = servicesDetail.vacationRental;
-const issueFaq = content.faqs[1];
-const sameDayFaq = content.faqs[2];
-const checklistFaq = content.faqs[3];
-const accessFaq = content.faqs[4];
 ---
 <BaseLayout title={`${content.metaTitle} | ${site.name}`} description={content.metaDescription} quoteHref={content.quoteHref}>
-  <section class="border-b border-line bg-white pt-12 pb-14 max-mobile:pt-7 max-mobile:pb-9" aria-labelledby="rental-hero-title" slot="hero">
-    <div class:list={[shell, "grid grid-cols-[.9fr_1.1fr] items-center gap-14 max-tablet:gap-8 max-mobile:grid-cols-1 max-mobile:gap-7"]}>
+  <section class="border-b border-line bg-mist pt-12 pb-14 max-mobile:pt-7 max-mobile:pb-9" aria-labelledby="rental-hero-title" slot="hero">
+    <div class:list={[shell, "grid grid-cols-[.9fr_1.1fr] items-center gap-16 max-tablet:gap-9 max-mobile:grid-cols-1 max-mobile:gap-7"]}>
       <div>
-        <p class="mb-3 flex items-center gap-3 text-eyebrow font-extrabold uppercase tracking-[.12em] text-sea-dark">
-          <span class="h-px w-10 shrink-0 bg-sea" aria-hidden="true"></span>
-          {content.eyebrow}
-        </p>
-        <h1 id="rental-hero-title" class="max-w-[700px] text-[clamp(2.7rem,4.5vw,4rem)] leading-[1.08] tracking-[-.03em] max-mobile:text-[2.65rem]">{content.title}</h1>
-        <p class="mt-6 max-w-[620px] text-lede leading-[1.6] max-mobile:mt-4">{content.intro}</p>
-        <p class="mt-5 text-[1.2rem] font-bold text-sea-dark">{content.priceLabel}</p>
-        <p class="mt-2 max-w-[620px] text-small">{pricingContent.rentalIncluded}</p>
+        <p class:list={[homeEyebrow, 'flex items-center gap-3']}><span class="h-px w-10 shrink-0 bg-sea" aria-hidden="true"></span>Vacation rentals</p>
+        <h1 id="rental-hero-title" class="max-w-[720px] text-[clamp(2.9rem,4.8vw,4.35rem)] leading-[1.03] tracking-[-.04em] max-mobile:text-[2.75rem]">{content.title}</h1>
+        <p class="mt-6 max-w-[610px] text-lede leading-[1.62] max-mobile:mt-4">{content.intro}</p>
         <div class="mt-7 flex flex-wrap items-center gap-control-gap">
-          <Button href={content.quoteHref}>{servicePageDefaults.quoteButtonText} <span aria-hidden="true">→</span></Button>
+          <Button href={content.quoteHref}>{servicePageDefaults.quoteButtonText} <Icon name="arrow-right" class="size-[18px]" /></Button>
           <a class={phone} href={site.phoneHref}>{servicePageDefaults.callButtonPrefix}{site.phoneDisplay}</a>
         </div>
       </div>
-
-      <figure class="m-0 overflow-hidden rounded-panel bg-mist shadow-[0_18px_55px_rgba(28,65,91,.09)]">
-        <img
-          src={content.image}
-          alt={content.imageAlt}
-          class="aspect-[1.12] w-full object-cover object-[70%_center] max-mobile:aspect-[1.5]"
-          width="1280"
-          height="800"
-          fetchpriority="high"
-        />
-      </figure>
+      <div class="relative pb-3 pr-3">
+        <span class="absolute bottom-0 right-0 h-20 w-32 rounded-panel bg-[#C94F68]" aria-hidden="true"></span>
+        <figure class="relative m-0 overflow-hidden rounded-panel bg-white shadow-[0_20px_60px_rgba(28,65,91,.10)]">
+        <SiteImage src={content.image} alt={content.imageAlt} width="1280" height="800" class="aspect-[1.14] w-full object-cover object-[70%_center] max-mobile:aspect-[1.5]" fetchpriority="high" />
+        </figure>
+      </div>
     </div>
   </section>
 
-  <section class="bg-ocean py-8 text-white max-mobile:py-7" aria-labelledby="turnover-flow-heading">
+  <section class="py-[76px] max-mobile:py-14" aria-labelledby="rental-included-heading">
     <div class={shell}>
-      <div class="grid grid-cols-[.85fr_2.15fr] items-center gap-12 max-tablet:grid-cols-1 max-tablet:gap-6">
+      <div class="grid grid-cols-[.58fr_1.42fr] gap-16 max-tablet:grid-cols-1 max-tablet:gap-7">
         <div>
-          <p class="mb-2 text-eyebrow font-extrabold uppercase tracking-[.12em] text-cyan">Turnover flow</p>
-          <h2 id="turnover-flow-heading" class="text-[clamp(1.55rem,2.4vw,2rem)] text-white">Built around the gap between guests.</h2>
+          <p class:list={[homeEyebrow, 'flex items-center gap-3']}><span class="h-1 w-10 rounded-full bg-[#C94F68]" aria-hidden="true"></span>Every turnover</p>
+          <h2 id="rental-included-heading" class="max-w-[430px]">Clean, reset, and report.</h2>
         </div>
-        <ol class="m-0 grid list-none grid-cols-4 border-l border-white/25 p-0 max-mobile:grid-cols-2 max-mobile:border-l-0">
-          <li class="border-r border-white/25 px-6 py-2 max-mobile:border-b max-mobile:px-4 max-mobile:py-4">
-            <span class="block text-[.75rem] font-extrabold tracking-[.12em] text-cyan">01</span>
-            <span class="mt-1 block font-bold text-white">Checkout</span>
-          </li>
-          <li class="border-r border-white/25 px-6 py-2 max-mobile:border-b max-mobile:border-r-0 max-mobile:px-4 max-mobile:py-4">
-            <span class="block text-[.75rem] font-extrabold tracking-[.12em] text-cyan">02</span>
-            <span class="mt-1 block font-bold text-white">Clean + reset</span>
-          </li>
-          <li class="border-r border-white/25 px-6 py-2 max-mobile:px-4 max-mobile:py-4">
-            <span class="block text-[.75rem] font-extrabold tracking-[.12em] text-cyan">03</span>
-            <span class="mt-1 block font-bold text-white">Photos + notes</span>
-          </li>
-          <li class="px-6 py-2 max-mobile:px-4 max-mobile:py-4">
-            <span class="block text-[.75rem] font-extrabold tracking-[.12em] text-cyan">04</span>
-            <span class="mt-1 block font-bold text-white">Check-in ready</span>
-          </li>
-        </ol>
-      </div>
-    </div>
-  </section>
-
-  <section class="py-[76px] max-mobile:py-14" aria-labelledby="turnover-scope-heading">
-    <div class:list={[shell, "grid grid-cols-[1.04fr_.96fr] items-center gap-16 max-tablet:grid-cols-1 max-tablet:gap-9"]}>
-      <div>
-        <p class="mb-3 flex items-center gap-3 text-eyebrow font-extrabold uppercase tracking-[.12em] text-sea-dark">
-          <span class="h-px w-10 bg-sea" aria-hidden="true"></span>
-          Every turnover
-        </p>
-        <h2 id="turnover-scope-heading" class="max-w-[560px]">Clean, reset, and report before the next guest arrives.</h2>
-        <div class="mt-8 border-y border-line">
+        <ul class="m-0 grid list-none grid-cols-2 gap-x-8 border-t border-line p-0 max-mobile:grid-cols-1" role="list">
           {content.included.map((item, index) => (
-            <div class="border-b border-line py-5 last:border-b-0">
-              <p class:list={["text-[1.04rem] leading-[1.58]", index === 0 && "font-bold text-ink"]}>{item}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <figure class="m-0 overflow-hidden rounded-panel bg-mist">
-        <img
-          src={withBase('/images/turnover-active.jpg')}
-          alt="Cleaner resetting a bed with fresh linens during a rental turnover"
-          class="aspect-[1.15] w-full object-cover object-center max-mobile:aspect-[1.48]"
-          width="1360"
-          height="768"
-          loading="lazy"
-        />
-      </figure>
-    </div>
-  </section>
-
-  <section class="border-y border-line bg-mist py-[72px] max-mobile:py-10" aria-labelledby="rental-pricing-heading">
-    <div class:list={[shell, "grid grid-cols-[1.05fr_.95fr] gap-16 max-tablet:grid-cols-1 max-tablet:gap-10"]}>
-      <div>
-        <p class="mb-3 text-eyebrow font-extrabold uppercase tracking-[.12em] text-sea-dark">Starting prices</p>
-        <h2 id="rental-pricing-heading" class="max-w-[520px]">Turnover pricing by property size.</h2>
-        <div class="mt-7 border-y border-line bg-white px-6 max-mobile:px-4">
-          <table class="w-full border-collapse text-left text-small">
-            <caption class="sr-only">{pricingContent.rentalHeading}</caption>
-            <thead>
-              <tr class="border-b border-line">
-                <th scope="col" class="py-4 pr-4 font-bold">{pricingContent.propertyColumn}</th>
-                <th scope="col" class="py-4 font-bold">{pricingContent.priceColumn}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {content.pricingRows?.map((row) => (
-                <tr class="border-b border-line last:border-b-0">
-                  <th scope="row" class="py-4 pr-4 font-normal">{row.property}</th>
-                  <td class="py-4 font-bold text-sea-dark">{row.price}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <p class="mt-4 max-w-[650px] text-small">{pricingContent.rentalIncluded}</p>
-        <p class="mt-3 max-w-[650px] text-small">{pricingContent.note}</p>
-      </div>
-
-      <div>
-        <p class="mb-3 text-eyebrow font-extrabold uppercase tracking-[.12em] text-sea-dark">Quote factors</p>
-        <h2 class="max-w-[500px]">The calendar matters too.</h2>
-        <p class="mt-5 max-w-[560px] text-[1.04rem] leading-[1.68]">{content.pricing}</p>
-        <ul class="m-0 mt-5 grid list-none grid-cols-2 gap-x-5 border-t border-line p-0 self-start" role="list">
-          {content.pricingFactors.map((factor) => (
-            <li class="border-b border-line py-4 text-[.96rem] font-bold text-ink">{factor}</li>
+            <li class:list={[
+              'grid min-h-[96px] grid-cols-[30px_1fr] items-start gap-3 border-b border-line py-5 text-[1.01rem] leading-[1.58]',
+              index % 2 === 0 ? 'pr-2' : 'border-l pl-8 max-mobile:border-l-0 max-mobile:pl-0'
+            ]}>
+              <span class="mt-0.5 text-teal" aria-hidden="true"><Icon name="check-circle" class="size-[18px]" /></span>
+              <span>{item}</span>
+            </li>
           ))}
         </ul>
       </div>
     </div>
   </section>
 
-  <section class="py-[76px] max-mobile:py-14" aria-labelledby="routine-heading">
-    <div class={shell}>
-      <div class="grid grid-cols-[.7fr_1.3fr] gap-14 max-tablet:grid-cols-1 max-tablet:gap-6">
-        <div>
-          <p class="mb-3 flex items-center gap-3 text-eyebrow font-extrabold uppercase tracking-[.12em] text-sea-dark">
-            <span class="h-px w-10 bg-sea" aria-hidden="true"></span>
-            Property routine
-          </p>
-          <h2 id="routine-heading" class="max-w-[470px]">Set the routine once.</h2>
-        </div>
-        <p class="max-w-[760px] text-[1.08rem] leading-[1.72]">{content.who}</p>
-      </div>
-
-      <div class="mt-10 grid grid-cols-4 border-y border-line max-tablet:grid-cols-2 max-mobile:grid-cols-1">
-        <article class="py-6 pr-7 max-tablet:border-b max-tablet:border-line max-mobile:pr-0">
-          <p class="mb-2 text-eyebrow font-extrabold uppercase tracking-[.11em] text-teal">Timing</p>
-          <h3 class="text-[1.18rem]">Checkout + check-in</h3>
-          <p class="mt-3 text-[.96rem] leading-[1.6]">Give us the turnover window so the clean is planned around the next arrival.</p>
-        </article>
-        <article class="border-l border-line px-7 py-6 max-tablet:border-b max-tablet:border-line max-mobile:border-l-0 max-mobile:px-0">
-          <p class="mb-2 text-eyebrow font-extrabold uppercase tracking-[.11em] text-teal">Access</p>
-          <h3 class="text-[1.18rem]">How we get in</h3>
-          <p class="mt-3 text-[.96rem] leading-[1.6]">{accessFaq.a}</p>
-        </article>
-        <article class="border-l border-line px-7 py-6 max-mobile:border-l-0 max-mobile:border-t max-mobile:border-line max-mobile:px-0">
-          <p class="mb-2 text-eyebrow font-extrabold uppercase tracking-[.11em] text-teal">Linens</p>
-          <h3 class="text-[1.18rem]">Where clean sets come from</h3>
-          <p class="mt-3 text-[.96rem] leading-[1.6]">Leave clean sets ready for each bed and tell us where spares are stored.</p>
-        </article>
-        <article class="border-l border-line py-6 pl-7 max-mobile:border-l-0 max-mobile:border-t max-mobile:border-line max-mobile:pl-0">
-          <p class="mb-2 text-eyebrow font-extrabold uppercase tracking-[.11em] text-teal">Reporting</p>
-          <h3 class="text-[1.18rem]">Who needs the update</h3>
-          <p class="mt-3 text-[.96rem] leading-[1.6]">Tell us who to contact if we spot visible damage, maintenance concerns, missing items, or low supplies.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="border-y border-line py-10 max-mobile:py-8" aria-labelledby="rental-options-heading">
-    <div class={shell}>
-      <h2 id="rental-options-heading" class="text-[1.65rem]">Need help with laundry or supplies?</h2>
-      <p class="mt-3 max-w-[760px]">{content.optionsIntro}</p>
-      <ul class="mt-5 grid list-disc grid-cols-2 gap-x-10 gap-y-3 pl-5 max-mobile:grid-cols-1" role="list">
-        {content.options.map((option) => <li class="pl-1">{option}</li>)}
-      </ul>
-    </div>
-  </section>
-
-  <section class="py-[76px] max-mobile:py-10" aria-labelledby="rental-faq-heading">
-    <div class:list={[shell, "grid grid-cols-[.62fr_1.38fr] gap-14 max-tablet:grid-cols-1 max-tablet:gap-6"]}>
+  <section class="border-y border-line bg-seafoam py-[70px] max-mobile:py-14" aria-labelledby="rental-price-heading">
+    <div class:list={[shell, "grid grid-cols-[1.12fr_.88fr] gap-14 max-tablet:grid-cols-1 max-tablet:gap-10"]}>
       <div>
-        <p class="mb-3 text-eyebrow font-extrabold uppercase tracking-[.12em] text-sea-dark">Turnover questions</p>
-        <h2 id="rental-faq-heading">What hosts usually need to know.</h2>
-        <div class="mt-7 border-l-4 border-teal bg-seafoam px-6 py-5">
-          <p class="text-[.82rem] font-extrabold uppercase tracking-[.11em] text-sea-dark">Same-day turns</p>
-          <p class="mt-2 text-[.98rem] leading-[1.62]">{sameDayFaq.a}</p>
+        <div class="flex items-end justify-between gap-6">
+          <div>
+            <p class="mb-2 text-eyebrow font-extrabold uppercase tracking-[.12em] text-sea-dark">Starting prices</p>
+            <h2 id="rental-price-heading" class="text-[clamp(2.1rem,3.5vw,3rem)] tracking-[-.035em]">Turnover pricing.</h2>
+          </div>
+          <p class="hidden text-[1rem] font-[750] text-sea-dark wide:block">{content.priceLabel}</p>
         </div>
+        <div class="mt-6 overflow-hidden rounded-panel border border-line border-t-4 border-t-[#C94F68] bg-white">
+          <table class="w-full border-collapse text-left text-small">
+            <caption class="sr-only">{pricingContent.rentalHeading}</caption>
+            <thead class="bg-mist/55"><tr class="border-b border-line"><th scope="col" class="px-6 py-4 pr-4 font-bold max-mobile:px-4">{pricingContent.propertyColumn}</th><th scope="col" class="px-6 py-4 font-bold max-mobile:px-4">{pricingContent.priceColumn}</th></tr></thead>
+            <tbody>
+              {content.pricingRows?.map((row) => (
+                <tr class="border-b border-line last:border-b-0"><th scope="row" class="px-6 py-4 pr-4 font-normal max-mobile:px-4">{row.property}</th><td class="px-6 py-4 font-bold text-sea-dark max-mobile:px-4">{row.price}</td></tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p class="mt-4 max-w-[690px] text-[1rem] leading-[1.65]">{content.pricing}</p>
       </div>
-      <div class="grid content-start gap-3">
-        {[issueFaq, checklistFaq].map((faq) => (
-          <details class={details}>
-            <summary class={summary}>{faq.q}</summary>
-            <p class="mt-3">{faq.a}</p>
-          </details>
-        ))}
+
+      <div class="self-start rounded-panel bg-ocean px-8 py-8 text-white max-mobile:px-6">
+        <p class="mb-2 text-eyebrow font-extrabold uppercase tracking-[.12em] text-cyan">By arrangement</p>
+        <h2 class="text-[clamp(1.85rem,3vw,2.45rem)] text-white">Optional turnover support.</h2>
+        <ul class="mt-6 m-0 list-none border-t border-white/20 p-0" role="list">
+          {content.options.map((option) => {
+            const [label, price] = option.split(' — ');
+            return (
+              <li class="grid grid-cols-[30px_minmax(0,1fr)_auto] gap-3 border-b border-white/20 py-[18px] text-white/82">
+                <span class="font-black text-cyan" aria-hidden="true">+</span>
+                <span class="font-[700]">{label}</span>
+                <span class="font-extrabold tabular-nums text-white">{price}</span>
+              </li>
+            );
+          })}
+        </ul>
       </div>
     </div>
   </section>

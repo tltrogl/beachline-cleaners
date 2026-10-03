@@ -1,7 +1,0 @@
-{
-  "linkset": [{
-    "anchor": "https://beachlinecleaners.com/site-info.json",
-    "service-desc": [{ "href": "https://beachlinecleaners.com/openapi.json", "type": "application/json" }],
-    "service-doc": [{ "href": "https://beachlinecleaners.com/api-docs.txt", "type": "text/plain" }]
-  }]
-}

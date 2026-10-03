@@ -1,147 +1,81 @@
 ---
+import SiteImage from '../components/SiteImage.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Button from '../components/Button.astro';
 import CTA from '../components/CTA.astro';
-import { shell, phone } from '../styles/ui';
-import { pricingContent, servicePageDefaults, servicesDetail, site, withBase } from '../data/content';
+import Icon from '../components/Icon.astro';
+import { shell, homeEyebrow, phone } from '../styles/ui';
+import { site, servicesDetail, servicePageDefaults } from '../data/content';
 
 const content = servicesDetail.moveOut;
-const emptyPropertyFaq = content.faqs[0];
-const depositFaq = content.faqs[1];
-const timingFaq = content.faqs[2];
 ---
 <BaseLayout title={`${content.metaTitle} | ${site.name}`} description={content.metaDescription} quoteHref={content.quoteHref}>
-  <section class="bg-mist pt-12 pb-14 max-mobile:pt-7 max-mobile:pb-9" aria-labelledby="move-hero-title" slot="hero">
-    <div class:list={[shell, "grid grid-cols-[.94fr_1.06fr] items-center gap-14 max-tablet:gap-8 max-mobile:grid-cols-1 max-mobile:gap-7"]}>
-      <div>
-        <p class="mb-3 flex items-center gap-3 text-eyebrow font-extrabold uppercase tracking-[.12em] text-sea-dark">
-          <span class="h-px w-10 shrink-0 bg-sea" aria-hidden="true"></span>
-          {content.eyebrow}
-        </p>
-        <h1 id="move-hero-title" class="max-w-[700px] text-[clamp(2.7rem,4.5vw,4rem)] leading-[1.08] tracking-[-.03em] max-mobile:text-[2.65rem]">{content.title}</h1>
-        <p class="mt-6 max-w-[620px] text-lede leading-[1.6] max-mobile:mt-4">{content.intro}</p>
-        <p class="mt-5 text-[1.2rem] font-bold text-sea-dark">{content.priceLabel}</p>
-        <p class="mt-2 max-w-[620px] text-small">{pricingContent.note}</p>
+  <section class="border-b border-line bg-white pt-12 pb-14 max-mobile:pt-7 max-mobile:pb-9" aria-labelledby="move-hero-title" slot="hero">
+    <div class:list={[shell, "grid grid-cols-[1.07fr_.93fr] items-center gap-16 max-tablet:gap-9 max-mobile:grid-cols-1 max-mobile:gap-7"]}>
+      <div class="relative order-1 pb-3 pl-3 max-mobile:order-2">
+        <span class="absolute bottom-0 left-0 h-20 w-28 rounded-panel bg-[#C94F68]" aria-hidden="true"></span>
+        <figure class="relative m-0 overflow-hidden rounded-panel bg-mist shadow-[0_20px_58px_rgba(28,65,91,.09)]">
+        <SiteImage src={content.image} alt={content.imageAlt} width="1280" height="800" class="aspect-[1.18] w-full object-cover object-left max-mobile:aspect-[1.52]" fetchpriority="high" />
+        </figure>
+      </div>
+      <div class="order-2 max-mobile:order-1">
+        <p class:list={[homeEyebrow, 'flex items-center gap-3']}><span class="h-px w-10 shrink-0 bg-sea" aria-hidden="true"></span>Moving</p>
+        <h1 id="move-hero-title" class="max-w-[690px] text-[clamp(2.9rem,4.8vw,4.35rem)] leading-[1.03] tracking-[-.04em] max-mobile:text-[2.75rem]">{content.title}</h1>
+        <p class="mt-6 max-w-[590px] text-lede leading-[1.62] max-mobile:mt-4">{content.intro}</p>
         <div class="mt-7 flex flex-wrap items-center gap-control-gap">
-          <Button href={content.quoteHref}>{servicePageDefaults.quoteButtonText} <span aria-hidden="true">→</span></Button>
+          <Button href={content.quoteHref}>{servicePageDefaults.quoteButtonText} <Icon name="arrow-right" class="size-[18px]" /></Button>
           <a class={phone} href={site.phoneHref}>{servicePageDefaults.callButtonPrefix}{site.phoneDisplay}</a>
         </div>
       </div>
-
-      <figure class="m-0 overflow-hidden rounded-panel bg-white shadow-[0_18px_55px_rgba(28,65,91,.09)]">
-        <img
-          src={content.image}
-          alt={content.imageAlt}
-          class="aspect-[1.12] w-full object-cover object-left max-mobile:aspect-[1.5]"
-          width="1280"
-          height="800"
-          fetchpriority="high"
-        />
-      </figure>
     </div>
   </section>
 
-  <section class="py-[74px] max-mobile:py-14" aria-labelledby="handoff-heading">
+  <section class="border-b border-line bg-mist/55 py-[76px] max-mobile:py-14" aria-labelledby="move-included-heading">
     <div class={shell}>
-      <div class="grid grid-cols-[.72fr_1.28fr] gap-14 max-tablet:grid-cols-1 max-tablet:gap-6">
+      <div class="grid grid-cols-[.68fr_1.32fr] gap-16 max-tablet:grid-cols-1 max-tablet:gap-7">
         <div>
-          <p class="mb-3 flex items-center gap-3 text-eyebrow font-extrabold uppercase tracking-[.12em] text-sea-dark">
-            <span class="h-px w-10 bg-sea" aria-hidden="true"></span>
-            Plan the handoff
-          </p>
-          <h2 id="handoff-heading" class="max-w-[500px]">A move clean works best around the property handoff.</h2>
+          <p class:list={[homeEyebrow, 'flex items-center gap-3']}><span class="h-1 w-10 rounded-full bg-[#C94F68]" aria-hidden="true"></span>Empty-home clean</p>
+          <h2 id="move-included-heading" class="max-w-[480px]">Clean the property before the keys change hands.</h2>
         </div>
-        <p class="max-w-[760px] text-[1.08rem] leading-[1.72]">{content.who}</p>
-      </div>
-
-      <div class="mt-10 grid grid-cols-3 border-y border-line max-tablet:grid-cols-1 max-tablet:divide-y max-tablet:divide-line">
-        <article class="py-7 pr-9 max-tablet:pr-0">
-          <p class="mb-2 text-eyebrow font-extrabold uppercase tracking-[.11em] text-teal">Empty property</p>
-          <h3>{emptyPropertyFaq.q}</h3>
-          <p class="mt-3 text-[1rem] leading-[1.65]">{emptyPropertyFaq.a}</p>
-        </article>
-        <article class="border-l border-line px-9 py-7 max-tablet:border-l-0 max-tablet:px-0">
-          <p class="mb-2 text-eyebrow font-extrabold uppercase tracking-[.11em] text-teal">Requirements</p>
-          <h3>Have a checklist?</h3>
-          <p class="mt-3 text-[1rem] leading-[1.65]">Send any landlord, buyer, or property-manager checklist with your quote request so we can confirm which tasks are covered.</p>
-        </article>
-        <article class="border-l border-line py-7 pl-9 max-tablet:border-l-0 max-tablet:pl-0">
-          <p class="mb-2 text-eyebrow font-extrabold uppercase tracking-[.11em] text-teal">Timing</p>
-          <h3>{timingFaq.q}</h3>
-          <p class="mt-3 text-[1rem] leading-[1.65]">{timingFaq.a}</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="border-y border-line py-[74px] max-mobile:py-14" aria-labelledby="scope-heading">
-    <div class:list={[shell, "grid grid-cols-[.88fr_1.12fr] items-center gap-16 max-tablet:grid-cols-1 max-tablet:gap-9"]}>
-      <div>
-        <div class="mb-8 border-l-4 border-teal bg-seafoam px-7 py-7 max-mobile:px-5">
-          <p class="mb-3 flex items-center gap-3 text-eyebrow font-extrabold uppercase tracking-[.12em] text-sea-dark">
-            <span class="h-px w-10 bg-teal" aria-hidden="true"></span>
-            Empty-property cleaning
-          </p>
-          <h2 id="scope-heading" class="max-w-[520px]">What we clean once the rooms are clear.</h2>
-        </div>
-        <div class="border-y border-line/90">
-          {content.included.map((item) => (
-            <div class="border-b border-line/90 py-5 last:border-b-0">
-              <p class="text-[1.04rem] leading-[1.58]">{item}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <figure class="m-0 overflow-hidden rounded-panel bg-white">
-        <img
-          src={withBase('/images/move-out-empty-room.jpg')}
-          alt="Empty coastal room ready for a move-in or handoff"
-          class="aspect-[1.28] w-full object-cover object-center max-mobile:aspect-[1.5]"
-          width="1200"
-          height="800"
-          loading="lazy"
-        />
-      </figure>
-    </div>
-  </section>
-
-  <section class="py-[74px] max-mobile:py-10" aria-labelledby="quote-heading">
-    <div class:list={[shell, "grid grid-cols-[1fr_1fr] gap-16 max-tablet:grid-cols-1 max-tablet:gap-12"]}>
-      <div>
-        <p class="mb-3 text-eyebrow font-extrabold uppercase tracking-[.12em] text-sea-dark">Optional interiors</p>
-        <h2 class="max-w-[520px]">Add the inside work your handoff requires.</h2>
-        <p class="mt-5 max-w-[560px] text-[1.04rem] leading-[1.68]">{content.optionsIntro}</p>
-        <div class="mt-7 border-y border-line">
-          {content.options.map((option) => (
-            <div class="grid grid-cols-[34px_1fr] items-start border-b border-line py-4 last:border-b-0">
-              <span class="font-black text-sea-dark" aria-hidden="true">+</span>
-              <p class="font-[700] text-ink">{option}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div>
-        <p class="mb-3 text-eyebrow font-extrabold uppercase tracking-[.12em] text-sea-dark">Quote factors</p>
-        <h2 id="quote-heading" class="max-w-[500px]">What affects the price.</h2>
-        <p class="mt-5 max-w-[560px] text-[1.04rem] leading-[1.68]">{content.pricing}</p>
-        <ul class="m-0 mt-5 grid list-none grid-cols-2 gap-x-5 border-t border-line p-0 self-start" role="list">
-          {content.pricingFactors.map((factor) => (
-            <li class="border-b border-line py-4 text-[.96rem] font-bold text-ink">{factor}</li>
+        <ul class="m-0 grid list-none grid-cols-2 border-t border-line p-0 max-mobile:grid-cols-1" role="list">
+          {content.included.map((item, index) => (
+            <li class:list={[
+              'grid min-h-[98px] grid-cols-[30px_1fr] items-start gap-3 border-b border-line py-5 text-[1.01rem] leading-[1.6]',
+              index % 2 === 0 ? 'pr-8 max-mobile:pr-0' : 'border-l pl-8 max-mobile:border-l-0 max-mobile:pl-0'
+            ]}>
+              <span class="mt-0.5 text-[#D95E43]" aria-hidden="true"><Icon name="check-circle" class="size-[18px]" /></span>
+              <span>{item}</span>
+            </li>
           ))}
         </ul>
       </div>
     </div>
   </section>
 
-  <section class="py-[64px] max-mobile:py-12" aria-labelledby="deposit-heading">
-    <div class:list={[shell, "border-l-4 border-teal bg-seafoam px-9 py-9 grid grid-cols-[.7fr_1.3fr] gap-14 max-tablet:grid-cols-1 max-tablet:gap-5 max-mobile:px-6 max-mobile:py-7"]}>
+  <section class="py-[70px] max-mobile:py-14" aria-labelledby="move-price-heading">
+    <div class:list={[shell, "grid grid-cols-[.75fr_1.25fr] items-start gap-16 max-tablet:grid-cols-1 max-tablet:gap-10"]}>
       <div>
-        <p class="mb-3 text-eyebrow font-extrabold uppercase tracking-[.12em] text-sea-dark">Before the inspection</p>
-        <h2 id="deposit-heading" class="max-w-[470px]">{depositFaq.q}</h2>
+        <p class="mb-2 text-eyebrow font-extrabold uppercase tracking-[.12em] text-sea-dark">Starting price</p>
+        <h2 id="move-price-heading" class="text-[clamp(2.4rem,4vw,3.6rem)] tracking-[-.04em]">{content.priceLabel}</h2>
+        <p class="mt-4 max-w-[470px] text-[1.02rem] leading-[1.66]">{content.pricing}</p>
       </div>
-      <p class="max-w-[760px] text-[1.05rem] leading-[1.7]">{depositFaq.a}</p>
+
+      <div class="border-l border-line pl-10 max-tablet:border-l-0 max-tablet:border-t max-tablet:pl-0 max-tablet:pt-8">
+        <p class="mb-2 text-eyebrow font-extrabold uppercase tracking-[.12em] text-sea-dark">Add-ons</p>
+        <h2 class="text-[clamp(1.85rem,3vw,2.45rem)]">Only if the handoff needs them.</h2>
+        <ul class="mt-6 m-0 grid list-none grid-cols-2 gap-x-8 border-y border-line p-0 max-mobile:grid-cols-1" role="list">
+          {content.options.map((option, index) => {
+            const [label, price] = option.split(' — ');
+            return (
+              <li class:list={['grid grid-cols-[30px_minmax(0,1fr)_auto] gap-3 py-5 font-[700] text-ink', index > 0 && 'border-l border-line pl-8 max-mobile:border-l-0 max-mobile:border-t max-mobile:pl-0']}>
+                <span class="font-black text-sea-dark" aria-hidden="true">+</span>
+                <span>{label}</span>
+                <span class="font-extrabold tabular-nums text-sea-dark">{price}</span>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     </div>
   </section>
 

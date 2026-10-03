@@ -1,4 +1,5 @@
 ---
+import SiteImage from '../components/SiteImage.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CTA from '../components/CTA.astro';
 import { shell, section, pageHero, pageTitle, eyebrow, lede, split, splitImage } from '../styles/ui';
@@ -16,7 +17,7 @@ import { site, aboutContent } from '../data/content';
   <section class={section}>
     <div class:list={[shell, split]}>
       <div>
-        <img class={splitImage} src={aboutContent.story.imageSrc} alt={aboutContent.story.imageAlt} />
+        <SiteImage class={splitImage} src={aboutContent.story.imageSrc} alt={aboutContent.story.imageAlt} />
       </div>
       <div>
         <p class:list={[eyebrow, 'flex items-center gap-3']}><span class="h-px w-10 bg-sea" aria-hidden="true"></span>{aboutContent.story.eyebrow}</p>

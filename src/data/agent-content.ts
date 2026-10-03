@@ -1,4 +1,4 @@
-import { site, homeContent, servicesDetail, servicePageDefaults, pricingContent, aboutContent, faqContent, serviceAreaContent, quoteContent } from './content';
+import { site, homeContent, servicesDetail, pricingContent, aboutContent, faqContent, serviceAreaContent, quoteContent } from './content';
 
 const section = (title: string, text: string) => `## ${title}\n\n${text}`;
 const bullets = (items: string[]) => items.map(item => `- ${item}`).join('\n');
@@ -7,7 +7,7 @@ const rentalPricing = () => section(pricingContent.rentalHeading, [
   `| ${pricingContent.propertyColumn} | ${pricingContent.priceColumn} |`,
   '| --- | --- |',
   ...servicesDetail.vacationRental.pricingRows!.map(row => `| ${row.property} | ${row.price} |`),
-].join('\n') + `\n\n${pricingContent.rentalIncluded}\n\n${pricingContent.note}`);
+].join('\n') + `\n\n${servicesDetail.vacationRental.pricing}`);
 
 // These paths match the public HTML pages. Quote confirmation is intentionally excluded.
 export const agentPages = [
@@ -42,20 +42,18 @@ export function pageMarkdown(slug: string, origin: URL): string {
   let body: string[];
   if (Object.hasOwn(serviceBySlug, slug)) {
     const service = serviceBySlug[slug as keyof typeof serviceBySlug];
-    body = [service.intro,
-      section(service.includedHeading ?? servicePageDefaults.includedHeading, `${service.includedIntro ?? servicePageDefaults.includedIntro}\n\n${bullets(service.included)}`),
-      section(servicePageDefaults.whoHeading, service.who),
-      section(servicePageDefaults.optionsHeading, `${service.optionsIntro}\n\n${bullets(service.options)}`),
-      section(servicePageDefaults.pricingHeading, `${service.priceLabel}\n\n${service.pricing}${service.priceLabel === 'Custom quote' ? '' : `\n\n${pricingContent.note}`}\n\n${bullets(service.pricingFactors)}`),
-      ...(service.pricingRows ? [rentalPricing()] : []),
-      section(servicePageDefaults.faqsHeading, questions(service.faqs)),
+    body = [
+      service.intro,
+      section('What’s included', bullets(service.included)),
+      ...(service.pricingRows ? [rentalPricing()] : [section('Price', `${service.priceLabel}\n\n${service.pricing}`)]),
+      section(service.priceLabel === 'Custom quote' ? 'Options' : 'Add-ons', bullets(service.options)),
     ];
   } else if (slug === 'index') {
     body = [homeContent.hero.title, homeContent.hero.description, homeContent.hero.serviceArea,
       section(homeContent.servicesSection.eyebrow, homeContent.servicesSection.services.map(service =>
         `- [${service.title}](${absolute(service.href)}): ${service.priceLabel}. ${service.text}`).join('\n')),
-      section(homeContent.expectSection.heading, `${homeContent.expectSection.intro}\n\n${homeContent.expectSection.items.map(item => `### ${item.title}\n\n${item.text}`).join('\n\n')}`),
       section(homeContent.processSection.heading, `${homeContent.processSection.intro}\n\n` + homeContent.processSection.steps.map(step => `### ${step.title}\n\n${step.text}`).join('\n\n')),
+      section(homeContent.expectSection.heading, `${homeContent.expectSection.intro}\n\n${homeContent.expectSection.items.map(item => `### ${item.title}\n\n${item.text}`).join('\n\n')}`),
       section('Service area', bullets(serviceAreaContent.areas)),
     ];
   } else if (slug === 'about') {

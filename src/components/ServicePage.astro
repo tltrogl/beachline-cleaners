@@ -1,4 +1,5 @@
 ---
+import SiteImage from './SiteImage.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CTA from './CTA.astro';
 import Button from './Button.astro';
@@ -47,7 +48,7 @@ const {
       </div>
       {image && (
         <figure class="m-0">
-          <img
+          <SiteImage
             src={image}
             alt={imageAlt}
             class:list={[
