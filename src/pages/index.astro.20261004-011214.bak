@@ -1,0 +1,148 @@
+---
+import SiteImage from '../components/SiteImage.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site, homeContent, quoteContent } from '../data/content';
+import Button from '../components/Button.astro';
+import Icon from '../components/Icon.astro';
+import { shell, homeEyebrow, outlineLink } from '../styles/ui';
+
+---
+<BaseLayout bodyClass="island-home" title={`${site.name} | ${homeContent.metaTitleSuffix}`} description={homeContent.metaDescription}>
+  <section class="home-hero bg-mist pt-12 pb-14 max-mobile:pt-7 max-mobile:pb-9" aria-labelledby="hero-title" slot="hero">
+    <div class:list={[shell, "home-hero-grid grid grid-cols-[.96fr_1.04fr] items-center gap-14 max-tablet:gap-8 max-mobile:grid-cols-1 max-mobile:gap-7"]}>
+      <div class="home-hero-copy">
+        <p class:list={[homeEyebrow, 'flex items-center gap-3']}>
+          <span class="h-px w-10 shrink-0 bg-sea" aria-hidden="true"></span>
+          {homeContent.hero.eyebrow}
+        </p>
+        <h1 id="hero-title" class="max-w-[760px] text-[clamp(2.7rem,4.5vw,4rem)] leading-[1.1] tracking-[-.025em] text-balance max-mobile:text-[2.7rem] max-mobile:leading-[1.08]">{homeContent.hero.title}</h1>
+        <p class="mt-6 max-w-[560px] text-[1.16rem] leading-[1.6] max-mobile:mt-4 max-mobile:text-base">{homeContent.hero.description}</p>
+        <p class="mt-3 max-w-[560px] text-small">{homeContent.hero.serviceArea}</p>
+        <form class="hero-estimator mt-7 mb-4 grid grid-cols-[1fr_1.3fr] gap-3 rounded-panel border border-line bg-white p-4 shadow-[0_14px_40px_rgba(28,65,91,.08)] max-mobile:mt-5 max-mobile:grid-cols-1 max-mobile:gap-2.5 max-mobile:p-3" action={homeContent.hero.quoteHref} method="get">
+          <div><label class="mb-[5px] block text-sm font-[750] text-ink-soft" for="hero-location">{homeContent.hero.estimator.locationLabel}</label><input class="min-h-11 min-w-0 w-full rounded-md border border-field-line bg-white p-[9px] text-label text-ink placeholder:text-ink-soft hover:border-ink-soft focus-visible:outline-3 focus-visible:outline-sea-dark focus-visible:outline-offset-2" id="hero-location" name="location" autocomplete="postal-code" placeholder={homeContent.hero.estimator.locationPlaceholder} required /></div>
+          <div><label class="mb-[5px] block text-sm font-[750] text-ink-soft" for="hero-service">{homeContent.hero.estimator.serviceLabel}</label><select class="min-h-11 min-w-0 w-full rounded-md border border-field-line bg-white p-[9px] text-label text-ink placeholder:text-ink-soft hover:border-ink-soft focus-visible:outline-3 focus-visible:outline-sea-dark focus-visible:outline-offset-2" id="hero-service" name="service">{quoteContent.form.service.options.map((option) => <option value={option.value}>{option.label}</option>)}</select></div>
+          <Button class="col-span-full w-full" type="submit">{homeContent.hero.ctaButton} <Icon name="arrow-right" class="size-[18px]" /></Button>
+        </form>
+        <a class="inline-flex items-center gap-2 text-label font-[650] text-sea-dark underline underline-offset-4" href={site.phoneHref}><Icon name="phone" class="size-4" />{homeContent.hero.estimator.phonePrompt} {site.phoneDisplay}</a>
+      </div>
+      <div class="home-hero-media overflow-hidden rounded-panel bg-white shadow-[0_18px_55px_rgba(28,65,91,.09)]">
+        <SiteImage
+          src={homeContent.hero.imageSrc}
+          width={homeContent.hero.imageWidth}
+          height={homeContent.hero.imageHeight}
+          alt={homeContent.hero.imageAlt}
+          class="aspect-[1.04] w-full object-cover object-[62%_center] max-mobile:aspect-[1.55] max-mobile:object-center"
+          fetchpriority="high"
+        />
+      </div>
+    </div>
+  </section>
+
+  <div class="border-y border-line bg-white" aria-label={homeContent.trustStrip.ariaLabel}>
+    <div class:list={[shell, "grid grid-cols-4 divide-x divide-line py-4 max-mobile:grid-cols-2 max-mobile:divide-x-0 max-mobile:gap-y-3"]}>
+      {homeContent.trustStrip.items.map((item) => (
+        <div class="flex items-center justify-center gap-2 px-5 text-label font-[750] first:pl-0 last:pr-0 max-mobile:justify-start max-mobile:px-0 max-mobile:text-nav-compact">
+          <Icon name="check-circle" class="size-[18px] shrink-0 text-teal" />
+          <span>{item}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <section class="border-b border-line bg-white py-[82px] max-mobile:py-14" aria-labelledby="services-heading">
+    <div class={shell}>
+      <div class="flex items-center justify-between gap-8">
+        <h2 id="services-heading" class:list={[homeEyebrow, 'flex items-center gap-3']}><span class="h-px w-10 bg-sea" aria-hidden="true"></span>{homeContent.servicesSection.eyebrow}</h2>
+        <div class="flex items-center gap-2 max-mobile:gap-1.5" aria-hidden="true">
+          <span class="block h-2 w-16 rounded-full bg-teal max-mobile:w-10"></span>
+          <span class="block h-2 w-10 rounded-full bg-cyan max-mobile:w-7"></span>
+          <span class="block h-2 w-6 rounded-full border border-line bg-seafoam max-mobile:w-4"></span>
+        </div>
+      </div>
+
+      <div class="mt-8 border-t border-line" role="list">
+        {homeContent.servicesSection.services.map((service) => (
+          <article class="group/service -mx-5 grid grid-cols-[minmax(220px,.72fr)_minmax(0,1.28fr)] gap-x-14 border-b border-line px-5 py-7 transition-colors duration-200 hover:bg-mist/30 max-tablet:grid-cols-[minmax(190px,.7fr)_minmax(0,1.3fr)] max-tablet:gap-x-8 max-mobile:grid-cols-1 max-mobile:gap-y-4 max-mobile:py-6" role="listitem">
+            <div>
+              <h3 class="text-[1.5rem] leading-[1.2] tracking-[-.02em]">
+                <a class="text-ink no-underline hover:text-sea-dark" href={service.href}>{service.title}</a>
+              </h3>
+              <p class="mt-2 text-small font-bold text-sea-dark">{service.priceLabel}</p>
+            </div>
+
+            <div class="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-8 max-mobile:grid-cols-1 max-mobile:gap-4">
+              <p class="max-w-[650px] text-[.98rem] leading-[1.62]">{service.text}</p>
+              <a class="inline-flex shrink-0 items-center gap-2 text-link font-[750] text-sea-dark underline underline-offset-4" href={service.href}>
+                {homeContent.servicesSection.linkText}
+                <Icon name="arrow-right" class="size-4 transition-transform duration-200 motion-safe:group-hover/service:translate-x-1" />
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="border-y border-line bg-white py-8 max-mobile:py-7" aria-labelledby="expect-heading">
+    <div class:list={[shell, "grid grid-cols-[.78fr_1.42fr_auto] items-center gap-9 max-tablet:grid-cols-1 max-tablet:gap-5"]}>
+      <div>
+        <p class:list={[homeEyebrow, 'flex items-center gap-3']}><span class="h-px w-10 bg-sea" aria-hidden="true"></span>{homeContent.expectSection.eyebrow}</p>
+        <h2 id="expect-heading" class="max-w-[430px] text-[1.45rem] leading-[1.2]">{homeContent.expectSection.heading}</h2>
+        <p class="mt-2 max-w-[500px] text-[.96rem] leading-[1.55]">{homeContent.expectSection.intro}</p>
+      </div>
+
+      <div class="grid grid-cols-2 divide-x divide-line border-y border-line max-mobile:grid-cols-1 max-mobile:divide-x-0 max-mobile:divide-y">
+        {homeContent.expectSection.items.map((item) => (
+          <article class="flex gap-3 px-6 py-4 first:pl-0 last:pr-0 max-mobile:px-0">
+            <span class="mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-full bg-cyan/20 text-sea-dark"><Icon name="check-circle" class="size-4" /></span>
+            <div>
+              <h3 class="text-[1rem]">{item.title}</h3>
+              <p class="mt-1 max-w-[330px] text-[.9rem] leading-[1.5]">{item.text}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div class="flex min-w-max flex-col items-start gap-2 max-tablet:min-w-0 max-tablet:flex-row max-tablet:flex-wrap max-tablet:gap-x-6">
+        <a class={outlineLink} href={homeContent.expectSection.faqHref}>{homeContent.expectSection.faqText} <Icon name="arrow-right" class="size-[18px]" /></a>
+        <a class="text-small font-[650] text-sea-dark underline underline-offset-4" href={homeContent.expectSection.aboutHref}>{homeContent.expectSection.aboutText}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-ocean py-[78px] text-white max-mobile:py-14" aria-labelledby="process-heading">
+    <div class={shell}>
+      <div class="mb-10 grid grid-cols-[.65fr_1fr] items-end gap-10 max-mobile:grid-cols-1 max-mobile:gap-3">
+        <div>
+          <p class="mb-4 flex items-center gap-3 text-eyebrow font-extrabold uppercase tracking-[.12em] text-cyan"><span class="h-px w-10 bg-cyan" aria-hidden="true"></span>{homeContent.processSection.eyebrow}</p>
+          <h2 id="process-heading" class="max-w-[650px] text-white">{homeContent.processSection.heading}</h2>
+        </div>
+        <p class="max-w-[540px] justify-self-end text-[1.02rem] leading-[1.65] text-white/70 max-mobile:justify-self-start">{homeContent.processSection.intro}</p>
+      </div>
+      <ol class="m-0 grid list-none grid-cols-3 gap-8 p-0 max-tablet:grid-cols-1 max-tablet:gap-8" role="list">
+        {homeContent.processSection.steps.map((step) => (
+          <li class="border-t border-white/20 pt-6">
+            <span class="mb-6 block h-1.5 w-12 rounded-full bg-cyan" aria-hidden="true"></span>
+            <h3 class="mb-3 text-[1.25rem] text-white">{step.title}</h3>
+            <p class="max-w-[320px] text-small leading-[1.6] text-white/70">{step.text}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+
+  <section class="border-y border-line bg-seafoam py-11 max-mobile:py-9" aria-labelledby="contact-heading">
+    <div class:list={[shell, "flex items-center justify-between gap-7 max-tablet:flex-col max-tablet:items-start"]}>
+      <div>
+        <p class="mb-3 text-eyebrow font-extrabold uppercase tracking-[.12em] text-sea-dark">Ready when you are</p>
+        <h2 id="contact-heading">{homeContent.contactBanner.heading}</h2>
+        <p class="mt-3 max-w-[520px]">{homeContent.contactBanner.text}</p>
+      </div>
+      <div class="flex shrink-0 flex-wrap items-center gap-[18px] max-mobile:gap-x-[14px] max-mobile:gap-y-[7px]">
+        <Button href={homeContent.contactBanner.quoteHref}>{homeContent.contactBanner.ctaButton} <Icon name="arrow-right" class="size-[18px]" /></Button>
+        <a class="text-label font-[650] text-sea-dark underline underline-offset-4" href={site.phoneHref}>{homeContent.contactBanner.callPrefix}{site.phoneDisplay}</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

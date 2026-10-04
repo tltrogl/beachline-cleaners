@@ -1,0 +1,27 @@
+---
+interface Props {
+  variant?: 'sea' | 'teal' | 'cyan' | 'accent';
+  class?: string;
+  withRule?: boolean;
+}
+
+const {
+  variant = 'sea',
+  class: className = '',
+  withRule = true,
+} = Astro.props;
+
+const rules = {
+  sea: 'h-px w-10 shrink-0 bg-sea',
+  teal: 'h-px w-10 shrink-0 bg-teal',
+  cyan: 'h-px w-10 shrink-0 bg-cyan',
+  accent: 'h-1 w-10 shrink-0 rounded-full bg-accent',
+};
+---
+
+<p class:list={[className, withRule && 'flex items-center gap-3']}>
+  {withRule && (
+    <span class={rules[variant]} aria-hidden="true"></span>
+  )}
+  <slot />
+</p>

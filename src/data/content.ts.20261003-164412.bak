@@ -649,19 +649,12 @@ export const faqContent = {
 
 export const serviceAreaContent = {
   metaTitle: 'Cleaning Service Areas in Brevard County',
-
-  metaDescription:
-    'Beachline Cleaners serves Cocoa, Cocoa Beach, Cape Canaveral, Merritt Island, Rockledge, Melbourne, Palm Bay, Viera, Titusville, and nearby Brevard County areas.',
-
+  metaDescription: 'View our cleaning service area covering Cocoa, Cocoa Beach, Cape Canaveral, Merritt Island, Rockledge, Melbourne, Palm Bay, Viera, and Titusville.',
   hero: {
     eyebrow: 'Service area',
-    title: 'Cleaning across Brevard County.',
-    lede:
-      'Beachline Cleaners serves homes, vacation rentals, moves, and small workspaces throughout the Space Coast communities listed here.',
+    title: 'Local cleaning across the Space Coast.',
+    lede: 'Cleaning for homes, vacation rentals, moves, and workspaces in the Brevard County communities listed below.',
   },
-
-  areaHeading: 'Where we clean',
-
   areas: [
     'Cocoa',
     'Cocoa Beach',
@@ -672,61 +665,33 @@ export const serviceAreaContent = {
     'Palm Bay',
     'Viera',
     'Titusville',
+    'Nearby areas by request',
   ],
-
-  areaNote:
-    'Nearby Brevard County areas may be available by request. Send your town or ZIP code and we’ll confirm coverage before booking.',
-
-  coverageEyebrow: 'Cleaning services',
-
-  coverageHeading:
-    'Choose the service that fits your property.',
-
-  coverageIntro:
-    'We offer home, rental, move, and small commercial cleaning across our service area. Availability depends on the property, location, and schedule.',
-
+  coverageHeading: 'Choose the cleaning you need.',
+  coverageIntro: 'Explore what’s included in each service before requesting a quote.',
   services: [
     {
-      title: 'Home Cleaning',
-      text:
-        'Recurring or one-time cleaning for occupied homes.',
+      title: 'Homes & moves',
+      text: 'Recurring home cleaning, deep cleaning, and empty-property move cleans.',
       href: withBase('/residential-cleaning'),
       linkText: 'Explore home cleaning',
     },
     {
-      title: 'Deep Cleaning',
-      text:
-        'A more detailed reset for homes that need extra attention.',
-      href: withBase('/deep-cleaning'),
-      linkText: 'Explore deep cleaning',
-    },
-    {
-      title: 'Move-In / Move-Out',
-      text:
-        'Cleaning for empty properties before or after a move.',
-      href: withBase('/move-out-cleaning'),
-      linkText: 'Explore move cleaning',
-    },
-    {
-      title: 'Vacation Rentals',
-      text:
-        'Turnover cleaning between guest stays, with linen and restocking needs agreed in advance.',
+      title: 'Vacation rentals',
+      text: 'Turnover cleaning between guest stays, with linen and restocking needs agreed in advance.',
       href: withBase('/vacation-rental-cleaning'),
       linkText: 'Explore rental turnovers',
     },
     {
-      title: 'Commercial Cleaning',
-      text:
-        'Cleaning for small offices, professional suites, retail spaces, and light commercial properties.',
+      title: 'Offices & workspaces',
+      text: 'Cleaning for offices and workspaces, with a checklist and schedule agreed before the first visit.',
       href: withBase('/commercial-cleaning'),
       linkText: 'Explore commercial cleaning',
     },
   ],
-
   cta: {
-    title: 'Not sure if you’re in range?',
-    text:
-      'Send your town or ZIP code and preferred dates, or call us. We’ll confirm coverage and availability before booking.',
+    title: 'Not sure if you\'re in range?',
+    text: 'Send your town or ZIP code and preferred dates, or call us. We’ll confirm coverage and availability before booking.',
   },
 };
 
@@ -873,6 +838,5 @@ export const quoteSuccessContent = {
   returnButtonHref: withBase('/'),
   callPrefix: 'Call ',
 };
-
 
 
