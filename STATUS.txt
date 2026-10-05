@@ -1,0 +1,32 @@
+Beachline Cleaners cumulative source snapshot
+Updated: 2026-10-04
+
+AUTHORITATIVE INPUTS
+- Website baseline: Beachline-Cleaners-Current-Source-2026-10-04.zip
+- Pricing/estimator specification: Beachline_Cleaners_Pricing_Framework_v2_Final.docx
+- Older Beachline ZIPs, backups, and prior Current Source folders were not used to override this source.
+
+PRICING / ESTIMATOR IMPLEMENTATION
+- Added src/data/pricing.ts as the shared public-safe pricing source.
+- Added pure estimate functions for Home, Deep, Move-In / Move-Out, and Vacation Rental services.
+- Commercial pricing remains customer-facing "Custom quote"; the internal commercial rate card is not included in browser-facing pricing data.
+- Quote page now calculates supported estimates client-side and switches unsupported/over-limit requests to Custom quote.
+- Displayed estimate, pricing version, and relevant pricing inputs are stored in hidden form fields for Formspree submission.
+- Pricing benchmark calculations and custom-quote guardrails were exercised against the finalized pricing framework.
+
+SITE POLISH IMPLEMENTED
+- Standardized customer-facing quote CTAs to "Request a Quote" while retaining "Send Quote Request" for form submission.
+- Removed the shared "Next step" CTA eyebrow.
+- Added supported starting-price treatments near service hero actions.
+- Updated service checklist hierarchy/labels and reduced repeated decorative pink photo blocks.
+- Improved footer copyright contrast.
+- Updated About, Service Area, FAQ, Quote Success, and 404 presentation per the approved pass.
+- Prevented Move-In / Move-Out terms from breaking independently in the desktop hero title.
+- Synchronized content.ts, agent-content.ts, and site-info.json.ts with shared pricing data where practical.
+
+QA STATUS
+- Pricing function benchmark/custom-state tests: completed in the implementation environment.
+- Type/source checks: see implementation report generated with this package.
+- No dependencies were installed or upgraded.
+- Rendered screenshot QA is only considered complete if the existing environment can run the project without dependency changes.
+- Form delivery is not considered verified unless a real test submission is performed.

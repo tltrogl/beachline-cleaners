@@ -2,6 +2,7 @@
 import SiteImage from '../components/SiteImage.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CTA from '../components/CTA.astro';
+import Icon from '../components/Icon.astro';
 import { shell, aboutUi } from '../styles/ui';
 import { site, aboutContent } from '../data/content';
 ---
@@ -17,7 +18,6 @@ import { site, aboutContent } from '../data/content';
   <section class={aboutUi.storySection}>
     <div class:list={[shell, aboutUi.storyGrid]}>
       <div class={aboutUi.storyMedia}>
-        <span class={aboutUi.storyAccent} aria-hidden="true"></span>
         <figure class={aboutUi.storyFigure}>
           <SiteImage class={aboutUi.storyImage} src={aboutContent.story.imageSrc} alt={aboutContent.story.imageAlt} />
         </figure>
@@ -37,7 +37,7 @@ import { site, aboutContent } from '../data/content';
     <div class:list={[shell, aboutUi.checkGrid]}>
       {aboutContent.story.checks.map((check, index) => (
         <div class:list={[aboutUi.checkItem, index > 0 && aboutUi.checkItemBorder]}>
-          <span class={aboutUi.checkDot} aria-hidden="true"></span>
+          <span class={aboutUi.checkIcon} aria-hidden="true"><Icon name="check-circle" class="size-[17px]" /></span>
           <span>{check}</span>
         </div>
       ))}

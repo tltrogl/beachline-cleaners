@@ -13,16 +13,16 @@ const content = servicesDetail.moveOut;
   <section class={moveOutUi.heroSection} aria-labelledby="move-hero-title" slot="hero">
     <div class:list={[shell, moveOutUi.heroGrid]}>
       <div class={moveOutUi.heroMedia}>
-        <span class={moveOutUi.heroAccent} aria-hidden="true"></span>
         <figure class={moveOutUi.heroFigure}>
           <SiteImage src={content.image} alt={content.imageAlt} width="1280" height="800" class={moveOutUi.heroImage} fetchpriority="high" />
         </figure>
       </div>
       <div class={moveOutUi.heroCopy}>
         <p class:list={[homeEyebrow, moveOutUi.eyebrowRow]}><span class={moveOutUi.eyebrowRuleSea} aria-hidden="true"></span>Move-in / move-out · Brevard County</p>
-        <h1 id="move-hero-title" class={moveOutUi.heroTitle}>{content.title}</h1>
+        <h1 id="move-hero-title" class={moveOutUi.heroTitle}><span class="whitespace-nowrap">Move-In</span> / <span class="whitespace-nowrap">Move-Out</span> Cleaning</h1>
         <p class={moveOutUi.heroLede}>{content.intro}</p>
         <p class={moveOutUi.fitNote}>{content.who}</p>
+        <p class="mt-5 inline-flex rounded-full border border-teal/20 bg-seafoam px-4 py-2 text-[.92rem] font-extrabold text-sea-dark">{content.priceLabel}</p>
         <div class={moveOutUi.heroActions}>
           <Button href={content.quoteHref}>{servicePageDefaults.quoteButtonText} <Icon name="arrow-right" class={moveOutUi.actionIcon} /></Button>
           <a class={phone} href={site.phoneHref}>{servicePageDefaults.callButtonPrefix}{site.phoneDisplay}</a>
@@ -36,16 +36,22 @@ const content = servicesDetail.moveOut;
       <div class={moveOutUi.scopeGrid}>
         <div>
           <p class:list={[homeEyebrow, moveOutUi.eyebrowRow]}><span class={moveOutUi.accentRule} aria-hidden="true"></span>Empty-home clean</p>
-          <h2 id="move-included-heading" class={moveOutUi.scopeHeading}>Clean the property before the keys change hands.</h2>
-          <p class={moveOutUi.scopeIntro}>The property should be empty enough for us to reach cabinets, trim, floors, and the other areas that are usually blocked during an occupied clean.</p>
+          <h2 id="move-included-heading" class={moveOutUi.scopeHeading}>{content.includedHeading}</h2>
+          <p class={moveOutUi.scopeIntro}>{content.includedIntro}</p>
         </div>
         <ul class={moveOutUi.scopeList} role="list">
-          {content.included.map((item) => (
-            <li class={moveOutUi.scopeItemBase}>
-              <span class={moveOutUi.scopeIcon} aria-hidden="true"><Icon name="check-circle" class={moveOutUi.scopeIconGlyph} /></span>
-              <span>{item}</span>
-            </li>
-          ))}
+          {content.included.map((item) => {
+            const [label, ...description] = item.split(': ');
+            return (
+              <li class={moveOutUi.scopeItemBase}>
+                <span class={moveOutUi.scopeIcon} aria-hidden="true"><Icon name="check-circle" class={moveOutUi.scopeIconGlyph} /></span>
+                <div>
+                  <h3 class="text-[1rem] font-extrabold text-ink">{label}</h3>
+                  <p class="mt-1 text-[.94rem] leading-[1.55] text-ink-soft">{description.join(': ')}</p>
+                </div>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </div>

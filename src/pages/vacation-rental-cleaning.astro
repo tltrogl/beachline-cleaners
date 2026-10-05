@@ -17,13 +17,13 @@ const content = servicesDetail.vacationRental;
         <h1 id="rental-hero-title" class={rentalUi.heroTitle}>{content.title}</h1>
         <p class={rentalUi.heroLede}>{content.intro}</p>
         <p class={rentalUi.fitNote}>{content.who}</p>
+        <p class="mt-5 inline-flex rounded-full border border-teal/20 bg-white px-4 py-2 text-[.92rem] font-extrabold text-sea-dark">{content.priceLabel}</p>
         <div class={rentalUi.heroActions}>
           <Button href={content.quoteHref}>{servicePageDefaults.quoteButtonText} <Icon name="arrow-right" class={rentalUi.actionIcon} /></Button>
           <a class={phone} href={site.phoneHref}>{servicePageDefaults.callButtonPrefix}{site.phoneDisplay}</a>
         </div>
       </div>
       <div class={rentalUi.heroMedia}>
-        <span class={rentalUi.heroAccent} aria-hidden="true"></span>
         <figure class={rentalUi.heroFigure}>
           <SiteImage src={content.image} alt={content.imageAlt} width="1280" height="800" class={rentalUi.heroImage} fetchpriority="high" />
         </figure>
@@ -36,17 +36,23 @@ const content = servicesDetail.vacationRental;
       <div class={rentalUi.scopeGrid}>
         <div>
           <p class:list={[homeEyebrow, rentalUi.eyebrowRow]}><span class={rentalUi.accentRule} aria-hidden="true"></span>Every turnover</p>
-          <h2 id="rental-included-heading" class={rentalUi.scopeHeading}>Clean, reset, and report.</h2>
-          <p class={rentalUi.scopeIntro}>A turnover follows the same operating sequence each stay: clean the guest spaces, reset the property, document completion, and flag visible concerns.</p>
+          <h2 id="rental-included-heading" class={rentalUi.scopeHeading}>{content.includedHeading}</h2>
+          <p class={rentalUi.scopeIntro}>{content.includedIntro}</p>
         </div>
-        <ol class={rentalUi.scopeList} role="list">
-          {content.included.map((item, index) => (
-            <li class={rentalUi.scopeItemBase}>
-              <span class={rentalUi.scopeNumber} aria-hidden="true">0{index + 1}</span>
-              <span>{item}</span>
-            </li>
-          ))}
-        </ol>
+        <ul class={rentalUi.scopeList} role="list">
+          {content.included.map((item) => {
+            const [label, ...description] = item.split(': ');
+            return (
+              <li class={rentalUi.scopeItemBase}>
+                <span class="mt-0.5 flex size-7 items-center justify-center rounded-full bg-seafoam text-teal" aria-hidden="true"><Icon name="check-circle" class="size-[17px]" /></span>
+                <div>
+                  <h3 class="text-[1rem] font-extrabold text-ink">{label}</h3>
+                  <p class="mt-1 text-[.94rem] leading-[1.55] text-ink-soft">{description.join(': ')}</p>
+                </div>
+              </li>
+            );
+          })}
+        </ul>
       </div>
     </div>
   </section>

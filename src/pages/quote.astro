@@ -1,9 +1,20 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { site, quoteContent } from '../data/content';
+import { pricing, PRICING_VERSION } from '../data/pricing';
 import Button from '../components/Button.astro';
 import Icon from '../components/Icon.astro';
 import { shell, quoteUi, field, formGroup, formRow } from '../styles/ui';
+
+const sizeOptions = pricing.home.sizeAdjustments.map((tier, index, tiers) => {
+  const previousMax = index === 0 ? 0 : (tiers[index - 1]?.maxSqFt ?? 0);
+  const label = index === 0
+    ? `Up to ${tier.maxSqFt.toLocaleString('en-US')} sq ft`
+    : `${(previousMax + 1).toLocaleString('en-US')}–${tier.maxSqFt.toLocaleString('en-US')} sq ft`;
+  return { value: String(tier.maxSqFt), label };
+});
+
+const vacationTiers = pricing.vacationRental.tiers;
 ---
 <BaseLayout bodyClass="island-home no-mobile-bar page-quote" title={`${quoteContent.metaTitle} | ${site.name}`} description={quoteContent.metaDescription}>
   <section class={quoteUi.section}>
@@ -18,106 +29,264 @@ import { shell, quoteUi, field, formGroup, formRow } from '../styles/ui';
           <a class={quoteUi.contactLink} href={site.phoneHref}>Call {site.phoneDisplay}</a>
           <a class={quoteUi.contactLink} href={site.smsHref}>Text us</a>
         </div>
-        <div class={quoteUi.trustPills} aria-label={quoteContent.trustPillsAriaLabel}>
-          {quoteContent.trustPills.map((pill) => (
-            <span><span aria-hidden="true">✓ </span>{pill}</span>
-          ))}
-        </div>
-        
+
         <form class={quoteUi.form} action={quoteContent.form.formspreeEndpoint} method="POST" data-submitting-button={quoteContent.form.submittingButton} data-submitting-status={quoteContent.form.submittingStatus}>
           <input type="hidden" name="_next" value={new URL(quoteContent.form.actionAttr, Astro.site).href} />
           <input type="hidden" name="_subject" value={quoteContent.form.emailSubject} />
+          <input type="hidden" name="pricing_version" value={PRICING_VERSION} />
+          <input type="hidden" name="estimate_status" id="estimate_status" value="incomplete" />
+          <input type="hidden" name="estimate_display" id="estimate_display" value="" />
+          <input type="hidden" name="estimate_service" id="estimate_service" value="" />
+          <input type="hidden" name="estimate_bedrooms" id="estimate_bedrooms" value="" />
+          <input type="hidden" name="estimate_full_bathrooms" id="estimate_full_bathrooms" value="" />
+          <input type="hidden" name="estimate_half_bathrooms" id="estimate_half_bathrooms" value="" />
+          <input type="hidden" name="estimate_size" id="estimate_size" value="" />
+          <input type="hidden" name="estimate_frequency" id="estimate_frequency" value="" />
+          <input type="hidden" name="estimate_extras" id="estimate_extras" value="" />
           <div class={quoteUi.hidden} aria-hidden="true">
             <label>{quoteContent.form.honeypotLabel}</label>
             <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
           </div>
 
-          <div class={formGroup}>
-            <label class={quoteUi.label} for="name">{quoteContent.form.name.label}</label>
-            <input class={field} type="text" id="name" name="name" required autocomplete="name" placeholder={quoteContent.form.name.placeholder} />
-          </div>
-          <div class={formRow}>
-            <div class={formGroup}>
-              <label class={quoteUi.label} for="phone">{quoteContent.form.phone.label}</label>
-              <input
-                class={field}
-                type="tel"
-                id="phone"
-                name="phone"
-                required
-                autocomplete="tel"
-                placeholder={quoteContent.form.phone.placeholder}
-                pattern={quoteContent.form.phone.pattern}
-                title={quoteContent.form.phone.title}
-              />
+          <section class={quoteUi.formSection} aria-labelledby="quote-service-heading">
+            <div class={quoteUi.formSectionHeader}>
+              <p class={quoteUi.formSectionKicker}>Service</p>
+              <h2 id="quote-service-heading" class={quoteUi.formSectionTitle}>What kind of cleaning do you need?</h2>
             </div>
             <div class={formGroup}>
-              <label class={quoteUi.label} for="email">{quoteContent.form.email.label}</label>
-              <input
-                class={field}
-                type="email"
-                id="email"
-                name="email"
-                autocomplete="email"
-                placeholder={quoteContent.form.email.placeholder}
-              />
+              <label class={quoteUi.label} for="service">{quoteContent.form.service.label}</label>
+              <select class={field} id="service" name="service" required>
+                <option value="">{quoteContent.form.service.placeholder}</option>
+                {quoteContent.form.service.options.map((opt) => <option value={opt.value}>{opt.label}</option>)}
+              </select>
             </div>
-          </div>
-          <div class={formGroup}>
-            <label class={quoteUi.label} for="location">{quoteContent.form.location.label}</label>
-            <input class={field} type="text" id="location" name="location" required placeholder={quoteContent.form.location.placeholder} />
-          </div>
-          <div class={formGroup}>
-            <label class={quoteUi.label} for="service">{quoteContent.form.service.label}</label>
-            <select class={field} id="service" name="service" required>
-              <option value="">{quoteContent.form.service.placeholder}</option>
-              {quoteContent.form.service.options.map((opt) => (
-                <option value={opt.value}>{opt.label}</option>
-              ))}
-            </select>
-          </div>
+          </section>
 
-          <div class={formRow}>
-            <div class={formGroup}>
-              <label class={quoteUi.label} for="size">{quoteContent.form.size.label}</label>
-              <input class={field} type="text" id="size" name="size" placeholder={quoteContent.form.size.placeholder} />
+          <section class={quoteUi.formSection} aria-labelledby="quote-property-heading">
+            <div class={quoteUi.formSectionHeader}>
+              <p class={quoteUi.formSectionKicker}>Property</p>
+              <h2 id="quote-property-heading" class={quoteUi.formSectionTitle}>Tell us about the property.</h2>
             </div>
+
             <div class={formGroup}>
-              <label class={quoteUi.label} for="frequency">{quoteContent.form.frequency.label}</label>
-              <input class={field} type="text" id="frequency" name="frequency" placeholder={quoteContent.form.frequency.placeholder} />
+              <label class={quoteUi.label} for="location">{quoteContent.form.location.label}</label>
+              <input class={field} type="text" id="location" name="location" required placeholder={quoteContent.form.location.placeholder} />
             </div>
-          </div>
-          <noscript><p>Use the fields for your service below and leave the others blank. Empty cabinet interiors are included with move cleaning.</p></noscript>
-          {quoteContent.form.serviceFields.map((group) => (
-            <fieldset class={quoteUi.fieldset} data-service-fields={group.services.join(',')}>
-              <legend class={quoteUi.fieldsetLegend}>{group.legend}</legend>
-              <div class={quoteUi.fieldGrid}>
-                {group.fields.map((item) => (
-                  <div class={formGroup}>
-                    <label class={quoteUi.simpleLabel} for={item.name}>{item.label}</label>
-                    <input class={field} type="text" id={item.name} name={item.name} placeholder={item.placeholder} />
-                  </div>
-                ))}
+
+            <div data-service-fields="residential,deep,move" hidden>
+              <div class={quoteUi.fieldGridThree}>
+                <div class={formGroup}>
+                  <label class={quoteUi.simpleLabel} for="bedrooms">Bedrooms</label>
+                  <input class={field} type="number" id="bedrooms" name="bedrooms" min="0" step="1" inputmode="numeric" placeholder="Studio = 0" data-required-services="residential,deep,move" />
+                </div>
+                <div class={formGroup}>
+                  <label class={quoteUi.simpleLabel} for="full_bathrooms">Full bathrooms</label>
+                  <input class={field} type="number" id="full_bathrooms" name="full_bathrooms" min="1" step="1" inputmode="numeric" placeholder="e.g. 2" data-required-services="residential,deep,move" />
+                </div>
+                <div class={formGroup}>
+                  <label class={quoteUi.simpleLabel} for="half_bathrooms">Half bathrooms</label>
+                  <input class={field} type="number" id="half_bathrooms" name="half_bathrooms" min="0" step="1" inputmode="numeric" value="0" />
+                </div>
               </div>
-            </fieldset>
-          ))}
-          {quoteContent.form.extras.map((group) => (
-            <fieldset class={quoteUi.fieldset} data-service-fields={group.services.join(',')} aria-describedby={`${group.id}-hint`}>
-              <legend class={quoteUi.extrasLegend}>{group.label}</legend>
-              <p id={`${group.id}-hint`} class={quoteUi.hint}>{group.hint}</p>
+              <div class:list={[formGroup, 'mt-4']}>
+                <label class={quoteUi.simpleLabel} for="size_band">Approximate square footage</label>
+                <select class={field} id="size_band" name="size_band" data-required-services="residential,deep,move">
+                  <option value="">Select a size range...</option>
+                  {sizeOptions.map((option) => <option value={option.value}>{option.label}</option>)}
+                  <option value="3501">Over 3,500 sq ft</option>
+                </select>
+              </div>
+            </div>
+
+            <div class={formGroup} data-service-fields="vacation" hidden>
+              <label class={quoteUi.simpleLabel} for="rental_tier">Vacation-rental layout</label>
+              <select class={field} id="rental_tier" name="rental_tier" data-required-services="vacation">
+                <option value="">Select the closest layout...</option>
+                {vacationTiers.map((tier) => <option value={tier.id}>{tier.label}</option>)}
+              </select>
+            </div>
+
+            <div class={formGroup} data-service-fields="commercial" hidden>
+              <label class={quoteUi.simpleLabel} for="commercial_size">Approximate workspace size (optional)</label>
+              <input class={field} type="text" id="commercial_size" name="commercial_size" placeholder="e.g. 2,500 sq ft" />
+            </div>
+          </section>
+
+          <section class={quoteUi.formSection} aria-labelledby="quote-details-heading">
+            <div class={quoteUi.formSectionHeader}>
+              <p class={quoteUi.formSectionKicker}>Service details</p>
+              <h2 id="quote-details-heading" class={quoteUi.formSectionTitle}>Set the schedule and service details.</h2>
+            </div>
+
+            <div class={formRow}>
+              <div class={formGroup} data-service-fields="residential" hidden>
+                <label class={quoteUi.simpleLabel} for="home_frequency">Cleaning frequency</label>
+                <select class={field} id="home_frequency" name="home_frequency" data-required-services="residential">
+                  <option value="">Select frequency...</option>
+                  <option value="weekly">Weekly</option>
+                  <option value="biweekly">Biweekly</option>
+                  <option value="monthly">Every 4 weeks</option>
+                  <option value="one-time">One-time standard</option>
+                </select>
+              </div>
+              <div class={formGroup}>
+                <label class={quoteUi.simpleLabel} for="preferred_schedule">Preferred date / schedule (optional)</label>
+                <input class={field} type="text" id="preferred_schedule" name="preferred_schedule" placeholder="Date, weekly, biweekly, etc." />
+              </div>
+            </div>
+
+            <p class={quoteUi.hint} data-service-fields="residential" hidden>Substantial buildup or deep-detail work? Choose Deep Cleaning rather than adding a condition surcharge to Home Cleaning.</p>
+
+            <div class={quoteUi.fieldGrid} data-service-fields="move" hidden>
+              <div class={formGroup}>
+                <label class={quoteUi.simpleLabel} for="move_empty">Will the property be empty or substantially empty?</label>
+                <select class={field} id="move_empty" name="move_empty" data-required-services="move">
+                  <option value="">Select...</option>
+                  <option value="yes">Yes</option>
+                  <option value="no">No / not yet</option>
+                  <option value="unsure">Not sure</option>
+                </select>
+              </div>
+              <div class={formGroup}>
+                <label class={quoteUi.simpleLabel} for="handoff_date">Inspection or handoff deadline (optional)</label>
+                <input class={field} type="text" id="handoff_date" name="handoff_date" placeholder="e.g. October 17, before noon" />
+              </div>
+              <label class={quoteUi.optionLabel} for="move_special_conditions">
+                <input class={quoteUi.checkbox} type="checkbox" id="move_special_conditions" name="move_special_conditions" value="Construction/remodel cleanup, excessive debris, severe buildup, or unusual conditions" />
+                <span>Construction/remodel cleanup, excessive debris, severe buildup, or other unusual conditions</span>
+              </label>
+            </div>
+
+            <div class={quoteUi.fieldGrid} data-service-fields="vacation" hidden>
+              <div class={formRow}>
+                <div class={formGroup}>
+                  <label class={quoteUi.simpleLabel} for="checkout_time">Guest checkout (optional)</label>
+                  <input class={field} type="text" id="checkout_time" name="checkout_time" placeholder="Date and time" />
+                </div>
+                <div class={formGroup}>
+                  <label class={quoteUi.simpleLabel} for="checkin_time">Next guest check-in (optional)</label>
+                  <input class={field} type="text" id="checkin_time" name="checkin_time" placeholder="Date and time" />
+                </div>
+              </div>
+              <label class={quoteUi.optionLabel} for="rental_rush">
+                <input class={quoteUi.checkbox} type="checkbox" id="rental_rush" name="rental_rush" value="Same-day / last-minute rush" />
+                <span>Same-day / last-minute rush request</span>
+              </label>
+              <label class={quoteUi.optionLabel} for="rental_heavy_reset">
+                <input class={quoteUi.checkbox} type="checkbox" id="rental_heavy_reset" name="rental_heavy_reset" value="Seasonal / heavy reset" />
+                <span>Seasonal / heavy reset</span>
+              </label>
+            </div>
+
+            <div class={quoteUi.fieldGrid} data-service-fields="commercial" hidden>
+              <div class={formGroup}>
+                <label class={quoteUi.simpleLabel} for="workspace_type">Type of workspace</label>
+                <input class={field} type="text" id="workspace_type" name="workspace_type" placeholder="e.g. office, shop, professional suite" />
+              </div>
+              <div class={formGroup}>
+                <label class={quoteUi.simpleLabel} for="commercial_priorities">Cleaning priorities or checklist</label>
+                <input class={field} type="text" id="commercial_priorities" name="commercial_priorities" placeholder="e.g. floors, restrooms, breakroom" />
+              </div>
+            </div>
+          </section>
+
+          <section class={quoteUi.formSection} aria-labelledby="quote-extras-heading">
+            <div class={quoteUi.formSectionHeader}>
+              <p class={quoteUi.formSectionKicker}>Extras</p>
+              <h2 id="quote-extras-heading" class={quoteUi.formSectionTitle}>Add only what the property needs.</h2>
+            </div>
+
+            <fieldset class={quoteUi.fieldset} data-service-fields="residential,deep,move" hidden>
+              <legend class={quoteUi.extrasLegend}>Optional residential extras</legend>
               <div class={quoteUi.optionsGrid}>
-                {group.options.map((option) => (
-                  <label class={quoteUi.optionLabel} for={option.name} data-service-option={'services' in option ? option.services?.join(',') : group.services.join(',')}>
-                    <input class={quoteUi.checkbox} type="checkbox" id={option.name} name={option.name} value={option.label} />
-                    <span>{option.label}</span>
-                  </label>
-                ))}
+                <label class={quoteUi.optionLabel} for="extra_oven">
+                  <input class={quoteUi.checkbox} type="checkbox" id="extra_oven" name="extra_oven" value={`Inside oven (+$${pricing.addOns.oven})`} />
+                  <span>Inside oven <strong>+${pricing.addOns.oven}</strong></span>
+                </label>
+                <label class={quoteUi.optionLabel} for="extra_fridge">
+                  <input class={quoteUi.checkbox} type="checkbox" id="extra_fridge" name="extra_fridge" value={`Inside refrigerator (+$${pricing.addOns.refrigerator})`} />
+                  <span>Inside refrigerator <strong>+${pricing.addOns.refrigerator}</strong></span>
+                </label>
+                <label class={quoteUi.optionLabel} for="extra_cabinets" data-service-option="residential,deep">
+                  <input class={quoteUi.checkbox} type="checkbox" id="extra_cabinets" name="extra_cabinets" value={`Empty cabinet interiors (from +$${pricing.addOns.cabinetInteriorsFrom})`} />
+                  <span>Empty cabinet interiors <strong>from +${pricing.addOns.cabinetInteriorsFrom}</strong></span>
+                </label>
+                <label class={quoteUi.optionLabel} for="extra_windows">
+                  <input class={quoteUi.checkbox} type="checkbox" id="extra_windows" name="extra_windows" value={`Interior window glass (+$${pricing.addOns.standardWindow} each)`} />
+                  <span>Interior window glass <strong>+${pricing.addOns.standardWindow} each</strong></span>
+                </label>
+              </div>
+              <div class:list={[formGroup, 'mt-3']} data-window-count hidden>
+                <label class={quoteUi.simpleLabel} for="window_count">Number of standard windows</label>
+                <input class={field} type="number" id="window_count" name="window_count" min="1" step="1" inputmode="numeric" placeholder="e.g. 6" />
+                <p class={quoteUi.hint}>Oversized glass and sliders need a custom quote.</p>
               </div>
             </fieldset>
-          ))}
+
+            <fieldset class={quoteUi.fieldset} data-service-fields="vacation" hidden>
+              <legend class={quoteUi.extrasLegend}>Optional vacation-rental support</legend>
+              <div class={quoteUi.optionsGrid}>
+                <label class={quoteUi.optionLabel} for="extra_laundry">
+                  <input class={quoteUi.checkbox} type="checkbox" id="extra_laundry" name="extra_laundry" value={`Laundry (+$${pricing.vacationRental.laundryPerLoad} per load)`} />
+                  <span>On-site laundry <strong>+${pricing.vacationRental.laundryPerLoad} per load</strong></span>
+                </label>
+                <label class={quoteUi.optionLabel} for="extra_restocking">
+                  <input class={quoteUi.checkbox} type="checkbox" id="extra_restocking" name="extra_restocking" value={`Owner-provided supply restocking (+$${pricing.vacationRental.restockingPerTurnover})`} />
+                  <span>Owner-provided supply restocking <strong>+${pricing.vacationRental.restockingPerTurnover}</strong></span>
+                </label>
+                <label class={quoteUi.optionLabel} for="rental_shopping">
+                  <input class={quoteUi.checkbox} type="checkbox" id="rental_shopping" name="rental_shopping" value="Shopping / purchasing supplies" />
+                  <span>Shopping / purchasing supplies <strong>custom</strong></span>
+                </label>
+              </div>
+              <div class:list={[formGroup, 'mt-3']} data-laundry-loads hidden>
+                <label class={quoteUi.simpleLabel} for="laundry_loads">Laundry loads</label>
+                <input class={field} type="number" id="laundry_loads" name="laundry_loads" min="1" step="1" inputmode="numeric" value="1" />
+              </div>
+            </fieldset>
+
+            <p class={quoteUi.hint} data-service-fields="commercial,other" hidden>We’ll price this service after reviewing the scope. No automatic surcharge or rate card is shown.</p>
+          </section>
+
+          <section class={quoteUi.estimatePanel} aria-labelledby="estimate-heading" aria-live="polite">
+            <p class={quoteUi.estimateKicker}>Estimate</p>
+            <h2 id="estimate-heading" class={quoteUi.estimateHeading}>Estimated price</h2>
+            <p class={quoteUi.estimatePrice} data-estimate-price>Choose a service and property details.</p>
+            <p class={quoteUi.estimateBasis} data-estimate-basis>Scope, final price, and availability are confirmed before booking.</p>
+          </section>
+
+          <section class={quoteUi.formSection} aria-labelledby="quote-contact-heading">
+            <div class={quoteUi.formSectionHeader}>
+              <p class={quoteUi.formSectionKicker}>Contact</p>
+              <h2 id="quote-contact-heading" class={quoteUi.formSectionTitle}>Where should we send the quote?</h2>
+            </div>
+            <div class={formGroup}>
+              <label class={quoteUi.label} for="name">{quoteContent.form.name.label}</label>
+              <input class={field} type="text" id="name" name="name" required autocomplete="name" placeholder={quoteContent.form.name.placeholder} />
+            </div>
+            <div class={formRow}>
+              <div class={formGroup}>
+                <label class={quoteUi.label} for="phone">{quoteContent.form.phone.label}</label>
+                <input class={field} type="tel" id="phone" name="phone" required autocomplete="tel" placeholder={quoteContent.form.phone.placeholder} pattern={quoteContent.form.phone.pattern} title={quoteContent.form.phone.title} />
+              </div>
+              <div class={formGroup}>
+                <label class={quoteUi.label} for="email">{quoteContent.form.email.label}</label>
+                <input class={field} type="email" id="email" name="email" autocomplete="email" placeholder={quoteContent.form.email.placeholder} />
+              </div>
+            </div>
+          </section>
+
           <details class={quoteUi.details}>
             <summary class={quoteUi.detailsSummary}>{quoteContent.form.detailsToggle}</summary>
             <div class={quoteUi.detailsBody}>
+              <div class={formGroup} data-service-fields="deep" hidden>
+                <label class={quoteUi.simpleLabel} for="cleaning_condition">Areas that need extra attention</label>
+                <input class={field} type="text" id="cleaning_condition" name="cleaning_condition" placeholder="e.g. bathroom buildup, baseboards, kitchen grease" />
+              </div>
+              <div class={formGroup} data-service-fields="commercial" hidden>
+                <label class={quoteUi.simpleLabel} for="cleaning_hours_access">Cleaning hours and access requirements</label>
+                <input class={field} type="text" id="cleaning_hours_access" name="cleaning_hours_access" placeholder="e.g. after 6 pm, front-desk check-in; no access codes" />
+              </div>
               <div class={formGroup}>
                 <label class={quoteUi.label} for="notes">{quoteContent.form.notes.label}</label>
                 <textarea class={field} id="notes" name="notes" rows="3" placeholder={quoteContent.form.notes.placeholder}></textarea>
@@ -138,12 +307,12 @@ import { shell, quoteUi, field, formGroup, formRow } from '../styles/ui';
           <Button variant="secondary" class={quoteUi.asideButton} href={site.phoneHref}>{quoteContent.aside.callPrefix}{site.phoneDisplay}</Button>
           <Button variant="secondary" size="compact" class={quoteUi.asideButton} href={quoteContent.aside.textHref}>{quoteContent.aside.textButton}</Button>
         </div>
-        
-        <h3 class={quoteUi.asideDetailsHeading}>{quoteContent.aside.detailsHeading}</h3>
+
+        <h3 class={quoteUi.asideDetailsHeading}>How the estimate works</h3>
         <ul class={quoteUi.asideList}>
-          {quoteContent.aside.detailsList.map((item) => (
-            <li>{item}</li>
-          ))}
+          <li>Automatic estimates cover supported Home, Deep, Move, and Vacation Rental configurations.</li>
+          <li>Commercial, oversized, unusual, or rush work stays a custom quote.</li>
+          <li>Scope, price, and availability are confirmed before booking.</li>
         </ul>
       </aside>
     </div>
@@ -151,36 +320,198 @@ import { shell, quoteUi, field, formGroup, formRow } from '../styles/ui';
 </BaseLayout>
 
 <script>
+  import { estimateDeep, estimateHome, estimateMove, estimateVacationRental } from '../data/pricing';
+
   const form = document.querySelector<HTMLFormElement>('.quote-form');
   if (form) {
     const params = new URLSearchParams(window.location.search);
     for (const name of ['location', 'service']) {
-      const field = form.elements.namedItem(name);
-      if (field instanceof HTMLInputElement || field instanceof HTMLSelectElement) {
+      const control = form.elements.namedItem(name);
+      if (control instanceof HTMLInputElement || control instanceof HTMLSelectElement) {
         const value = params.get(name);
-        if (value) field.value = value;
+        if (value) control.value = value;
       }
     }
 
     const service = form.querySelector<HTMLSelectElement>('#service');
-    const serviceGroups = form.querySelectorAll<HTMLElement>('[data-service-fields], [data-service-option]');
-    const updateServiceFields = () => {
-      for (const group of serviceGroups) {
-        const services = group.dataset.serviceFields ?? group.dataset.serviceOption ?? '';
-        const available = services.split(',').includes(service?.value ?? '');
-        group.hidden = !available;
-        for (const control of group.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>('input, select, textarea')) {
-          control.disabled = !available;
-          if (!available && control instanceof HTMLInputElement && control.type === 'checkbox') control.checked = false;
-        }
+    const estimatePrice = form.querySelector<HTMLElement>('[data-estimate-price]');
+    const estimateBasis = form.querySelector<HTMLElement>('[data-estimate-basis]');
+    const windowToggle = form.querySelector<HTMLInputElement>('#extra_windows');
+    const windowCountWrap = form.querySelector<HTMLElement>('[data-window-count]');
+    const windowCount = form.querySelector<HTMLInputElement>('#window_count');
+    const laundryToggle = form.querySelector<HTMLInputElement>('#extra_laundry');
+    const laundryWrap = form.querySelector<HTMLElement>('[data-laundry-loads]');
+    const laundryLoads = form.querySelector<HTMLInputElement>('#laundry_loads');
+
+    const hidden = (id: string) => form.querySelector<HTMLInputElement>(`#${id}`);
+    const numberValue = (id: string) => {
+      const control = form.querySelector<HTMLInputElement | HTMLSelectElement>(`#${id}`);
+      if (!control || control.value === '') return null;
+      const value = Number(control.value);
+      return Number.isFinite(value) ? value : null;
+    };
+    const textValue = (id: string) => form.querySelector<HTMLInputElement | HTMLSelectElement>(`#${id}`)?.value ?? '';
+    const checked = (id: string) => form.querySelector<HTMLInputElement>(`#${id}`)?.checked ?? false;
+    const serviceLabel = () => service?.selectedOptions[0]?.textContent?.trim() ?? '';
+    const selectedLabel = (id: string) => form.querySelector<HTMLSelectElement>(`#${id}`)?.selectedOptions[0]?.textContent?.trim() ?? '';
+
+    const setConditionalControlState = (container: HTMLElement, enabled: boolean) => {
+      container.hidden = !enabled;
+      for (const control of container.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>('input, select, textarea')) {
+        control.disabled = !enabled;
+        const requiredServices = control.dataset.requiredServices?.split(',') ?? [];
+        control.required = enabled && requiredServices.includes(service?.value ?? '');
       }
     };
-    updateServiceFields();
-    service?.addEventListener('change', updateServiceFields);
-    window.addEventListener('pageshow', updateServiceFields);
 
-    // Native validation still works without JavaScript. Show inline feedback only
-    // after a field is left or the browser rejects an attempted submission.
+    const updateServiceFields = () => {
+      const current = service?.value ?? '';
+      for (const group of form.querySelectorAll<HTMLElement>('[data-service-fields]')) {
+        const enabled = (group.dataset.serviceFields ?? '').split(',').includes(current);
+        setConditionalControlState(group, enabled);
+      }
+      for (const option of form.querySelectorAll<HTMLElement>('[data-service-option]')) {
+        const enabled = (option.dataset.serviceOption ?? '').split(',').includes(current);
+        setConditionalControlState(option, enabled);
+      }
+      updateNestedInputs();
+      updateEstimate();
+    };
+
+    const updateNestedInputs = () => {
+      if (windowCountWrap && windowCount) {
+        const active = Boolean(windowToggle?.checked && !windowToggle.disabled);
+        windowCountWrap.hidden = !active;
+        windowCount.disabled = !active;
+        windowCount.required = active;
+      }
+      if (laundryWrap && laundryLoads) {
+        const active = Boolean(laundryToggle?.checked && !laundryToggle.disabled);
+        laundryWrap.hidden = !active;
+        laundryLoads.disabled = !active;
+        laundryLoads.required = active;
+      }
+    };
+
+    const updateEstimate = () => {
+      const current = service?.value ?? '';
+      const bedrooms = numberValue('bedrooms');
+      const fullBathrooms = numberValue('full_bathrooms');
+      const halfBathrooms = numberValue('half_bathrooms') ?? 0;
+      const squareFeet = numberValue('size_band');
+      const extras = {
+        oven: checked('extra_oven'),
+        refrigerator: checked('extra_fridge'),
+        cabinetInteriors: checked('extra_cabinets'),
+        standardWindows: checked('extra_windows') ? (numberValue('window_count') ?? 0) : 0,
+      };
+
+      let result: ReturnType<typeof estimateHome> | null = null;
+      let ready = false;
+      const basis: string[] = [];
+      const extraLabels: string[] = [];
+
+      if (['residential', 'deep', 'move'].includes(current)) {
+        ready = bedrooms !== null && fullBathrooms !== null && squareFeet !== null;
+        if (checked('extra_windows') && numberValue('window_count') === null) ready = false;
+        if (ready) {
+          basis.push(`${bedrooms === 0 ? 'Studio' : `${bedrooms} bedroom${bedrooms === 1 ? '' : 's'}`}`);
+          basis.push(`${fullBathrooms} full bath${fullBathrooms === 1 ? '' : 's'}`);
+          if (halfBathrooms > 0) basis.push(`${halfBathrooms} half bath${halfBathrooms === 1 ? '' : 's'}`);
+          basis.push(selectedLabel('size_band'));
+        }
+        if (extras.oven) extraLabels.push('inside oven');
+        if (extras.refrigerator) extraLabels.push('inside refrigerator');
+        if (extras.cabinetInteriors) extraLabels.push('empty cabinet interiors');
+        if (extras.standardWindows) extraLabels.push(`${extras.standardWindows} interior window${extras.standardWindows === 1 ? '' : 's'}`);
+      }
+
+      if (current === 'residential' && ready) {
+        const frequency = textValue('home_frequency');
+        ready = Boolean(frequency);
+        if (ready) {
+          result = estimateHome({
+            bedrooms: bedrooms!, fullBathrooms: fullBathrooms!, halfBathrooms,
+            squareFeet: squareFeet!, frequency: frequency as 'weekly' | 'biweekly' | 'monthly' | 'one-time', extras,
+          });
+          basis.push(selectedLabel('home_frequency'));
+        }
+      } else if (current === 'deep' && ready) {
+        result = estimateDeep({ bedrooms: bedrooms!, fullBathrooms: fullBathrooms!, halfBathrooms, squareFeet: squareFeet!, extras });
+        basis.push('One-time deep cleaning');
+      } else if (current === 'move' && ready) {
+        const emptyState = textValue('move_empty');
+        ready = Boolean(emptyState);
+        if (ready) {
+          result = estimateMove({
+            bedrooms: bedrooms!, fullBathrooms: fullBathrooms!, halfBathrooms,
+            squareFeet: squareFeet!, isEmpty: emptyState === 'yes',
+            customCondition: checked('move_special_conditions'),
+            extras: { oven: extras.oven, refrigerator: extras.refrigerator, standardWindows: extras.standardWindows },
+          });
+          basis.push(emptyState === 'yes' ? 'Empty / substantially empty property' : 'Property not confirmed empty');
+          if (checked('move_special_conditions')) extraLabels.push('special move-clean conditions');
+        }
+      } else if (current === 'vacation') {
+        const tier = textValue('rental_tier');
+        ready = Boolean(tier);
+        if (checked('extra_laundry') && numberValue('laundry_loads') === null) ready = false;
+        if (ready) {
+          const loads = checked('extra_laundry') ? (numberValue('laundry_loads') ?? 0) : 0;
+          result = estimateVacationRental({
+            tier: tier as 'studio-1-1' | '2-2' | '3-2' | '4-3' | 'custom',
+            laundryLoads: loads,
+            restocking: checked('extra_restocking'),
+            customCondition: checked('rental_rush') || checked('rental_shopping') || checked('rental_heavy_reset'),
+          });
+          basis.push(selectedLabel('rental_tier'));
+          if (loads) extraLabels.push(`${loads} laundry load${loads === 1 ? '' : 's'}`);
+          if (checked('extra_restocking')) extraLabels.push('owner-provided restocking');
+          if (checked('rental_rush')) extraLabels.push('rush timing');
+          if (checked('rental_shopping')) extraLabels.push('supply shopping');
+          if (checked('rental_heavy_reset')) extraLabels.push('seasonal / heavy reset');
+        }
+      } else if (current === 'commercial' || current === 'other') {
+        ready = true;
+        result = { status: 'custom', display: 'Custom quote', note: 'We’ll review the scope before pricing this request.' };
+      }
+
+      if (extraLabels.length) basis.push(`Extras: ${extraLabels.join(', ')}`);
+
+      if (!current) {
+        if (estimatePrice) estimatePrice.textContent = 'Choose a service and property details.';
+        if (estimateBasis) estimateBasis.textContent = 'Scope, final price, and availability are confirmed before booking.';
+      } else if (!ready || !result) {
+        if (estimatePrice) estimatePrice.textContent = 'Complete the property fields above.';
+        if (estimateBasis) estimateBasis.textContent = 'Your estimate updates automatically as you fill in the form.';
+      } else {
+        if (estimatePrice) estimatePrice.textContent = result.display;
+        const confirmation = result.status === 'custom'
+          ? (result.note ?? 'We need a quick review before pricing this request.')
+          : `${basis.join(' · ')}. Scope, final price, and availability are confirmed before booking.${result.note ? ` ${result.note}` : ''}`;
+        if (estimateBasis) estimateBasis.textContent = confirmation;
+      }
+
+      hidden('estimate_status')!.value = result?.status ?? 'incomplete';
+      hidden('estimate_display')!.value = result?.display ?? '';
+      hidden('estimate_service')!.value = serviceLabel();
+      const isResidentialEstimate = ['residential', 'deep', 'move'].includes(current);
+      hidden('estimate_bedrooms')!.value = isResidentialEstimate && bedrooms !== null ? String(bedrooms) : '';
+      hidden('estimate_full_bathrooms')!.value = isResidentialEstimate && fullBathrooms !== null ? String(fullBathrooms) : '';
+      hidden('estimate_half_bathrooms')!.value = isResidentialEstimate ? String(halfBathrooms) : '';
+      hidden('estimate_size')!.value = isResidentialEstimate ? selectedLabel('size_band') : '';
+      hidden('estimate_frequency')!.value = current === 'residential' ? selectedLabel('home_frequency') : '';
+      hidden('estimate_extras')!.value = extraLabels.join('; ');
+    };
+
+    service?.addEventListener('change', updateServiceFields);
+    windowToggle?.addEventListener('change', () => { updateNestedInputs(); updateEstimate(); });
+    laundryToggle?.addEventListener('change', () => { updateNestedInputs(); updateEstimate(); });
+    form.addEventListener('input', updateEstimate);
+    form.addEventListener('change', updateEstimate);
+    window.addEventListener('pageshow', updateServiceFields);
+    updateServiceFields();
+
     const controls = form.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>('input:not([type="hidden"]):not([type="checkbox"]):not([name="_gotcha"]), select, textarea');
     for (const control of controls) {
       const error = document.createElement('p');
@@ -205,18 +536,15 @@ import { shell, quoteUi, field, formGroup, formRow } from '../styles/ui';
       };
       control.addEventListener('blur', updateValidation);
       control.addEventListener('invalid', updateValidation);
-      control.addEventListener('input', () => {
-        if (control.dataset.validated) updateValidation();
-      });
-      control.addEventListener('change', () => {
-        if (control.dataset.validated) updateValidation();
-      });
+      control.addEventListener('input', () => { if (control.dataset.validated) updateValidation(); });
+      control.addEventListener('change', () => { if (control.dataset.validated) updateValidation(); });
     }
 
     const btn = form.querySelector<HTMLButtonElement>('.submit-btn');
     const status = form.querySelector<HTMLParagraphElement>('.submission-status');
     const initialButton = btn?.innerHTML;
     form.addEventListener('submit', () => {
+      updateEstimate();
       form.setAttribute('aria-busy', 'true');
       if (btn) {
         btn.disabled = true;
@@ -227,7 +555,6 @@ import { shell, quoteUi, field, formGroup, formRow } from '../styles/ui';
         status.textContent = form.dataset.submittingStatus ?? 'Sending your quote request...';
       }
     });
-    // Restore controls when Back returns to a page kept in the browser cache.
     window.addEventListener('pageshow', () => {
       form.removeAttribute('aria-busy');
       if (btn && initialButton) {
@@ -238,6 +565,7 @@ import { shell, quoteUi, field, formGroup, formRow } from '../styles/ui';
         status.hidden = true;
         status.textContent = '';
       }
+      updateServiceFields();
     });
   }
 </script>

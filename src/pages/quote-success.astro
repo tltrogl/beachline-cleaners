@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { site, quoteSuccessContent } from '../data/content';
 import Button from '../components/Button.astro';
-import { shell, homeEyebrow, lede, phone, quoteSuccessUi } from '../styles/ui';
+import { shell, homeEyebrow, phone, quoteSuccessUi } from '../styles/ui';
 ---
 <BaseLayout bodyClass="island-home no-mobile-bar page-quote-success" title={`${quoteSuccessContent.metaTitle} | ${site.name}`} description={quoteSuccessContent.metaDescription} noindex>
   <section class={quoteSuccessUi.section}>
@@ -15,7 +15,18 @@ import { shell, homeEyebrow, lede, phone, quoteSuccessUi } from '../styles/ui';
         </div>
         <p class={homeEyebrow}>{quoteSuccessContent.eyebrow}</p>
         <h1 class={quoteSuccessUi.title}>{quoteSuccessContent.title}</h1>
-        <p class={lede}>{quoteSuccessContent.lede}</p>
+
+        <div class="mx-auto mt-7 grid max-w-[560px] gap-6 text-left">
+          <section>
+            <h2 class="text-[1.2rem]">{quoteSuccessContent.nextHeading}</h2>
+            <p class="mt-2 leading-[1.62] text-ink-soft">{quoteSuccessContent.nextText}</p>
+          </section>
+          <section class="border-t border-line pt-5">
+            <h2 class="text-[1.2rem]">{quoteSuccessContent.bookingHeading}</h2>
+            <p class="mt-2 leading-[1.62] text-ink-soft">{quoteSuccessContent.bookingText}</p>
+          </section>
+        </div>
+
         <div class={quoteSuccessUi.actions}>
           <Button href={quoteSuccessContent.returnButtonHref}>{quoteSuccessContent.returnButtonText}</Button>
           <a class={phone} href={site.phoneHref}>{quoteSuccessContent.callPrefix}{site.phoneDisplay}</a>

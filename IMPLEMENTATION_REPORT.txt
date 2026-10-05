@@ -1,0 +1,53 @@
+Beachline Cleaners — October 4, 2026 pricing + estimator implementation report
+
+SOURCE OF TRUTH USED
+1. Beachline-Cleaners-Current-Source-2026-10-04.zip
+2. Beachline_Cleaners_Pricing_Framework_v2_Final.docx
+No older Beachline package was used to override the October 4 source.
+
+IMPLEMENTED
+- Added src/data/pricing.ts as the shared public-safe website pricing source.
+- Implemented client-side quote estimates for Home, Deep, Move-In / Move-Out, and Vacation Rentals.
+- Commercial and unsupported configurations return Custom quote.
+- Added estimator-ready discrete property/service controls and service-specific extras.
+- Added hidden form fields for pricing version, displayed estimate, service, layout inputs, frequency, and extras.
+- Preserved the existing Formspree endpoint, honeypot, validation, privacy disclosure, success redirect, and submit action.
+- Standardized customer-facing quote CTAs to Request a Quote; submit remains Send Quote Request.
+- Applied service-page starting price, checklist, hero, CTA, About, Service Area, FAQ, Quote Success, 404, and footer updates requested in the approved pass.
+- Synchronized content.ts, agent-content.ts, and site-info.json.ts with shared pricing data where practical.
+- Kept internal commercial square-footage guidance out of browser/public pricing code and public machine-readable output.
+
+ESTIMATOR BENCHMARK QA
+All finalized benchmark outputs passed:
+- Home 1/1 <=1,800: $125 weekly / $140 biweekly / $170 every 4 weeks / $190 one-time.
+- Home 2/2 <=1,800: $155 / $170 / $205 / $230.
+- Home 3/2 ~2,000: $170 / $190 / $230 / $255.
+- Home 4/3 ~2,800: $215 / $240 / $290 / $325.
+- Deep: $275 / $315 / $350 / $425 for the four benchmark layouts.
+- Move-In / Move-Out: $350 / $400 / $450 / $525 for the four benchmark layouts.
+- Vacation Rental tiers: $125 / $150 / $175 / $225.
+- Vacation Rental 2/2 + two laundry loads + restocking: $225.
+- Add-on spot checks passed for oven, refrigerator, cabinet-interior minimum/From behavior, and standard-window counts.
+
+CUSTOM-QUOTE QA
+Passed custom-quote guardrails for:
+- Home: 5+ bedrooms and over 3,500 sq ft.
+- Deep: 4+ full bathrooms through the shared Home automatic-estimate limit.
+- Move: furnished/not-empty property, over 3,500 sq ft, and construction/debris/severe-buildup/unusual-condition flag.
+- Vacation Rental: unsupported layout and rush/heavy/custom-condition states.
+- Commercial: intentionally always Custom quote in the quote-page client logic.
+
+STATIC / TYPE / BUILD QA
+- TypeScript source/transpile checks completed successfully for pricing.ts, content.ts, agent-content.ts, ui.ts, site-info.json.ts, and the Quote page client script using the TypeScript compiler already available in the environment.
+- `npm run typecheck` could not run because this extracted environment does not contain local Astro dependencies (`astro: not found`).
+- `npm run build` could not run for the same reason (`astro: not found`).
+- No dependencies were installed or upgraded.
+
+VISUAL QA
+- The current live beachlinecleaners.com site was inspected as a reference before implementation.
+- The updated local source was not rendered because the existing environment lacks the local Astro/Playwright dependencies required to build and capture it without installing dependencies.
+- Therefore 375/768/1440 rendered screenshot QA is NOT claimed as completed.
+
+FORM SUBMISSION QA
+- No live Formspree test submission was performed.
+- Submission delivery/redirect is therefore NOT claimed as verified in this implementation environment.

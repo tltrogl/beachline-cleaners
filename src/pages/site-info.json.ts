@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import { site, homeContent, servicesDetail } from '../data/content';
+import { PRICING_VERSION, publicPriceLabels, pricing } from '../data/pricing';
 
 const homeServices = [homeContent.servicesSection.featuredService, ...homeContent.servicesSection.services];
 const serviceDetailByHref = new Map([
@@ -21,6 +22,7 @@ export const GET: APIRoute = ({ site: origin }) => {
     telephone: site.phoneHref.replace('tel:', ''),
     email: site.email,
     areaServed: site.areaServed,
+    priceRange: site.priceRange,
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
       name: 'Cleaning services',
@@ -32,8 +34,37 @@ export const GET: APIRoute = ({ site: origin }) => {
           name: service.title,
           description: detail?.intro ?? service.text,
           url: new URL(service.href, url).href,
+          additionalProperty: detail ? [{
+            '@type': 'PropertyValue',
+            name: 'Public pricing',
+            value: detail.priceLabel,
+          }] : undefined,
         };
       }),
+    },
+    beachlinePricing: {
+      version: PRICING_VERSION,
+      publicPrices: publicPriceLabels,
+      automaticEstimateServices: ['Home Cleaning', 'Deep Cleaning', 'Move-In / Move-Out', 'Vacation Rentals'],
+      homeAutomaticLimits: {
+        bedrooms: pricing.home.limits.bedrooms,
+        fullBathrooms: pricing.home.limits.fullBathrooms,
+        squareFeet: pricing.home.limits.squareFeet,
+      },
+      vacationRentalTiers: pricing.vacationRental.tiers.map((tier) => ({
+        layout: tier.label,
+        price: tier.price === null ? 'Custom quote' : `$${tier.price} per turnover`,
+      })),
+      publicAddOns: {
+        insideOven: `+$${pricing.addOns.oven}`,
+        insideRefrigerator: `+$${pricing.addOns.refrigerator}`,
+        emptyCabinetInteriors: `from +$${pricing.addOns.cabinetInteriorsFrom}`,
+        interiorWindowGlass: `+$${pricing.addOns.standardWindow} per standard window`,
+        vacationRentalLaundry: `+$${pricing.vacationRental.laundryPerLoad} per load`,
+        vacationRentalRestocking: `+$${pricing.vacationRental.restockingPerTurnover} per turnover`,
+      },
+      commercial: pricing.commercial.publicLabel,
+      confirmationRequired: 'Scope, final price, and availability are confirmed before booking.',
     },
   }, null, 2), { headers: { 'Content-Type': 'application/json; charset=utf-8' } });
 };

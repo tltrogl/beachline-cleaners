@@ -1,3 +1,5 @@
+import { pricing, publicPriceLabels } from './pricing';
+
 export interface ServiceDetail {
   metaTitle: string;
   metaDescription: string;
@@ -76,7 +78,7 @@ export const navigationContent = {
     { title: 'FAQ', href: withBase('/faq') },
   ],
   callPrefix: 'Call ',
-  quoteButton: 'Get a Quote',
+  quoteButton: 'Request a Quote',
   quoteHref: withBase('/quote'),
 };
 
@@ -95,7 +97,7 @@ export const footerContent = {
     { title: 'About', href: withBase('/about') },
     { title: 'Service Area', href: withBase('/service-area') },
     { title: 'FAQ', href: withBase('/faq') },
-    { title: 'Get a Quote', href: withBase('/quote') },
+    { title: 'Request a Quote', href: withBase('/quote') },
   ],
   copyrightSuffix: 'All rights reserved.',
 };
@@ -104,7 +106,7 @@ export const mobileActionBarContent = {
   ariaLabel: 'Quick actions',
   callLabel: 'Call',
   textLabel: 'Text',
-  quoteLabel: 'Get a Quote',
+  quoteLabel: 'Request a Quote',
   quoteHref: withBase('/quote'),
 };
 
@@ -115,14 +117,14 @@ export const accessibilityContent = {
 export const ctaDefaults = {
   defaultTitle: 'Need a cleaner?',
   defaultText: 'Tell us what you need cleaned and when you need it. We’ll work through the details with you and confirm the price before anything is booked.',
-  quoteButtonText: 'Get a Quote',
+  quoteButtonText: 'Request a Quote',
   quoteHref: withBase('/quote'),
   callButtonPrefix: 'Call ',
 };
 
 export const servicePageDefaults = {
   defaultImageAlt: 'Cleaning service',
-  quoteButtonText: 'Get a Quote',
+  quoteButtonText: 'Request a Quote',
   quoteHref: withBase('/quote'),
   callButtonPrefix: 'Call ',
   includedHeading: 'What’s included',
@@ -134,11 +136,11 @@ export const servicePageDefaults = {
 };
 
 export const pricingContent = {
-  note: 'Starting prices give you a ballpark. We’ll confirm the actual price before you book based on the property, its condition, cleaning frequency, and any extras you want.',
+  note: 'Starting prices are baseline estimates. We’ll confirm the final scope, price, and availability before booking.',
   rentalHeading: 'Turnover starting prices',
   propertyColumn: 'Property size',
   priceColumn: 'Per turnover, from',
-  rentalIncluded: 'Includes turnover cleaning and beds reset with provided clean linens. Laundry is $25 per load; owner-provided supply restocking is $25 per turnover.',
+  rentalIncluded: `Includes turnover cleaning and beds reset with provided clean linens. Laundry is $${pricing.vacationRental.laundryPerLoad} per load; owner-provided supply restocking is $${pricing.vacationRental.restockingPerTurnover} per turnover.`,
 };
 
 
@@ -157,8 +159,8 @@ export const cleaningVisitGuidance: Record<'preparation' | 'boundaries', { q: st
 export const servicesDetail: Record<'residential' | 'deep' | 'moveOut' | 'vacationRental' | 'commercial', ServiceDetail> = {
   residential: {
     metaTitle: 'House Cleaning in Brevard County',
-    metaDescription: 'One-time, weekly, and biweekly house cleaning in Brevard County. Kitchens, bathrooms, floors, dusting, and living areas, with scope and price confirmed before booking.',
-    priceLabel: 'From $125 per visit',
+    metaDescription: 'One-time, weekly, biweekly, and every-4-weeks house cleaning in Brevard County, with scope and price confirmed before booking.',
+    priceLabel: publicPriceLabels.home,
     quoteHref: `${withBase('/quote')}?service=residential`,
     eyebrow: 'Home cleaning · Brevard County',
     title: 'Home Cleaning',
@@ -174,16 +176,16 @@ export const servicesDetail: Record<'residential' | 'deep' | 'moveOut' | 'vacati
       'Floors: Vacuuming and mopping appropriate floor surfaces',
       'Finishing touches: Trash removal and basic room reset',
     ],
-    who: 'Book a one-time clean to catch up, or choose weekly or biweekly visits for routine upkeep.',
+    who: 'Book a one-time clean to catch up, or choose weekly, biweekly, or every-4-weeks visits for routine upkeep.',
     optionsIntro: 'Add these only if you need them. The standard clean does not require any add-ons.',
     options: [
-      'Inside oven — +$45',
-      'Inside refrigerator — +$55',
-      'Inside cabinets (empty) — from +$60',
-      'Interior windows — +$10 each',
+      `Inside oven — +$${pricing.addOns.oven}`,
+      `Inside refrigerator — +$${pricing.addOns.refrigerator}`,
+      `Inside cabinets (empty) — from +$${pricing.addOns.cabinetInteriorsFrom}`,
+      `Interior windows — +$${pricing.addOns.standardWindow} each`,
     ],
-    pricing: 'Your quote is based on:',
-    pricingFactors: ['Square footage', 'Bedrooms & bathrooms', 'Condition & buildup', 'Cleaning frequency'],
+    pricing: 'Actual pricing varies by home size, bathrooms, frequency, and selected extras. A first visit can still be a standard clean; substantial buildup or deep-detail work is better matched to Deep Cleaning.',
+    pricingFactors: ['Square footage', 'Bedrooms & bathrooms', 'Cleaning frequency', 'Selected extras'],
     faqs: [
       cleaningVisitGuidance.preparation,
       cleaningVisitGuidance.boundaries,
@@ -204,31 +206,31 @@ export const servicesDetail: Record<'residential' | 'deep' | 'moveOut' | 'vacati
   deep: {
     metaTitle: 'Deep Cleaning in Brevard County',
     metaDescription: 'Deep cleaning for homes in Brevard County with buildup or overdue detail work, including baseboards, trim, fixtures, window tracks, and other reachable areas.',
-    priceLabel: 'From $275 per visit',
+    priceLabel: publicPriceLabels.deep,
     quoteHref: `${withBase('/quote')}?service=deep`,
     eyebrow: 'Deep cleaning · Brevard County',
     title: 'Deep Cleaning',
     intro: 'A more detailed clean for homes with buildup or overdue detail work—baseboards, trim, fixtures, window tracks, and other reachable areas.',
     image: withBase('/images/deep-cleaning-kitchen.jpg'),
     imageAlt: 'Gloved hand wiping a kitchen stovetop during a deep clean',
-    includedHeading: 'Where a deep clean goes further',
+    includedHeading: 'What a deep clean adds.',
     includedIntro: 'Includes the routine Home Cleaning scope, then adds focused detail work where dust and buildup collect.',
     included: [
-      'Extra attention to buildup on reachable kitchen and bathroom surfaces, including accessible grout',
-      'Baseboards, reachable trim, doors, frames, and fixtures',
-      'Ceiling fans, reachable light fixtures, vent covers, switches, and door handles',
-      'Window sills and tracks, plus dusting of blinds',
+      'Buildup: Extra attention to reachable kitchen and bathroom surfaces, including accessible grout',
+      'Trim & baseboards: Baseboards, reachable trim, doors, and frames',
+      'Fixtures & touchpoints: Ceiling fans, reachable light fixtures, vent covers, switches, and door handles',
+      'Windows & blinds: Window sills and tracks, plus dusting of blinds',
     ],
     who: 'Best when routine cleaning is not enough—especially for buildup, overdue detail work, or a reset before guests arrive.',
     optionsIntro: 'Deep cleaning already covers the detailed surface work above. Add these interior tasks only if you need them.',
     options: [
-      'Inside oven — +$45',
-      'Inside refrigerator — +$55',
-      'Cabinet interiors (empty) — from +$60',
-      'Interior window glass — +$10 each',
+      `Inside oven — +$${pricing.addOns.oven}`,
+      `Inside refrigerator — +$${pricing.addOns.refrigerator}`,
+      `Cabinet interiors (empty) — from +$${pricing.addOns.cabinetInteriorsFrom}`,
+      `Interior window glass — +$${pricing.addOns.standardWindow} each`,
     ],
-    pricing: 'Price depends on home size, current condition, and the amount of detail work required.',
-    pricingFactors: ['Square footage', 'Bedrooms & bathrooms', 'Condition & buildup', 'Requested detail work'],
+    pricing: 'Pricing is calculated from the one-time Home Cleaning estimate plus the deep-clean scope and any selected extras.',
+    pricingFactors: ['Square footage', 'Bedrooms & bathrooms', 'Selected extras'],
     faqs: [
       {
         q: 'What’s the difference between standard and deep cleaning?',
@@ -247,29 +249,31 @@ export const servicesDetail: Record<'residential' | 'deep' | 'moveOut' | 'vacati
   moveOut: {
     metaTitle: 'Move-In / Move-Out Cleaning in Brevard County',
     metaDescription: 'Cleaning for empty homes in Brevard County before a move, inspection, closing, or handoff. Empty cabinet and drawer interiors included; timing confirmed before booking.',
-    priceLabel: 'From $350 per visit',
+    priceLabel: publicPriceLabels.move,
     quoteHref: `${withBase('/quote')}?service=move`,
     eyebrow: 'Move-in / move-out',
     title: 'Move-In / Move-Out Cleaning',
     intro: 'Detailed cleaning for an empty home before move-in, move-out inspection, listing, closing, or handoff.',
     image: withBase('/images/cleaner-move-out.webp'),
     imageAlt: 'Man vacuuming an empty waterfront condo',
+    includedHeading: 'Empty-home cleaning.',
+    includedIntro: 'The property should be empty or substantially empty so we can reach the full move-clean scope.',
     included: [
-      'Kitchen and bathroom detail cleaning',
-      'Inside empty kitchen and bathroom cabinets and drawers',
-      'Baseboards, doors, reachable trim, fixtures, window sills and tracks',
-      'Dusting and floor cleaning throughout empty rooms',
-      'Cleaning of light dust and small debris remaining after the move',
+      'Kitchen & baths: Detailed cleaning of kitchen and bathroom surfaces, fixtures, and floors',
+      'Cabinets & drawers: Interiors of empty kitchen and bathroom cabinets and drawers',
+      'Trim & tracks: Baseboards, doors, reachable trim, fixtures, window sills, and tracks',
+      'Empty rooms: Dusting and floor cleaning throughout cleared rooms',
+      'Move debris: Light dust and small debris remaining after the move',
     ],
     who: 'Best scheduled after belongings, furniture, and trash are out so we can reach the full property before inspection, closing, handoff, or move-in.',
     optionsIntro: 'Empty cabinet and drawer interiors are already included. Add these only if your handoff requires them.',
     options: [
-      'Inside oven — +$45',
-      'Inside refrigerator — +$55',
-      'Interior window glass — +$10 each',
+      `Inside oven — +$${pricing.addOns.oven}`,
+      `Inside refrigerator — +$${pricing.addOns.refrigerator}`,
+      `Interior window glass — +$${pricing.addOns.standardWindow} each`,
     ],
-    pricing: 'Price depends on property size, layout, and current condition.',
-    pricingFactors: ['Square footage', 'Property layout', 'Current condition', 'Appliance & window extras'],
+    pricing: 'Move-in and move-out pricing uses the same empty-property formula when the scope is the same.',
+    pricingFactors: ['Square footage', 'Bedrooms & bathrooms', 'Empty-property scope', 'Selected extras'],
     faqs: [
       {
         q: 'Do properties need to be completely empty?',
@@ -288,40 +292,41 @@ export const servicesDetail: Record<'residential' | 'deep' | 'moveOut' | 'vacati
   vacationRental: {
     metaTitle: 'Vacation Rental Cleaning in Brevard County',
     metaDescription: 'Vacation rental turnovers in Brevard County around checkout and check-in windows. Cleaning, reset, and beds with provided clean linens; laundry by arrangement.',
-    priceLabel: 'From $125 per turnover',
-    pricingRows: [
-      { property: 'Studio / 1 bedroom / 1 bathroom', price: '$125' },
-      { property: '2 bedrooms / 2 bathrooms', price: '$150' },
-      { property: '3 bedrooms / 2 bathrooms', price: '$175' },
-      { property: '4 bedrooms / 3 bathrooms', price: '$225' },
-      { property: 'Larger or other layouts', price: 'Custom quote' },
-    ],
+    priceLabel: publicPriceLabels.vacationRental,
+    pricingRows: pricing.vacationRental.tiers.map((tier) => ({
+      property: tier.label,
+      price: tier.price === null ? 'Custom quote' : `$${tier.price}`,
+    })),
     quoteHref: `${withBase('/quote')}?service=vacation`,
     eyebrow: 'Vacation rental cleaning',
     title: 'Vacation Rental Cleaning',
     intro: 'Between-stay cleaning and resets built around your checkout and check-in window.',
     image: withBase('/images/cleaner-rental-turnover.webp'),
     imageAlt: 'Man wiping a kitchen counter while holding a clipboard in a coastal rental',
+    includedHeading: 'Turnover essentials.',
+    includedIntro: 'Each turnover covers the guest-ready reset and reporting tasks below.',
     included: [
-      'Full turnover clean of kitchens, bathrooms, bedrooms, and living areas',
-      'Beds reset with provided clean linens',
-      'Trash removal and room reset',
-      'Completion photos after each turnover',
-      'Notes on visible property-condition or maintenance concerns',
+      'Cleaning: Full turnover clean of kitchens, bathrooms, bedrooms, and living areas',
+      'Linen reset: Beds reset with owner-provided clean linens',
+      'Room reset: Trash removal and basic room reset',
+      'Completion photos: Photos after each turnover',
+      'Condition notes: Notes on visible property-condition or maintenance concerns',
     ],
     who: 'Set the property routine once—checkout and check-in timing, access, linens, reset details, and reporting—then reuse it for each stay.',
     optionsIntro: 'Add turnover support when the property needs it. Laundry uses on-site machines; restocking pricing assumes owner-provided supplies are already at the property.',
     options: [
-      'Laundry — +$25 per load',
-      'Owner-provided supply restocking — +$25 per turnover',
-      'Off-season deep clean — from $275',
+      `Laundry — +$${pricing.vacationRental.laundryPerLoad} per load`,
+      `Owner-provided supply restocking — +$${pricing.vacationRental.restockingPerTurnover} per turnover`,
+      'Shopping / purchasing supplies — custom',
+      'Same-day / last-minute rush — custom, subject to availability',
+      'Seasonal / heavy reset — Deep Cleaning or custom scope',
     ],
-    pricing: 'Turnover price depends on property size, condition, checkout-to-check-in timing, and any laundry or restocking arrangements.',
-    pricingFactors: ['Property size', 'Turnover frequency', 'Checkout-to-check-in window', 'Laundry / linen needs', 'Restocking needs'],
+    pricing: 'Published turnover tiers cover normal guest turnovers. Laundry and owner-provided restocking are added separately; rush, unusual layouts, or heavy resets are quoted manually.',
+    pricingFactors: ['Property tier', 'Laundry loads', 'Restocking', 'Rush or unusual scope'],
     faqs: [
       {
         q: 'Can you handle linens and restocking for rentals?',
-        a: 'Beds are reset with provided clean linens. Laundry is $25 per load when on-site machines are available. Restocking owner-provided supplies is $25 per turnover. We’ll confirm the setup and storage locations before service begins.',
+        a: `Beds are reset with provided clean linens. Laundry is $${pricing.vacationRental.laundryPerLoad} per load when on-site machines are available. Restocking owner-provided supplies is $${pricing.vacationRental.restockingPerTurnover} per turnover. We’ll confirm the setup and storage locations before service begins.`,
       },
       {
         q: 'What happens if a guest leaves a mess or damage?',
@@ -344,22 +349,22 @@ export const servicesDetail: Record<'residential' | 'deep' | 'moveOut' | 'vacati
   commercial: {
     metaTitle: 'Commercial Cleaning in Brevard County',
     metaDescription: 'Cleaning for small offices, retail spaces, and shared work areas in Brevard County. Agree on the checklist, access, schedule, and price before service begins.',
-    priceLabel: 'Custom quote',
+    priceLabel: publicPriceLabels.commercial,
     quoteHref: `${withBase('/quote')}?service=commercial`,
     eyebrow: 'Commercial cleaning',
     title: 'Commercial Cleaning',
     intro: 'Routine cleaning for small offices, professional suites, retail spaces, and shared work areas.',
     image: withBase('/images/cleaner-office.webp'),
     imageAlt: 'Man wiping a desk in a bright professional office',
-    includedHeading: 'What routine commercial cleaning can include',
+    includedHeading: 'Routine cleaning scope.',
     includedIntro: 'Choose the tasks your space needs from the routine checklist below.',
     included: [
-      'Dusting and wiping reachable surfaces in offices, reception areas, conference rooms, and shared spaces',
-      'Restroom cleaning, including toilets, sinks, counters, mirrors, fixtures, and floors',
-      'Breakroom and kitchenette counters, sinks, tables, appliance exteriors, and floors',
-      'Vacuuming carpets and mopping suitable hard-floor surfaces',
-      'Trash removal, with recycling handled according to the arrangement for the property',
-      'Wiping frequently touched surfaces such as door handles and light switches',
+      'Work areas: Dusting and wiping reachable surfaces in offices, reception areas, conference rooms, and shared spaces',
+      'Restrooms: Toilets, sinks, counters, mirrors, fixtures, and floors',
+      'Breakroom: Counters, sinks, tables, appliance exteriors, and floors',
+      'Floors: Vacuuming carpets and mopping suitable hard-floor surfaces',
+      'Waste: Trash removal, with recycling handled according to the property arrangement',
+      'Touchpoints: Frequently touched surfaces such as door handles and light switches',
     ],
     who: 'For small offices, professional suites, retail spaces, and shared work areas that need one-time or recurring cleaning.',
     optionsIntro: 'Choose the schedule that fits the space, then add any detail work or supply support you need.',
@@ -507,8 +512,8 @@ export const aboutContent = {
   metaDescription: 'Learn about Beachline Cleaners, an owner-operated cleaning service for homes, vacation rentals, and workspaces in Brevard County.',
   hero: {
     eyebrow: 'About',
-    title: 'A local cleaning business you can reach directly.',
-    lede: 'Beachline Cleaners is owner-operated and based in Brevard County, serving homes, vacation rentals, move-in/move-out properties, and workspaces across the Space Coast.',
+    title: 'Local cleaning. Direct communication.',
+    lede: 'Owner-operated cleaning for homes, vacation rentals, moves, and workspaces across Brevard County.',
   },
   story: {
     imageSrc: withBase('/images/cleaner-counter.webp'),
@@ -516,9 +521,9 @@ export const aboutContent = {
     eyebrow: 'How we work',
     heading: 'Simple communication, start to finish.',
     ownerTitle: 'Based in Brevard County',
-    ownerIntro: 'Beachline Cleaners is independently owned and operated in Brevard County. When you call or text, you’re talking directly with the person running the business about the property, what needs cleaning, and the schedule.',
+    ownerIntro: 'When you call or text, you’re talking directly with the person running Beachline Cleaners about the property, scope, and schedule.',
     paragraphs: [
-      'Tell us what needs attention and any extras you want included. We’ll agree on the checklist, price, access, and timing before the visit, so you know exactly what was booked.',
+      'Tell us what needs attention and any extras you want included. We’ll agree on the checklist, price, access, and timing before the visit.',
       'Have pets, delicate surfaces, or a product preference? Tell us when we set up the clean. If you’ll be out, we’ll work out secure access ahead of time.',
     ],
     checks: [
@@ -551,8 +556,8 @@ export const faqContent = {
         { service: 'Vacation rentals', price: servicesDetail.vacationRental.priceLabel },
         { service: 'Commercial cleaning', price: 'Custom quote' },
       ],
-      priceNote: `${pricingContent.note} Deep cleans and move cleans may require photos or additional details for an accurate quote.`,
-      a: `Home cleaning: ${servicesDetail.residential.priceLabel}. Deep cleaning: ${servicesDetail.deep.priceLabel}. Move-in/move-out: ${servicesDetail.moveOut.priceLabel}. Vacation rentals: ${servicesDetail.vacationRental.priceLabel}. Commercial work is quoted individually. ${pricingContent.note} Deep cleans and move cleans may require photos or additional details for an accurate quote.`,
+      priceNote: pricingContent.note,
+      a: `Home cleaning: ${servicesDetail.residential.priceLabel}. Deep cleaning: ${servicesDetail.deep.priceLabel}. Move-in/move-out: ${servicesDetail.moveOut.priceLabel}. Vacation rentals: ${servicesDetail.vacationRental.priceLabel}. Commercial work is quoted individually. ${pricingContent.note}`,
       open: true,
     },
     {
@@ -579,7 +584,7 @@ export const faqContent = {
     cleaningVisitGuidance.boundaries,
     {
       q: 'Can you handle linens and restocking for rentals?',
-      a: 'Have clean linens ready for each turnover. Laundry is $25 per load when on-site machines are available, and restocking owner-provided supplies is $25 per turnover. We’ll confirm where supplies are stored before service starts.',
+      a: `Have clean linens ready for each turnover. Laundry is $${pricing.vacationRental.laundryPerLoad} per load when on-site machines are available, and restocking owner-provided supplies is $${pricing.vacationRental.restockingPerTurnover} per turnover. We’ll confirm where supplies are stored before service starts.`,
     },
   ],
 };
@@ -617,7 +622,7 @@ export const serviceAreaContent = {
   coverageEyebrow: 'Cleaning services',
 
   coverageHeading:
-    'Choose the service that fits your property.',
+    'Available services.',
 
   coverageIntro:
     'We offer home, rental, move, and small commercial cleaning across our service area. Availability depends on the property, location, and schedule.',
@@ -672,22 +677,15 @@ export const quoteContent = {
   metaDescription: 'Request a cleaning quote for homes, move-in/move-out service, vacation rentals, or commercial spaces in Brevard County.',
   eyebrow: 'Request a quote',
   title: 'Get a cleaning quote.',
-  lede: 'Tell us what needs cleaning and your preferred dates. We’ll follow up by phone or email to discuss the details. We’ll confirm the price and available dates with you before booking.',
-  trustPillsAriaLabel: 'Quote assurances',
-  trustPills: [
-    'Local & owner-operated',
-    'Clear scope and price before booking',
-    'Call or text us directly',
-  ],
+  lede: 'Choose the service and property details for an estimate, then send the request. We’ll confirm scope, price, and availability before booking.',
   form: {
     formspreeEndpoint: 'https://formspree.io/f/xzzenlyg',
     emailSubject: 'New Beachline Cleaners Quote Request',
     submittingButton: 'Sending...',
     submittingStatus: 'Sending your quote request...',
     privacyDisclosure: 'This form sends your contact and property details to Beachline Cleaners through Formspree to handle your quote request. Do not include door codes, payment details, or other sensitive information.',
-    nameAttr: 'quote',
     actionAttr: withBase('/quote-success'),
-    honeypotLabel: 'Don’t fill this out if you\'re human:',
+    honeypotLabel: 'Don’t fill this out if you’re human:',
     name: {
       label: 'Your Name',
       placeholder: 'First and last name',
@@ -710,68 +708,14 @@ export const quoteContent = {
       label: 'Service Type',
       placeholder: 'Select a service...',
       options: [
-      { value: 'residential', label: 'Home Cleaning' },
-      { value: 'commercial', label: 'Commercial Cleaning' },
-      { value: 'deep', label: 'Deep Cleaning' },
-      { value: 'move', label: 'Move-in / Move-out' },
-      { value: 'vacation', label: 'Vacation Rental' },
-      { value: 'other', label: 'Other' },
+        { value: 'residential', label: 'Home Cleaning' },
+        { value: 'deep', label: 'Deep Cleaning' },
+        { value: 'move', label: 'Move-In / Move-Out' },
+        { value: 'vacation', label: 'Vacation Rental' },
+        { value: 'commercial', label: 'Commercial Cleaning' },
+        { value: 'other', label: 'Other' },
       ],
     },
-    size: {
-      label: 'Approximate Size (sq ft) (Optional)',
-      placeholder: 'e.g. 1800',
-    },
-    frequency: {
-      label: 'Preferred Date / Schedule (Optional)',
-      placeholder: 'e.g. October 15, biweekly, or after 6 pm',
-    },
-    serviceFields: [
-      { id: 'home-details', services: ['residential', 'deep', 'move', 'vacation'], legend: 'Home or rental details (optional)', fields: [
-        { name: 'beds_baths', label: 'Bedrooms / Bathrooms', placeholder: 'e.g. 3 bed, 2 bath' },
-      ] },
-      { id: 'deep-details', services: ['deep'], legend: 'Deep-clean details (optional)', fields: [
-        { name: 'cleaning_condition', label: 'Areas that need extra attention', placeholder: 'e.g. bathroom buildup, baseboards, kitchen grease' },
-      ] },
-      { id: 'move-details', services: ['move'], legend: 'Move details (optional)', fields: [
-        { name: 'move_readiness', label: 'When will the property be empty?', placeholder: 'e.g. empty now, or movers leave October 15' },
-        { name: 'handoff_date', label: 'Inspection or handoff deadline', placeholder: 'e.g. October 17, before noon' },
-      ] },
-      { id: 'rental-details', services: ['vacation'], legend: 'Turnover timing (optional)', fields: [
-        { name: 'checkout_time', label: 'Guest checkout', placeholder: 'Date and time' },
-        { name: 'checkin_time', label: 'Next guest check-in', placeholder: 'Date and time' },
-      ] },
-      { id: 'commercial-details', services: ['commercial'], legend: 'Workspace details (optional)', fields: [
-        { name: 'workspace_type', label: 'Type of workspace', placeholder: 'e.g. office, shop, professional suite' },
-        { name: 'restrooms_shared_areas', label: 'Restrooms and shared areas', placeholder: 'e.g. 2 restrooms, breakroom, reception' },
-        { name: 'cleaning_hours_access', label: 'Cleaning hours and access requirements', placeholder: 'e.g. after 6 pm, front-desk check-in; no access codes' },
-        { name: 'commercial_priorities', label: 'Cleaning priorities or checklist', placeholder: 'e.g. floors, restrooms, desks; any areas to leave alone' },
-      ] },
-    ],
-    extras: [
-      {
-        id: 'home-extras',
-        services: ['residential', 'deep', 'move'],
-        label: 'Optional extras for home, deep & move cleaning',
-        hint: 'Just need the standard service? Leave these unchecked. Prices below are added to the base service price.',
-        options: [
-          { name: 'extra_oven', label: 'Inside oven (+$45)' },
-          { name: 'extra_fridge', label: 'Inside refrigerator (+$55)' },
-          { name: 'extra_cabinets', label: 'Inside cabinets, empty (from +$60; included with move cleaning)', services: ['residential', 'deep'] },
-          { name: 'extra_windows', label: 'Interior windows (+$10 each)' },
-        ],
-      },
-      {
-        id: 'rental-extras',
-        services: ['vacation'],
-        label: 'Optional vacation-rental extras',
-        hint: 'Beds are reset with provided clean linens. Laundry uses on-site machines; restocking assumes owner-provided supplies are at the property.',
-        options: [
-          { name: 'extra_laundry', label: 'Laundry (+$25 per load)' },
-          { name: 'extra_restocking', label: 'Owner-provided supply restocking (+$25 per turnover)' },
-        ],
-      },
-    ],
     notes: {
       label: 'Additional Notes (Optional)',
       placeholder: 'Anything else we should know about priorities, buildup, access, or extras? Please do not include door or alarm codes.',
@@ -783,16 +727,8 @@ export const quoteContent = {
     heading: 'Prefer to call or text?',
     description: 'Need cleaning by a specific date? Call or text us to discuss availability before making plans.',
     callPrefix: 'Call ',
-    textPrefix: 'Text ',
     textButton: `Text ${site.phoneDisplay}`,
     textHref: site.smsHref,
-    detailsHeading: 'A few details to have ready',
-    detailsList: [
-      'Your address or ZIP code',
-      'Property size and layout',
-      'Service type and priorities',
-      'Preferred dates or frequency',
-    ],
   },
 };
 
@@ -800,9 +736,12 @@ export const quoteSuccessContent = {
   metaTitle: 'Quote Request Received',
   metaDescription: 'Your cleaning quote request has been received. We will follow up by phone or email to discuss the details.',
   eyebrow: 'Request received',
-  title: 'Got it—we have your request.',
-  lede: 'We’ll review the details and follow up by phone or email to confirm the cleaning, price, and availability. Your appointment isn’t booked yet. If you forgot something or need to make a change, just call or text us.',
-  returnButtonText: 'Return Home',
+  title: 'We received your request.',
+  nextHeading: 'What happens next',
+  nextText: 'We’ll review the property details, estimate, and requested scope, then follow up by phone or email to confirm price and availability.',
+  bookingHeading: 'Appointment not yet booked',
+  bookingText: 'Your cleaning is not on the calendar until we confirm the scope, price, and date with you. If you need to add something, call or text us.',
+  returnButtonText: 'Go to Homepage',
   returnButtonHref: withBase('/'),
   callPrefix: 'Call ',
 };

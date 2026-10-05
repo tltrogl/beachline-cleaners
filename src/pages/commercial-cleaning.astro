@@ -13,7 +13,6 @@ const content = servicesDetail.commercial;
   <section class={commercialUi.heroSection} aria-labelledby="commercial-hero-title" slot="hero">
     <div class:list={[shell, commercialUi.heroGrid]}>
       <div class={commercialUi.heroMedia}>
-        <span class={commercialUi.heroAccent} aria-hidden="true"></span>
         <figure class={commercialUi.heroFigure}>
           <SiteImage src={content.image} alt={content.imageAlt} width="1280" height="800" class={commercialUi.heroImage} fetchpriority="high" />
         </figure>
@@ -23,6 +22,7 @@ const content = servicesDetail.commercial;
         <h1 id="commercial-hero-title" class={commercialUi.heroTitle}>{content.title}</h1>
         <p class={commercialUi.heroLede}>{content.intro}</p>
         <p class={commercialUi.fitNote}>{content.who}</p>
+        <p class="mt-5 inline-flex rounded-full border border-teal/20 bg-seafoam px-4 py-2 text-[.92rem] font-extrabold text-sea-dark">{content.priceLabel}</p>
         <div class={commercialUi.heroActions}>
           <Button href={content.quoteHref}>{servicePageDefaults.quoteButtonText} <Icon name="arrow-right" class={commercialUi.actionIcon} /></Button>
           <a class={phone} href={site.phoneHref}>{servicePageDefaults.callButtonPrefix}{site.phoneDisplay}</a>
@@ -42,19 +42,25 @@ const content = servicesDetail.commercial;
       </div>
 
       <ul class={commercialUi.checklistGrid} role="list">
-        {content.included.map((item, index) => (
-          <li class:list={[commercialUi.checklistItemBase, commercialChecklistItemClass(index)]}>
-            <span class={commercialUi.checklistIcon} aria-hidden="true"><Icon name="check-circle" class={commercialUi.checklistIconGlyph} /></span>
-            <span>{item}</span>
-          </li>
-        ))}
+        {content.included.map((item, index) => {
+          const [label, ...description] = item.split(': ');
+          return (
+            <li class:list={[commercialUi.checklistItemBase, commercialChecklistItemClass(index)]}>
+              <span class={commercialUi.checklistIcon} aria-hidden="true"><Icon name="check-circle" class={commercialUi.checklistIconGlyph} /></span>
+              <div>
+                <h3 class="text-[1rem] font-extrabold text-ink">{label}</h3>
+                <p class="mt-1 text-[.93rem] leading-[1.55] text-ink-soft">{description.join(': ')}</p>
+              </div>
+            </li>
+          );
+        })}
       </ul>
     </div>
   </section>
 
   <section class={commercialUi.pricingSection} aria-labelledby="commercial-price-heading">
     <div class:list={[shell, commercialUi.pricingGrid]}>
-      <div>
+      <div class="rounded-panel border border-line bg-mist/35 p-7 max-mobile:p-6">
         <p class={commercialUi.darkEyebrow}>Pricing</p>
         <h2 id="commercial-price-heading" class={commercialUi.pricingTitle}>{content.priceLabel}</h2>
         <p class={commercialUi.pricingCopy}>{content.pricing}</p>
