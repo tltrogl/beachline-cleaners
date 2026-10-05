@@ -4,83 +4,119 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Button from '../components/Button.astro';
 import CTA from '../components/CTA.astro';
 import Icon from '../components/Icon.astro';
-import { shell, homeEyebrow, phone } from '../styles/ui';
+import { shell, homeEyebrow, phone, residentialUi } from '../styles/ui';
 import { site, servicesDetail, servicePageDefaults } from '../data/content';
 
 const content = servicesDetail.residential;
+const quoteLabel = 'Request a Quote';
 ---
-<BaseLayout title={`${content.metaTitle} | ${site.name}`} description={content.metaDescription} quoteHref={content.quoteHref}>
-  <section class="border-b border-line bg-mist pt-12 pb-14 max-mobile:pt-7 max-mobile:pb-9" aria-labelledby="hero-title" slot="hero">
-    <div class:list={[shell, "grid grid-cols-[.92fr_1.08fr] items-center gap-16 max-tablet:gap-9 max-mobile:grid-cols-1 max-mobile:gap-7"]}>
+<BaseLayout title={`${content.metaTitle} | ${site.name}`} description={content.metaDescription} quoteHref={content.quoteHref} quoteLabel={quoteLabel}>
+  <section class={residentialUi.heroSection} aria-labelledby="hero-title" slot="hero">
+    <div class:list={[shell, residentialUi.heroGrid]}>
       <div>
-        <p class:list={[homeEyebrow, 'flex items-center gap-3']}><span class="h-px w-10 shrink-0 bg-sea" aria-hidden="true"></span>Residential</p>
-        <h1 id="hero-title" class="max-w-[700px] text-[clamp(3rem,5vw,4.5rem)] leading-[1.03] tracking-[-.04em] max-mobile:text-[2.85rem]">{content.title}</h1>
-        <p class="mt-6 max-w-[620px] text-lede leading-[1.62] max-mobile:mt-4">{content.intro}</p>
-        <div class="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 border-y border-sea-dark/15 py-4 text-[.92rem] font-[750] text-sea-dark">
-          <span>One-time</span><span class="size-1 rounded-full bg-teal/55" aria-hidden="true"></span><span>Weekly</span><span class="size-1 rounded-full bg-teal/55" aria-hidden="true"></span><span>Biweekly</span>
+        <p class:list={[homeEyebrow, 'flex items-center gap-3']}>
+          <span class="h-px w-10 shrink-0 bg-sea" aria-hidden="true"></span>{content.eyebrow}
+        </p>
+        <h1 id="hero-title" class={residentialUi.heroTitle}>{content.title}</h1>
+        <p class={residentialUi.heroLede}>{content.intro}</p>
+
+        <div class={residentialUi.cadence} aria-label="Available cleaning schedules">
+          <span class={residentialUi.cadenceLabel}>One-time</span>
+          <span class={residentialUi.cadenceDot} aria-hidden="true"></span>
+          <span class={residentialUi.cadenceLabel}>Weekly</span>
+          <span class={residentialUi.cadenceDot} aria-hidden="true"></span>
+          <span class={residentialUi.cadenceLabel}>Biweekly</span>
         </div>
-        <div class="mt-7 flex flex-wrap items-center gap-control-gap">
-          <Button href={content.quoteHref}>{servicePageDefaults.quoteButtonText} <Icon name="arrow-right" class="size-[18px]" /></Button>
+
+        <p class={residentialUi.heroPrice}>
+          <span class="size-2 shrink-0 rounded-full bg-accent" aria-hidden="true"></span>
+          {content.priceLabel}
+        </p>
+        <div class="mt-5 flex flex-wrap items-center gap-control-gap">
+          <Button href={content.quoteHref}>{quoteLabel} <Icon name="arrow-right" class="size-[18px]" /></Button>
           <a class={phone} href={site.phoneHref}>{servicePageDefaults.callButtonPrefix}{site.phoneDisplay}</a>
         </div>
       </div>
-      <div class="relative pb-3 pr-3">
-        <span class="absolute bottom-0 right-0 h-24 w-24 rounded-panel bg-[#C94F68]" aria-hidden="true"></span>
-        <figure class="relative m-0 overflow-hidden rounded-panel bg-white shadow-[0_20px_60px_rgba(28,65,91,.10)]">
-        <SiteImage src={content.image} alt={content.imageAlt} width="1200" height="800" class="aspect-[1.08] w-full object-cover object-[30%_center] max-mobile:aspect-[1.5] max-mobile:object-center" fetchpriority="high" />
+
+      <div class={residentialUi.heroMedia}>
+        <figure class={residentialUi.heroFigure}>
+          <SiteImage
+            src={content.image}
+            alt={content.imageAlt}
+            width="1200"
+            height="800"
+            class={residentialUi.heroImage}
+            fetchpriority="high"
+          />
         </figure>
       </div>
     </div>
   </section>
 
-  <section class="py-[78px] max-mobile:py-14" aria-labelledby="included-heading">
+  <section class={residentialUi.scopeSection} aria-labelledby="included-heading">
     <div class={shell}>
-      <div class="flex items-end justify-between gap-10 border-b border-line pb-7 max-tablet:items-start max-mobile:flex-col max-mobile:gap-3">
+      <div class={residentialUi.scopeHeader}>
         <div>
-          <p class:list={[homeEyebrow, 'flex items-center gap-3']}><span class="h-1 w-10 rounded-full bg-[#C94F68]" aria-hidden="true"></span>Standard clean</p>
-          <h2 id="included-heading" class="max-w-[560px]">What’s included.</h2>
+          <p class:list={[homeEyebrow, 'flex items-center gap-3']}>
+            <span class="h-1 w-10 rounded-full bg-accent" aria-hidden="true"></span>Standard clean
+          </p>
+          <h2 id="included-heading" class={residentialUi.scopeHeading}>{content.includedHeading}</h2>
         </div>
-        <p class="max-w-[470px] text-[1rem] leading-[1.65] text-ink-soft">The core cleaning work for kitchens, bathrooms, floors, and living areas.</p>
+        <p class={residentialUi.scopeIntro}>{content.includedIntro}</p>
       </div>
 
-      <ul class="m-0 grid list-none grid-cols-2 p-0 max-mobile:grid-cols-1" role="list">
-        {content.included.map((item, index) => (
-          <li class:list={[
-            'grid min-h-[104px] grid-cols-[34px_1fr] items-start gap-4 border-b border-line py-6 text-[1.02rem] leading-[1.58]',
-            index % 2 === 0 ? 'pr-10 max-mobile:pr-0' : 'border-l pl-10 max-mobile:border-l-0 max-mobile:pl-0'
-          ]}>
-            <span class="mt-0.5 flex size-7 items-center justify-center rounded-full bg-cyan/20 text-teal" aria-hidden="true"><Icon name="check-circle" class="size-[17px]" /></span>
-            <span>{item}</span>
-          </li>
-        ))}
+      <ul class={residentialUi.scopeList} role="list">
+        {content.included.map((item) => {
+          const [label, ...description] = item.split(': ');
+          return (
+            <li class={residentialUi.scopeItemBase}>
+              <span class={residentialUi.scopeIcon} aria-hidden="true">
+                <Icon name="check-circle" class={residentialUi.scopeIconGlyph} />
+              </span>
+              <div>
+                <h3 class={residentialUi.scopeItemTitle}>{label}</h3>
+                <p class={residentialUi.scopeItemText}>{description.join(': ')}</p>
+              </div>
+            </li>
+          );
+        })}
       </ul>
     </div>
   </section>
 
-  <section class="border-y border-line bg-seafoam py-[68px] max-mobile:py-12" aria-labelledby="price-heading">
-    <div class:list={[shell, "grid grid-cols-[.82fr_1.18fr] items-start gap-16 max-tablet:grid-cols-1 max-tablet:gap-10"]}>
-      <div class="border-l-4 border-[#C94F68] pl-7 max-mobile:pl-5">
-        <p class="mb-2 text-eyebrow font-extrabold uppercase tracking-[.12em] text-sea-dark">Starting price</p>
-        <h2 id="price-heading" class="text-[clamp(2.35rem,4vw,3.55rem)] tracking-[-.04em]">{content.priceLabel}</h2>
-        <p class="mt-4 max-w-[480px] text-[1.02rem] leading-[1.65]">{content.pricing}</p>
+  <section class={residentialUi.pricingSection} aria-labelledby="price-heading">
+    <div class:list={[shell, residentialUi.pricingGrid]}>
+      <div class={residentialUi.pricePanel}>
+        <p class={residentialUi.priceEyebrow}>Starting price</p>
+        <h2 id="price-heading" class={residentialUi.priceTitle}>{content.priceLabel}</h2>
+        <p class={residentialUi.priceCopy}>{content.pricing}</p>
+
+        <ul class={residentialUi.factorList} role="list" aria-label="What affects the price">
+          {content.pricingFactors.map((factor) => (
+            <li class={residentialUi.factorItem}>
+              <span class="size-1.5 shrink-0 rounded-full bg-accent" aria-hidden="true"></span>{factor}
+            </li>
+          ))}
+        </ul>
       </div>
 
       <div>
-        <div class="flex items-end justify-between gap-6 border-b border-line pb-4">
+        <div class={residentialUi.addonsHeader}>
           <div>
-            <p class="mb-2 text-eyebrow font-extrabold uppercase tracking-[.12em] text-sea-dark">Add-ons</p>
-            <h2 class="text-[clamp(1.8rem,3vw,2.35rem)]">Optional extras.</h2>
+            <p class={residentialUi.addonsEyebrow}>Optional extras</p>
+            <h2 class={residentialUi.addonsTitle}>Add only what you need</h2>
+            <p class={residentialUi.addonsIntro}>{content.optionsIntro}</p>
           </div>
-          <span class="hidden h-8 w-8 rounded-full border border-teal/30 bg-white/45 max-mobile:hidden" aria-hidden="true"></span>
         </div>
-        <ul class="m-0 list-none p-0" role="list">
+
+        <ul class={residentialUi.addonsList} role="list">
           {content.options.map((option) => {
             const [label, price] = option.split(' — ');
             return (
-              <li class="grid grid-cols-[30px_minmax(0,1fr)_auto] items-start gap-3 border-b border-line py-[18px]">
-                <span class="font-black text-sea-dark" aria-hidden="true">+</span>
-                <span class="font-[700] text-ink">{label}</span>
-                <span class="font-extrabold tabular-nums text-sea-dark">{price}</span>
+              <li class={residentialUi.addonRow}>
+                <span class={residentialUi.addonPlus} aria-hidden="true">+</span>
+                <span class={residentialUi.addonLabel}>{label}</span>
+                <span class={residentialUi.addonPrice}>{price}</span>
               </li>
             );
           })}
@@ -89,5 +125,11 @@ const content = servicesDetail.residential;
     </div>
   </section>
 
-  <CTA quoteHref={content.quoteHref} />
+  <CTA
+    quoteHref={content.quoteHref}
+    quoteLabel={quoteLabel}
+    showEyebrow={false}
+    title="Ready for a cleaner home?"
+    text="Tell us about your home and preferred schedule. We’ll confirm the cleaning scope, price, and available dates before booking."
+  />
 </BaseLayout>

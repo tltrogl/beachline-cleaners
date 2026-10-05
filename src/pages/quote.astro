@@ -3,42 +3,42 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { site, quoteContent } from '../data/content';
 import Button from '../components/Button.astro';
 import Icon from '../components/Icon.astro';
-import { shell, section, homeEyebrow, lede, details, field, formGroup, formRow } from '../styles/ui';
+import { shell, quoteUi, field, formGroup, formRow } from '../styles/ui';
 ---
 <BaseLayout bodyClass="island-home no-mobile-bar page-quote" title={`${quoteContent.metaTitle} | ${site.name}`} description={quoteContent.metaDescription}>
-  <section class:list={[section, "bg-mist/50"]}>
-    <div class:list={[shell, "grid grid-cols-[1fr_340px] items-start gap-[70px] max-tablet:grid-cols-1"]}>
+  <section class={quoteUi.section}>
+    <div class:list={[shell, quoteUi.layout]}>
       <div>
-        <p class:list={[homeEyebrow, 'flex items-center gap-3']}><span class="h-px w-10 bg-sea" aria-hidden="true"></span>{quoteContent.eyebrow}</p>
-        <h1 class="mb-4 max-w-[720px] text-[clamp(2rem,3.5vw,3rem)] font-black leading-[1.12] tracking-[-.035em]">{quoteContent.title}</h1>
-        <p class:list={[lede, "mt-4"]}>{quoteContent.lede}</p>
+        <p class={quoteUi.eyebrowRow}><span class={quoteUi.eyebrowRule} aria-hidden="true"></span>{quoteContent.eyebrow}</p>
+        <h1 class={quoteUi.title}>{quoteContent.title}</h1>
+        <p class={quoteUi.lede}>{quoteContent.lede}</p>
 
-        <div class="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 text-small">
+        <div class={quoteUi.contactRow}>
           <span>Prefer to talk it through?</span>
-          <a class="inline-flex min-h-11 items-center font-bold text-sea-dark underline" href={site.phoneHref}>Call {site.phoneDisplay}</a>
-          <a class="inline-flex min-h-11 items-center font-bold text-sea-dark underline" href={site.smsHref}>Text us</a>
+          <a class={quoteUi.contactLink} href={site.phoneHref}>Call {site.phoneDisplay}</a>
+          <a class={quoteUi.contactLink} href={site.smsHref}>Text us</a>
         </div>
-        <div class="mt-5 flex flex-wrap gap-x-4 gap-y-2 text-[.86rem] font-[750] text-sea-dark" aria-label={quoteContent.trustPillsAriaLabel}>
+        <div class={quoteUi.trustPills} aria-label={quoteContent.trustPillsAriaLabel}>
           {quoteContent.trustPills.map((pill) => (
             <span><span aria-hidden="true">✓ </span>{pill}</span>
           ))}
         </div>
         
-        <form class="quote-form mt-7 grid max-w-[600px] gap-5" action={quoteContent.form.formspreeEndpoint} method="POST" data-submitting-button={quoteContent.form.submittingButton} data-submitting-status={quoteContent.form.submittingStatus}>
+        <form class={quoteUi.form} action={quoteContent.form.formspreeEndpoint} method="POST" data-submitting-button={quoteContent.form.submittingButton} data-submitting-status={quoteContent.form.submittingStatus}>
           <input type="hidden" name="_next" value={new URL(quoteContent.form.actionAttr, Astro.site).href} />
           <input type="hidden" name="_subject" value={quoteContent.form.emailSubject} />
-          <div class="hidden" aria-hidden="true">
+          <div class={quoteUi.hidden} aria-hidden="true">
             <label>{quoteContent.form.honeypotLabel}</label>
             <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
           </div>
 
           <div class={formGroup}>
-            <label class="text-label font-bold" for="name">{quoteContent.form.name.label}</label>
+            <label class={quoteUi.label} for="name">{quoteContent.form.name.label}</label>
             <input class={field} type="text" id="name" name="name" required autocomplete="name" placeholder={quoteContent.form.name.placeholder} />
           </div>
           <div class={formRow}>
             <div class={formGroup}>
-              <label class="text-label font-bold" for="phone">{quoteContent.form.phone.label}</label>
+              <label class={quoteUi.label} for="phone">{quoteContent.form.phone.label}</label>
               <input
                 class={field}
                 type="tel"
@@ -52,7 +52,7 @@ import { shell, section, homeEyebrow, lede, details, field, formGroup, formRow }
               />
             </div>
             <div class={formGroup}>
-              <label class="text-label font-bold" for="email">{quoteContent.form.email.label}</label>
+              <label class={quoteUi.label} for="email">{quoteContent.form.email.label}</label>
               <input
                 class={field}
                 type="email"
@@ -64,11 +64,11 @@ import { shell, section, homeEyebrow, lede, details, field, formGroup, formRow }
             </div>
           </div>
           <div class={formGroup}>
-            <label class="text-label font-bold" for="location">{quoteContent.form.location.label}</label>
+            <label class={quoteUi.label} for="location">{quoteContent.form.location.label}</label>
             <input class={field} type="text" id="location" name="location" required placeholder={quoteContent.form.location.placeholder} />
           </div>
           <div class={formGroup}>
-            <label class="text-label font-bold" for="service">{quoteContent.form.service.label}</label>
+            <label class={quoteUi.label} for="service">{quoteContent.form.service.label}</label>
             <select class={field} id="service" name="service" required>
               <option value="">{quoteContent.form.service.placeholder}</option>
               {quoteContent.form.service.options.map((opt) => (
@@ -77,68 +77,70 @@ import { shell, section, homeEyebrow, lede, details, field, formGroup, formRow }
             </select>
           </div>
 
-          <div class={formGroup}>
-            <label class="text-label font-bold" for="size">{quoteContent.form.size.label}</label>
-            <input class={field} type="text" id="size" name="size" placeholder={quoteContent.form.size.placeholder} />
+          <div class={formRow}>
+            <div class={formGroup}>
+              <label class={quoteUi.label} for="size">{quoteContent.form.size.label}</label>
+              <input class={field} type="text" id="size" name="size" placeholder={quoteContent.form.size.placeholder} />
+            </div>
+            <div class={formGroup}>
+              <label class={quoteUi.label} for="frequency">{quoteContent.form.frequency.label}</label>
+              <input class={field} type="text" id="frequency" name="frequency" placeholder={quoteContent.form.frequency.placeholder} />
+            </div>
           </div>
           <noscript><p>Use the fields for your service below and leave the others blank. Empty cabinet interiors are included with move cleaning.</p></noscript>
           {quoteContent.form.serviceFields.map((group) => (
-            <fieldset class="m-0 min-w-0 border-0 p-0" data-service-fields={group.services.join(',')}>
-              <legend class="mb-3 text-label font-bold">{group.legend}</legend>
-              <div class="grid gap-4">
+            <fieldset class={quoteUi.fieldset} data-service-fields={group.services.join(',')}>
+              <legend class={quoteUi.fieldsetLegend}>{group.legend}</legend>
+              <div class={quoteUi.fieldGrid}>
                 {group.fields.map((item) => (
                   <div class={formGroup}>
-                    <label class="text-label" for={item.name}>{item.label}</label>
+                    <label class={quoteUi.simpleLabel} for={item.name}>{item.label}</label>
                     <input class={field} type="text" id={item.name} name={item.name} placeholder={item.placeholder} />
                   </div>
                 ))}
               </div>
             </fieldset>
           ))}
-              <div class={formGroup}>
-                <label class="text-label font-bold" for="frequency">{quoteContent.form.frequency.label}</label>
-                <input class={field} type="text" id="frequency" name="frequency" placeholder={quoteContent.form.frequency.placeholder} />
-              </div>
           {quoteContent.form.extras.map((group) => (
-            <fieldset class="m-0 min-w-0 border-0 p-0" data-service-fields={group.services.join(',')} aria-describedby={`${group.id}-hint`}>
-              <legend class="text-label font-bold">{group.label}</legend>
-              <p id={`${group.id}-hint`} class="mt-2 text-sm text-ink-soft">{group.hint}</p>
-              <div class="mt-3 grid grid-cols-2 gap-x-4 max-mobile:grid-cols-1">
+            <fieldset class={quoteUi.fieldset} data-service-fields={group.services.join(',')} aria-describedby={`${group.id}-hint`}>
+              <legend class={quoteUi.extrasLegend}>{group.label}</legend>
+              <p id={`${group.id}-hint`} class={quoteUi.hint}>{group.hint}</p>
+              <div class={quoteUi.optionsGrid}>
                 {group.options.map((option) => (
-                  <label class="flex min-h-11 cursor-pointer items-center gap-3 py-2 text-label" for={option.name} data-service-option={'services' in option ? option.services?.join(',') : group.services.join(',')}>
-                    <input class="size-5 shrink-0 accent-sea-dark focus-visible:outline-3 focus-visible:outline-sea-dark focus-visible:outline-offset-2" type="checkbox" id={option.name} name={option.name} value={option.label} />
+                  <label class={quoteUi.optionLabel} for={option.name} data-service-option={'services' in option ? option.services?.join(',') : group.services.join(',')}>
+                    <input class={quoteUi.checkbox} type="checkbox" id={option.name} name={option.name} value={option.label} />
                     <span>{option.label}</span>
                   </label>
                 ))}
               </div>
             </fieldset>
           ))}
-          <details class:list={[details, "form-details-toggle mt-1"]}>
-            <summary class="inline-flex list-none items-center gap-1.5 text-compact-action font-bold text-sea-dark">{quoteContent.form.detailsToggle}</summary>
-            <div class="mt-5 grid gap-5">
+          <details class={quoteUi.details}>
+            <summary class={quoteUi.detailsSummary}>{quoteContent.form.detailsToggle}</summary>
+            <div class={quoteUi.detailsBody}>
               <div class={formGroup}>
-                <label class="text-label font-bold" for="notes">{quoteContent.form.notes.label}</label>
+                <label class={quoteUi.label} for="notes">{quoteContent.form.notes.label}</label>
                 <textarea class={field} id="notes" name="notes" rows="3" placeholder={quoteContent.form.notes.placeholder}></textarea>
               </div>
             </div>
           </details>
 
-          <p id="quote-privacy" class="text-sm text-ink-soft">{quoteContent.form.privacyDisclosure}</p>
-          <Button type="submit" class="submit-btn mt-2.5 w-full" aria-describedby="quote-privacy">{quoteContent.form.submitButton} <Icon name="arrow-right" class="size-[18px]" /></Button>
-          <p class="submission-status text-sm text-ink-soft" role="status" aria-live="polite" hidden></p>
+          <p id="quote-privacy" class={quoteUi.privacy}>{quoteContent.form.privacyDisclosure}</p>
+          <Button type="submit" class={quoteUi.submit} aria-describedby="quote-privacy">{quoteContent.form.submitButton} <Icon name="arrow-right" class={quoteUi.actionIcon} /></Button>
+          <p class={quoteUi.status} role="status" aria-live="polite" hidden></p>
         </form>
       </div>
 
-      <aside class="sticky top-[110px] border-y border-line bg-white/70 px-6 py-7 max-tablet:hidden">
-        <h3 class="mb-3">{quoteContent.aside.heading}</h3>
-        <p class="mb-5 mt-4">{quoteContent.aside.description}</p>
-        <div class="grid gap-2.5">
-          <Button variant="secondary" class="w-full" href={site.phoneHref}>{quoteContent.aside.callPrefix}{site.phoneDisplay}</Button>
-          <Button variant="secondary" size="compact" href={quoteContent.aside.textHref}>{quoteContent.aside.textButton}</Button>
+      <aside class={quoteUi.aside}>
+        <h3 class={quoteUi.asideHeading}>{quoteContent.aside.heading}</h3>
+        <p class={quoteUi.asideDescription}>{quoteContent.aside.description}</p>
+        <div class={quoteUi.asideActions}>
+          <Button variant="secondary" class={quoteUi.asideButton} href={site.phoneHref}>{quoteContent.aside.callPrefix}{site.phoneDisplay}</Button>
+          <Button variant="secondary" size="compact" class={quoteUi.asideButton} href={quoteContent.aside.textHref}>{quoteContent.aside.textButton}</Button>
         </div>
         
-        <h3 class="mt-8 mb-3 text-[1.1rem]">{quoteContent.aside.detailsHeading}</h3>
-        <ul class="mt-3 list-disc pl-5 text-small text-ink-soft">
+        <h3 class={quoteUi.asideDetailsHeading}>{quoteContent.aside.detailsHeading}</h3>
+        <ul class={quoteUi.asideList}>
           {quoteContent.aside.detailsList.map((item) => (
             <li>{item}</li>
           ))}

@@ -9,6 +9,7 @@ import { shell, homeEyebrow, indexUi } from '../styles/ui';
 
 <BaseLayout
   bodyClass="island-home"
+  quoteLabel={homeContent.hero.ctaButton}
   title={`${site.name} | ${homeContent.metaTitleSuffix}`}
   description={homeContent.metaDescription}
 >
@@ -146,57 +147,74 @@ import { shell, homeEyebrow, indexUi } from '../styles/ui';
     aria-labelledby="services-heading"
   >
     <div class={shell}>
-      <div class={indexUi.servicesHeader}>
-        <div>
-          <p class={indexUi.servicesKicker}>
-            Our services
-          </p>
+      <h2 id="services-heading" class={indexUi.servicesHeading}>
+        {homeContent.servicesSection.heading}
+      </h2>
 
-          <h2
-            id="services-heading"
-            class={indexUi.servicesHeading}
-          >
-            What we do
-          </h2>
+      <article class={indexUi.featuredServiceCard}>
+        <div class={indexUi.featuredServiceMedia}>
+          <SiteImage
+            src={homeContent.servicesSection.featuredService.image}
+            alt={homeContent.servicesSection.featuredService.imageAlt}
+            class={indexUi.serviceImage}
+            loading="lazy"
+          />
+
+          <span class={indexUi.servicePriceBadge}>
+            {homeContent.servicesSection.featuredService.priceLabel}
+          </span>
         </div>
 
-        <p class={indexUi.servicesIntro}>
-          Straightforward cleaning for homes, rentals,
-          moves, and small workspaces across Brevard County.
-        </p>
-      </div>
+        <div class={indexUi.featuredServiceBody}>
+          <h3 class={indexUi.featuredServiceTitle}>
+            <a
+              class={indexUi.serviceTitleLink}
+              href={homeContent.servicesSection.featuredService.href}
+            >
+              {homeContent.servicesSection.featuredService.title}
+            </a>
+          </h3>
+
+          <p class={indexUi.featuredServiceText}>
+            {homeContent.servicesSection.featuredService.text}
+          </p>
+
+          <a
+            class={indexUi.serviceLink}
+            href={homeContent.servicesSection.featuredService.href}
+          >
+            {homeContent.servicesSection.linkText}
+            <Icon
+              name="arrow-right"
+              class={indexUi.serviceLinkIcon}
+            />
+          </a>
+        </div>
+      </article>
 
       <div
-        class={indexUi.servicesGrid}
+        class={indexUi.specialtyServicesGrid}
         role="list"
       >
-        {homeContent.servicesSection.services.map((service, index) => (
+        {homeContent.servicesSection.services.map((service) => (
           <article
-            class:list={[
-              indexUi.serviceCard,
-              index === 4 && indexUi.serviceCardWide
-            ]}
+            class={indexUi.specialtyServiceCard}
             role="listitem"
           >
-            <div
-              class:list={[
-                indexUi.serviceMedia,
-                index === 4 && indexUi.serviceMediaWide
-              ]}
-            >
+            <div class={indexUi.specialtyServiceMedia}>
               <SiteImage
                 src={service.image}
                 alt={service.imageAlt}
                 class={indexUi.serviceImage}
                 loading="lazy"
               />
-
-              <span class={indexUi.servicePriceBadge}>
-                {service.priceLabel}
-              </span>
             </div>
 
-            <div class={indexUi.serviceCardBody}>
+            <div class={indexUi.specialtyServiceBody}>
+              <div class={indexUi.specialtyServiceMeta}>
+                <span>{service.priceLabel}</span>
+              </div>
+
               <h3 class={indexUi.serviceTitle}>
                 <a
                   class={indexUi.serviceTitleLink}
@@ -206,7 +224,7 @@ import { shell, homeEyebrow, indexUi } from '../styles/ui';
                 </a>
               </h3>
 
-              <p class={indexUi.serviceText}>
+              <p class={indexUi.specialtyServiceText}>
                 {service.text}
               </p>
 
@@ -215,7 +233,6 @@ import { shell, homeEyebrow, indexUi } from '../styles/ui';
                 href={service.href}
               >
                 {homeContent.servicesSection.linkText}
-
                 <Icon
                   name="arrow-right"
                   class={indexUi.serviceLinkIcon}
@@ -228,77 +245,6 @@ import { shell, homeEyebrow, indexUi } from '../styles/ui';
     </div>
   </section>
 
-  <section
-    class={indexUi.expectSection}
-    aria-labelledby="expect-heading"
-  >
-    <div class:list={[shell, indexUi.expectGrid]}>
-      <div>
-        <p class:list={[homeEyebrow, indexUi.eyebrowRow]}>
-          <span
-            class={indexUi.eyebrowRuleSea}
-            aria-hidden="true"
-          ></span>
-
-          {homeContent.expectSection.eyebrow}
-        </p>
-
-        <h2
-          id="expect-heading"
-          class={indexUi.expectHeading}
-        >
-          {homeContent.expectSection.heading}
-        </h2>
-
-        <p class={indexUi.expectIntro}>
-          {homeContent.expectSection.intro}
-        </p>
-      </div>
-
-      <div class={indexUi.expectItems}>
-        {homeContent.expectSection.items.map((item) => (
-          <article class={indexUi.expectItem}>
-            <span class={indexUi.expectIconWrap}>
-              <Icon
-                name="check-circle"
-                class={indexUi.expectIcon}
-              />
-            </span>
-
-            <div>
-              <h3 class={indexUi.expectItemTitle}>
-                {item.title}
-              </h3>
-
-              <p class={indexUi.expectItemText}>
-                {item.text}
-              </p>
-            </div>
-          </article>
-        ))}
-      </div>
-
-      <div class={indexUi.expectLinks}>
-        <a
-          class={indexUi.secondaryLink}
-          href={homeContent.expectSection.faqHref}
-        >
-          {homeContent.expectSection.faqText}
-          <Icon
-            name="arrow-right"
-            class={indexUi.actionIcon}
-          />
-        </a>
-
-        <a
-          class={indexUi.aboutLink}
-          href={homeContent.expectSection.aboutHref}
-        >
-          {homeContent.expectSection.aboutText}
-        </a>
-      </div>
-    </div>
-  </section>
 
   <section
     class={indexUi.processSection}
@@ -307,15 +253,6 @@ import { shell, homeEyebrow, indexUi } from '../styles/ui';
     <div class={shell}>
       <div class={indexUi.processHeader}>
         <div>
-          <p class={indexUi.processEyebrow}>
-            <span
-              class={indexUi.processEyebrowRule}
-              aria-hidden="true"
-            ></span>
-
-            {homeContent.processSection.eyebrow}
-          </p>
-
           <h2
             id="process-heading"
             class={indexUi.processHeading}

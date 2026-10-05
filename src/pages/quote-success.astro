@@ -2,22 +2,21 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { site, quoteSuccessContent } from '../data/content';
 import Button from '../components/Button.astro';
-import { shell, section, homeEyebrow, lede, phone } from '../styles/ui';
+import { shell, homeEyebrow, lede, phone, quoteSuccessUi } from '../styles/ui';
 ---
 <BaseLayout bodyClass="island-home no-mobile-bar page-quote-success" title={`${quoteSuccessContent.metaTitle} | ${site.name}`} description={quoteSuccessContent.metaDescription} noindex>
-  <section class={section}>
-    <div class:list={[shell, "max-w-[640px]"]}>
-      <div class="px-6 py-12 text-center">
-        <div class="mb-6 inline-flex size-[72px] items-center justify-center rounded-full border border-line bg-white text-sea" aria-hidden="true">
+  <section class={quoteSuccessUi.section}>
+    <div class:list={[shell, quoteSuccessUi.shell]}>
+      <div class={quoteSuccessUi.card}>
+        <div class={quoteSuccessUi.iconWrap} aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="40" height="40">
             <path d="M20 6L9 17l-5-5" />
           </svg>
         </div>
         <p class={homeEyebrow}>{quoteSuccessContent.eyebrow}</p>
-        <h1 class="mb-4 text-[clamp(2rem,4vw,3rem)]">{quoteSuccessContent.title}</h1>
+        <h1 class={quoteSuccessUi.title}>{quoteSuccessContent.title}</h1>
         <p class={lede}>{quoteSuccessContent.lede}</p>
-        
-        <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+        <div class={quoteSuccessUi.actions}>
           <Button href={quoteSuccessContent.returnButtonHref}>{quoteSuccessContent.returnButtonText}</Button>
           <a class={phone} href={site.phoneHref}>{quoteSuccessContent.callPrefix}{site.phoneDisplay}</a>
         </div>

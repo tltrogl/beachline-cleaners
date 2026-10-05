@@ -15,6 +15,7 @@
   --color-sea-dark: #006591;
   --color-cyan: #66D7E0;
   --color-teal: #00687A;
+  --color-accent: #C94F68;
   --color-line: #BEC8D2;
   --color-danger: oklch(0.500336 0.182051 29.5127);
   --color-field: #FFFFFF;
@@ -23,6 +24,9 @@
   --spacing-control-x: 22px;
   --spacing-card-gap: 22px;
   --radius-panel: 14px;
+  --shadow-image: 0 20px 60px rgba(28, 65, 91, .10);
+  --shadow-image-soft: 0 14px 38px rgba(28, 65, 91, .08);
+  --shadow-accent-dot: 0 6px 18px rgba(201, 79, 104, .22);
   --text-eyebrow: .82rem;
   --text-eyebrow-mobile: .78rem;
   --text-label: 1rem;
@@ -111,7 +115,7 @@ details[open]:not(.nav-services):not(.form-details-toggle) > summary::after { co
 }
 .form-details-toggle[open] summary::before { content: "−"; }
 
-/* Brand accent: keep primary actions blue, use teal-green for decorative accents. */
+/* Brand accents: keep primary actions blue; use teal and flamingo pink for supporting emphasis. */
 .text-eyebrow.text-sea-dark {
   color: var(--color-teal);
 }

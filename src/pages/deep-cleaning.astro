@@ -4,73 +4,97 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Button from '../components/Button.astro';
 import CTA from '../components/CTA.astro';
 import Icon from '../components/Icon.astro';
-import { shell, homeEyebrow, phone } from '../styles/ui';
-import { site, servicesDetail, servicePageDefaults, withBase } from '../data/content';
+import { shell, homeEyebrow, phone, deepUi } from '../styles/ui';
+import { site, servicesDetail, servicePageDefaults } from '../data/content';
 
 const content = servicesDetail.deep;
 ---
 <BaseLayout title={`${content.metaTitle} | ${site.name}`} description={content.metaDescription} quoteHref={content.quoteHref}>
-  <section class="border-b border-line bg-white pt-12 pb-14 max-mobile:pt-7 max-mobile:pb-9" aria-labelledby="deep-hero-title" slot="hero">
-    <div class:list={[shell, "grid grid-cols-[.9fr_1.1fr] items-center gap-16 max-tablet:gap-9 max-mobile:grid-cols-1 max-mobile:gap-7"]}>
+  <section class={deepUi.heroSection} aria-labelledby="deep-hero-title" slot="hero">
+    <div class:list={[shell, deepUi.heroGrid]}>
       <div>
-        <p class:list={[homeEyebrow, 'flex items-center gap-3']}><span class="h-px w-10 shrink-0 bg-teal" aria-hidden="true"></span>Detail cleaning</p>
-        <h1 id="deep-hero-title" class="max-w-[700px] text-[clamp(3rem,5vw,4.6rem)] leading-[1.02] tracking-[-.045em] max-mobile:text-[2.85rem]">{content.title}</h1>
-        <p class="mt-6 max-w-[620px] text-lede leading-[1.62] max-mobile:mt-4">{content.intro}</p>
-        <div class="mt-7 flex flex-wrap items-center gap-control-gap">
-          <Button href={content.quoteHref}>{servicePageDefaults.quoteButtonText} <Icon name="arrow-right" class="size-[18px]" /></Button>
+        <p class:list={[homeEyebrow, 'flex items-center gap-3']}>
+          <span class={deepUi.eyebrowRule} aria-hidden="true"></span>{content.eyebrow}
+        </p>
+        <h1 id="deep-hero-title" class={deepUi.heroTitle}>{content.title}</h1>
+        <p class={deepUi.heroLede}>{content.intro}</p>
+        <p class={deepUi.fitNote}>{content.who}</p>
+        <div class={deepUi.heroActions}>
+          <Button href={content.quoteHref}>{servicePageDefaults.quoteButtonText} <Icon name="arrow-right" class={deepUi.actionIcon} /></Button>
           <a class={phone} href={site.phoneHref}>{servicePageDefaults.callButtonPrefix}{site.phoneDisplay}</a>
         </div>
       </div>
-      <div class="relative pb-6 pl-6 max-mobile:pb-4 max-mobile:pl-4">
-        <div class="absolute inset-x-0 bottom-0 top-8 rounded-panel bg-[#C94F68]" aria-hidden="true"></div>
-        <figure class="relative m-0 overflow-hidden rounded-panel bg-mist shadow-[0_20px_58px_rgba(28,65,91,.10)]">
-          <SiteImage src={withBase('/images/deep-cleaning-kitchen.jpg')} alt="Gloved hand wiping a kitchen stovetop during a deep clean" width="1200" height="800" class="aspect-[1.16] w-full object-cover object-center max-mobile:aspect-[1.48]" fetchpriority="high" />
+
+      <div class={deepUi.heroMedia}>
+        <div class={deepUi.heroAccent} aria-hidden="true"></div>
+        <figure class={deepUi.heroFigure}>
+          <SiteImage
+            src={content.image}
+            alt={content.imageAlt}
+            width="1200"
+            height="800"
+            class={deepUi.heroImage}
+            fetchpriority="high"
+          />
         </figure>
       </div>
     </div>
   </section>
 
-  <section class="bg-ocean py-[76px] text-white max-mobile:py-14" aria-labelledby="deep-included-heading">
-    <div class={shell}>
-      <div class="grid grid-cols-[.62fr_1.38fr] gap-16 max-tablet:grid-cols-1 max-tablet:gap-8">
-        <div>
-          <p class="mb-3 flex items-center gap-3 text-eyebrow font-extrabold uppercase tracking-[.12em] text-cyan"><span class="h-px w-10 bg-cyan" aria-hidden="true"></span>Deep-clean scope</p>
-          <h2 id="deep-included-heading" class="max-w-[470px] text-[clamp(2.2rem,3.5vw,3.1rem)] leading-[1.08] tracking-[-.035em] text-white">More detail where buildup collects.</h2>
-        </div>
-        <ul class="m-0 grid list-none grid-cols-2 border-t border-white/20 p-0 max-mobile:grid-cols-1" role="list">
-          {content.included.map((item, index) => (
-            <li class:list={[
-              'grid grid-cols-[30px_1fr] items-start gap-3 border-b border-white/20 py-5 text-[1rem] leading-[1.62] text-white/82',
-              index % 2 === 0 ? 'pr-8 max-mobile:pr-0' : 'border-l border-white/20 pl-8 max-mobile:border-l-0 max-mobile:pl-0'
-            ]}>
-              <span class="mt-[2px] text-cyan" aria-hidden="true"><Icon name="check-circle" class="size-[18px]" /></span>
-              <span>{item}</span>
+  <section class={deepUi.scopeSection} aria-labelledby="deep-included-heading">
+    <div class:list={[shell, deepUi.scopeGrid]}>
+      <div>
+        <p class:list={[deepUi.darkEyebrow, 'flex items-center gap-3']}>
+          <span class={deepUi.darkEyebrowRule} aria-hidden="true"></span>Deep-clean scope
+        </p>
+        <h2 id="deep-included-heading" class={deepUi.scopeHeading}>{content.includedHeading}</h2>
+        <p class={deepUi.scopeIntro}>{content.includedIntro}</p>
+      </div>
+
+      <ul class={deepUi.scopeList} role="list">
+        {content.included.map((item, index) => (
+          <li class:list={[
+            deepUi.scopeItemBase,
+            index % 2 === 0 ? deepUi.scopeItemEven : deepUi.scopeItemOdd,
+          ]}>
+            <span class={deepUi.scopeIcon} aria-hidden="true">
+              <Icon name="check-circle" class="size-[18px]" />
+            </span>
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class={deepUi.pricingSection} aria-labelledby="deep-price-heading">
+    <div class:list={[shell, deepUi.pricingGrid]}>
+      <div class={deepUi.pricePanel}>
+        <p class={deepUi.lightEyebrow}>Starting price</p>
+        <h2 id="deep-price-heading" class={deepUi.priceTitle}>{content.priceLabel}</h2>
+        <p class={deepUi.priceCopy}>{content.pricing}</p>
+
+        <ul class={deepUi.factorList} role="list" aria-label="What affects the deep cleaning price">
+          {content.pricingFactors.map((factor) => (
+            <li class={deepUi.factorItem}>
+              <span class="size-1.5 shrink-0 rounded-full bg-accent" aria-hidden="true"></span>{factor}
             </li>
           ))}
         </ul>
       </div>
-    </div>
-  </section>
 
-  <section class="py-[72px] max-mobile:py-14" aria-labelledby="deep-price-heading">
-    <div class:list={[shell, "grid grid-cols-[.9fr_1.1fr] gap-16 max-tablet:grid-cols-1 max-tablet:gap-10"]}>
-      <div class="self-start border-t-4 border-[#C94F68] pt-6">
-        <p class="mb-2 text-eyebrow font-extrabold uppercase tracking-[.12em] text-sea-dark">Starting price</p>
-        <h2 id="deep-price-heading" class="text-[clamp(2.45rem,4.2vw,3.7rem)] tracking-[-.045em]">{content.priceLabel}</h2>
-        <p class="mt-5 max-w-[520px] text-[1.04rem] leading-[1.68]">{content.pricing}</p>
-      </div>
-
-      <div class="rounded-panel border-l-4 border-teal bg-seafoam px-8 py-8 max-mobile:px-6">
-        <p class="mb-2 text-eyebrow font-extrabold uppercase tracking-[.12em] text-sea-dark">Add-ons</p>
-        <h2 class="text-[clamp(1.85rem,3vw,2.45rem)]">Interior extras.</h2>
-        <ul class="mt-6 m-0 list-none border-t border-line p-0" role="list">
+      <div class={deepUi.addonsPanel}>
+        <p class={deepUi.lightEyebrow}>Optional extras</p>
+        <h2 class={deepUi.addonsTitle}>Interior work, only if you need it</h2>
+        <p class={deepUi.addonsIntro}>{content.optionsIntro}</p>
+        <ul class={deepUi.addonsList} role="list">
           {content.options.map((option) => {
             const [label, price] = option.split(' — ');
             return (
-              <li class="grid grid-cols-[30px_minmax(0,1fr)_auto] gap-3 border-b border-line py-[18px]">
-                <span class="font-black text-sea-dark" aria-hidden="true">+</span>
-                <span class="font-[700] text-ink">{label}</span>
-                <span class="font-extrabold tabular-nums text-sea-dark">{price}</span>
+              <li class={deepUi.addonRow}>
+                <span class={deepUi.addonPlus} aria-hidden="true">+</span>
+                <span class={deepUi.addonLabel}>{label}</span>
+                <span class={deepUi.addonPrice}>{price}</span>
               </li>
             );
           })}
@@ -79,5 +103,9 @@ const content = servicesDetail.deep;
     </div>
   </section>
 
-  <CTA quoteHref={content.quoteHref} />
+  <CTA
+    quoteHref={content.quoteHref}
+    title="Ready for a deeper clean?"
+    text="Tell us about the buildup, the rooms that need the most attention, and any interior extras you want. We’ll confirm the scope, price, and available dates before booking."
+  />
 </BaseLayout>

@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import CTA from '../components/CTA.astro';
 import Button from '../components/Button.astro';
 import Eyebrow from '../components/Eyebrow.astro';
-import { shell, serviceAreaUi } from '../styles/ui';
+import { shell, serviceAreaUi, serviceAreaServiceClass } from '../styles/ui';
 import { site, serviceAreaContent, withBase } from '../data/content';
 ---
 
@@ -98,8 +98,8 @@ import { site, serviceAreaContent, withBase } from '../data/content';
       </div>
 
       <div class={serviceAreaUi.services}>
-        {serviceAreaContent.services.map((service) => (
-          <article class={serviceAreaUi.service}>
+        {serviceAreaContent.services.map((service, index) => (
+          <article class:list={[serviceAreaUi.service, serviceAreaServiceClass(index)]}>
             <span
               class={serviceAreaUi.serviceRule}
               aria-hidden="true"

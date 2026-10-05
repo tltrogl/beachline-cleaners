@@ -6,8 +6,6 @@ export interface ServiceDetail {
   intro: string;
   image: string;
   imageAlt: string;
-  imageFocalPoint?: 'center' | 'left' | 'right';
-  imageCaption?: string;
   quoteHref: string;
   included: string[];
   includedHeading?: string;
@@ -148,11 +146,11 @@ export const pricingContent = {
 export const cleaningVisitGuidance: Record<'preparation' | 'boundaries', { q: string; a: string; open?: boolean }> = {
   preparation: {
     q: 'What should I do before you arrive?',
-    a: 'You don’t need to clean first. Pick up loose items, clothing, and toys, and clear dishes from the sink so we can reach the surfaces and floors. Tell us about pets, delicate surfaces, or product preferences. We’ll arrange access ahead of time. If cabinet interiors are included in your clean, empty them before we arrive.',
+    a: 'You don’t need to clean first. Pick up loose items, clothing, and toys, and clear dishes from the sink so we can reach the surfaces and floors. Tell us about pets, delicate surfaces, or product preferences. We’ll arrange access ahead of time. If cabinet interiors are included, empty them before we arrive. For move-out cleaning, plan the visit after belongings, furniture, and trash are removed whenever possible.',
   },
   boundaries: {
-    q: 'What isn’t included in a standard home clean?',
-    a: 'Standard cleaning covers reachable surfaces. Baseboard and trim detailing are part of a deep clean. Appliance interiors, empty cabinet interiors, and interior windows are optional add-ons with prices listed on the service pages. Moving heavy furniture or appliances, organizing clutter, washing dishes, and laundry are outside the standard home-cleaning checklist.',
+    q: 'What does a standard home clean cover, and when would I need a deep clean?',
+    a: 'Standard cleaning covers routine kitchen and bathroom surfaces, reachable dusting, floors, mirrors, trash, and a basic room reset. A deep clean includes that routine work plus buildup and detailed areas such as baseboards, reachable trim, fans, fixtures, and window tracks. Appliance interiors, empty cabinet interiors, and interior window glass are optional add-ons. Moving heavy furniture or appliances, organizing clutter, washing dishes, and laundry are outside the standard home-cleaning checklist.',
   },
 };
 
@@ -162,20 +160,19 @@ export const servicesDetail: Record<'residential' | 'deep' | 'moveOut' | 'vacati
     metaDescription: 'One-time, weekly, and biweekly house cleaning in Brevard County. Kitchens, bathrooms, floors, dusting, and living areas, with scope and price confirmed before booking.',
     priceLabel: 'From $125 per visit',
     quoteHref: `${withBase('/quote')}?service=residential`,
-    eyebrow: 'Home cleaning',
+    eyebrow: 'Home cleaning · Brevard County',
     title: 'Home Cleaning',
-    intro: 'Routine cleaning for kitchens, bathrooms, floors, dusting, and living areas, available one time, weekly, or biweekly.',
+    intro: 'Routine cleaning for kitchens, bathrooms, floors, dusting, and living areas across Brevard County.',
     image: withBase('/images/cleaner-living-room.webp'),
     imageAlt: 'Man vacuuming a furnished coastal living room',
-    imageFocalPoint: 'left',
-    includedHeading: 'What’s included in a standard clean',
-    includedIntro: 'This is the core home-cleaning checklist. If you need something beyond it, we can add that to the quote—no extras are required.',
+    includedHeading: 'What’s included',
+    includedIntro: 'Your standard clean covers the everyday surfaces and spaces below. No add-ons required.',
     included: [
-      'Kitchen counters, sink, cabinet fronts, appliance exteriors, and floors',
-      'Bathroom toilets, showers, tubs, sinks, mirrors, counters, fixtures, and floors',
-      'Dusting reachable surfaces and cleaning mirrors in bedrooms and living areas',
-      'Vacuuming and mopping appropriate floor surfaces',
-      'Trash removal and basic room reset',
+      'Kitchen: Counters, sink, cabinet fronts, appliance exteriors, and floors',
+      'Bathrooms: Toilets, showers, tubs, sinks, mirrors, counters, fixtures, and floors',
+      'Bedrooms & living areas: Dusting reachable surfaces and cleaning mirrors',
+      'Floors: Vacuuming and mopping appropriate floor surfaces',
+      'Finishing touches: Trash removal and basic room reset',
     ],
     who: 'Book a one-time clean to catch up, or choose weekly or biweekly visits for routine upkeep.',
     optionsIntro: 'Add these only if you need them. The standard clean does not require any add-ons.',
@@ -185,7 +182,7 @@ export const servicesDetail: Record<'residential' | 'deep' | 'moveOut' | 'vacati
       'Inside cabinets (empty) — from +$60',
       'Interior windows — +$10 each',
     ],
-    pricing: 'Price depends on home size, bedrooms and bathrooms, current condition, and cleaning frequency.',
+    pricing: 'Your quote is based on:',
     pricingFactors: ['Square footage', 'Bedrooms & bathrooms', 'Condition & buildup', 'Cleaning frequency'],
     faqs: [
       cleaningVisitGuidance.preparation,
@@ -206,25 +203,23 @@ export const servicesDetail: Record<'residential' | 'deep' | 'moveOut' | 'vacati
   },
   deep: {
     metaTitle: 'Deep Cleaning in Brevard County',
-    metaDescription: 'Deep cleaning for homes in Brevard County, including baseboards, trim, fixtures, and reachable detail work. Tell us what needs attention for a clear quote.',
+    metaDescription: 'Deep cleaning for homes in Brevard County with buildup or overdue detail work, including baseboards, trim, fixtures, window tracks, and other reachable areas.',
     priceLabel: 'From $275 per visit',
     quoteHref: `${withBase('/quote')}?service=deep`,
-    eyebrow: 'Deep cleaning',
+    eyebrow: 'Deep cleaning · Brevard County',
     title: 'Deep Cleaning',
-    intro: 'Detailed cleaning for buildup, baseboards, trim, fixtures, window tracks, and other reachable detail work.',
-    image: withBase('/images/cleaner-refrigerator.webp'),
-    imageAlt: 'Man wiping the inside of a refrigerator',
-    imageFocalPoint: 'right',
-    imageCaption: 'Refrigerator interior cleaning is available as a $55 add-on.',
+    intro: 'A more detailed clean for homes with buildup or overdue detail work—baseboards, trim, fixtures, window tracks, and other reachable areas.',
+    image: withBase('/images/deep-cleaning-kitchen.jpg'),
+    imageAlt: 'Gloved hand wiping a kitchen stovetop during a deep clean',
+    includedHeading: 'Where a deep clean goes further',
+    includedIntro: 'Includes the routine Home Cleaning scope, then adds focused detail work where dust and buildup collect.',
     included: [
-      'Kitchen and bathroom cleaning, including detailed scrubbing and accessible grout',
-      'Reachable dusting, mirrors, floors, trash removal, and a basic room reset',
-      'Extra attention to buildup on accessible surfaces',
+      'Extra attention to buildup on reachable kitchen and bathroom surfaces, including accessible grout',
       'Baseboards, reachable trim, doors, frames, and fixtures',
       'Ceiling fans, reachable light fixtures, vent covers, switches, and door handles',
       'Window sills and tracks, plus dusting of blinds',
     ],
-    who: 'A good fit when the house has fallen behind, hasn’t had a thorough cleaning in a while, or needs extra attention before guests arrive. Tell us where the trouble spots are and we’ll quote the work accordingly.',
+    who: 'Best when routine cleaning is not enough—especially for buildup, overdue detail work, or a reset before guests arrive.',
     optionsIntro: 'Deep cleaning already covers the detailed surface work above. Add these interior tasks only if you need them.',
     options: [
       'Inside oven — +$45',
@@ -232,7 +227,7 @@ export const servicesDetail: Record<'residential' | 'deep' | 'moveOut' | 'vacati
       'Cabinet interiors (empty) — from +$60',
       'Interior window glass — +$10 each',
     ],
-    pricing: 'Price depends on property size, current condition, and the amount of detail work required.',
+    pricing: 'Price depends on home size, current condition, and the amount of detail work required.',
     pricingFactors: ['Square footage', 'Bedrooms & bathrooms', 'Condition & buildup', 'Requested detail work'],
     faqs: [
       {
@@ -256,10 +251,9 @@ export const servicesDetail: Record<'residential' | 'deep' | 'moveOut' | 'vacati
     quoteHref: `${withBase('/quote')}?service=move`,
     eyebrow: 'Move-in / move-out',
     title: 'Move-In / Move-Out Cleaning',
-    intro: 'Detailed cleaning for empty homes before a move-in, move-out inspection, listing, closing, or handoff.',
+    intro: 'Detailed cleaning for an empty home before move-in, move-out inspection, listing, closing, or handoff.',
     image: withBase('/images/cleaner-move-out.webp'),
     imageAlt: 'Man vacuuming an empty waterfront condo',
-    imageFocalPoint: 'left',
     included: [
       'Kitchen and bathroom detail cleaning',
       'Inside empty kitchen and bathroom cabinets and drawers',
@@ -267,7 +261,7 @@ export const servicesDetail: Record<'residential' | 'deep' | 'moveOut' | 'vacati
       'Dusting and floor cleaning throughout empty rooms',
       'Cleaning of light dust and small debris remaining after the move',
     ],
-    who: 'For renters getting ready for an inspection, owners preparing a property for sale or handoff, and anyone who would rather move into a home that has already been cleaned.',
+    who: 'Best scheduled after belongings, furniture, and trash are out so we can reach the full property before inspection, closing, handoff, or move-in.',
     optionsIntro: 'Empty cabinet and drawer interiors are already included. Add these only if your handoff requires them.',
     options: [
       'Inside oven — +$45',
@@ -308,7 +302,6 @@ export const servicesDetail: Record<'residential' | 'deep' | 'moveOut' | 'vacati
     intro: 'Between-stay cleaning and resets built around your checkout and check-in window.',
     image: withBase('/images/cleaner-rental-turnover.webp'),
     imageAlt: 'Man wiping a kitchen counter while holding a clipboard in a coastal rental',
-    imageFocalPoint: 'right',
     included: [
       'Full turnover clean of kitchens, bathrooms, bedrooms, and living areas',
       'Beds reset with provided clean linens',
@@ -316,7 +309,7 @@ export const servicesDetail: Record<'residential' | 'deep' | 'moveOut' | 'vacati
       'Completion photos after each turnover',
       'Notes on visible property-condition or maintenance concerns',
     ],
-    who: 'Share your property routine before the first turnover so you don’t have to explain it again for each stay.',
+    who: 'Set the property routine once—checkout and check-in timing, access, linens, reset details, and reporting—then reuse it for each stay.',
     optionsIntro: 'Add turnover support when the property needs it. Laundry uses on-site machines; restocking pricing assumes owner-provided supplies are already at the property.',
     options: [
       'Laundry — +$25 per load',
@@ -358,7 +351,6 @@ export const servicesDetail: Record<'residential' | 'deep' | 'moveOut' | 'vacati
     intro: 'Routine cleaning for small offices, professional suites, retail spaces, and shared work areas.',
     image: withBase('/images/cleaner-office.webp'),
     imageAlt: 'Man wiping a desk in a bright professional office',
-    imageFocalPoint: 'left',
     includedHeading: 'What routine commercial cleaning can include',
     includedIntro: 'Choose the tasks your space needs from the routine checklist below.',
     included: [
@@ -369,8 +361,8 @@ export const servicesDetail: Record<'residential' | 'deep' | 'moveOut' | 'vacati
       'Trash removal, with recycling handled according to the arrangement for the property',
       'Wiping frequently touched surfaces such as door handles and light switches',
     ],
-    who: 'Start with the areas that need attention most, then choose a cleaning schedule that fits your working day.',
-    optionsIntro: 'Need more than routine upkeep? Tell us which of these options would help.',
+    who: 'For small offices, professional suites, retail spaces, and shared work areas that need one-time or recurring cleaning.',
+    optionsIntro: 'Choose the schedule that fits the space, then add any detail work or supply support you need.',
     options: [
       'Recurring weekly, biweekly, or custom schedules by arrangement',
       'After-hours or weekend visits, subject to availability',
@@ -414,10 +406,9 @@ export const homeContent = {
     imageHeight: 720,
     imageAlt: 'Man wiping a kitchen counter in a bright coastal home',
     eyebrow: 'LOCAL CLEANING • BREVARD COUNTY',
-    location: 'Space Coast, FL • Cocoa • Cocoa Beach • Merritt Island',
     title: 'A clean home. More time for you.',
-    description: 'Owner-operated cleaning for your home. Choose recurring visits, a one-time clean, or a deeper reset.',
-    serviceArea: 'Serving Cocoa, Cocoa Beach, Cape Canaveral, Merritt Island, Rockledge, Melbourne, Palm Bay, Viera, and Titusville, with nearby locations by request.',
+    description: 'Owner-operated cleaning for homes and properties, from routine upkeep to one-time and deep cleans.',
+    serviceArea: 'Serving Brevard County and the Space Coast.',
     ctaButton: 'Request a Quote',
     quoteHref: withBase('/quote'),
     callPrefix: 'Call ',
@@ -438,23 +429,21 @@ export const homeContent = {
     ],
   },
   servicesSection: {
-    eyebrow: 'What we do',
+    heading: 'Our services',
     linkText: 'See service details',
+    featuredService: {
+      image: servicesDetail.residential.image,
+      imageAlt: servicesDetail.residential.imageAlt,
+      title: 'Home Cleaning',
+      priceLabel: servicesDetail.residential.priceLabel,
+      href: withBase('/residential-cleaning'),
+      text: 'Routine cleaning for kitchens, bathrooms, floors, dusting, and living areas—one time or on a regular schedule.',
+    },
     services: [
-      {
-        image: servicesDetail.residential.image,
-        imageAlt: servicesDetail.residential.imageAlt,
-        title: 'Home Cleaning',
-        label: 'Regular upkeep',
-        priceLabel: servicesDetail.residential.priceLabel,
-        href: withBase('/residential-cleaning'),
-        text: 'Routine cleaning for kitchens, bathrooms, floors, dusting, and living areas—one time or on a regular schedule.',
-      },
       {
         image: withBase('/images/deep-cleaning-kitchen.jpg'),
         imageAlt: 'Gloved hand wiping a kitchen stovetop during a deep clean',
         title: 'Deep Cleaning',
-        label: 'Catch-up clean',
         priceLabel: servicesDetail.deep.priceLabel,
         href: withBase('/deep-cleaning'),
         text: 'A more detailed clean for buildup, baseboards, trim, fans, window tracks, fixtures, and other reachable detail work.',
@@ -463,7 +452,6 @@ export const homeContent = {
         image: withBase('/images/move-out-empty-room.jpg'),
         imageAlt: 'Freshly cleaned empty room ready for move-in or move-out',
         title: 'Move-In / Move-Out',
-        label: 'Moving',
         priceLabel: servicesDetail.moveOut.priceLabel,
         href: withBase('/move-out-cleaning'),
         text: 'Detailed empty-home cleaning for a move, inspection, handoff, listing, or closing—including empty cabinet and drawer interiors.',
@@ -472,7 +460,6 @@ export const homeContent = {
         image: withBase('/images/turnover-active.jpg'),
         imageAlt: 'Cleaner resetting a bed during a vacation rental turnover',
         title: 'Vacation Rentals',
-        label: 'Guest turnovers',
         priceLabel: servicesDetail.vacationRental.priceLabel,
         href: withBase('/vacation-rental-cleaning'),
         text: 'Cleaning, reset, completion photos, and condition notes between guest stays, built around checkout and check-in times.',
@@ -481,28 +468,14 @@ export const homeContent = {
         image: servicesDetail.commercial.image,
         imageAlt: servicesDetail.commercial.imageAlt,
         title: 'Commercial Cleaning',
-        label: 'Workspaces',
         priceLabel: servicesDetail.commercial.priceLabel,
         href: withBase('/commercial-cleaning'),
         text: 'Routine cleaning for small offices, professional suites, retail spaces, restrooms, and breakrooms on an agreed checklist and schedule.',
       },
     ],
   },
-  standardCleanSection: {
-    heading: 'What’s included in a standard clean.',
-    intro: 'This is the core checklist for a standard home clean. We’ll confirm the price, scope, and appointment before anything is booked.',
-    extrasHint: 'Need baseboard detailing or the inside of an appliance cleaned? Ask about a deep clean or optional extras.',
-    areas: [
-      { title: 'Kitchen', text: 'Counters, sink, cabinet fronts, appliance exteriors, and floors.' },
-      { title: 'Bathrooms', text: 'Toilets, showers, tubs, mirrors, counters, fixtures, and floors.' },
-      { title: 'Bedrooms', text: 'Reachable surfaces and mirrors, floor cleaning, and a basic room reset.' },
-      { title: 'Living areas', text: 'Reachable surfaces and mirrors, plus vacuuming or mopping as appropriate.' },
-      { title: 'Floors & finishing', text: 'Vacuuming and mopping appropriate floor surfaces, plus trash removal.' },
-    ],
-  },
   processSection: {
-    eyebrow: 'How it works',
-    heading: 'Getting a clean on the calendar is simple.',
+    heading: 'How it works',
     intro: 'A quote request starts the conversation. Your appointment is confirmed separately.',
     steps: [
       {
@@ -515,39 +488,15 @@ export const homeContent = {
       },
       {
         title: 'Come Back to a Clean Space',
-        text: 'We handle the cleaning we agreed on. If something needs attention afterward, call or text us and let us know.',
+        text: 'We handle the cleaning we agreed on. If anything needs attention afterward, call or text us directly.',
       },
     ],
-  },
-  rentalSection: {
-    imageSrc: withBase('/images/rental-bedroom.jpg'),
-    imageWidth: 1000,
-    imageHeight: 1000,
-    imageAlt: 'Guest-ready bedroom prepared for the next vacation-rental stay',
-    eyebrow: 'For hosts & property managers',
-    heading: 'Keep the turnover moving between guests.',
-    description: 'Send the checkout and check-in times along with the property routine. We’ll work out the cleaning checklist, linens, restocking, and access, then provide completion photos after each turnover.',
-    linkText: 'See turnover pricing & details',
-    linkHref: withBase('/vacation-rental-cleaning'),
-  },
-  expectSection: {
-    eyebrow: 'Before we arrive',
-    heading: 'Supplies and access, sorted ahead of time.',
-    intro: 'We bring the standard supplies and work out property access before the appointment.',
-    items: [
-      { title: 'Supplies included', text: 'Tell us about delicate surfaces or product preferences.' },
-      { title: 'Access arranged', text: 'You can be home or out; we’ll agree on access beforehand.' },
-    ],
-    aboutText: 'How we work',
-    aboutHref: withBase('/about'),
-    faqText: 'Getting ready for your clean',
-    faqHref: withBase('/faq'),
   },
   contactBanner: {
     eyebrow: 'Need a cleaner?',
     heading: 'Ready to get the cleaning off your list?',
     text: 'Send a quote request, or call or text us about the property and the dates you have in mind.',
-    ctaButton: 'Get a Quote',
+    ctaButton: 'Request a Quote',
     quoteHref: withBase('/quote'),
     callPrefix: 'Call ',
   },
@@ -562,8 +511,8 @@ export const aboutContent = {
     lede: 'Beachline Cleaners is owner-operated and based in Brevard County, serving homes, vacation rentals, move-in/move-out properties, and workspaces across the Space Coast.',
   },
   story: {
-    imageSrc: withBase('/images/after_clean.jpg'),
-    imageAlt: 'A freshly cleaned home, bright and organized',
+    imageSrc: withBase('/images/cleaner-counter.webp'),
+    imageAlt: 'Cleaner wiping a kitchen counter in a bright coastal home',
     eyebrow: 'How we work',
     heading: 'Simple communication, start to finish.',
     ownerTitle: 'Based in Brevard County',
@@ -589,15 +538,9 @@ export const faqContent = {
     lede: 'Here are the things people usually want to know about pricing, supplies, access, scheduling, and what’s included.',
   },
   faqs: [
-    cleaningVisitGuidance.preparation,
-    cleaningVisitGuidance.boundaries,
     {
       q: 'Does requesting a quote book an appointment?',
       a: 'No. Sending the form starts the conversation. We’ll follow up about the cleaning, price, and available dates, and confirm the appointment separately.',
-    },
-    {
-      q: 'What should I tell you before the visit?',
-      a: 'Tell us about your priorities, pets, delicate surfaces, and product preferences. If you’ll be out, arrange secure access before the appointment. For move-out cleaning, let us know if furniture or belongings will remain.',
     },
     {
       q: 'How is pricing determined?',
@@ -613,6 +556,11 @@ export const faqContent = {
       open: true,
     },
     {
+      q: 'How do I cancel or reschedule?',
+      a: 'Call or text us as soon as you know your plans have changed. Any cancellation or lockout terms will be confirmed before you book.',
+    },
+    cleaningVisitGuidance.preparation,
+    {
       q: 'Do I need to be home?',
       a: 'No. You’re welcome to be home, but you don’t have to be. If you’ll be out, we’ll agree on secure property access before the appointment.',
     },
@@ -625,24 +573,13 @@ export const faqContent = {
       a: 'Pets are welcome. If your pet may become anxious, act aggressively, or get in the way, please keep them in a secure area during the clean.',
     },
     {
-      q: 'What’s the difference between standard and deep cleaning?',
-      a: 'Standard cleaning covers kitchen and bathroom surfaces, reachable dusting, floors, and trash. A deep clean adds attention to buildup and detail work, including baseboards, reachable trim, fans, and window tracks. Appliance interiors, empty cabinet interiors, and interior window glass are optional add-ons with prices listed on the service pages.',
-    },
-    {
-      q: 'Can I request a standard clean without add-ons?',
-      a: 'Yes. Choose Home Cleaning and leave the optional extras unchecked. Standard cleaning covers kitchen and bathroom surfaces, reachable dusting, floors, trash removal, and a basic room reset. We’ll confirm the price for your home and available dates before booking.',
-    },
-    {
-      q: 'Can you handle linens and restocking for rentals?',
-      a: 'Have clean linens ready for each turnover. Laundry is $25 per load when on-site machines are available, and restocking owner-provided supplies is $25 per turnover. We’ll confirm where supplies are stored before service starts.',
-    },
-    {
       q: 'What if something needs attention after the cleaning?',
       a: 'Call or text us and tell us what needs attention. We’ll review it with you against the agreed checklist and discuss the next step.',
     },
+    cleaningVisitGuidance.boundaries,
     {
-      q: 'How do I cancel or reschedule?',
-      a: 'Call or text us as soon as you know your plans have changed. Any cancellation or lockout terms will be confirmed before you book.',
+      q: 'Can you handle linens and restocking for rentals?',
+      a: 'Have clean linens ready for each turnover. Laundry is $25 per load when on-site machines are available, and restocking owner-provided supplies is $25 per turnover. We’ll confirm where supplies are stored before service starts.',
     },
   ],
 };
@@ -781,17 +718,13 @@ export const quoteContent = {
       { value: 'other', label: 'Other' },
       ],
     },
-    bedsBaths: {
-      label: 'Bedrooms / Bathrooms (Optional)',
-      placeholder: 'e.g. 3 bed, 2 bath',
-    },
     size: {
       label: 'Approximate Size (sq ft) (Optional)',
       placeholder: 'e.g. 1800',
     },
     frequency: {
-      label: 'Preferred Date / Cleaning Frequency (Optional)',
-      placeholder: 'e.g. October 15, one-time or biweekly',
+      label: 'Preferred Date / Schedule (Optional)',
+      placeholder: 'e.g. October 15, biweekly, or after 6 pm',
     },
     serviceFields: [
       { id: 'home-details', services: ['residential', 'deep', 'move', 'vacation'], legend: 'Home or rental details (optional)', fields: [
@@ -841,7 +774,7 @@ export const quoteContent = {
     ],
     notes: {
       label: 'Additional Notes (Optional)',
-      placeholder: 'Priorities, buildup, or extras. For rentals, include checkout/check-in times and laundry or restocking needs. Please do not include door codes.',
+      placeholder: 'Anything else we should know about priorities, buildup, access, or extras? Please do not include door or alarm codes.',
     },
     submitButton: 'Send Quote Request',
     detailsToggle: 'Add more details (optional)',
@@ -873,6 +806,4 @@ export const quoteSuccessContent = {
   returnButtonHref: withBase('/'),
   callPrefix: 'Call ',
 };
-
-
 

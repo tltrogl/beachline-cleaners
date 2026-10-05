@@ -2,45 +2,47 @@
 import SiteImage from '../components/SiteImage.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CTA from '../components/CTA.astro';
-import { shell, section, pageHero, pageTitle, eyebrow, lede, split, splitImage } from '../styles/ui';
+import { shell, aboutUi } from '../styles/ui';
 import { site, aboutContent } from '../data/content';
 ---
 <BaseLayout title={`${aboutContent.metaTitle} | ${site.name}`} description={aboutContent.metaDescription}>
-  <section class={pageHero}>
+  <section class={aboutUi.heroSection}>
     <div class={shell}>
-      <p class:list={[eyebrow, 'flex items-center gap-3']}><span class="h-px w-10 bg-sea" aria-hidden="true"></span>{aboutContent.hero.eyebrow}</p>
-      <h1 class:list={[pageTitle, 'max-w-[780px]']}>{aboutContent.hero.title}</h1>
-      <p class:list={[lede, "mt-[18px]"]}>{aboutContent.hero.lede}</p>
+      <p class={aboutUi.eyebrow}><span class={aboutUi.eyebrowRule} aria-hidden="true"></span>{aboutContent.hero.eyebrow}</p>
+      <h1 class={aboutUi.heroTitle}>{aboutContent.hero.title}</h1>
+      <p class={aboutUi.heroLede}>{aboutContent.hero.lede}</p>
     </div>
   </section>
 
-  <section class={section}>
-    <div class:list={[shell, split]}>
-      <div>
-        <SiteImage class={splitImage} src={aboutContent.story.imageSrc} alt={aboutContent.story.imageAlt} />
+  <section class={aboutUi.storySection}>
+    <div class:list={[shell, aboutUi.storyGrid]}>
+      <div class={aboutUi.storyMedia}>
+        <span class={aboutUi.storyAccent} aria-hidden="true"></span>
+        <figure class={aboutUi.storyFigure}>
+          <SiteImage class={aboutUi.storyImage} src={aboutContent.story.imageSrc} alt={aboutContent.story.imageAlt} />
+        </figure>
       </div>
+
       <div>
-        <p class:list={[eyebrow, 'flex items-center gap-3']}><span class="h-px w-10 bg-sea" aria-hidden="true"></span>{aboutContent.story.eyebrow}</p>
-        <h2 class="max-w-[620px]">{aboutContent.story.heading}</h2>
-
-        <p class="mt-6 text-nav font-extrabold uppercase tracking-[.1em] text-sea-dark">{aboutContent.story.ownerTitle}</p>
-        <p class:list={[lede, "mt-3"]}>{aboutContent.story.ownerIntro}</p>
-
+        <p class={aboutUi.eyebrow}><span class={aboutUi.eyebrowRuleTeal} aria-hidden="true"></span>{aboutContent.story.eyebrow}</p>
+        <h2 class={aboutUi.storyHeading}>{aboutContent.story.heading}</h2>
+        <p class={aboutUi.ownerTitle}>{aboutContent.story.ownerTitle}</p>
+        <p class={aboutUi.ownerIntro}>{aboutContent.story.ownerIntro}</p>
         {aboutContent.story.paragraphs.map((paragraph) => (
-          <p class="mt-4 max-w-[680px]">{paragraph}</p>
+          <p class={aboutUi.storyParagraph}>{paragraph}</p>
         ))}
-
-        <div class="mt-8 border-b border-line">
-          {aboutContent.story.checks.map((check) => (
-            <div class="grid grid-cols-[14px_1fr] items-center gap-3 border-t border-line py-3.5 font-[700]">
-              <span class="size-2 rounded-full bg-teal" aria-hidden="true"></span>
-              <span>{check}</span>
-            </div>
-          ))}
-        </div>
       </div>
+    </div>
+
+    <div class:list={[shell, aboutUi.checkGrid]}>
+      {aboutContent.story.checks.map((check, index) => (
+        <div class:list={[aboutUi.checkItem, index > 0 && aboutUi.checkItemBorder]}>
+          <span class={aboutUi.checkDot} aria-hidden="true"></span>
+          <span>{check}</span>
+        </div>
+      ))}
     </div>
   </section>
 
-  <CTA />
+  <CTA title="Ready to talk through your cleaning?" />
 </BaseLayout>

@@ -8,24 +8,28 @@ interface Props {
   text?: string;
   quoteHref?: string;
   compact?: boolean;
+  quoteLabel?: string;
+  showEyebrow?: boolean;
 }
 
 const {
   title = ctaDefaults.defaultTitle,
   text = ctaDefaults.defaultText,
   quoteHref = ctaDefaults.quoteHref,
-  compact = false
+  compact = false,
+  quoteLabel = ctaDefaults.quoteButtonText,
+  showEyebrow = true
 } = Astro.props;
 ---
 <section class:list={["border-y border-white/10 bg-ocean text-white", compact ? "py-9 max-mobile:py-8" : "py-[66px] max-mobile:py-12"]}>
   <div class:list={[shell, "grid grid-cols-[1fr_auto] items-center max-tablet:grid-cols-1", compact ? "gap-6" : "gap-10"]}>
     <div>
-      <p class="mb-3 flex items-center gap-3 text-eyebrow font-extrabold uppercase tracking-[.12em] text-cyan"><span class="h-px w-10 bg-cyan" aria-hidden="true"></span>Next step</p>
+      {showEyebrow && <p class="mb-3 flex items-center gap-3 text-eyebrow font-extrabold uppercase tracking-[.12em] text-cyan"><span class="h-px w-10 bg-cyan" aria-hidden="true"></span>Next step</p>}
       <h2 class:list={["max-w-[720px] leading-[1.1] tracking-[-.035em] text-white", compact ? "text-[clamp(1.8rem,3vw,2.5rem)]" : "text-[clamp(2.25rem,4.2vw,3.8rem)]"]}>{title}</h2>
       <p class="mt-4 max-w-[680px] text-[1.02rem] leading-[1.65] text-white/70">{text}</p>
     </div>
     <div class="flex flex-wrap items-center gap-3 max-mobile:w-full max-mobile:[&>*]:grow">
-      <Button variant="light" href={quoteHref}>{ctaDefaults.quoteButtonText} <span aria-hidden="true">→</span></Button>
+      <Button variant="light" href={quoteHref}>{quoteLabel} <span aria-hidden="true">→</span></Button>
       <Button variant="outline" href={site.phoneHref}>{ctaDefaults.callButtonPrefix}{site.phoneDisplay}</Button>
     </div>
   </div>

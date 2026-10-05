@@ -7,12 +7,14 @@ const rentalPricing = () => section(pricingContent.rentalHeading, [
   `| ${pricingContent.propertyColumn} | ${pricingContent.priceColumn} |`,
   '| --- | --- |',
   ...servicesDetail.vacationRental.pricingRows!.map(row => `| ${row.property} | ${row.price} |`),
-].join('\n') + `\n\n${servicesDetail.vacationRental.pricing}`);
+].join('\n') + `\n\n${servicesDetail.vacationRental.pricing}\n\n### Quote factors\n\n${bullets(servicesDetail.vacationRental.pricingFactors)}`);
 
 // These paths match the public HTML pages. Quote confirmation is intentionally excluded.
+const homeServices = [homeContent.servicesSection.featuredService, ...homeContent.servicesSection.services];
+
 export const agentPages = [
   { slug: 'index', path: '/', title: site.name },
-  ...homeContent.servicesSection.services.map(service => ({
+  ...homeServices.map(service => ({
     slug: service.href.split('/').filter(Boolean).at(-1)!, path: service.href, title: service.title,
   })),
   { slug: 'about', path: '/about/', title: aboutContent.metaTitle },
@@ -42,18 +44,30 @@ export function pageMarkdown(slug: string, origin: URL): string {
   let body: string[];
   if (Object.hasOwn(serviceBySlug, slug)) {
     const service = serviceBySlug[slug as keyof typeof serviceBySlug];
+    const fitHeading = slug === 'residential-cleaning'
+      ? 'Scheduling'
+      : slug === 'vacation-rental-cleaning'
+        ? 'Turnover routine'
+        : 'Who this is for';
     body = [
       service.intro,
-      section('What’s included', bullets(service.included)),
-      ...(service.pricingRows ? [rentalPricing()] : [section('Price', `${service.priceLabel}\n\n${service.pricing}`)]),
-      section(service.priceLabel === 'Custom quote' ? 'Options' : 'Add-ons', bullets(service.options)),
+      section(fitHeading, service.who),
+      section(service.includedHeading ?? 'What’s included', `${service.includedIntro ? `${service.includedIntro}\n\n` : ''}${bullets(service.included)}`),
+      ...(service.pricingRows
+        ? [rentalPricing()]
+        : [section('Price', `${service.priceLabel}\n\n${service.pricing}\n\n${bullets(service.pricingFactors)}`)]),
+      ...(slug === 'commercial-cleaning'
+        ? [
+            section('Scheduling', bullets(service.options.slice(0, 2))),
+            section('Additional tasks', `${service.optionsIntro}\n\n${bullets(service.options.slice(2))}`),
+          ]
+        : [section('Add-ons', `${service.optionsIntro}\n\n${bullets(service.options)}`)]),
     ];
   } else if (slug === 'index') {
     body = [homeContent.hero.title, homeContent.hero.description, homeContent.hero.serviceArea,
-      section(homeContent.servicesSection.eyebrow, homeContent.servicesSection.services.map(service =>
+      section(homeContent.servicesSection.heading, homeServices.map(service =>
         `- [${service.title}](${absolute(service.href)}): ${service.priceLabel}. ${service.text}`).join('\n')),
       section(homeContent.processSection.heading, `${homeContent.processSection.intro}\n\n` + homeContent.processSection.steps.map(step => `### ${step.title}\n\n${step.text}`).join('\n\n')),
-      section(homeContent.expectSection.heading, `${homeContent.expectSection.intro}\n\n${homeContent.expectSection.items.map(item => `### ${item.title}\n\n${item.text}`).join('\n\n')}`),
       section('Service area', bullets(serviceAreaContent.areas)),
     ];
   } else if (slug === 'about') {
@@ -85,7 +99,8 @@ export function pageMarkdown(slug: string, origin: URL): string {
       quoteContent.form.privacyDisclosure,
     ];
   }
-  return [`---\ntitle: ${JSON.stringify(`${page.title} | ${site.name}`)}\nurl: ${JSON.stringify(absolute(page.path))}\n---`,
+  const documentTitle = page.title === site.name ? site.name : `${page.title} | ${site.name}`;
+  return [`---\ntitle: ${JSON.stringify(documentTitle)}\nurl: ${JSON.stringify(absolute(page.path))}\n---`,
     `# ${page.title}`, `Source: [${page.title}](${absolute(page.path)})`, ...body, contact,
   ].join('\n\n') + '\n';
 }
