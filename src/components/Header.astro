@@ -8,7 +8,7 @@ const navLink = 'text-nav font-bold no-underline hover:text-sea-dark aria-[curre
 const isCurrentPage = (href: string) => Astro.url.pathname.replace(/\/$/, '') === href.replace(/\/$/, '');
 const brand = 'inline-flex items-center gap-3 whitespace-nowrap no-underline';
 ---
-<header class="header sticky top-0 z-50 border-b border-line/70 bg-white/95 backdrop-blur">
+<header class="header sticky top-0 z-50 border-b border-line/70 bg-paper/95 backdrop-blur">
   <div class:list={[shell, 'nav relative flex min-h-[78px] items-center gap-card-gap max-mobile:min-h-[70px] max-mobile:gap-3 group-[.island-home]/site:mobile:max-wide:gap-[15px]']}>
     <a class={brand} href={withBase('/')} aria-label={navigationContent.brandHomeAriaLabel}>
       <span class="brand-mark relative size-[38px] shrink-0 overflow-hidden rounded-[50%_50%_46%_54%] bg-sea-dark group-[.island-home]/site:max-mobile:size-8" aria-hidden="true"></span>
@@ -17,11 +17,11 @@ const brand = 'inline-flex items-center gap-3 whitespace-nowrap no-underline';
         <span class="mt-1 text-[.62rem] font-extrabold uppercase tracking-[.13em] text-sea-dark max-wide:hidden">{site.descriptor}</span>
       </span>
     </a>
-    <button class="mobile-toggle ml-auto hidden rounded-full border border-line bg-white px-[14px] py-2.5 font-extrabold max-mobile:inline-flex" type="button" aria-expanded="false" aria-controls="nav-links">{navigationContent.menuButton}</button>
-    <nav class="nav-links ml-auto flex items-center gap-5 max-mobile:absolute max-mobile:inset-x-0 max-mobile:top-[70px] max-mobile:hidden max-mobile:max-h-[calc(100dvh-155px)] max-mobile:flex-col max-mobile:items-stretch max-mobile:overflow-y-auto max-mobile:rounded-2xl max-mobile:border max-mobile:border-line max-mobile:bg-white max-mobile:p-[18px] max-mobile:shadow-[0_18px_45px_rgba(28,65,91,.14)] max-mobile:[&.open]:flex group-[.island-home]/site:mobile:max-wide:gap-control-gap" id="nav-links" aria-label={navigationContent.navAriaLabel}>
+    <button class="mobile-toggle ml-auto hidden rounded-full border border-line bg-paper px-[14px] py-2.5 font-extrabold max-mobile:inline-flex" type="button" aria-expanded="false" aria-controls="nav-links">{navigationContent.menuButton}</button>
+    <nav class="nav-links ml-auto flex items-center gap-5 max-mobile:absolute max-mobile:inset-x-0 max-mobile:top-[70px] max-mobile:hidden max-mobile:max-h-[calc(100dvh-155px)] max-mobile:flex-col max-mobile:items-stretch max-mobile:overflow-y-auto max-mobile:rounded-2xl max-mobile:border max-mobile:border-line max-mobile:bg-paper max-mobile:p-[18px] max-mobile:shadow-strong max-mobile:[&.open]:flex group-[.island-home]/site:mobile:max-wide:gap-control-gap" id="nav-links" aria-label={navigationContent.navAriaLabel}>
       <details class="nav-services group/services relative max-mobile:w-full">
         <summary class:list={[navLink, 'list-none cursor-pointer max-mobile:py-2']}>{navigationContent.servicesDropdownLabel}</summary>
-        <div class="nav-services-menu absolute top-[calc(100%+14px)] -left-[18px] hidden min-w-[220px] rounded-panel border border-line bg-white p-2.5 shadow-[0_16px_38px_rgba(28,65,91,.12)] group-open/services:grid max-mobile:static max-mobile:border-0 max-mobile:pt-1.5 max-mobile:pl-3">
+        <div class="nav-services-menu absolute top-[calc(100%+14px)] -left-[18px] hidden min-w-[220px] rounded-panel border border-line bg-paper p-2.5 shadow-medium group-open/services:grid max-mobile:static max-mobile:border-0 max-mobile:pt-1.5 max-mobile:pl-3">
           {navigationContent.serviceLinks.map((item) => <a class:list={[navLink, 'rounded-[9px] px-3 py-2.5 hover:bg-mist']} href={item.href} aria-current={isCurrentPage(item.href) ? 'page' : undefined}>{item.title}</a>)}
         </div>
       </details>

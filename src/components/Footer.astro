@@ -33,30 +33,30 @@ const companyLinks = footerContent.companyLinks.filter(
           ></span>
 
           <span class="grid leading-none">
-            <span class="text-[1.12rem] font-black tracking-[-.035em] text-white">
+            <span class="text-[1.12rem] font-black tracking-[-.035em] text-paper">
               beachline <span class="text-cyan">CLEANERS</span>
             </span>
 
-            <span class="mt-1 text-[.61rem] font-extrabold uppercase tracking-[.15em] text-white/65">
+            <span class="mt-1 text-[.61rem] font-extrabold uppercase tracking-[.15em] text-paper/65">
               {site.descriptor}
             </span>
           </span>
         </a>
 
-        <p class="mt-3 max-w-[390px] text-[.9rem] leading-[1.5] text-white/70">
+        <p class="mt-3 max-w-[390px] text-[.9rem] leading-[1.5] text-paper/70">
           Local cleaning across Brevard County.
         </p>
 
         <div class="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-[.88rem] font-[750]">
           <a
-            class="text-white underline decoration-white/35 underline-offset-4 hover:decoration-cyan"
+            class="text-paper underline decoration-paper/35 underline-offset-4 hover:decoration-cyan"
             href={site.phoneHref}
           >
             {site.phoneDisplay}
           </a>
 
           <a
-            class="text-white underline decoration-white/35 underline-offset-4 hover:decoration-cyan"
+            class="text-paper underline decoration-paper/35 underline-offset-4 hover:decoration-cyan"
             href={`mailto:${site.email}`}
           >
             {site.email}
@@ -69,10 +69,10 @@ const companyLinks = footerContent.companyLinks.filter(
           {footerContent.servicesHeading}
         </p>
 
-        <div class="mt-1.5 grid text-white/78">
+        <div class="mt-1.5 grid text-paper/78">
           {footerContent.serviceLinks.map((link) => (
             <a
-              class="flex min-h-7 w-fit items-center text-[.88rem] no-underline transition-colors hover:text-white"
+              class="flex min-h-7 w-fit items-center text-[.88rem] no-underline transition-colors hover:text-paper"
               href={link.href}
             >
               {link.title}
@@ -86,10 +86,10 @@ const companyLinks = footerContent.companyLinks.filter(
           {footerContent.companyHeading}
         </p>
 
-        <div class="mt-1.5 grid text-white/78">
+        <div class="mt-1.5 grid text-paper/78">
           {companyLinks.map((link) => (
             <a
-              class="flex min-h-7 w-fit items-center text-[.88rem] no-underline transition-colors hover:text-white"
+              class="flex min-h-7 w-fit items-center text-[.88rem] no-underline transition-colors hover:text-paper"
               href={link.href}
             >
               {link.title}
@@ -99,9 +99,9 @@ const companyLinks = footerContent.companyLinks.filter(
       </nav>
     </div>
 
-    <div class="mt-5 flex items-center justify-between gap-5 border-t border-white/14 pt-3.5 text-[.76rem] text-white/72 max-mobile:flex-col max-mobile:items-start max-mobile:gap-1.5">
+    <div class="mt-5 flex items-center justify-between gap-5 border-t border-paper/14 pt-3.5 text-[.76rem] text-paper/72 max-mobile:flex-col max-mobile:items-start max-mobile:gap-1.5">
       <a
-        class="font-[750] text-cyan no-underline hover:text-white"
+        class="font-[750] text-cyan no-underline hover:text-paper"
         href={withBase('/service-area')}
       >
         Serving Brevard County

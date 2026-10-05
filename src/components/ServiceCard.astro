@@ -13,7 +13,7 @@ interface Props {
 }
 const { title, href, text, image, imageAlt, linkText, class: className } = Astro.props;
 ---
-<article class:list={["service-card @container/card group/card flex flex-col overflow-hidden rounded-xl border border-line bg-white transition-[transform,border-color] duration-200 hover:border-sea/40 focus-within:border-sea motion-safe:hover:-translate-y-[3px]", className]}>
+<article class:list={["service-card @container/card group/card flex flex-col overflow-hidden rounded-xl border border-line bg-paper transition-[transform,border-color] duration-200 hover:border-sea/40 focus-within:border-sea motion-safe:hover:-translate-y-[3px]", className]}>
   <SiteImage class="h-[180px] w-full object-cover object-top" src={image} alt={imageAlt} width="600" height="400" loading="lazy" />
   <div class="flex grow flex-col p-5 @min-[26rem]/card:p-6">
     <h3><a class="text-sea-dark no-underline hover:underline underline-offset-4" href={href}>{title}</a></h3>

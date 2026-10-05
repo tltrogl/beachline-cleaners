@@ -19,11 +19,11 @@ const {
   quoteLabel = ctaDefaults.quoteButtonText
 } = Astro.props;
 ---
-<section class:list={["border-y border-white/10 bg-ocean text-white", compact ? "py-9 max-mobile:py-8" : "py-[66px] max-mobile:py-12"]}>
+<section class:list={["border-y border-paper/10 bg-ocean text-paper", compact ? "py-9 max-mobile:py-8" : "py-[66px] max-mobile:py-12"]}>
   <div class:list={[shell, "grid grid-cols-[1fr_auto] items-center max-tablet:grid-cols-1", compact ? "gap-6" : "gap-10"]}>
     <div>
-      <h2 class:list={["max-w-[720px] leading-[1.1] tracking-[-.035em] text-white", compact ? "text-[clamp(1.8rem,3vw,2.5rem)]" : "text-[clamp(2.25rem,4.2vw,3.8rem)]"]}>{title}</h2>
-      <p class="mt-4 max-w-[680px] text-[1.02rem] leading-[1.65] text-white/70">{text}</p>
+      <h2 class:list={["max-w-[720px] leading-[1.1] tracking-[-.035em] text-paper", compact ? "text-[clamp(1.8rem,3vw,2.5rem)]" : "text-[clamp(2.25rem,4.2vw,3.8rem)]"]}>{title}</h2>
+      <p class="mt-4 max-w-[680px] text-[1.02rem] leading-[1.65] text-paper/70">{text}</p>
     </div>
     <div class="flex flex-wrap items-center gap-3 max-mobile:w-full max-mobile:[&>*]:grow">
       <Button variant="light" href={quoteHref}>{quoteLabel} <span aria-hidden="true">→</span></Button>

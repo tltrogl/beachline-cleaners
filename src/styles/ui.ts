@@ -18,9 +18,9 @@ export const lede = 'max-w-[700px] text-lede';
 export const pageLede = `${lede} mt-[18px]`;
 export const ledeTight = `${lede} mt-3`;
 export const split = 'grid grid-cols-[.92fr_1.08fr] items-center gap-16 max-tablet:grid-cols-1 max-tablet:gap-8';
-export const splitImage = 'w-full aspect-[1.25] rounded-panel object-cover shadow-[0_18px_55px_rgba(28,65,91,.08)] max-tablet:aspect-[16/9]';
-export const details = 'rounded-panel border border-line bg-white px-5 py-[19px] open:border-sea-dark/50';
-export const summary = 'flex min-h-6 items-center justify-between gap-4 list-none cursor-pointer font-[850] text-ink hover:text-sea-dark';
+export const splitImage = 'w-full aspect-[1.25] rounded-panel object-cover shadow-medium max-tablet:aspect-[16/9]';
+export const details = 'rounded-panel border border-line bg-paper px-5 py-[19px] open:border-sea-dark/50';
+export const summary = 'flex min-h-6 items-center justify-between gap-4 list-none cursor-pointer font-extrabold text-ink hover:text-sea-dark';
 export const phone = 'text-small font-[750] text-sea-dark underline';
 export const outlineLink = 'inline-flex min-h-11 items-center gap-control-gap text-link font-[750] text-sea-dark underline underline-offset-4';
 export const field = 'min-w-0 w-full rounded-lg border border-field-line bg-field px-4 py-3 text-base text-ink placeholder:text-ink-soft transition-[border-color,outline] hover:border-ink-soft focus:border-sea-dark focus:outline-3 focus:outline-sea-dark focus:outline-offset-1 aria-invalid:border-danger aria-invalid:focus:outline-danger';
@@ -48,7 +48,7 @@ export const aboutUi = {
   storySection: 'py-[76px] max-mobile:py-14',
   storyGrid: 'grid grid-cols-[.95fr_1.05fr] items-center gap-16 max-tablet:grid-cols-1 max-tablet:gap-9',
   storyMedia: 'relative',
-  storyFigure: 'relative m-0 overflow-hidden rounded-panel bg-mist shadow-image',
+  storyFigure: 'relative m-0 overflow-hidden rounded-panel bg-mist shadow-medium',
   storyImage: 'aspect-[1.22] w-full object-cover object-[62%_center] max-tablet:aspect-[16/9]',
   storyHeading: 'max-w-[620px]',
   ownerTitle: 'mt-6 text-nav font-extrabold uppercase tracking-[.1em] text-sea-dark',
@@ -62,10 +62,10 @@ export const aboutUi = {
 
 // Commercial page composition. Keep unique visual values out of page templates.
 export const commercialUi = {
-  heroSection: 'border-b border-line bg-white pt-12 pb-14 max-mobile:pt-7 max-mobile:pb-9',
+  heroSection: 'border-b border-line bg-paper pt-12 pb-14 max-mobile:pt-7 max-mobile:pb-9',
   heroGrid: 'grid grid-cols-[1.08fr_.92fr] items-center gap-16 max-tablet:gap-9 max-mobile:grid-cols-1 max-mobile:gap-7',
   heroMedia: 'relative order-1 max-mobile:order-2',
-  heroFigure: 'relative m-0 overflow-hidden rounded-panel bg-mist shadow-image',
+  heroFigure: 'relative m-0 overflow-hidden rounded-panel bg-mist shadow-medium',
   heroImage: 'aspect-[1.2] w-full object-cover object-left max-mobile:aspect-[1.55]',
   heroCopy: 'order-2 max-mobile:order-1',
   eyebrowRow: 'flex items-center gap-3',
@@ -89,10 +89,10 @@ export const commercialUi = {
   checklistItemTabletEven: 'max-tablet:pr-7 max-mobile:pr-0',
   checklistIcon: 'mb-4 flex size-8 items-center justify-center rounded-full bg-seafoam text-teal',
   checklistIconGlyph: 'size-[18px]',
-  pricingSection: 'border-y border-line bg-white py-[70px] max-mobile:py-14',
+  pricingSection: 'border-y border-line bg-paper py-[70px] max-mobile:py-14',
   pricingGrid: 'grid grid-cols-[.78fr_1.22fr] gap-16 max-tablet:grid-cols-1 max-tablet:gap-10',
   darkEyebrow: 'mb-2 text-eyebrow font-extrabold uppercase tracking-[.12em] text-sea-dark',
-  pricingTitle: 'text-[clamp(2.5rem,4.4vw,3.9rem)] tracking-[-.045em] text-ink',
+  pricingTitle: 'text-[clamp(2.5rem,4.4vw,3.9rem)] tracking-[-.035em] text-ink',
   pricingCopy: 'mt-5 max-w-[470px] text-[1.02rem] leading-[1.68] text-ink-soft',
   factorList: 'mt-6 grid list-none grid-cols-2 gap-x-6 gap-y-3 border-t border-teal/20 pt-5 text-[.92rem] font-[700] text-ink max-mobile:grid-cols-1',
   factorItem: 'flex items-center gap-2.5',
@@ -118,33 +118,33 @@ export const commercialChecklistItemClass = (index: number) => [
 
 // Deep-cleaning page composition.
 export const deepUi = {
-  heroSection: 'border-b border-line bg-white pt-12 pb-14 max-mobile:pt-7 max-mobile:pb-9',
+  heroSection: 'border-b border-line bg-paper pt-12 pb-14 max-mobile:pt-7 max-mobile:pb-9',
   heroGrid: 'grid grid-cols-[.9fr_1.1fr] items-center gap-16 max-tablet:gap-9 max-mobile:grid-cols-1 max-mobile:gap-7',
   eyebrowRule: 'h-px w-10 shrink-0 bg-teal',
-  heroTitle: 'max-w-[700px] text-[clamp(3rem,5vw,4.6rem)] leading-[1.02] tracking-[-.045em] max-mobile:text-[2.85rem]',
+  heroTitle: 'max-w-[700px] text-[clamp(3rem,5vw,4.6rem)] leading-[1.05] tracking-[-.035em] max-mobile:text-[2.85rem]',
   heroLede: 'mt-6 max-w-[620px] text-lede leading-[1.62] max-mobile:mt-4',
   fitNote: 'mt-4 max-w-[590px] border-l-[3px] border-accent pl-4 text-[.93rem] font-[650] leading-[1.52] text-ink-soft',
   heroActions: 'mt-7 flex flex-wrap items-center gap-control-gap',
   heroMedia: 'relative',
-  heroFigure: 'relative m-0 overflow-hidden rounded-panel bg-mist shadow-image',
+  heroFigure: 'relative m-0 overflow-hidden rounded-panel bg-mist shadow-medium',
   heroImage: 'aspect-[1.16] w-full object-cover object-center max-mobile:aspect-[1.48]',
   actionIcon: 'size-[18px]',
-  scopeSection: 'bg-ocean py-[74px] text-white max-mobile:py-14',
+  scopeSection: 'bg-ocean py-[74px] text-paper max-mobile:py-14',
   scopeGrid: 'grid grid-cols-[.62fr_1.38fr] gap-16 max-tablet:grid-cols-1 max-tablet:gap-8',
   darkEyebrow: 'mb-3 text-eyebrow font-extrabold uppercase tracking-[.12em] text-cyan',
   darkEyebrowRule: 'h-px w-10 bg-cyan',
-  scopeHeading: 'max-w-[470px] text-[clamp(2.2rem,3.5vw,3.1rem)] leading-[1.08] tracking-[-.035em] text-white',
-  scopeIntro: 'mt-5 max-w-[470px] text-[.98rem] leading-[1.65] text-white/72',
-  scopeList: 'm-0 grid list-none grid-cols-2 border-t border-white/20 p-0 max-mobile:grid-cols-1',
-  scopeItemBase: 'grid min-h-[118px] grid-cols-[30px_1fr] items-start gap-3 border-b border-white/20 py-5 text-[1rem] leading-[1.62] text-white/82',
+  scopeHeading: 'max-w-[470px] text-[clamp(2.2rem,3.5vw,3.1rem)] leading-[1.08] tracking-[-.035em] text-paper',
+  scopeIntro: 'mt-5 max-w-[470px] text-[.98rem] leading-[1.65] text-paper/72',
+  scopeList: 'm-0 grid list-none grid-cols-2 border-t border-paper/20 p-0 max-mobile:grid-cols-1',
+  scopeItemBase: 'grid min-h-[118px] grid-cols-[30px_1fr] items-start gap-3 border-b border-paper/20 py-5 text-[1rem] leading-[1.62] text-paper/82',
   scopeItemEven: 'pr-8 max-mobile:pr-0',
-  scopeItemOdd: 'border-l border-white/20 pl-8 max-mobile:border-l-0 max-mobile:pl-0',
+  scopeItemOdd: 'border-l border-paper/20 pl-8 max-mobile:border-l-0 max-mobile:pl-0',
   scopeIcon: 'mt-[2px] text-cyan',
   pricingSection: 'py-[70px] max-mobile:py-14',
   pricingGrid: 'grid grid-cols-[.9fr_1.1fr] items-start gap-16 max-tablet:grid-cols-1 max-tablet:gap-10',
   pricePanel: 'self-start border-t-4 border-accent pt-6',
   lightEyebrow: 'mb-2 text-eyebrow font-extrabold uppercase tracking-[.12em] text-sea-dark',
-  priceTitle: 'text-[clamp(2.45rem,4.2vw,3.7rem)] tracking-[-.045em]',
+  priceTitle: 'text-[clamp(2.45rem,4.2vw,3.7rem)] tracking-[-.035em]',
   priceCopy: 'mt-4 max-w-[520px] text-[1.02rem] leading-[1.65]',
   factorList: 'mt-6 grid list-none grid-cols-2 gap-x-7 gap-y-3 border-t border-teal/20 pt-5 text-[.94rem] font-[700] text-ink max-mobile:grid-cols-1',
   factorItem: 'flex items-center gap-2.5',
@@ -174,8 +174,8 @@ export const faqUi = {
   groupRule: 'mb-4 block h-1 w-10 rounded-full bg-accent',
   groupHeading: 'text-[1.35rem] leading-[1.25]',
   list: 'grid gap-3',
-  details: 'rounded-panel border border-line bg-white px-5 py-4 open:border-sea-dark/50 open:bg-mist/20',
-  summary: 'flex min-h-6 cursor-pointer list-none items-center justify-between gap-4 font-[850] text-ink hover:text-sea-dark',
+  details: 'rounded-panel border border-line bg-paper px-5 py-4 open:border-sea-dark/50 open:bg-mist/20',
+  summary: 'flex min-h-6 cursor-pointer list-none items-center justify-between gap-4 font-extrabold text-ink hover:text-sea-dark',
   priceBlock: 'mt-4',
   priceList: 'divide-y divide-line',
   priceRow: 'grid grid-cols-[1fr_auto] items-baseline gap-4 py-3 max-[400px]:grid-cols-1 max-[400px]:gap-1',
@@ -188,7 +188,7 @@ export const faqUi = {
 // Homepage composition.
 export const indexUi = {
   heroSection:
-    'home-hero border-b border-line bg-white pt-14 pb-14 max-mobile:pt-8 max-mobile:pb-10',
+    'home-hero border-b border-line bg-paper pt-14 pb-14 max-mobile:pt-8 max-mobile:pb-10',
   heroGrid:
     'home-hero-grid grid grid-cols-[.94fr_1.06fr] items-center gap-16 max-tablet:gap-9 max-mobile:grid-cols-1 max-mobile:gap-8',
   heroCopy: 'home-hero-copy',
@@ -204,14 +204,14 @@ export const indexUi = {
     'hero-estimator mt-7 mb-4 grid grid-cols-[1fr_1.25fr] gap-3 rounded-panel border border-line bg-mist/45 p-4 max-mobile:grid-cols-1 max-mobile:p-3',
   fieldLabel: 'mb-1.5 block text-[.78rem] font-[750] text-ink-soft',
   fieldControl:
-    'min-h-11 min-w-0 w-full rounded-md border border-field-line bg-white px-3 py-2 text-label text-ink placeholder:text-ink-soft hover:border-ink-soft focus-visible:outline-3 focus-visible:outline-sea-dark focus-visible:outline-offset-2',
+    'min-h-11 min-w-0 w-full rounded-md border border-field-line bg-paper px-3 py-2 text-label text-ink placeholder:text-ink-soft hover:border-ink-soft focus-visible:outline-3 focus-visible:outline-sea-dark focus-visible:outline-offset-2',
   estimatorSubmit: 'col-span-full w-full',
   actionIcon: 'size-[18px]',
   phoneLink:
     'inline-flex items-center gap-2 text-[.9rem] font-[700] text-sea-dark underline underline-offset-4',
   phoneIcon: 'size-4',
   heroMedia:
-    'home-hero-media overflow-hidden rounded-panel bg-mist shadow-[0_18px_50px_rgba(27,57,79,.08)]',
+    'home-hero-media overflow-hidden rounded-panel bg-mist shadow-medium',
   heroImage:
     'aspect-[1.14] w-full object-cover object-[62%_center] max-mobile:aspect-[1.5] max-mobile:object-center',
   trustStrip: 'border-b border-line bg-mist/35',
@@ -220,17 +220,17 @@ export const indexUi = {
   trustItem:
     'flex items-center justify-center gap-2 px-5 text-[.84rem] font-[750] first:pl-0 last:pr-0 max-mobile:justify-start max-mobile:px-0',
   trustIcon: 'size-[17px] shrink-0 text-teal',
-  servicesSection: 'border-b border-line bg-white py-14 max-mobile:py-10',
+  servicesSection: 'border-b border-line bg-paper py-14 max-mobile:py-10',
   servicesHeading:
     'text-[clamp(1.9rem,3vw,2.65rem)] leading-[1.15] tracking-[-.02em]',
   featuredServiceCard:
-    'group/service mt-6 grid grid-cols-[1fr_1fr] overflow-hidden rounded-panel border border-line/80 bg-white shadow-[0_12px_34px_rgba(27,57,79,.08)] max-tablet:grid-cols-1',
+    'group/service mt-6 grid grid-cols-[1fr_1fr] overflow-hidden rounded-panel border border-line/80 bg-paper shadow-soft max-tablet:grid-cols-1',
   featuredServiceMedia:
     'relative h-[300px] overflow-hidden bg-mist max-tablet:aspect-[1.8] max-tablet:h-auto',
   serviceImage:
     'h-full w-full object-cover transition-transform duration-500 motion-safe:group-hover/service:scale-[1.025]',
   servicePriceBadge:
-    'absolute right-4 top-4 rounded-md border border-white/70 bg-white/92 px-3 py-1.5 text-[.73rem] font-extrabold text-ink shadow-sm backdrop-blur-sm',
+    'absolute right-4 top-4 rounded-md border border-paper/70 bg-paper/92 px-3 py-1.5 text-[.73rem] font-extrabold text-ink shadow-sm backdrop-blur-sm',
   featuredServiceBody:
     'flex flex-col justify-center border-l border-line p-8 max-tablet:border-l-0 max-tablet:border-t max-mobile:p-6',
   featuredServiceTitle:
@@ -240,7 +240,7 @@ export const indexUi = {
   specialtyServicesGrid:
     'mt-5 grid grid-cols-2 gap-5 max-tablet:grid-cols-1',
   specialtyServiceCard:
-    'group/service grid min-w-0 grid-cols-[145px_1fr] overflow-hidden rounded-panel border border-line/80 bg-white transition-[transform,box-shadow,border-color] duration-200 hover:border-sea/25 hover:shadow-[0_12px_30px_rgba(27,57,79,.08)] motion-safe:hover:-translate-y-0.5 max-mobile:grid-cols-1',
+    'group/service grid min-w-0 grid-cols-[145px_1fr] overflow-hidden rounded-panel border border-line/80 bg-paper transition-[transform,box-shadow,border-color] duration-200 hover:border-sea/25 hover:shadow-soft motion-safe:hover:-translate-y-0.5 max-mobile:grid-cols-1',
   specialtyServiceMedia:
     'min-h-[185px] overflow-hidden bg-mist max-mobile:h-[160px] max-mobile:min-h-0',
   specialtyServiceBody:
@@ -255,7 +255,7 @@ export const indexUi = {
     'mt-4 inline-flex w-fit items-center gap-2 text-[.95rem] font-[750] text-sea-dark no-underline underline-offset-4 hover:underline',
   serviceLinkIcon:
     'size-4 transition-transform duration-200 motion-safe:group-hover/service:translate-x-1',
-  processSection: 'border-b border-line bg-white py-[76px] max-mobile:py-14',
+  processSection: 'border-b border-line bg-paper py-[76px] max-mobile:py-14',
   processHeader:
     'grid grid-cols-[.72fr_1.28fr] items-end gap-14 border-b border-line pb-8 max-mobile:grid-cols-1 max-mobile:gap-4',
   processHeading:
@@ -282,10 +282,10 @@ export const indexUi = {
 
 // Move-out cleaning page composition.
 export const moveOutUi = {
-  heroSection: 'border-b border-line bg-white pt-12 pb-14 max-mobile:pt-7 max-mobile:pb-9',
+  heroSection: 'border-b border-line bg-paper pt-12 pb-14 max-mobile:pt-7 max-mobile:pb-9',
   heroGrid: 'grid grid-cols-[1.07fr_.93fr] items-center gap-16 max-tablet:gap-9 max-mobile:grid-cols-1 max-mobile:gap-7',
   heroMedia: 'relative order-1 max-mobile:order-2',
-  heroFigure: 'relative m-0 overflow-hidden rounded-panel bg-mist shadow-image',
+  heroFigure: 'relative m-0 overflow-hidden rounded-panel bg-mist shadow-medium',
   heroImage: 'aspect-[1.18] w-full object-cover object-left max-mobile:aspect-[1.52]',
   heroCopy: 'order-2 max-mobile:order-1',
   eyebrowRow: 'flex items-center gap-3',
@@ -312,7 +312,7 @@ export const moveOutUi = {
   priceCopy: 'mt-4 max-w-[490px] text-[1.02rem] leading-[1.66]',
   factorList: 'mt-6 grid list-none grid-cols-2 gap-x-7 gap-y-3 border-t border-teal/20 pt-5 text-[.94rem] font-[700] text-ink max-mobile:grid-cols-1',
   factorItem: 'flex items-center gap-2.5',
-  addonsPanel: 'rounded-panel bg-white px-8 py-8 shadow-[0_16px_44px_rgba(28,65,91,.06)] max-mobile:px-6',
+  addonsPanel: 'rounded-panel bg-paper px-8 py-8 shadow-soft max-mobile:px-6',
   addonsTitle: 'text-[clamp(1.85rem,3vw,2.45rem)]',
   addonsIntro: 'mt-3 max-w-[590px] text-[.98rem] leading-[1.6] text-ink-soft',
   addonsList: 'mt-5 m-0 list-none border-t border-line p-0',
@@ -329,13 +329,13 @@ export const residentialUi = {
   heroTitle: 'max-w-[700px] text-[clamp(3rem,5vw,4.5rem)] leading-[1.03] tracking-[-.04em] max-mobile:text-[2.85rem]',
   heroLede: 'mt-6 max-w-[620px] text-lede leading-[1.62] max-mobile:mt-4',
   cadence: 'mt-7 flex flex-wrap items-center gap-x-4 gap-y-2 border-y border-sea-dark/15 py-4 text-[.92rem] text-sea-dark',
-  cadenceLabel: 'font-[780]',
+  cadenceLabel: 'font-extrabold',
   cadenceDot: 'size-1 rounded-full bg-teal/55',
-  heroPrice: 'mt-5 inline-flex items-center gap-2.5 rounded-full border border-white/80 bg-white/80 px-4 py-2 text-base font-extrabold text-ocean',
+  heroPrice: 'mt-5 inline-flex items-center gap-2.5 rounded-full border border-paper/80 bg-paper/80 px-4 py-2 text-base font-extrabold text-ocean',
   heroMedia: 'relative',
-  heroFigure: 'relative m-0 overflow-hidden rounded-panel bg-white shadow-image',
+  heroFigure: 'relative m-0 overflow-hidden rounded-panel bg-paper shadow-medium',
   heroImage: 'aspect-[1.08] w-full object-cover object-[30%_center] max-mobile:aspect-[1.45] max-mobile:object-center',
-  scopeSection: 'bg-white py-16 max-mobile:py-10',
+  scopeSection: 'bg-paper py-16 max-mobile:py-10',
   scopeHeader: 'flex items-end justify-between gap-10 max-tablet:items-start max-mobile:flex-col max-mobile:gap-3',
   scopeHeading: 'max-w-[560px]',
   scopeIntro: 'max-w-[500px] text-[1rem] leading-[1.65] text-ink-soft',
@@ -343,11 +343,11 @@ export const residentialUi = {
   scopeItemBase: 'grid grid-cols-[40px_1fr] items-start gap-4',
   scopeItemTitle: 'text-[1.08rem] leading-[1.35] text-ocean',
   scopeItemText: 'mt-1.5 text-base leading-[1.6] text-ink-soft',
-  scopeIcon: 'flex size-10 items-center justify-center rounded-[14px] bg-seafoam text-teal',
+  scopeIcon: 'flex size-10 items-center justify-center rounded-panel bg-seafoam text-teal',
   scopeIconGlyph: 'size-5',
   pricingSection: 'border-y border-line bg-seafoam py-[68px] max-mobile:py-12',
   pricingGrid: 'grid grid-cols-[.9fr_1.1fr] items-start gap-16 max-tablet:grid-cols-1 max-tablet:gap-10',
-  pricePanel: 'rounded-panel border-t-4 border-accent bg-white p-7 shadow-image-soft max-mobile:p-5',
+  pricePanel: 'rounded-panel border-t-4 border-accent bg-paper p-7 shadow-soft max-mobile:p-5',
   priceEyebrow: 'mb-2 text-eyebrow font-extrabold uppercase tracking-[.12em] text-sea-dark',
   priceTitle: 'text-[clamp(2rem,3.1vw,2.75rem)] leading-[1.12] tracking-[-.035em] text-ocean',
   priceCopy: 'mt-4 max-w-[480px] text-[1.02rem] leading-[1.65]',
@@ -376,7 +376,7 @@ export const rentalUi = {
   heroActions: 'mt-7 flex flex-wrap items-center gap-control-gap',
   actionIcon: 'size-[18px]',
   heroMedia: 'relative',
-  heroFigure: 'relative m-0 overflow-hidden rounded-panel bg-white shadow-image',
+  heroFigure: 'relative m-0 overflow-hidden rounded-panel bg-paper shadow-medium',
   heroImage: 'aspect-[1.14] w-full object-cover object-[70%_center] max-mobile:aspect-[1.5]',
   accentRule: 'h-1 w-10 rounded-full bg-accent',
   scopeSection: 'py-[74px] max-mobile:py-14',
@@ -392,7 +392,7 @@ export const rentalUi = {
   pricingEyebrow: 'mb-2 text-eyebrow font-extrabold uppercase tracking-[.12em] text-sea-dark',
   pricingTitle: 'text-[clamp(2.1rem,3.5vw,3rem)] tracking-[-.035em]',
   priceLabel: 'hidden text-[1rem] font-[750] text-sea-dark wide:block',
-  tableWrap: 'mt-6 overflow-hidden rounded-panel border border-line border-t-4 border-t-accent bg-white',
+  tableWrap: 'mt-6 overflow-hidden rounded-panel border border-line border-t-4 border-t-accent bg-paper',
   table: 'w-full border-collapse text-left text-small',
   tableHead: 'bg-mist/55',
   tableRow: 'border-b border-line',
@@ -404,15 +404,15 @@ export const rentalUi = {
   pricingCopy: 'mt-4 max-w-[690px] text-[1rem] leading-[1.65]',
   factorList: 'mt-5 grid list-none grid-cols-2 gap-x-7 gap-y-3 border-t border-teal/20 pt-5 text-[.93rem] font-[700] text-ink max-mobile:grid-cols-1',
   factorItem: 'flex items-center gap-2.5',
-  supportPanel: 'self-start rounded-panel bg-ocean px-8 py-8 text-white max-mobile:px-6',
+  supportPanel: 'self-start rounded-panel bg-ocean px-8 py-8 text-paper max-mobile:px-6',
   supportEyebrow: 'mb-2 text-eyebrow font-extrabold uppercase tracking-[.12em] text-cyan',
-  supportTitle: 'text-[clamp(1.85rem,3vw,2.45rem)] text-white',
-  supportIntro: 'mt-3 text-[.96rem] leading-[1.62] text-white/72',
-  supportList: 'mt-5 m-0 list-none border-t border-white/20 p-0',
-  supportRow: 'grid grid-cols-[30px_minmax(0,1fr)_auto] gap-3 border-b border-white/20 py-[18px] text-white/82 max-[430px]:grid-cols-[30px_1fr] max-[430px]:gap-y-1',
+  supportTitle: 'text-[clamp(1.85rem,3vw,2.45rem)] text-paper',
+  supportIntro: 'mt-3 text-[.96rem] leading-[1.62] text-paper/72',
+  supportList: 'mt-5 m-0 list-none border-t border-paper/20 p-0',
+  supportRow: 'grid grid-cols-[30px_minmax(0,1fr)_auto] gap-3 border-b border-paper/20 py-[18px] text-paper/82 max-[430px]:grid-cols-[30px_1fr] max-[430px]:gap-y-1',
   supportPlus: 'font-black text-cyan',
   supportLabel: 'font-[700]',
-  supportPrice: 'font-extrabold tabular-nums text-white max-[430px]:col-start-2',
+  supportPrice: 'font-extrabold tabular-nums text-paper max-[430px]:col-start-2',
 } as const;
 
 // Service-area page composition.
@@ -431,7 +431,7 @@ export const serviceAreaUi = {
   phoneLink:
     'inline-flex min-h-11 items-center text-link font-[750] text-sea-dark underline underline-offset-4',
   areaPanel:
-    'relative overflow-hidden rounded-panel border border-line bg-white px-7 py-7 shadow-image-soft max-mobile:px-5 max-mobile:py-6',
+    'relative overflow-hidden rounded-panel border border-line bg-paper px-7 py-7 shadow-soft max-mobile:px-5 max-mobile:py-6',
   areaAccent: 'absolute inset-x-0 top-0 h-1 bg-teal',
   areaKicker:
     'text-[.72rem] font-extrabold uppercase tracking-[.14em] text-teal',
@@ -443,7 +443,7 @@ export const serviceAreaUi = {
     'border-b border-line py-3 text-[.95rem] font-[750] text-ink',
   areaNote:
     'mt-4 max-w-[620px] text-[.88rem] leading-[1.55] text-ink-soft',
-  servicesSection: 'bg-white py-[72px] max-mobile:py-12',
+  servicesSection: 'bg-paper py-[72px] max-mobile:py-12',
   servicesHeader:
     'grid grid-cols-[.8fr_1.2fr] items-end gap-14 border-b border-line pb-7 max-tablet:grid-cols-1 max-tablet:gap-3',
   servicesEyebrow:
@@ -472,7 +472,7 @@ export const serviceAreaServiceClass = (index: number) =>
 export const quoteSuccessUi = {
   section: 'bg-mist/50 py-[72px] max-mobile:py-12',
   shell: 'max-w-[680px]',
-  card: 'rounded-panel border border-line bg-white px-8 py-12 text-center shadow-image-soft max-mobile:px-6 max-mobile:py-10',
+  card: 'rounded-panel border border-line bg-paper px-8 py-12 text-center shadow-soft max-mobile:px-6 max-mobile:py-10',
   iconWrap: 'mb-6 inline-flex size-[72px] items-center justify-center rounded-full bg-seafoam text-sea-dark',
   title: 'mb-4 text-[clamp(2rem,4vw,3rem)] tracking-[-.035em]',
   actions: 'mt-8 flex flex-wrap items-center justify-center gap-4',
@@ -489,7 +489,7 @@ export const quoteUi = {
   contactRow: 'mt-4 hidden flex-wrap items-center gap-x-5 gap-y-2 text-small max-tablet:flex',
   contactLink: 'inline-flex min-h-11 items-center font-bold text-sea-dark underline underline-offset-4',
   trustPills: 'mt-4 flex flex-wrap gap-2.5 text-[.84rem] font-[750] text-sea-dark',
-  form: 'quote-form mt-6 grid max-w-[720px] gap-0 overflow-hidden rounded-panel border border-line bg-white shadow-image-soft',
+  form: 'quote-form mt-6 grid max-w-[720px] gap-0 overflow-hidden rounded-panel border border-line bg-paper shadow-soft',
   hidden: 'hidden',
   label: 'text-label font-bold',
   formSection: 'grid gap-4 border-b border-line px-7 py-6 max-mobile:px-5 max-mobile:py-5',
@@ -517,7 +517,7 @@ export const quoteUi = {
   privacy: 'mx-7 mt-1 text-sm leading-[1.55] text-ink-soft max-mobile:mx-5',
   submit: 'submit-btn mx-7 mt-4 mb-7 w-[calc(100%-56px)] max-mobile:mx-5 max-mobile:mb-5 max-mobile:w-[calc(100%-40px)]',
   status: 'submission-status mx-7 -mt-3 mb-6 text-sm text-ink-soft max-mobile:mx-5',
-  aside: 'sticky top-[110px] overflow-hidden rounded-panel border border-line bg-white px-6 py-7 shadow-image-soft max-tablet:hidden',
+  aside: 'sticky top-[110px] overflow-hidden rounded-panel border border-line bg-paper px-6 py-7 shadow-soft max-tablet:hidden',
   asideHeading: 'mb-3',
   asideDescription: 'mb-5 mt-4 leading-[1.6] text-ink-soft',
   asideActions: 'grid gap-2.5',

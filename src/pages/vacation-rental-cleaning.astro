@@ -17,7 +17,7 @@ const content = servicesDetail.vacationRental;
         <h1 id="rental-hero-title" class={rentalUi.heroTitle}>{content.title}</h1>
         <p class={rentalUi.heroLede}>{content.intro}</p>
         <p class={rentalUi.fitNote}>{content.who}</p>
-        <p class="mt-5 inline-flex rounded-full border border-teal/20 bg-white px-4 py-2 text-[.92rem] font-extrabold text-sea-dark">{content.priceLabel}</p>
+        <p class="mt-5 inline-flex rounded-full border border-teal/20 bg-paper px-4 py-2 text-[.92rem] font-extrabold text-sea-dark">{content.priceLabel}</p>
         <div class={rentalUi.heroActions}>
           <Button href={content.quoteHref}>{servicePageDefaults.quoteButtonText} <Icon name="arrow-right" class={rentalUi.actionIcon} /></Button>
           <a class={phone} href={site.phoneHref}>{servicePageDefaults.callButtonPrefix}{site.phoneDisplay}</a>

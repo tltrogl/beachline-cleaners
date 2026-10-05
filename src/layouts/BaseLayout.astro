@@ -3,6 +3,7 @@ import { SEO } from 'astro-seo';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { site, accessibilityContent, mobileActionBarContent, withBase } from '../data/content';
+import { colorTokens, colorTokenStyle } from '../data/design-tokens';
 import '@fontsource-variable/plus-jakarta-sans/wght.css';
 import '../styles/site.css';
 
@@ -26,7 +27,7 @@ const {
 const hideMobileBar = bodyClass.includes('no-mobile-bar');
 ---
 <!doctype html>
-<html lang="en">
+<html lang="en" style={colorTokenStyle}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -53,7 +54,7 @@ const hideMobileBar = bodyClass.includes('no-mobile-bar');
         image: new URL(withBase('/og-image.jpg'), Astro.site).toString(),
       }}
     />
-    <meta name="theme-color" content="#006591" />
+    <meta name="theme-color" content={colorTokens['sea-dark']} />
     <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
     <link rel="help" type="text/plain" href={withBase('/llms.txt')} title="Site guide for AI readers" />
     {!noindex && <link rel="alternate" type="text/markdown" href={withBase(`/markdown/${Astro.url.pathname.split('/').filter(Boolean).at(-1) ?? 'index'}.md`)} title="Markdown version" />}
@@ -70,17 +71,17 @@ const hideMobileBar = bodyClass.includes('no-mobile-bar');
     })} />
   </head>
   <body class:list={["group/site", bodyClass, bodyClass.includes("island-home") && "bg-paper", !hideMobileBar && "max-mobile:pb-[calc(56px+env(safe-area-inset-bottom))]"]}>
-    <a class="fixed -top-[100px] left-4 z-[100] bg-white px-[18px] py-3 text-ink focus:top-3" href="#main-content">{accessibilityContent.skipToContent}</a>
+    <a class="fixed -top-[100px] left-4 z-[100] bg-paper px-[18px] py-3 text-ink focus:top-3" href="#main-content">{accessibilityContent.skipToContent}</a>
     <Header quoteHref={quoteHref} quoteLabel={quoteLabel} />
     <main id="main-content" class="scroll-mt-20" tabindex="-1">
       <slot name="hero" />
       <slot />
     </main>
     <Footer quoteHref={quoteHref} />
-    {!hideMobileBar && <div class="mobile-action-bar fixed inset-x-0 bottom-0 z-[70] hidden min-h-14 w-full grid-cols-[1fr_1fr_1.3fr] border-t border-line bg-white pb-[env(safe-area-inset-bottom)] max-mobile:grid" aria-label={mobileActionBarContent.ariaLabel}>
-      <a class="flex min-h-12 items-center justify-center text-compact-action font-[850] no-underline" href={site.phoneHref}>{mobileActionBarContent.callLabel}</a>
-      <a class="flex min-h-12 items-center justify-center border-l border-line text-compact-action font-[850] no-underline" href={site.smsHref}>{mobileActionBarContent.textLabel}</a>
-      <a class="mobile-quote flex min-h-12 items-center justify-center border-l border-line bg-sea-dark text-compact-action font-[850] text-white no-underline hover:bg-teal active:bg-teal" href={quoteHref}>{quoteLabel ?? mobileActionBarContent.quoteLabel}</a>
+    {!hideMobileBar && <div class="mobile-action-bar fixed inset-x-0 bottom-0 z-[70] hidden min-h-14 w-full grid-cols-[1fr_1fr_1.3fr] border-t border-line bg-paper pb-[env(safe-area-inset-bottom)] max-mobile:grid" aria-label={mobileActionBarContent.ariaLabel}>
+      <a class="flex min-h-12 items-center justify-center text-compact-action font-extrabold no-underline" href={site.phoneHref}>{mobileActionBarContent.callLabel}</a>
+      <a class="flex min-h-12 items-center justify-center border-l border-line text-compact-action font-extrabold no-underline" href={site.smsHref}>{mobileActionBarContent.textLabel}</a>
+      <a class="mobile-quote flex min-h-12 items-center justify-center border-l border-line bg-sea-dark text-compact-action font-extrabold text-paper no-underline hover:bg-teal active:bg-teal" href={quoteHref}>{quoteLabel ?? mobileActionBarContent.quoteLabel}</a>
     </div>}
   </body>
 </html>

@@ -6,84 +6,60 @@ license: Complete terms in LICENSE.txt
 
 # Frontend Design
 
-Establish the requested outcome, audience, and desired degree of visual change from the brief. Treat missing context as unknown. Make deliberate choices about palette, typography, and layout that serve the subject and the user's goals; take aesthetic risk when the brief justifies it.
+Create a coherent visual direction grounded in the product, audience, real content, and primary user task. Follow the brief's aesthetic choices; use deliberate choices where it leaves room. Distinctiveness should improve the experience, not compete with usability.
 
-## Match the workflow to the request
+## Choose the smallest sufficient workflow
 
-For an existing site, inspect the affected page, relevant shared components, design tokens, typography, and responsive behavior before choosing a direction. Reuse established design choices unless the requested outcome calls for changing them. If source or rendered access is unavailable, state the limitation and work from the available evidence.
-
-| Request | Approach |
+| Request | Action |
 | --- | --- |
-| Small copy, component, or styling change | Preserve the existing design; make the requested change and check its affected behavior and layout. Skip a new visual direction or full design plan. |
-| New interface or substantial redesign | Use the full planning, review, build, and critique process below. |
-| Scope or essential context is unclear | Ask only about missing information that materially affects the result; continue independent work supported by the brief. |
+| Small copy, component, or styling change | Preserve the existing design. Inspect the affected source and shared styles, change only the requested scope, and check its effects. Skip direction-setting. |
+| New interface or substantial redesign | Inspect relevant project context, choose one direction, briefly check it against the brief, implement when authorized, then verify the result. |
+| Plan or critique only | Deliver the requested plan or evidence-backed critique; do not implement. |
+| Essential context unclear | Ask only for information that materially affects correctness or scope. Continue independent work and label assumptions. |
 
-Follow the requested work stage. A request for a plan or critique produces that deliverable; implementation requires a request to build or apply changes.
+For existing projects, reuse their framework, components, tokens, fonts, and assets unless the brief requires a change. Inspect the affected render when available. If source, assets, or rendered access is missing, state the limitation and work from available evidence; do not describe guessed conditions as observed.
 
-## Ground your designs in the subject matter
+## Keep model calls and context small
 
-Use the brief and existing project to establish the product, audience, and interface's primary job. If essential context remains missing, ask a focused question or present a clearly labeled proposal for confirmation. Treat remembered preferences as hints to check against the current brief. The subject's industry, materials, and visual language should inform the design. Build with real content wherever available.
+- Work in the current agent by default. Do not launch extra models, subagents, fresh sessions, competing designs, or reviewer panels unless explicitly requested or required by applicable instructions.
+- Read the brief and relevant source once. Batch independent, bounded reads and checks; return relevant excerpts or concise results. Reuse inspected context and shared-component findings. Do not inventory the whole repository for a local change.
+- Use one short direction and one focused self-review in the current response. Compare alternatives or draw wireframes only when requested or when they resolve a consequential layout decision. Do not create a separate plan file or pause for approval when a clear build request already authorizes implementation.
+- Do not load adjacent design skills, research trends, browse inspiration, or generate images by default. Use them only when requested or when a specific unresolved need warrants them; use required platform tools for their actual tasks.
+- Batch implementation before verification. Check representative affected layouts and states, repair concrete failures, and rerun affected checks. Stop once the brief and required checks pass; do not repeat aesthetic cycles for marginal gains.
+- Preserve reusable context: keep stable instructions unchanged and append new task information where possible. Do not pad prompts to qualify for caching, repeat material solely to increase cache hits, or change host/API cache settings without authorization. Evaluate efficiency using total cost, latency, and model-call count, not cache-hit percentage alone.
 
-## Design principles
+Minimize unnecessary calls, not necessary evidence. Do not skip project checks or rendered review to save tokens. Report measured savings only with comparable usage evidence.
 
-For web designs, the hero is the first thing viewers will see. Open with the most characteristic thing in the subject's world, in the form that is most appropriate: a headline, an image, an animation, a live demo, an interactive moment, or other treatments. Be deliberate with your choice: a big number with a small label, supporting stats, and a gradient accent is the default treatment, so only use it if that's truly the best option.
+## Set the direction
 
-Typography carries the personality of the page. You don't need a different typeface for display or headline text and body content: use one family or two, and if two, make them clearly distinct.
+For substantial work, state the primary task, content hierarchy, and one memorable visual choice. Briefly define palette roles and color values, type roles and scale, layout/alignment, and mobile adaptation. Reuse existing tokens; add only those needed. Explain consequential choices in terms of the brief, rather than trying to prove uniqueness.
 
-Choose your typefaces deliberately, not the default families you would reach for on any other project, and set a clear type scale following the default guidance of The Elements of Typographic Style with intentional weights, widths, and spacing. When type is used as a headline or visual element, use the type treatment itself as an active part of the design, not a neutral delivery vehicle for the content.
+Choose an opening appropriate to the interface: a subject-specific headline or image for a landing page, or the user's next task for an application. Make the primary action easy to identify. Avoid imposing a marketing hero on every screen.
 
-Default to line lengths of less than 80 characters. Serif typefaces can have slightly longer line lengths; give serif body text slightly more line-height than a sans-serif.
+Use one or two deliberate type families with clear roles. Keep body text comfortably readable, generally below 80 characters per line; tune line-height to the actual font and size. Let display typography carry personality without sacrificing legibility.
 
-Avoid these default typographic treatments; they are the commonest tells of a generated page:
-- Accenting just a single word or phrase in a headline, like putting one word in italic/bold or a different color.
-- Using all caps for labels.
-- Adding unnecessary typographic labels above content.
+Use structure to communicate relationships. Number items only for a sequence; group content by meaning rather than splitting everything into identical cards. Make borders, labels, spacing, and alignment serve hierarchy. Spend visual boldness in one place and keep surrounding elements disciplined.
 
-Visual structure is information. Structural devices like outlines, borders, numbering, eyebrows, dividers, labels, etc., encode useful information about the content rather than decorate it. Many generic designs use numbered markers (01 / 02 / 03), but that's only appropriate if the content actually is a sequence — like a stepped process or a timeline. Before adding numbered markers, check the content really is a sequence.
+Treat familiar recipes as choices to justify, not forbidden styles: cream/serif/clay palettes, dark/neon palettes, broadsheet rules, uniform rounded cards, decorative gradients, all-caps eyebrows, monospace labels, and a highlighted word in every headline. Follow an explicit brief that calls for them. Avoid applying the same recipe regardless of subject.
 
-Use non-user-triggered motion sparingly and deliberately, only to draw attention. A single orchestrated moment — one page-load sequence or one reveal — lands better than scattered effects; fade-and-slide-up entrances on each section and hover transitions on every card are the generic default and read as AI-generated. Motion that answers a person's action (opening, expanding, confirming) is welcome when it shows what changed.
+Use motion to explain actions and changes. Keep unsolicited animation sparse, respect reduced-motion preferences, and avoid blanket reveal effects.
 
-Consider written content carefully. Draft copy from supplied or verified facts. Do not invent prices, services, coverage areas, qualifications, testimonials, guarantees, or results. Clearly label any placeholder in drafts and prototypes; replace or omit it before presenting content as ready to publish. Ask for missing facts when they are essential to the requested deliverable. See the writing guidance below.
+## Build usable, truthful interfaces
 
-## Process: plan, review against the brief, build, critique
+Use supplied or verified facts. Do not invent prices, services, coverage areas, qualifications, testimonials, guarantees, or results. Label draft placeholders and replace or omit them before describing content as ready to publish. Ask for missing facts only when essential.
 
-For calibration, AI-generated design right now clusters around some traits:
-1. a warm cream background (near #F4F1EA) with a high-contrast serif display and a terracotta or warm-clay accent (often near #D97757 — Anthropic's own Claude-interaction accent, so on a user's brief it reads as a tell);
-2. a near-black background with a single bright acid-green or vermilion accent;
-3. a broadsheet-style layout with hairline rules, zero border-radius, and dense newspaper-like columns;
-4. the SaaS-card kit: content chopped into identical rounded cards, one border-radius on everything regardless of hierarchy, the same soft grey shadow (rgba(0,0,0,.1)) under each, and gradient washes as decoration;
-5. template chrome that appears whatever the subject: a tracked-out ALL-CAPS eyebrow label above every heading; meta strings joined with middle dots ('A · B · C'); labels built as 'WORD — fragment' with a spaced em dash; tinted near-black (#0B0B0B, #111) standing in for black; a monospace face for small data labels; a '→' appended to link and button text.
+Write from the user's perspective in plain language and sentence case. Name the action precisely and consistently throughout the flow. Errors explain the problem and recovery; empty states offer a useful next step. Cover loading, error, empty, success, and disabled states only where the changed flow needs them. Do not imply successful delivery or persistence without the supporting behavior.
 
-All traits are legitimate for some briefs, but they are defaults rather than choices, and they appear regardless of subject. Where the brief pins down a visual direction, follow it exactly — the brief's own words always win, including when it asks for one of these looks. Where it leaves an axis free, don't spend that freedom on one of these defaults. As with a hired human designer, there's often a careful balance between doing what you're good at and taking each project as a chance to experiment and learn.
+Use semantic controls and meaningful labels. Preserve keyboard access, visible focus, appropriate reading order, and text alternatives for meaningful images. Check text contrast: at least 4.5:1 for ordinary text and 3:1 for WCAG-defined large text, subject to the standard's exceptions. Prefer comfortably sized controls; use at least 24 by 24 CSS pixels or an applicable WCAG target-size exception. Do not use color alone to convey state.
 
-For new interfaces and substantial redesigns, work in two passes. First, create a short design plan based on the brief and inspected project context. Reuse or adapt existing tokens where appropriate; define color, type, layout, and principles.
-- Color: describe the core base palette as 4–6 named hex values.
-- Type: the typefaces and their roles.
-- Layout: a layout concept, using one-sentence prose descriptions and ASCII wireframes to ideate and compare. Include alignment guidance; should the content be left aligned, center aligned, justified?
-- Principles: the high-level guidance for what makes this page unique.
+Make ordinary page content reflow at 320 CSS pixels without lost content or functionality; handle genuinely two-dimensional content separately. Use content-driven breakpoints, flexible sizing, and intentional image crops. Avoid layout shifts by reserving media space. Reuse available fonts and assets before adding downloads, dependencies, or client-side behavior for decoration.
 
-Then review the plan against the brief: does it support the audience's task, make the primary action clear, and establish a coherent visual direction? Revise choices that lack a reason grounded in the subject or project. Treat distinctiveness as a design goal, not a requirement to prove uniqueness. When implementation is requested, build from the reviewed plan.
+Inspect CSS cascade, specificity, inheritance, and source order before adding overrides. Resolve conflicts at their source where practical. When spacing differs from intent, inspect computed styles instead of stacking guessed declarations.
 
-When writing CSS, inspect the cascade, selector specificity, inheritance, and source order before adding overrides. `.section` and `.cta` are both class selectors; `section` is a type selector. Resolve conflicting declarations at their source where practical, especially duplicated padding and margin rules. Check computed styles when the rendered result differs from the intended spacing.
+## Verify and finish
 
-## Restraint and self-critique
+Inspect the affected render at a representative desktop and narrow mobile width; include 320 CSS pixels when changing responsive layout. Check hierarchy, wrapping, overflow, spacing, crops, and the primary action. For changed controls, check keyboard/focus and the relevant interaction states; check reduced motion when animation changes. Inspect screenshots when available rather than inferring visual quality from code.
 
-Spend your boldness in one place. Let one element be memorable, keep everything around it disciplined, and cut decoration that does not serve the brief. Preserve a quality floor of mobile responsiveness, visible keyboard focus, reduced motion support, visual accessibility, and harmonious color palettes.
+Run required project checks and focused checks justified by the change. Repair defects introduced by the work and verify the repair. Broaden sampling only for shared changes, a discovered failure, or an explicit full-review request. A representative check does not establish full accessibility conformance.
 
-Verify the implemented change in proportion to its scope:
-- Inspect the affected page at desktop and mobile widths, using screenshots when available. Check text wrapping and overflow, image crops, spacing, and the visibility of the primary action.
-- For changed controls or interactions, check keyboard access, visible focus, and relevant states such as expanded, error, empty, loading, or success. Check reduced motion when adding or changing animation.
-- Run applicable project checks. Fix defects introduced by the change; a small edit needs only checks relevant to its effects and required project checks.
-- Report what was actually inspected and any unavailable checks. Do not claim rendered verification from source inspection alone.
-
-## More on writing in design
-
-Words appear in a design for one reason: to make it easier to understand and use. They are design content, not decoration. Bring the same intentionality and minimalism to copywriting that you would bring to spacing and color. Before writing anything, ask what the design needs to say, and how it can best be said to help the person navigate the experience.
-
-Write from the end user's perspective. Name things by what users will understand in simple language, not by how the system is built. A user manages notifications, not webhook config. Describe what something is or does in plain terms rather than selling it. Being specific and legible to new users is always better than being clever.
-
-Use active voice as default. A CTA says exactly what happens when it is used: "Save changes," not "Submit." An action keeps the same name through the whole flow, so the button that says "Publish" produces a toast that says "Published." The vocabulary of an interface is the signposting for someone navigating the product. Cohesion and consistency are how people learn their way around.
-
-Treat failure and emptiness as moments for direction, not mood. Explain what went wrong and how to fix it, in the interface's voice rather than a person's. Errors don't apologize, and they are never vague about what happened. An empty screen is an invitation to act.
-
-Keep the tone conversational: plain verbs, sentence case, no filler, with tone matched to the brand and the audience. Let each written element do exactly one job.
+Deliver the authorized result with a concise account of changes, checks actually performed, and material limitations. Distinguish source inspection from rendered verification and working interactions from static mockups.

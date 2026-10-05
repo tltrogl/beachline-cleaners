@@ -2,45 +2,67 @@
 
 @theme {
   --font-sans: "Plus Jakarta Sans Variable", "Plus Jakarta Sans", system-ui, sans-serif;
-  --color-ink: #1E293B;
-  --color-ink-soft: #3E4850;
-  --color-paper: #FFFFFF;
-  --color-sand: #F6F1E7;
-  --color-mist: #DDF2F7;
-  --color-seafoam: #E1F2EC;
-  --color-ocean: #083F4B;
-  --color-deep-ocean: #102F3A;
-  --color-field-line: #748C96;
-  --color-sea: #0EA5E9;
-  --color-sea-dark: #006591;
-  --color-cyan: #66D7E0;
-  --color-teal: #00687A;
-  --color-accent: #C94F68;
-  --color-line: #BEC8D2;
-  --color-danger: oklch(0.500336 0.182051 29.5127);
-  --color-field: #FFFFFF;
-  --spacing-section: 68px;
-  --spacing-control-gap: 14px;
-  --spacing-control-x: 22px;
-  --spacing-card-gap: 22px;
-  --radius-panel: 14px;
-  --shadow-image: 0 20px 60px rgba(28, 65, 91, .10);
-  --shadow-image-soft: 0 14px 38px rgba(28, 65, 91, .08);
-  --shadow-accent-dot: 0 6px 18px rgba(201, 79, 104, .22);
+
+  /*
+   * Color values are defined once in src/data/design-tokens.ts and exposed as
+   * --bl-* variables on <html> by BaseLayout. Keep this file value-free: map
+   * Tailwind/semantic names to those canonical tokens instead of adding raw
+   * hex, rgb, hsl, or oklch literals here.
+   */
+  --color-ink: var(--bl-ink);
+  --color-ink-soft: var(--bl-ink-soft);
+  --color-paper: var(--bl-paper);
+  --color-sand: var(--bl-sand);
+  --color-mist: var(--bl-mist);
+  --color-seafoam: var(--bl-seafoam);
+  --color-ocean: var(--bl-ocean);
+  --color-deep-ocean: var(--bl-deep-ocean);
+  --color-field-line: var(--bl-field-line);
+  --color-sea: var(--bl-sea); /* Decorative only: never body text or a white-text control fill. */
+  --color-sea-dark: var(--bl-sea-dark);
+  --color-cyan: var(--bl-cyan);
+  --color-teal: var(--bl-teal);
+  --color-accent: var(--bl-accent);
+  --color-line: var(--bl-line);
+  --color-danger: var(--bl-danger);
+  --color-footer-text: var(--bl-footer-text);
+  --color-overlay: var(--bl-overlay);
+  --color-neutral-soft: var(--bl-neutral-soft);
+
+  /* Semantic role aliases. */
+  --color-primary: var(--color-sea-dark);
+  --color-secondary: var(--color-teal);
+  --color-surface-dark: var(--color-ocean);
+  --color-surface-footer: var(--color-deep-ocean);
+  --color-surface-warm: var(--color-sand);
+  --color-surface-cool: var(--color-mist);
+  --color-surface-mint: var(--color-seafoam);
+  --color-field: var(--color-paper);
+  --color-footer: var(--color-surface-footer);
+  --color-rental-text: var(--color-paper);
+  --spacing-section: clamp(48px, 5.5vw, 72px);
+  --spacing-control-gap: 16px;
+  --spacing-control-x: 24px;
+  --spacing-card-gap: 24px;
+  --radius-panel: 16px;
+
+  --shadow-soft: 0 12px 30px color-mix(in oklch, var(--color-ocean) 8%, transparent);
+  --shadow-medium: 0 18px 50px color-mix(in oklch, var(--color-ocean) 10%, transparent);
+  --shadow-strong: 0 18px 45px color-mix(in oklch, var(--color-ocean) 14%, transparent);
+  --shadow-primary: 0 8px 22px color-mix(in oklch, var(--color-sea-dark) 16%, transparent);
+
+  --font-weight-black: 800;
   --text-eyebrow: .82rem;
   --text-eyebrow-mobile: .78rem;
   --text-label: 1rem;
   --text-action: 1rem;
   --text-nav: .93rem;
-  --text-nav-compact: .86rem;
-  --text-compact-action: .98rem;
+  --text-nav-compact: .875rem;
+  --text-compact-action: 1rem;
   --text-link: 1rem;
-  --text-small: 1.02rem;
+  --text-small: 1rem;
   --text-lede: clamp(1.18rem,1.8vw,1.34rem);
   --text-page-title: clamp(2.1rem,4vw,3.2rem);
-  --color-footer: var(--color-deep-ocean);
-  --color-footer-text: #F0F9FF;
-  --color-rental-text: var(--color-paper);
   --breakpoint-mobile: 721px;
   --breakpoint-tablet: 901px;
   --breakpoint-wide: 1151px;
@@ -60,6 +82,15 @@
   button, summary { @apply cursor-pointer; }
   .island-home h2 { @apply text-[clamp(1.9rem,3vw,2.65rem)] leading-[1.15] tracking-[-.02em] text-balance; }
   .island-home h3 { @apply text-[1.15rem] font-bold tracking-[-.01em] text-balance; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
 }
 
 /* Decorative wave and disclosure markers stay in CSS. */
@@ -109,7 +140,7 @@ details[open]:not(.nav-services):not(.form-details-toggle) > summary::after { co
   border-radius: 50%;
   background: var(--color-paper);
   color: var(--color-sea-dark);
-  font-weight: 900;
+  font-weight: 800;
   font-size: 1rem;
   flex-shrink: 0;
 }
