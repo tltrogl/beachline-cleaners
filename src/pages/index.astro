@@ -39,10 +39,6 @@ import { shell, homeEyebrow, indexUi } from '../styles/ui';
           {homeContent.hero.description}
         </p>
 
-        <p class={indexUi.heroServiceArea}>
-          {homeContent.hero.serviceArea}
-        </p>
-
         <form
           class={indexUi.estimatorForm}
           action={homeContent.hero.quoteHref}
@@ -107,8 +103,7 @@ import { shell, homeEyebrow, indexUi } from '../styles/ui';
             name="phone"
             class={indexUi.phoneIcon}
           />
-          {homeContent.hero.estimator.phonePrompt}
-          {site.phoneDisplay}
+          {homeContent.hero.estimator.phonePrompt}{' '}{site.phoneDisplay}
         </a>
       </div>
 
@@ -159,10 +154,6 @@ import { shell, homeEyebrow, indexUi } from '../styles/ui';
             class={indexUi.serviceImage}
             loading="lazy"
           />
-
-          <span class={indexUi.servicePriceBadge}>
-            {homeContent.servicesSection.featuredService.priceLabel}
-          </span>
         </div>
 
         <div class={indexUi.featuredServiceBody}>
@@ -175,20 +166,13 @@ import { shell, homeEyebrow, indexUi } from '../styles/ui';
             </a>
           </h3>
 
+          <span class={indexUi.servicePriceChip}>
+            {homeContent.servicesSection.featuredService.priceLabel}
+          </span>
+
           <p class={indexUi.featuredServiceText}>
             {homeContent.servicesSection.featuredService.text}
           </p>
-
-          <a
-            class={indexUi.serviceLink}
-            href={homeContent.servicesSection.featuredService.href}
-          >
-            {homeContent.servicesSection.linkText}
-            <Icon
-              name="arrow-right"
-              class={indexUi.serviceLinkIcon}
-            />
-          </a>
         </div>
       </article>
 
@@ -211,10 +195,6 @@ import { shell, homeEyebrow, indexUi } from '../styles/ui';
             </div>
 
             <div class={indexUi.specialtyServiceBody}>
-              <div class={indexUi.specialtyServiceMeta}>
-                <span>{service.priceLabel}</span>
-              </div>
-
               <h3 class={indexUi.serviceTitle}>
                 <a
                   class={indexUi.serviceTitleLink}
@@ -224,20 +204,13 @@ import { shell, homeEyebrow, indexUi } from '../styles/ui';
                 </a>
               </h3>
 
+              <span class={indexUi.servicePriceChip}>
+                {service.priceLabel}
+              </span>
+
               <p class={indexUi.specialtyServiceText}>
                 {service.text}
               </p>
-
-              <a
-                class={indexUi.serviceLink}
-                href={service.href}
-              >
-                {homeContent.servicesSection.linkText}
-                <Icon
-                  name="arrow-right"
-                  class={indexUi.serviceLinkIcon}
-                />
-              </a>
             </div>
           </article>
         ))}
@@ -276,11 +249,6 @@ import { shell, homeEyebrow, indexUi } from '../styles/ui';
               0{index + 1}
             </span>
 
-            <span
-              class={indexUi.processStepBar}
-              aria-hidden="true"
-            ></span>
-
             <h3 class={indexUi.processStepTitle}>
               {step.title}
             </h3>
@@ -300,10 +268,6 @@ import { shell, homeEyebrow, indexUi } from '../styles/ui';
   >
     <div class:list={[shell, indexUi.contactGrid]}>
       <div>
-        <p class={indexUi.contactEyebrow}>
-          Ready when you are
-        </p>
-
         <h2 id="contact-heading">
           {homeContent.contactBanner.heading}
         </h2>

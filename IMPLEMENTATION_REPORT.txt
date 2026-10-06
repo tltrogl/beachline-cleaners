@@ -51,3 +51,8 @@ VISUAL QA
 FORM SUBMISSION QA
 - No live Formspree test submission was performed.
 - Submission delivery/redirect is therefore NOT claimed as verified in this implementation environment.
+
+2026-10-05 — Homepage/rendered-QA correction pass
+- Applied the verified homepage/global fixes from the visual review while rejecting the broader sand-background, global word-spacing, and generic homepage-price proposals.
+- See STATUS.txt for the exact change list and QA boundary.
+- Build/render verification remains pending because npm dependency installation timed out before Astro was available in this environment.

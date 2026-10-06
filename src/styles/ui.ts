@@ -11,7 +11,7 @@ export const eyebrowRules = {
 } as const;
 export const srOnly = 'sr-only';
 export const pageHero = 'border-b border-line bg-mist pt-[56px] pb-[54px] max-mobile:pt-9 max-mobile:pb-10';
-export const pageTitle = 'max-w-[860px] text-page-title font-black leading-[1.1] tracking-[-.035em]';
+export const pageTitle = 'max-w-[860px] text-page-title font-black leading-[1.1] tracking-[-.02em]';
 export const eyebrow = 'mb-3 text-eyebrow font-extrabold uppercase tracking-[.13em] text-sea-dark';
 export const homeEyebrow = 'mb-[17px] text-eyebrow font-extrabold uppercase tracking-[.11em] text-sea-dark max-mobile:mb-3 max-mobile:text-eyebrow-mobile max-mobile:tracking-[.06em]';
 export const lede = 'max-w-[700px] text-lede';
@@ -43,7 +43,7 @@ export const aboutUi = {
   eyebrow: 'mb-4 flex items-center gap-3 text-eyebrow font-extrabold uppercase tracking-[.12em] text-sea-dark',
   eyebrowRule: 'h-px w-10 shrink-0 bg-sea',
   eyebrowRuleTeal: 'h-px w-10 shrink-0 bg-teal',
-  heroTitle: 'max-w-[800px] text-[clamp(3rem,5vw,4.5rem)] font-black leading-[1.03] tracking-[-.04em] max-mobile:text-[2.8rem]',
+  heroTitle: 'max-w-[800px] text-[clamp(3rem,5vw,4.5rem)] font-black leading-[1.03] tracking-[-.025em] max-mobile:text-[2.8rem]',
   heroLede: 'mt-5 max-w-[720px] text-lede leading-[1.62] max-mobile:text-base',
   storySection: 'py-[76px] max-mobile:py-14',
   storyGrid: 'grid grid-cols-[.95fr_1.05fr] items-center gap-16 max-tablet:grid-cols-1 max-tablet:gap-9',
@@ -70,7 +70,7 @@ export const commercialUi = {
   heroCopy: 'order-2 max-mobile:order-1',
   eyebrowRow: 'flex items-center gap-3',
   eyebrowRule: 'h-px w-10 shrink-0 bg-teal',
-  heroTitle: 'max-w-[700px] text-[clamp(2.9rem,4.8vw,4.35rem)] leading-[1.03] tracking-[-.04em] max-mobile:text-[2.75rem]',
+  heroTitle: 'max-w-[700px] text-[clamp(2.9rem,4.8vw,4.35rem)] leading-[1.03] tracking-[-.025em] max-mobile:text-[2.75rem]',
   heroLede: 'mt-6 max-w-[610px] text-lede leading-[1.62] max-mobile:mt-4',
   fitNote: 'mt-4 max-w-[590px] border-l-[3px] border-teal pl-4 text-[.93rem] font-[650] leading-[1.52] text-ink-soft',
   heroActions: 'mt-7 flex flex-wrap items-center gap-control-gap',
@@ -92,7 +92,7 @@ export const commercialUi = {
   pricingSection: 'border-y border-line bg-paper py-[70px] max-mobile:py-14',
   pricingGrid: 'grid grid-cols-[.78fr_1.22fr] gap-16 max-tablet:grid-cols-1 max-tablet:gap-10',
   darkEyebrow: 'mb-2 text-eyebrow font-extrabold uppercase tracking-[.12em] text-sea-dark',
-  pricingTitle: 'text-[clamp(2.5rem,4.4vw,3.9rem)] tracking-[-.035em] text-ink',
+  pricingTitle: 'text-[clamp(2.5rem,4.4vw,3.9rem)] tracking-[-.02em] text-ink',
   pricingCopy: 'mt-5 max-w-[470px] text-[1.02rem] leading-[1.68] text-ink-soft',
   factorList: 'mt-6 grid list-none grid-cols-2 gap-x-6 gap-y-3 border-t border-teal/20 pt-5 text-[.92rem] font-[700] text-ink max-mobile:grid-cols-1',
   factorItem: 'flex items-center gap-2.5',
@@ -121,7 +121,7 @@ export const deepUi = {
   heroSection: 'border-b border-line bg-paper pt-12 pb-14 max-mobile:pt-7 max-mobile:pb-9',
   heroGrid: 'grid grid-cols-[.9fr_1.1fr] items-center gap-16 max-tablet:gap-9 max-mobile:grid-cols-1 max-mobile:gap-7',
   eyebrowRule: 'h-px w-10 shrink-0 bg-teal',
-  heroTitle: 'max-w-[700px] text-[clamp(3rem,5vw,4.6rem)] leading-[1.05] tracking-[-.035em] max-mobile:text-[2.85rem]',
+  heroTitle: 'max-w-[700px] text-[clamp(3rem,5vw,4.6rem)] leading-[1.05] tracking-[-.02em] max-mobile:text-[2.85rem]',
   heroLede: 'mt-6 max-w-[620px] text-lede leading-[1.62] max-mobile:mt-4',
   fitNote: 'mt-4 max-w-[590px] border-l-[3px] border-accent pl-4 text-[.93rem] font-[650] leading-[1.52] text-ink-soft',
   heroActions: 'mt-7 flex flex-wrap items-center gap-control-gap',
@@ -133,7 +133,7 @@ export const deepUi = {
   scopeGrid: 'grid grid-cols-[.62fr_1.38fr] gap-16 max-tablet:grid-cols-1 max-tablet:gap-8',
   darkEyebrow: 'mb-3 text-eyebrow font-extrabold uppercase tracking-[.12em] text-cyan',
   darkEyebrowRule: 'h-px w-10 bg-cyan',
-  scopeHeading: 'max-w-[470px] text-[clamp(2.2rem,3.5vw,3.1rem)] leading-[1.08] tracking-[-.035em] text-paper',
+  scopeHeading: 'max-w-[470px] text-[clamp(2.2rem,3.5vw,3.1rem)] leading-[1.08] tracking-[-.02em] text-paper',
   scopeIntro: 'mt-5 max-w-[470px] text-[.98rem] leading-[1.65] text-paper/72',
   scopeList: 'm-0 grid list-none grid-cols-2 border-t border-paper/20 p-0 max-mobile:grid-cols-1',
   scopeItemBase: 'grid min-h-[118px] grid-cols-[30px_1fr] items-start gap-3 border-b border-paper/20 py-5 text-[1rem] leading-[1.62] text-paper/82',
@@ -144,7 +144,7 @@ export const deepUi = {
   pricingGrid: 'grid grid-cols-[.9fr_1.1fr] items-start gap-16 max-tablet:grid-cols-1 max-tablet:gap-10',
   pricePanel: 'self-start border-t-4 border-accent pt-6',
   lightEyebrow: 'mb-2 text-eyebrow font-extrabold uppercase tracking-[.12em] text-sea-dark',
-  priceTitle: 'text-[clamp(2.45rem,4.2vw,3.7rem)] tracking-[-.035em]',
+  priceTitle: 'text-[clamp(2.45rem,4.2vw,3.7rem)] tracking-[-.02em]',
   priceCopy: 'mt-4 max-w-[520px] text-[1.02rem] leading-[1.65]',
   factorList: 'mt-6 grid list-none grid-cols-2 gap-x-7 gap-y-3 border-t border-teal/20 pt-5 text-[.94rem] font-[700] text-ink max-mobile:grid-cols-1',
   factorItem: 'flex items-center gap-2.5',
@@ -163,7 +163,7 @@ export const deepUi = {
 export const faqUi = {
   heroSection: 'border-b border-line bg-mist pt-12 pb-14 max-mobile:pt-8 max-mobile:pb-10',
   heroEyebrow: 'mb-4 text-eyebrow font-extrabold uppercase tracking-[.12em] text-sea-dark',
-  heroTitle: 'max-w-[760px] text-[clamp(3rem,5vw,4.5rem)] font-black leading-[1.03] tracking-[-.04em] max-mobile:text-[2.8rem]',
+  heroTitle: 'max-w-[760px] text-[clamp(3rem,5vw,4.5rem)] font-black leading-[1.03] tracking-[-.025em] max-mobile:text-[2.8rem]',
   heroLede: 'mt-5 max-w-[720px] text-lede leading-[1.62] max-mobile:text-base',
   section: 'py-[72px] max-mobile:py-12',
   contentShell: 'max-w-[980px]',
@@ -188,20 +188,18 @@ export const faqUi = {
 // Homepage composition.
 export const indexUi = {
   heroSection:
-    'home-hero border-b border-line bg-paper pt-14 pb-14 max-mobile:pt-8 max-mobile:pb-10',
+    'home-hero border-b border-line bg-mist/45 pt-14 pb-14 max-mobile:pt-8 max-mobile:pb-10',
   heroGrid:
-    'home-hero-grid grid grid-cols-[.94fr_1.06fr] items-center gap-16 max-tablet:gap-9 max-mobile:grid-cols-1 max-mobile:gap-8',
+    'home-hero-grid grid grid-cols-2 items-center gap-14 max-tablet:gap-9 max-mobile:grid-cols-1 max-mobile:gap-8',
   heroCopy: 'home-hero-copy',
   eyebrowRow: 'flex items-center gap-3',
   eyebrowRuleSea: 'h-px w-10 shrink-0 bg-sea',
   heroTitle:
-    'max-w-[720px] text-[clamp(3rem,5vw,4.55rem)] leading-[1.03] tracking-[-.04em] text-balance max-mobile:text-[2.8rem]',
+    'max-w-[720px] text-[clamp(2.9rem,4.4vw,4.15rem)] leading-[1.04] tracking-[-.025em] text-balance max-mobile:text-[2.65rem]',
   heroDescription:
-    'mt-5 max-w-[560px] text-[1.12rem] leading-[1.62] max-mobile:text-base',
-  heroServiceArea:
-    'mt-3 max-w-[590px] text-[.9rem] leading-[1.55] text-ink-soft',
+    'mt-5 max-w-[560px] text-[1.1rem] leading-[1.6] max-mobile:text-base',
   estimatorForm:
-    'hero-estimator mt-7 mb-4 grid grid-cols-[1fr_1.25fr] gap-3 rounded-panel border border-line bg-mist/45 p-4 max-mobile:grid-cols-1 max-mobile:p-3',
+    'hero-estimator mt-6 mb-4 grid grid-cols-[1fr_1.25fr] gap-3 rounded-panel border border-line bg-paper/92 p-4 shadow-soft max-mobile:grid-cols-1 max-mobile:p-3',
   fieldLabel: 'mb-1.5 block text-[.78rem] font-[750] text-ink-soft',
   fieldControl:
     'min-h-11 min-w-0 w-full rounded-md border border-field-line bg-paper px-3 py-2 text-label text-ink placeholder:text-ink-soft hover:border-ink-soft focus-visible:outline-3 focus-visible:outline-sea-dark focus-visible:outline-offset-2',
@@ -214,7 +212,7 @@ export const indexUi = {
     'home-hero-media overflow-hidden rounded-panel bg-mist shadow-medium',
   heroImage:
     'aspect-[1.14] w-full object-cover object-[62%_center] max-mobile:aspect-[1.5] max-mobile:object-center',
-  trustStrip: 'border-b border-line bg-mist/35',
+  trustStrip: 'border-b border-line bg-paper',
   trustGrid:
     'grid grid-cols-4 divide-x divide-line py-3.5 max-mobile:grid-cols-2 max-mobile:divide-x-0 max-mobile:gap-y-3',
   trustItem:
@@ -224,56 +222,47 @@ export const indexUi = {
   servicesHeading:
     'text-[clamp(1.9rem,3vw,2.65rem)] leading-[1.15] tracking-[-.02em]',
   featuredServiceCard:
-    'group/service mt-6 grid grid-cols-[1fr_1fr] overflow-hidden rounded-panel border border-line/80 bg-paper shadow-soft max-tablet:grid-cols-1',
+    'group/service relative mt-6 grid grid-cols-[1fr_1fr] overflow-hidden rounded-panel border border-line/80 bg-paper shadow-soft max-tablet:grid-cols-1',
   featuredServiceMedia:
     'relative h-[300px] overflow-hidden bg-mist max-tablet:aspect-[1.8] max-tablet:h-auto',
   serviceImage:
     'h-full w-full object-cover transition-transform duration-500 motion-safe:group-hover/service:scale-[1.025]',
-  servicePriceBadge:
-    'absolute right-4 top-4 rounded-md border border-paper/70 bg-paper/92 px-3 py-1.5 text-[.73rem] font-extrabold text-ink shadow-sm backdrop-blur-sm',
+  servicePriceChip:
+    'mt-3 inline-flex w-fit rounded-md bg-mist px-2.5 py-1 text-[.76rem] font-extrabold text-sea-dark',
   featuredServiceBody:
     'flex flex-col justify-center border-l border-line p-8 max-tablet:border-l-0 max-tablet:border-t max-mobile:p-6',
   featuredServiceTitle:
-    'text-[clamp(1.75rem,3vw,2.35rem)] leading-[1.08] tracking-[-.03em]',
+    'text-[clamp(1.75rem,3vw,2.35rem)] leading-[1.08] tracking-[-.02em]',
   featuredServiceText:
     'mt-4 max-w-[520px] text-[.96rem] leading-[1.62] text-ink-soft',
   specialtyServicesGrid:
     'mt-5 grid grid-cols-2 gap-5 max-tablet:grid-cols-1',
   specialtyServiceCard:
-    'group/service grid min-w-0 grid-cols-[145px_1fr] overflow-hidden rounded-panel border border-line/80 bg-paper transition-[transform,box-shadow,border-color] duration-200 hover:border-sea/25 hover:shadow-soft motion-safe:hover:-translate-y-0.5 max-mobile:grid-cols-1',
+    'group/service relative grid min-w-0 grid-cols-[190px_1fr] overflow-hidden rounded-panel border border-line/80 bg-paper transition-[transform,box-shadow,border-color] duration-200 hover:border-sea/25 hover:shadow-soft motion-safe:hover:-translate-y-0.5 max-mobile:grid-cols-1',
   specialtyServiceMedia:
-    'min-h-[185px] overflow-hidden bg-mist max-mobile:h-[160px] max-mobile:min-h-0',
+    'min-h-[185px] overflow-hidden bg-mist max-mobile:aspect-[4/3] max-mobile:min-h-0',
   specialtyServiceBody:
     'flex min-w-0 flex-col p-5 max-mobile:p-4',
-  specialtyServiceMeta:
-    'mb-2 text-[.8rem] font-bold text-sea-dark',
   serviceTitle: 'text-[1.08rem] leading-[1.25] tracking-[-.01em]',
-  serviceTitleLink: 'text-ink no-underline hover:text-sea-dark',
+  serviceTitleLink: 'text-ink no-underline underline-offset-4 after:absolute after:inset-0 hover:text-sea-dark hover:underline focus-visible:rounded-sm',
   specialtyServiceText:
-    'mt-2 text-[.95rem] leading-[1.55] text-ink-soft max-mobile:text-base',
-  serviceLink:
-    'mt-4 inline-flex w-fit items-center gap-2 text-[.95rem] font-[750] text-sea-dark no-underline underline-offset-4 hover:underline',
-  serviceLinkIcon:
-    'size-4 transition-transform duration-200 motion-safe:group-hover/service:translate-x-1',
-  processSection: 'border-b border-line bg-paper py-[76px] max-mobile:py-14',
+    'mt-3 text-[.95rem] leading-[1.55] text-ink-soft max-mobile:text-base',
+  processSection: 'border-b border-line bg-mist/25 py-14 max-mobile:py-11',
   processHeader:
-    'grid grid-cols-[.72fr_1.28fr] items-end gap-14 border-b border-line pb-8 max-mobile:grid-cols-1 max-mobile:gap-4',
+    'grid grid-cols-[.72fr_1.28fr] items-end gap-12 pb-5 max-mobile:grid-cols-1 max-mobile:gap-3',
   processHeading:
-    'max-w-[610px] text-[clamp(2.2rem,3.8vw,3.25rem)] leading-[1.08] tracking-[-.035em]',
+    'max-w-[610px] text-[clamp(2.2rem,3.8vw,3.25rem)] leading-[1.08] tracking-[-.02em]',
   processIntro:
     'max-w-[540px] justify-self-end text-[.98rem] leading-[1.62] text-ink-soft max-mobile:justify-self-start',
   processList:
-    'm-0 grid list-none grid-cols-3 gap-10 p-0 max-tablet:grid-cols-1 max-tablet:gap-0',
-  processItem: 'relative border-b border-line py-8 first:pl-0 max-tablet:py-6',
-  processNumber: 'mb-4 block text-[.68rem] font-extrabold tracking-[.14em] text-teal',
-  processStepBar: 'mb-5 block h-1 w-10 rounded-full bg-accent',
+    'm-0 grid list-none grid-cols-3 gap-8 p-0 max-tablet:grid-cols-1 max-tablet:gap-0',
+  processItem: 'relative py-5 first:pl-0 max-tablet:border-t max-tablet:border-line max-tablet:py-5',
+  processNumber: 'mb-2 block text-[.72rem] font-extrabold tracking-[.12em] text-teal',
   processStepTitle: 'mb-2 text-[1.15rem]',
   processStepText: 'max-w-[340px] text-[.9rem] leading-[1.58] text-ink-soft',
   contactSection: 'border-b border-line bg-seafoam py-10 max-mobile:py-9',
   contactGrid:
     'flex items-center justify-between gap-8 max-tablet:flex-col max-tablet:items-start',
-  contactEyebrow:
-    'mb-3 text-[.7rem] font-extrabold uppercase tracking-[.14em] text-sea-dark',
   contactText: 'mt-3 max-w-[540px] text-[.94rem] leading-[1.55]',
   contactActions: 'flex shrink-0 flex-wrap items-center gap-4',
   contactPhone: 'text-[.9rem] font-[700] text-sea-dark underline underline-offset-4',
@@ -290,7 +279,7 @@ export const moveOutUi = {
   heroCopy: 'order-2 max-mobile:order-1',
   eyebrowRow: 'flex items-center gap-3',
   eyebrowRuleSea: 'h-px w-10 shrink-0 bg-sea',
-  heroTitle: 'max-w-[690px] text-[clamp(2.9rem,4.8vw,4.35rem)] leading-[1.03] tracking-[-.04em] max-mobile:text-[2.75rem]',
+  heroTitle: 'max-w-[690px] text-[clamp(2.9rem,4.8vw,4.35rem)] leading-[1.03] tracking-[-.025em] max-mobile:text-[2.75rem]',
   heroLede: 'mt-6 max-w-[590px] text-lede leading-[1.62] max-mobile:mt-4',
   fitNote: 'mt-4 max-w-[590px] border-l-[3px] border-accent pl-4 text-[.93rem] font-[650] leading-[1.52] text-ink-soft',
   heroActions: 'mt-7 flex flex-wrap items-center gap-control-gap',
@@ -308,7 +297,7 @@ export const moveOutUi = {
   pricingGrid: 'grid grid-cols-[.88fr_1.12fr] items-start gap-16 max-tablet:grid-cols-1 max-tablet:gap-10',
   pricePanel: 'self-start border-t-4 border-accent pt-6',
   lightEyebrow: 'mb-2 text-eyebrow font-extrabold uppercase tracking-[.12em] text-sea-dark',
-  priceTitle: 'text-[clamp(2.4rem,4vw,3.6rem)] tracking-[-.04em]',
+  priceTitle: 'text-[clamp(2.4rem,4vw,3.6rem)] tracking-[-.025em]',
   priceCopy: 'mt-4 max-w-[490px] text-[1.02rem] leading-[1.66]',
   factorList: 'mt-6 grid list-none grid-cols-2 gap-x-7 gap-y-3 border-t border-teal/20 pt-5 text-[.94rem] font-[700] text-ink max-mobile:grid-cols-1',
   factorItem: 'flex items-center gap-2.5',
@@ -326,7 +315,7 @@ export const moveOutUi = {
 export const residentialUi = {
   heroSection: 'border-b border-line bg-mist pt-12 pb-14 max-mobile:pt-7 max-mobile:pb-9',
   heroGrid: 'grid grid-cols-[.9fr_1.1fr] items-center gap-16 max-tablet:gap-9 max-mobile:grid-cols-1 max-mobile:gap-7',
-  heroTitle: 'max-w-[700px] text-[clamp(3rem,5vw,4.5rem)] leading-[1.03] tracking-[-.04em] max-mobile:text-[2.85rem]',
+  heroTitle: 'max-w-[700px] text-[clamp(3rem,5vw,4.5rem)] leading-[1.03] tracking-[-.025em] max-mobile:text-[2.85rem]',
   heroLede: 'mt-6 max-w-[620px] text-lede leading-[1.62] max-mobile:mt-4',
   cadence: 'mt-7 flex flex-wrap items-center gap-x-4 gap-y-2 border-y border-sea-dark/15 py-4 text-[.92rem] text-sea-dark',
   cadenceLabel: 'font-extrabold',
@@ -349,7 +338,7 @@ export const residentialUi = {
   pricingGrid: 'grid grid-cols-[.9fr_1.1fr] items-start gap-16 max-tablet:grid-cols-1 max-tablet:gap-10',
   pricePanel: 'rounded-panel border-t-4 border-accent bg-paper p-7 shadow-soft max-mobile:p-5',
   priceEyebrow: 'mb-2 text-eyebrow font-extrabold uppercase tracking-[.12em] text-sea-dark',
-  priceTitle: 'text-[clamp(2rem,3.1vw,2.75rem)] leading-[1.12] tracking-[-.035em] text-ocean',
+  priceTitle: 'text-[clamp(2rem,3.1vw,2.75rem)] leading-[1.12] tracking-[-.02em] text-ocean',
   priceCopy: 'mt-4 max-w-[480px] text-[1.02rem] leading-[1.65]',
   factorList: 'mt-6 grid list-none grid-cols-2 gap-x-7 gap-y-3 border-t border-teal/20 pt-5 text-[.94rem] font-[700] text-ink max-mobile:grid-cols-1',
   factorItem: 'flex items-center gap-2.5',
@@ -370,7 +359,7 @@ export const rentalUi = {
   heroGrid: 'grid grid-cols-[.9fr_1.1fr] items-center gap-16 max-tablet:gap-9 max-mobile:grid-cols-1 max-mobile:gap-7',
   eyebrowRow: 'flex items-center gap-3',
   eyebrowRuleSea: 'h-px w-10 shrink-0 bg-sea',
-  heroTitle: 'max-w-[720px] text-[clamp(2.9rem,4.8vw,4.35rem)] leading-[1.03] tracking-[-.04em] max-mobile:text-[2.75rem]',
+  heroTitle: 'max-w-[720px] text-[clamp(2.9rem,4.8vw,4.35rem)] leading-[1.03] tracking-[-.025em] max-mobile:text-[2.75rem]',
   heroLede: 'mt-6 max-w-[610px] text-lede leading-[1.62] max-mobile:mt-4',
   fitNote: 'mt-4 max-w-[590px] border-l-[3px] border-teal pl-4 text-[.93rem] font-[650] leading-[1.52] text-ink-soft',
   heroActions: 'mt-7 flex flex-wrap items-center gap-control-gap',
@@ -390,7 +379,7 @@ export const rentalUi = {
   pricingGrid: 'grid grid-cols-[1.12fr_.88fr] gap-14 max-tablet:grid-cols-1 max-tablet:gap-10',
   pricingHeader: 'flex items-end justify-between gap-6',
   pricingEyebrow: 'mb-2 text-eyebrow font-extrabold uppercase tracking-[.12em] text-sea-dark',
-  pricingTitle: 'text-[clamp(2.1rem,3.5vw,3rem)] tracking-[-.035em]',
+  pricingTitle: 'text-[clamp(2.1rem,3.5vw,3rem)] tracking-[-.02em]',
   priceLabel: 'hidden text-[1rem] font-[750] text-sea-dark wide:block',
   tableWrap: 'mt-6 overflow-hidden rounded-panel border border-line border-t-4 border-t-accent bg-paper',
   table: 'w-full border-collapse text-left text-small',
@@ -424,7 +413,7 @@ export const serviceAreaUi = {
   eyebrow:
     'mb-4 text-eyebrow font-extrabold uppercase tracking-[.12em] text-sea-dark',
   heroTitle:
-    'max-w-[680px] text-[clamp(3rem,5vw,4.5rem)] font-black leading-[1.03] tracking-[-.04em] max-mobile:text-[2.8rem]',
+    'max-w-[680px] text-[clamp(3rem,5vw,4.5rem)] font-black leading-[1.03] tracking-[-.025em] max-mobile:text-[2.8rem]',
   heroLede:
     'mt-5 max-w-[620px] text-lede leading-[1.62] max-mobile:text-base',
   heroActions: 'mt-7 flex flex-wrap items-center gap-5',
@@ -449,7 +438,7 @@ export const serviceAreaUi = {
   servicesEyebrow:
     'mb-3 text-eyebrow font-extrabold uppercase tracking-[.12em] text-sea-dark',
   servicesHeading:
-    'max-w-[560px] text-[clamp(2.25rem,3.8vw,3.35rem)] leading-[1.08] tracking-[-.035em]',
+    'max-w-[560px] text-[clamp(2.25rem,3.8vw,3.35rem)] leading-[1.08] tracking-[-.02em]',
   coverageIntro:
     'max-w-[620px] justify-self-end text-[1rem] leading-[1.65] text-ink-soft max-tablet:justify-self-start',
   services:
@@ -474,7 +463,7 @@ export const quoteSuccessUi = {
   shell: 'max-w-[680px]',
   card: 'rounded-panel border border-line bg-paper px-8 py-12 text-center shadow-soft max-mobile:px-6 max-mobile:py-10',
   iconWrap: 'mb-6 inline-flex size-[72px] items-center justify-center rounded-full bg-seafoam text-sea-dark',
-  title: 'mb-4 text-[clamp(2rem,4vw,3rem)] tracking-[-.035em]',
+  title: 'mb-4 text-[clamp(2rem,4vw,3rem)] tracking-[-.02em]',
   actions: 'mt-8 flex flex-wrap items-center justify-center gap-4',
 } as const;
 
@@ -484,7 +473,7 @@ export const quoteUi = {
   layout: 'grid grid-cols-[minmax(0,1fr)_320px] items-start gap-[58px] max-tablet:grid-cols-1',
   eyebrowRow: 'mb-3 flex items-center gap-3 text-eyebrow font-extrabold uppercase tracking-[.11em] text-sea-dark',
   eyebrowRule: 'h-px w-10 bg-sea',
-  title: 'max-w-[720px] text-[clamp(2.35rem,4vw,3.45rem)] font-black leading-[1.08] tracking-[-.04em]',
+  title: 'max-w-[720px] text-[clamp(2.35rem,4vw,3.45rem)] font-black leading-[1.08] tracking-[-.025em]',
   lede: 'mt-3 max-w-[700px] text-[1.06rem] leading-[1.6] text-ink-soft',
   contactRow: 'mt-4 hidden flex-wrap items-center gap-x-5 gap-y-2 text-small max-tablet:flex',
   contactLink: 'inline-flex min-h-11 items-center font-bold text-sea-dark underline underline-offset-4',
@@ -509,7 +498,7 @@ export const quoteUi = {
   estimatePanel: 'mx-7 my-6 rounded-panel border border-teal/25 bg-seafoam/70 px-6 py-5 max-mobile:mx-5 max-mobile:px-5',
   estimateKicker: 'text-[.72rem] font-extrabold uppercase tracking-[.13em] text-teal',
   estimateHeading: 'mt-1 text-[1.1rem] font-bold text-ink',
-  estimatePrice: 'mt-2 text-[clamp(1.8rem,4vw,2.55rem)] font-black leading-[1.08] tracking-[-.035em] text-sea-dark',
+  estimatePrice: 'mt-2 text-[clamp(1.8rem,4vw,2.55rem)] font-black leading-[1.08] tracking-[-.02em] text-sea-dark',
   estimateBasis: 'mt-3 max-w-[620px] text-[.9rem] leading-[1.55] text-ink-soft',
   details: 'form-details-toggle mx-7 my-5 rounded-panel border border-line bg-mist/30 px-5 py-4 max-mobile:mx-5',
   detailsSummary: 'inline-flex list-none items-center gap-1.5 text-compact-action font-bold text-sea-dark',

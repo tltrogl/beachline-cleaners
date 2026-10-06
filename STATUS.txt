@@ -30,3 +30,20 @@ QA STATUS
 - No dependencies were installed or upgraded.
 - Rendered screenshot QA is only considered complete if the existing environment can run the project without dependency changes.
 - Form delivery is not considered verified unless a real test submission is performed.
+
+RENDERED-VISUAL-QA FIX PASS — 2026-10-05
+- Rebalanced the homepage hero to equal columns, reduced the maximum H1 size, and relaxed headline tracking.
+- Removed the redundant visible service-area sentence while retaining the Brevard County eyebrow and discovery data.
+- Fixed the missing whitespace between the homepage phone prompt and phone number.
+- Standardized homepage service-card price treatment, widened specialty-card image columns, and made each service card clickable through its title link instead of repeating a separate detail link.
+- Compacted the homepage process section and removed the redundant pink step bars.
+- Removed the redundant homepage CTA eyebrow while preserving the lighter seafoam CTA treatment.
+- Fixed footer copyright color explicitly, standardized the footer brand lockup to "Beachline Cleaners," simplified the footer stripe, and changed the logo wave to cyan for visible contrast.
+- Relaxed the most aggressive heading tracking across shared page/UI heading styles; no global word-spacing override was added.
+- Kept the site in the existing mist/seafoam/white system; sand was not introduced as a homepage section background and no generic homepage starting price was added.
+
+QA STATUS FOR THIS PASS
+- Static stale-reference check for removed homepage UI keys: PASS.
+- Diff/source inspection against Beachline-Cleaners-Current-Source-2026-10-05-v4-oklch.zip: PASS.
+- Astro typecheck/build/render: NOT VERIFIED in this environment. Dependency installation timed out before the Astro CLI became available; no build-success claim is made.
+- Production parity: NOT VERIFIED until this source is deployed and compared against beachlinecleaners.com.
